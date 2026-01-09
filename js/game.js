@@ -1,5 +1,5 @@
 
-var SITE_XTHOST = "https://aliii72727727.github.io/abso/";
+var SITE_XTHOST = "https://aliii72727727.github.io/abso/"; 
 window.detectLog = null;
 const _wrmxt = {
     BETAisSkinCustom(input) {
