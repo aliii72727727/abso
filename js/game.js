@@ -165,7 +165,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("http://aliii72727727.github.io/abso/api/servers.php")
+    await fetch("https://aliii72727727.github.io/abso/api/servers.php")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
