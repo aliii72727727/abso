@@ -1,5 +1,5 @@
 
-var var_weburl = "https://wormatefriendsturkey.com";
+var var_weburl = "https://aliii72727727.github.io/abso/";
 window.detectLog = null;
 const __yildowft = {
     BETAisSkinCustom(input) {
