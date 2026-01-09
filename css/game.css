@@ -1,5 +1,5 @@
 
-@import url("https://haylamday.com/css/font.css");
+@import url("https://muslimpowa1453.github.io/wormextension/css/font.css");
 
 ::-webkit-scrollbar {display:none;}
 * {font-family:vuonghiep;}
@@ -744,7 +744,7 @@ body {display:block !important;}
   position:relative;
   overflow:hidden;
       width: 100%;
-  margin-top:40px;
+  margin-top:10px;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-middle #mm-menu-cont #mm-advice-cont .mm-advice {
   width:100%;
@@ -855,7 +855,7 @@ body {display:block !important;}
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-bottom #mm-bottom-buttons {
   float: right;
-      margin-right: 20px;    margin-top: -20px;
+      margin-right: 20px;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-bottom #mm-bottom-buttons #mm-settings {
   background-color:#26c6da;
@@ -3592,8 +3592,8 @@ font-weight: bold;
 }
 
 .flag {
-    display: none;
-    margin-top: -20px;
+    display: block;
+    margin: 6px 0;
    background-image: url(https://i.imgur.com/oEICJp7.png);
     background-repeat: no-repeat;
     background-size: 135px 120px;
@@ -3626,7 +3626,7 @@ font-weight: bold;
     white-space: nowrap;
     list-style: none;
     padding: 0px;
-    margin-top: -0px;
+    margin-top: 25px;
     
 }
 
@@ -3809,21 +3809,6 @@ width: 40px;
     font-weight: bold;
     text-shadow: none;
 }
-
-
-.mau-vang{
-    flex: 1; 
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    color: #B8860B;
-    font-weight: bold;
-    text-shadow: none;
-}
-
-
-
-
 .offline {
     flex: 1;
     display: flex; 
@@ -4458,6 +4443,3 @@ input[type="color"]::-moz-color-swatch {
 .copy-button:hover {
   background: #45a049;
 }
-
-
-
