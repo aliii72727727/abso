@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "id": 1,
+        "active": true,
+        "url": "https:\/\/wormate.io\/###",
+        "image": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/4\/44\/BMW.svg",
+        "alt": "Test",
+        "width": 155,
+        "clicks": 0,
+        "impressions": 0
+    }
+]
