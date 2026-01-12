@@ -5782,15 +5782,46 @@ else {
     </div> `);
             
             
-             $(".mm-merchant-cont").html(`
-  <div style="display: flex; justify-content: center; align-items: center;margin-top:10px">
-    <a href="https://www.youtube.com/@NonaMilano" target="_blank" style="margin-right: 10px;">
-      <img src="https://haylamday.com/images/hiep_img/nona.png" alt="nona" width="155">
-    </a>
-    <a href="https://thanhtoan.vuonghiep.com" target="_blank">
-      <img src="https://i.imgur.com/UptsCxV.png" alt="wfc" width="155">
-    </a>
-  </div>`);
+             async function loadAds() {
+  try {
+    const response = await fetch('https://iraqcraft.store/api/ads.json');
+    const ads = await response.json();
+    
+    const activeAds = ads.filter(ad => ad.active === true);
+    
+    if (activeAds.length === 0) {
+      console.log('No active ads');
+      return;
+    }
+    
+    const randomAd = activeAds[Math.floor(Math.random() * activeAds.length)];
+    
+    $(".mm-merchant-cont").html(`
+      <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+        <a href="${randomAd.url}" target="_blank" style="margin-right: 10px;">
+          <img src="${randomAd.image}" alt="${randomAd.alt}" width="155">
+        </a>
+      </div>
+    `);
+    
+  } catch (error) {
+    console.error('Error loading ads:', error);
+    $(".mm-merchant-cont").html(`
+      <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+        <a href="https://thanhtoan.vuonghiep.com" target="_blank">
+          <img src="https://i.imgur.com/UptsCxV.png" alt="wfc" width="155">
+        </a>
+      </div>
+    `);
+  }
+}
+
+$(document).ready(function() {
+  loadAds();
+  
+  // Optional: refresh ads periodically
+  // setInterval(loadAds, 30000);
+});
             $(document).ready(function () {
                 $(".fullscreen_button").on("click", function () {
                     document.fullScreenElement && null !== document.fullScreenElement || !document.mozFullScreen && !document.webkitIsFullScreen ? document.documentElement.requestFullScreen ? document.documentElement.requestFullScreen() : document.documentElement.mozRequestFullScreen ? document.documentElement.mozRequestFullScreen() : document.documentElement.webkitRequestFullScreen && document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT) : document.cancelFullScreen ? document.cancelFullScreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitCancelFullScreen && document.webkitCancelFullScreen()
