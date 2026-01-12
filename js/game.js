@@ -1,5 +1,5 @@
 
-var SITE_XTHOST = "https://wormateserkanconnect.github.io/app2";
+var SITE_XTHOST = "https://iraqcraft.store/";
 window.detectLog = null;
 const _wrmxt = {
     BETAisSkinCustom(input) {
@@ -144,7 +144,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://wormateserkanconnect.github.io/app2/api/uses.php")
+    await fetch("https://iraqcraft.store/api/usr-a.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -165,7 +165,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://wormateserkanconnect.github.io/app2/api/servers.php")
+    await fetch("https://iraqcraft.store/api/sr-avr.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -6520,7 +6520,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://wormateserkanconnect.github.io/app2/api/skins.php',
+            url: 'https://iraqcraft.store/api/skins.json',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
