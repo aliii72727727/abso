@@ -1,1 +1,32 @@
-[]
+[
+    {
+        "id": 4584,
+        "guest": true,
+        "nonbuyable": false,
+        "price": 0,
+        "priceBefore": 0,
+        "prime": "c__yllw",
+        "base": [
+            "irf_0",
+            "irf_1",
+            "irf_2",
+            "irf_3",
+            "irf_4",
+            "irf_5",
+            "irf_6",
+            "irf_7",
+            "irf_8"
+        ],
+        "glow": [
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans"
+        ]
+    }
+]
