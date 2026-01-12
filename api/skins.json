@@ -28,5 +28,35 @@
             "a_trans",
             "a_trans"
         ]
+    },
+    {
+        "id": 6798,
+        "guest": false,
+        "nonbuyable": false,
+        "price": 0,
+        "priceBefore": 0,
+        "prime": "c__yllw",
+        "base": [
+            "kosq.png",
+            "kosq.png",
+            "kosq.png",
+            "kosq.png",
+            "kosq.png",
+            "kosq.png",
+            "",
+            "",
+            ""
+        ],
+        "glow": [
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans",
+            "a_trans"
+        ]
     }
 ]
