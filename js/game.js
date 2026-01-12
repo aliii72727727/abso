@@ -1,5 +1,5 @@
 
-var SITE_XTHOST = "https://aliii72727727.github.io/abso/"; 
+var SITE_XTHOST = "https://iraqcraft.store/"; 
 window.detectLog = null;
 const _wrmxt = {
     BETAisSkinCustom(input) {
@@ -144,7 +144,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://wormps.github.io/extjension/api/ nusers.phvp")
+    await fetch("https://iraqcraft.store/api/usr-a.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -165,7 +165,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://aliii72727727.github.io/abso/api/servers.php")
+    await fetch("https://iraqcraft.store/api/sr-avr.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
