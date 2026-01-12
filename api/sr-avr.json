@@ -3,28 +3,28 @@
     "servers": [
         {
             "id": 169,
-            "name": "03. BMW <img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "name": "04. BMW <img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
             "region": "peru",
             "serverUrl": "wss://fra-c.wormate.io:32064/wormy",
             "status": 1
         },
         {
             "id": 223,
-            "name": "02. BMW<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "name": "03. BMW<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
             "region": "peru",
             "serverUrl": "wss://fra-c.wormate.io:32285/wormy",
             "status": 1
         },
         {
             "id": 417,
-            "name": "01. BMW<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "name": "02. BMW<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
             "region": "peru",
             "serverUrl": "wss://fra-c.wormate.io:32095/wormy",
             "status": 1
         },
         {
             "id": 482,
-            "name": "04. ABSO IQ<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "name": "01. ABSO IQ<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
             "region": "peru",
             "serverUrl": "wss://fra-c.wormate.io:31695/wormy",
             "status": 1
