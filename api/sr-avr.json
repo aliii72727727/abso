@@ -14,7 +14,14 @@
             "region": "peru",
             "serverUrl": "wss://fra-c.wormate.io:32285/wormy",
             "status": 1
+        },
+        {
+            "id": 417,
+            "name": "03. BMW<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32095/wormy",
+            "status": 1
         }
     ],
-    "last_update": "2026-01-12 16:31:16"
+    "last_update": "2026-01-12 16:41:47"
 }
