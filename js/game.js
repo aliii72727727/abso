@@ -12,7 +12,7 @@ var _0xf7a4ea = _0x1c2b;
         }
     }
 }(_0x2562, 0xb76cf));
-var GoogleAuth, zE;
+var GoogleAuth, zE; 
 window.sectorSystem = {
     'settings': {
         'lineWidth': 0.15,
