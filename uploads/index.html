@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المستخدمين</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        header h1 i {
+            color: var(--warning-color);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .control-panel {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #229954;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #d68910;
+            transform: translateY(-2px);
+        }
+
+        .users-table-container {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        th {
+            padding: 18px 15px;
+            text-align: right;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background-color: rgba(39, 174, 96, 0.15);
+            color: var(--success-color);
+        }
+
+        .status-inactive {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: var(--danger-color);
+        }
+
+        .vip-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background-color: rgba(243, 156, 18, 0.15);
+            color: var(--warning-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .edit-btn {
+            background-color: rgba(52, 152, 219, 0.15);
+            color: var(--secondary-color);
+        }
+
+        .edit-btn:hover {
+            background-color: rgba(52, 152, 219, 0.25);
+        }
+
+        .delete-btn {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: var(--danger-color);
+        }
+
+        .delete-btn:hover {
+            background-color: rgba(231, 76, 60, 0.25);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal-footer {
+            padding: 20px 25px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-success {
+            background-color: rgba(39, 174, 96, 0.15);
+            color: var(--success-color);
+            border-left: 4px solid var(--success-color);
+        }
+
+        .alert-error {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: var(--danger-color);
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-card.users i { color: var(--secondary-color); }
+        .stat-card.active i { color: var(--success-color); }
+        .stat-card.vip i { color: var(--warning-color); }
+        .stat-card.expired i { color: var(--danger-color); }
+
+        .stat-card .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .action-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-users-cog"></i> نظام إدارة المستخدمين</h1>
+            <p>إدارة كاملة للمستخدمين مع مزامنة مباشرة مع GitHub</p>
+        </header>
+
+        <div class="stats-cards">
+            <div class="stat-card users">
+                <i class="fas fa-users"></i>
+                <div class="number" id="total-users">0</div>
+                <div class="label">إجمالي المستخدمين</div>
+            </div>
+            <div class="stat-card active">
+                <i class="fas fa-user-check"></i>
+                <div class="number" id="active-users">0</div>
+                <div class="label">المستخدمين النشطين</div>
+            </div>
+            <div class="stat-card vip">
+                <i class="fas fa-crown"></i>
+                <div class="number" id="vip-users">0</div>
+                <div class="label">مستخدمين VIP</div>
+            </div>
+            <div class="stat-card expired">
+                <i class="fas fa-clock"></i>
+                <div class="number" id="expired-users">0</div>
+                <div class="label">منتهي الصلاحية</div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div>
+                <button class="btn btn-primary" id="load-users-btn">
+                    <i class="fas fa-sync-alt"></i> تحديث البيانات من GitHub
+                </button>
+                <button class="btn btn-success" id="add-user-btn">
+                    <i class="fas fa-user-plus"></i> إضافة مستخدم جديد
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-warning" id="save-changes-btn">
+                    <i class="fas fa-cloud-upload-alt"></i> حفظ التغييرات على GitHub
+                </button>
+            </div>
+        </div>
+
+        <div id="message-area"></div>
+
+        <div class="users-table-container">
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>اسم المستخدم</th>
+                        <th>المعرف</th>
+                        <th>تاريخ البدء</th>
+                        <th>تاريخ الانتهاء</th>
+                        <th>الحالة</th>
+                        <th>VIP</th>
+                        <th>Zoom</th>
+                        <th>الجلد المرئي</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table-body">
+                    <!-- سيتم ملء البيانات هنا عبر JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة/تعديل مستخدم -->
+    <div class="modal" id="user-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">إضافة مستخدم جديد</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="user-form">
+                    <div class="form-group">
+                        <label for="user-name">اسم المستخدم *</label>
+                        <input type="text" id="user-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-id">معرف المستخدم (gg_) *</label>
+                        <input type="text" id="user-id" class="form-control" required>
+                        <small style="color: #666; margin-top: 5px; display: block;">يجب أن يبدأ بـ gg_</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="access-key">مفتاح الوصول</label>
+                        <input type="text" id="access-key" class="form-control" value="XTPRIVATESKIN">
+                    </div>
+                    <div class="form-group">
+                        <label for="start-date">تاريخ البدء</label>
+                        <input type="text" id="start-date" class="form-control" placeholder="dd-mm-yyyy">
+                    </div>
+                    <div class="form-group">
+                        <label for="expire-date">تاريخ الانتهاء</label>
+                        <input type="text" id="expire-date" class="form-control" placeholder="dd-mm-yyyy">
+                    </div>
+                    <div class="form-group">
+                        <label for="visible-skin">الجلد المرئي</label>
+                        <input type="text" id="visible-skin" class="form-control" placeholder="رقم الجلد">
+                    </div>
+                    <div class="form-group">
+                        <label>الصلاحيات</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="user-status" checked>
+                                <label for="user-status">نشط</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="user-vip">
+                                <label for="user-vip">VIP</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="user-zoom">
+                                <label for="user-zoom">Zoom</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="user-index">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" id="cancel-btn">إلغاء</button>
+                <button class="btn btn-success" id="save-user-btn">حفظ المستخدم</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تأكيد الحذف -->
+    <div class="modal" id="delete-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> تأكيد الحذف</h3>
+                <button class="close-modal" id="close-delete-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>هل أنت متأكد من حذف هذا المستخدم؟ هذا الإجراء لا يمكن التراجع عنه.</p>
+                <p><strong id="delete-user-name"></strong></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" id="cancel-delete-btn">إلغاء</button>
+                <button class="btn btn-danger" id="confirm-delete-btn">نعم، احذف</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات التطبيق
+        const config = {
+            githubToken: "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",
+            apiUrl: "https://aliii72727727.github.io/abso/api/usr-a.json",
+            repoUrl: "https://api.github.com/repos/aliii72727727/abso/contents/api/usr-a.json",
+            domain: "https://iraqcraft.store/"
+        };
+
+        let usersData = [];
+        let currentUserIndex = -1;
+        let deleteUserIndex = -1;
+
+        // عناصر DOM
+        const loadUsersBtn = document.getElementById('load-users-btn');
+        const addUserBtn = document.getElementById('add-user-btn');
+        const saveChangesBtn = document.getElementById('save-changes-btn');
+        const usersTableBody = document.getElementById('users-table-body');
+        const userModal = document.getElementById('user-modal');
+        const deleteModal = document.getElementById('delete-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const closeDeleteModalBtn = document.getElementById('close-delete-modal');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+        const saveUserBtn = document.getElementById('save-user-btn');
+        const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+        const userForm = document.getElementById('user-form');
+        const messageArea = document.getElementById('message-area');
+
+        // إحصائيات
+        const totalUsersEl = document.getElementById('total-users');
+        const activeUsersEl = document.getElementById('active-users');
+        const vipUsersEl = document.getElementById('vip-users');
+        const expiredUsersEl = document.getElementById('expired-users');
+
+        // تحميل البيانات من GitHub عند فتح الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUsersFromGitHub();
+        });
+
+        // أحداث الأزرار
+        loadUsersBtn.addEventListener('click', loadUsersFromGitHub);
+        addUserBtn.addEventListener('click', openAddUserModal);
+        saveChangesBtn.addEventListener('click', saveChangesToGitHub);
+        closeModalBtn.addEventListener('click', closeUserModal);
+        closeDeleteModalBtn.addEventListener('click', closeDeleteModal);
+        cancelBtn.addEventListener('click', closeUserModal);
+        cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+        saveUserBtn.addEventListener('click', saveUser);
+        confirmDeleteBtn.addEventListener('click', confirmDeleteUser);
+
+        // جلب بيانات المستخدمين من GitHub
+        async function loadUsersFromGitHub() {
+            showMessage('جارٍ تحميل البيانات من GitHub...', 'info');
+            loadUsersBtn.innerHTML = '<span class="loading"></span> جاري التحميل...';
+            loadUsersBtn.disabled = true;
+
+            try {
+                const response = await fetch(config.apiUrl + '?t=' + new Date().getTime());
+                if (!response.ok) {
+                    throw new Error(`خطأ في جلب البيانات: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success && data.Users) {
+                    usersData = data.Users;
+                    renderUsersTable();
+                    updateStats();
+                    showMessage('تم تحميل البيانات بنجاح!', 'success');
+                } else {
+                    throw new Error('هيكل البيانات غير صحيح');
+                }
+            } catch (error) {
+                console.error('Error loading users:', error);
+                showMessage(`خطأ في تحميل البيانات: ${error.message}`, 'error');
+                
+                // تحميل بيانات تجريبية في حالة الفشل
+                loadSampleData();
+            } finally {
+                loadUsersBtn.innerHTML = '<i class="fas fa-sync-alt"></i> تحديث البيانات من GitHub';
+                loadUsersBtn.disabled = false;
+            }
+        }
+
+        // تحميل بيانات تجريبية في حالة فشل الاتصال
+        function loadSampleData() {
+            showMessage('جارٍ تحميل بيانات تجريبية...', 'warning');
+            
+            // بيانات تجريبية مبنية على المثال الذي قدمته
+            usersData = [
+                {
+                    "id": 1,
+                    "cliente_NOMBRE": "Platen",
+                    "cliente_ID": "gg_106263452150533879793",
+                    "Client_KeyAccecs": "XTPRIVATESKIN",
+                    "cliente_DateStarted": "04-02-2025",
+                    "cliente_DateExpired": "04-06-9999",
+                    "status": 1,
+                    "Client_VisibleSkin": "1200",
+                    "Client_VisibleSkin1": "1202",
+                    "VIP": "Yes",
+                    "Zoom": "No"
+                },
+                {
+                    "id": 2,
+                    "cliente_NOMBRE": "Davinci",
+                    "cliente_ID": "gg_106712396248121353987",
+                    "Client_KeyAccecs": "XTPRIVATESKIN",
+                    "cliente_DateStarted": "04-02-2025",
+                    "cliente_DateExpired": "04-06-9999",
+                    "status": 1,
+                    "Client_VisibleSkin": "1201",
+                    "VIP": "Yes",
+                    "Zoom": "Yes"
+                },
+                {
+                    "id": 3,
+                    "cliente_NOMBRE": "DV-SAİF",
+                    "cliente_ID": "gg_111579057934330068023",
+                    "Client_KeyAccecs": "XTPRIVATESKIN",
+                    "cliente_DateStarted": "04-02-2025",
+                    "cliente_DateExpired": "16-02-9999",
+                    "status": 1,
+                    "VIP": "No",
+                    "Zoom": "No"
+                }
+            ];
+            
+            renderUsersTable();
+            updateStats();
+            showMessage('تم تحميل البيانات التجريبية بنجاح!', 'success');
+        }
+
+        // عرض المستخدمين في الجدول
+        function renderUsersTable() {
+            usersTableBody.innerHTML = '';
+            
+            usersData.forEach((user, index) => {
+                const row = document.createElement('tr');
+                
+                // التحقق من تاريخ الانتهاء
+                const isExpired = checkIfExpired(user.cliente_DateExpired);
+                const statusClass = (user.status === 1 && !isExpired) ? 'status-active' : 'status-inactive';
+                const statusText = (user.status === 1 && !isExpired) ? 'نشط' : 'غير نشط';
+                
+                // التحقق من صلاحية VIP
+                const isVip = user.VIP === "Yes";
+                const vipText = isVip ? 'Yes' : 'No';
+                
+                // التحقق من صلاحية Zoom
+                const hasZoom = user.Zoom === "Yes";
+                const zoomText = hasZoom ? 'Yes' : 'No';
+                
+                // الجلد المرئي
+                const visibleSkin = user.Client_VisibleSkin || user.Client_VisibleSkin1 || 'لا يوجد';
+                
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td><strong>${user.cliente_NOMBRE}</strong></td>
+                    <td><code>${user.cliente_ID}</code></td>
+                    <td>${user.cliente_DateStarted || 'غير محدد'}</td>
+                    <td>${user.cliente_DateExpired || 'غير محدد'}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td>${isVip ? '<span class="vip-badge">VIP</span>' : vipText}</td>
+                    <td>${zoomText}</td>
+                    <td>${visibleSkin}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit-btn" data-index="${index}">
+                                <i class="fas fa-edit"></i> تعديل
+                            </button>
+                            <button class="action-btn delete-btn" data-index="${index}">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </td>
+                `;
+                
+                usersTableBody.appendChild(row);
+            });
+            
+            // إضافة أحداث لأزرار التعديل والحذف
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    openEditUserModal(index);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    openDeleteUserModal(index);
+                });
+            });
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            const totalUsers = usersData.length;
+            const activeUsers = usersData.filter(user => user.status === 1 && !checkIfExpired(user.cliente_DateExpired)).length;
+            const vipUsers = usersData.filter(user => user.VIP === "Yes").length;
+            const expiredUsers = usersData.filter(user => checkIfExpired(user.cliente_DateExpired)).length;
+            
+            totalUsersEl.textContent = totalUsers;
+            activeUsersEl.textContent = activeUsers;
+            vipUsersEl.textContent = vipUsers;
+            expiredUsersEl.textContent = expiredUsers;
+        }
+
+        // التحقق من انتهاء صلاحية المستخدم
+        function checkIfExpired(expireDate) {
+            if (!expireDate || expireDate.includes('9999')) return false;
+            
+            try {
+                const [day, month, year] = expireDate.split('-').map(Number);
+                const expireDateObj = new Date(year, month - 1, day);
+                const today = new Date();
+                
+                return expireDateObj < today;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // فتح نافذة إضافة مستخدم جديد
+        function openAddUserModal() {
+            currentUserIndex = -1;
+            document.getElementById('modal-title').textContent = 'إضافة مستخدم جديد';
+            document.getElementById('user-form').reset();
+            document.getElementById('user-index').value = '';
+            document.getElementById('user-status').checked = true;
+            document.getElementById('user-vip').checked = false;
+            document.getElementById('user-zoom').checked = false;
+            
+            // تعيين التاريخ الحالي كتاريخ بدء
+            const today = new Date();
+            const formattedDate = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
+            document.getElementById('start-date').value = formattedDate;
+            
+            // تعيين تاريخ انتهاء بعد سنة
+            const nextYear = new Date();
+            nextYear.setFullYear(nextYear.getFullYear() + 1);
+            const formattedNextYear = `${String(nextYear.getDate()).padStart(2, '0')}-${String(nextYear.getMonth() + 1).padStart(2, '0')}-${nextYear.getFullYear()}`;
+            document.getElementById('expire-date').value = formattedNextYear;
+            
+            userModal.style.display = 'flex';
+        }
+
+        // فتح نافذة تعديل مستخدم
+        function openEditUserModal(index) {
+            currentUserIndex = index;
+            const user = usersData[index];
+            
+            document.getElementById('modal-title').textContent = 'تعديل بيانات المستخدم';
+            document.getElementById('user-name').value = user.cliente_NOMBRE || '';
+            document.getElementById('user-id').value = user.cliente_ID || '';
+            document.getElementById('access-key').value = user.Client_KeyAccecs || 'XTPRIVATESKIN';
+            document.getElementById('start-date').value = user.cliente_DateStarted || '';
+            document.getElementById('expire-date').value = user.cliente_DateExpired || '';
+            document.getElementById('visible-skin').value = user.Client_VisibleSkin || user.Client_VisibleSkin1 || '';
+            document.getElementById('user-index').value = index;
+            document.getElementById('user-status').checked = user.status === 1;
+            document.getElementById('user-vip').checked = user.VIP === "Yes";
+            document.getElementById('user-zoom').checked = user.Zoom === "Yes";
+            
+            userModal.style.display = 'flex';
+        }
+
+        // فتح نافذة تأكيد حذف مستخدم
+        function openDeleteUserModal(index) {
+            deleteUserIndex = index;
+            const user = usersData[index];
+            document.getElementById('delete-user-name').textContent = `${user.cliente_NOMBRE} (${user.cliente_ID})`;
+            deleteModal.style.display = 'flex';
+        }
+
+        // إغلاق نافذة المستخدم
+        function closeUserModal() {
+            userModal.style.display = 'none';
+        }
+
+        // إغلاق نافذة الحذف
+        function closeDeleteModal() {
+            deleteModal.style.display = 'none';
+        }
+
+        // حفظ مستخدم (جديد أو معدل)
+        function saveUser() {
+            const userName = document.getElementById('user-name').value.trim();
+            const userId = document.getElementById('user-id').value.trim();
+            
+            if (!userName || !userId) {
+                showMessage('يرجى ملء جميع الحقول المطلوبة!', 'error');
+                return;
+            }
+            
+            // التحقق من صيغة معرف المستخدم
+            if (!userId.startsWith('gg_')) {
+                showMessage('معرف المستخدم يجب أن يبدأ بـ gg_', 'error');
+                return;
+            }
+            
+            const userData = {
+                cliente_NOMBRE: userName,
+                cliente_ID: userId,
+                Client_KeyAccecs: document.getElementById('access-key').value.trim() || "XTPRIVATESKIN",
+                cliente_DateStarted: document.getElementById('start-date').value.trim(),
+                cliente_DateExpired: document.getElementById('expire-date').value.trim(),
+                status: document.getElementById('user-status').checked ? 1 : 0,
+                VIP: document.getElementById('user-vip').checked ? "Yes" : "No",
+                Zoom: document.getElementById('user-zoom').checked ? "Yes" : "No"
+            };
+            
+            // إضافة الجلد المرئي إذا تم تحديده
+            const visibleSkin = document.getElementById('visible-skin').value.trim();
+            if (visibleSkin) {
+                userData.Client_VisibleSkin = visibleSkin;
+            }
+            
+            if (currentUserIndex === -1) {
+                // إضافة مستخدم جديد
+                userData.id = usersData.length > 0 ? Math.max(...usersData.map(u => u.id)) + 1 : 1;
+                usersData.push(userData);
+                showMessage('تم إضافة المستخدم بنجاح!', 'success');
+            } else {
+                // تحديث مستخدم موجود
+                userData.id = usersData[currentUserIndex].id;
+                
+                // الحفاظ على الخصائص الإضافية
+                const existingUser = usersData[currentUserIndex];
+                if (existingUser.Client_VisibleSkin1) {
+                    userData.Client_VisibleSkin1 = existingUser.Client_VisibleSkin1;
+                }
+                
+                usersData[currentUserIndex] = userData;
+                showMessage('تم تحديث بيانات المستخدم بنجاح!', 'success');
+            }
+            
+            renderUsersTable();
+            updateStats();
+            closeUserModal();
+        }
+
+        // تأكيد حذف مستخدم
+        function confirmDeleteUser() {
+            if (deleteUserIndex !== -1) {
+                const deletedUser = usersData[deleteUserIndex];
+                usersData.splice(deleteUserIndex, 1);
+                
+                // إعادة ترقيم الـ IDs إذا لزم الأمر
+                usersData.forEach((user, index) => {
+                    user.id = index + 1;
+                });
+                
+                renderUsersTable();
+                updateStats();
+                showMessage(`تم حذف المستخدم ${deletedUser.cliente_NOMBRE} بنجاح!`, 'success');
+                closeDeleteModal();
+                deleteUserIndex = -1;
+            }
+        }
+
+        // حفظ التغييرات على GitHub
+        async function saveChangesToGitHub() {
+            if (usersData.length === 0) {
+                showMessage('لا توجد بيانات لحفظها!', 'error');
+                return;
+            }
+            
+            showMessage('جارٍ رفع البيانات إلى GitHub...', 'info');
+            saveChangesBtn.innerHTML = '<span class="loading"></span> جاري الحفظ...';
+            saveChangesBtn.disabled = true;
+            
+            try {
+                // الحصول على محتوى الملف الحالي من GitHub
+                const getResponse = await fetch(config.repoUrl, {
+                    headers: {
+                        'Authorization': `token ${config.githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!getResponse.ok) {
+                    throw new Error(`فشل في جلب بيانات الملف: ${getResponse.status}`);
+                }
+                
+                const fileData = await getResponse.json();
+                const sha = fileData.sha;
+                
+                // تحضير البيانات الجديدة
+                const updatedData = {
+                    success: true,
+                    Users: usersData
+                };
+                
+                const content = JSON.stringify(updatedData, null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(content)));
+                
+                // تحديث الملف على GitHub
+                const updateResponse = await fetch(config.repoUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${config.githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `تحديث بيانات المستخدمين ${new Date().toLocaleString('ar-SA')}`,
+                        content: encodedContent,
+                        sha: sha,
+                        branch: 'main'
+                    })
+                });
+                
+                if (!updateResponse.ok) {
+                    throw new Error(`فشل في تحديث الملف: ${updateResponse.status}`);
+                }
+                
+                showMessage('تم حفظ التغييرات على GitHub بنجاح!', 'success');
+                
+                // عرض رابط الموقع
+                setTimeout(() => {
+                    showMessage(`يمكنك مشاهدة التغييرات على: <a href="${config.domain}" target="_blank" style="color: white; text-decoration: underline;">${config.domain}</a>`, 'success');
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Error saving to GitHub:', error);
+                showMessage(`خطأ في حفظ البيانات على GitHub: ${error.message}`, 'error');
+            } finally {
+                saveChangesBtn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> حفظ التغييرات على GitHub';
+                saveChangesBtn.disabled = false;
+            }
+        }
+
+        // عرض رسائل للمستخدم
+        function showMessage(message, type) {
+            // إزالة أي رسالة سابقة
+            const existingMessage = document.querySelector('.alert');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            const messageEl = document.createElement('div');
+            messageEl.className = `alert alert-${type === 'success' ? 'success' : type === 'error' ? 'error' : 'info'}`;
+            
+            let icon = '';
+            if (type === 'success') icon = '<i class="fas fa-check-circle"></i>';
+            else if (type === 'error') icon = '<i class="fas fa-exclamation-circle"></i>';
+            else icon = '<i class="fas fa-info-circle"></i>';
+            
+            messageEl.innerHTML = `${icon} ${message}`;
+            messageArea.appendChild(messageEl);
+            
+            // إزالة الرسالة تلقائياً بعد 5 ثواني
+            if (type !== 'error') {
+                setTimeout(() => {
+                    if (messageEl.parentNode) {
+                        messageEl.remove();
+                    }
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
