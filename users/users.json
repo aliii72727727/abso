@@ -7,5 +7,14 @@
         "country": "العراق",
         "coins": 100,
         "created_at": "2026-01-13 15:36:30"
+    },
+    {
+        "id": 4000595,
+        "username": "ns",
+        "email": "mksjkmdkek@gmail.com",
+        "password": "$2y$10$6pqppolDnjdOg5j6fGDpRujifpa5O7Q.2c6xGJopAerSnnseZjBAe",
+        "country": "لبنان",
+        "coins": 100,
+        "created_at": "2026-01-13 15:38:07"
     }
 ]
