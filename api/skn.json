@@ -11,10 +11,10 @@
     "room": {
         "ROOM_8133": {
             "isCustom": true,
-            "id": "ROOM_8133",
+            "id": "8133",
             "img": "photo-2022-1-7.absosrt.png",
             "name": {
-                "en": "bbb"
+                "en": "rt"
             },
             "list": []
         },
