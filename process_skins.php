@@ -26,7 +26,7 @@ $prime = isset($data['prime']) && !empty($data['prime']) ? $data['prime'] : "c__
 // Gelen veriler arasında 'price' var mı kontrol et, yoksa varsayılan değeri ata
 $price = isset($data['price']) && is_numeric($data['price']) ? $data['price'] : 0;
 
-$filePath = "./skin_007.php";
+$filePath = "api/skn.json";
 
 // Mevcut dosya içeriğini oku
 $phpContent = file_get_contents($filePath);
