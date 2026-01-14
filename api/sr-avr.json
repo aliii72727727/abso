@@ -2,33 +2,438 @@
     "success": true,
     "servers": [
         {
-            "id": 169,
-            "name": "04. BMW <img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "id": 62,
+            "name": "<div id='svhiep'> <div class='ten'>62. De SERVER </div> <div class='valu'>Map: DE_62</div> <div class='offline'>OFF</div>  </div>",
             "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:32064/wormy",
+            "serverUrl": "wss://fra-c.wormate.io:32477/wormy",
             "status": 1
         },
         {
-            "id": 223,
-            "name": "03. BMW<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "id": 61,
+            "name": "<div id='svhiep'> <div class='ten'>61. De SERVER </div> <div class='valu'>Map: DE_61</div> <div class='offline'>OFF</div>  </div>",
             "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:32285/wormy",
+            "serverUrl": "wss://fra-c.wormate.io:32703/wormy",
             "status": 1
         },
         {
-            "id": 417,
-            "name": "02. BMW<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "id": 60,
+            "name": "<div id='svhiep'> <div class='ten'>60. De SERVER </div> <div class='valu'>Map: DE_60</div> <div class='offline'>OFF</div>  </div>",
             "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:32095/wormy",
+            "serverUrl": "wss://fra-c.wormate.io:30135/wormy",
             "status": 1
         },
         {
-            "id": 482,
-            "name": "01. ABSO IQ<img class='team' src='https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'/><div id='online'></div>",
+            "id": 59,
+            "name": "<div id='svhiep'> <div class='ten'>59. De SERVER </div> <div class='valu'>Map: DE_59</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30106/wormy",
+            "status": 1
+        },
+        {
+            "id": 58,
+            "name": "<div id='svhiep'> <div class='ten'>58. De SERVER </div> <div class='valu'>Map: DE_58</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30245/wormy",
+            "status": 1
+        },
+        {
+            "id": 57,
+            "name": "<div id='svhiep'> <div class='ten'>57. De SERVER </div> <div class='valu'>Map: DE_57</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://dal-b.wormate.io:32584/wormy",
+            "status": 1
+        },
+        {
+            "id": 56,
+            "name": "<div id='svhiep'> <div class='ten'>56. De SERVER </div> <div class='valu'>Map: DE_56</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://hil-a.wormate.io:30213/wormy",
+            "status": 1
+        },
+        {
+            "id": 55,
+            "name": "<div id='svhiep'> <div class='ten'>55. De SERVER </div> <div class='valu'>Map: DE_55</div> <div class='online'>ON</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://vin-a.wormate.io:30703/wormy",
+            "status": 1
+        },
+        {
+            "id": 54,
+            "name": "<div id='svhiep'> <div class='ten'>54. De SERVER </div> <div class='valu'>Map: DE_54</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32611/wormy",
+            "status": 1
+        },
+        {
+            "id": 53,
+            "name": "<div id='svhiep'> <div class='ten'>53. De SERVER </div> <div class='valu'>Map: DE_53</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31859/wormy",
+            "status": 1
+        },
+        {
+            "id": 52,
+            "name": "<div id='svhiep'> <div class='ten'>52. De SERVER </div> <div class='valu'>Map: DE_52</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30339/wormy",
+            "status": 1
+        },
+        {
+            "id": 51,
+            "name": "<div id='svhiep'> <div class='ten'>51. De SERVER </div> <div class='valu'>Map: DE_51</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31123/wormy",
+            "status": 1
+        },
+        {
+            "id": 50,
+            "name": "<div id='svhiep'> <div class='ten'>50. De SERVER </div> <div class='valu'>Map: DE_50</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30161/wormy",
+            "status": 1
+        },
+        {
+            "id": 49,
+            "name": "<div id='svhiep'> <div class='ten'>49. De SERVER </div> <div class='valu'>Map: DE_49</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32577/wormy",
+            "status": 1
+        },
+        {
+            "id": 48,
+            "name": "<div id='svhiep'> <div class='ten'>48. De SERVER </div> <div class='valu'>Map: DE_48</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32405/wormy",
+            "status": 1
+        },
+        {
+            "id": 47,
+            "name": "<div id='svhiep'> <div class='ten'>47. De SERVER </div> <div class='valu'>Map: DE_47</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31908/wormy",
+            "status": 1
+        },
+        {
+            "id": 46,
+            "name": "<div id='svhiep'> <div class='ten'>46. De SERVER </div> <div class='valu'>Map: DE_46</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30327/wormy",
+            "status": 1
+        },
+        {
+            "id": 45,
+            "name": "<div id='svhiep'> <div class='ten'>45. De SERVER </div> <div class='valu'>Map: DE_45</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30909/wormy",
+            "status": 1
+        },
+        {
+            "id": 44,
+            "name": "<div id='svhiep'> <div class='ten'>44. De SERVER </div> <div class='valu'>Map: DE_44</div> <div class='online'>ON</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31230/wormy",
+            "status": 1
+        },
+        {
+            "id": 43,
+            "name": "<div id='svhiep'> <div class='ten'>43. De SERVER </div> <div class='valu'>Map: DE_43</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31163/wormy",
+            "status": 1
+        },
+        {
+            "id": 42,
+            "name": "<div id='svhiep'> <div class='ten'>42. De SERVER </div> <div class='valu'>Map: DE_42</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31091/wormy",
+            "status": 1
+        },
+        {
+            "id": 41,
+            "name": "<div id='svhiep'> <div class='ten'>41. De SERVER </div> <div class='valu'>Map: DE_41</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31084/wormy",
+            "status": 1
+        },
+        {
+            "id": 40,
+            "name": "<div id='svhiep'> <div class='ten'>40. De SERVER </div> <div class='valu'>Map: DE_40</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30809/wormy",
+            "status": 1
+        },
+        {
+            "id": 39,
+            "name": "<div id='svhiep'> <div class='ten'>39. De SERVER </div> <div class='valu'>Map: DE_39</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30135/wormy",
+            "status": 1
+        },
+        {
+            "id": 38,
+            "name": "<div id='svhiep'> <div class='ten'>38. De SERVER </div> <div class='valu'>Map: DE_38</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30725/wormy",
+            "status": 1
+        },
+        {
+            "id": 37,
+            "name": "<div id='svhiep'> <div class='ten'>37. De SERVER </div> <div class='valu'>Map: DE_37</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32584/wormy",
+            "status": 1
+        },
+        {
+            "id": 36,
+            "name": "<div id='svhiep'> <div class='ten'>36. De SERVER </div> <div class='valu'>Map: DE_36</div> <div class='online'>ON</div>  </div>",
             "region": "peru",
             "serverUrl": "wss://fra-c.wormate.io:31695/wormy",
             "status": 1
+        },
+        {
+            "id": 35,
+            "name": "<div id='svhiep'> <div class='ten'>35. De SERVER </div> <div class='valu'>Map: DE_35</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32054/wormy",
+            "status": 1
+        },
+        {
+            "id": 34,
+            "name": "<div id='svhiep'> <div class='ten'>34. De SERVER </div> <div class='valu'>Map: DE_34</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30171/wormy",
+            "status": 1
+        },
+        {
+            "id": 33,
+            "name": "<div id='svhiep'> <div class='ten'>33. De SERVER </div> <div class='valu'>Map: DE_33</div> <div class='online'>ON</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31750/wormy",
+            "status": 1
+        },
+        {
+            "id": 32,
+            "name": "<div id='svhiep'> <div class='ten'>32. De SERVER </div> <div class='valu'>Map: DE_32</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
+        },
+        {
+            "id": 31,
+            "name": "<div id='svhiep'> <div class='ten'>31. De SERVER </div> <div class='valu'>Map: DE_31</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31038/wormy",
+            "status": 1
+        },
+        {
+            "id": 30,
+            "name": "<div id='svhiep'> <div class='ten'>30. De SERVER </div> <div class='valu'>Map: DE_30</div> <div class='online'>ON</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31695/wormy",
+            "status": 1
+        },
+        {
+            "id": 29,
+            "name": "<div id='svhiep'> <div class='ten'>29. De SERVER </div> <div class='valu'>Map: DE_29</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32054/wormy",
+            "status": 1
+        },
+        {
+            "id": 28,
+            "name": "<div id='svhiep'> <div class='ten'>28. De SERVER </div> <div class='valu'>Map: DE_28</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30171/wormy",
+            "status": 1
+        },
+        {
+            "id": 27,
+            "name": "<div id='svhiep'> <div class='ten'>27. De SERVER</div> <div class='valu'>Map: DE_27</div> <div class='online'>ON</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31750/wormy",
+            "status": 1
+        },
+        {
+            "id": 26,
+            "name": "<div id='svhiep'> <div class='ten'>26. De SERVER </div> <div class='valu'>Map: DE_26</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31819/wormy",
+            "status": 1
+        },
+        {
+            "id": 25,
+            "name": "<div id='svhiep'> <div class='ten'>25. De SERVER </div> <div class='valu'>Map: DE_25</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31533/wormy",
+            "status": 1
+        },
+        {
+            "id": 24,
+            "name": "<div id='svhiep'> <div class='ten'>24. DE SERVER </div> <div class='valu'>Map: DE_24</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32054/wormy",
+            "status": 1
+        },
+        {
+            "id": 23,
+            "name": "<div id='svhiep'> <div class='ten'>23. DE SERVER </div> <div class='valu'>Map: DE_23</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30208/wormy",
+            "status": 1
+        },
+        {
+            "id": 22,
+            "name": "<div id='svhiep'> <div class='ten'>22. DE SERVER </div> <div class='valu'>Map: DE_22</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
+        },
+        {
+            "id": 21,
+            "name": "<div id='svhiep'> <div class='ten'>21. DE SERVER</div> <div class='valu'>Map: DE_21</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://gra-a.wormate.io:31819/wormy",
+            "status": 1
+        },
+        {
+            "id": 20,
+            "name": "<div id='svhiep'> <div class='ten'>20. \ud83d\udc51EFFENDI\ud83d\udc51 </div> <div class='valu'>Map: DE_20</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30208/wormy",
+            "status": 1
+        },
+        {
+            "id": 19,
+            "name": "<div id='svhiep'> <div class='ten'>19. IRAQ </div> <div class='valu'>Map: DE_19</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31819/wormy",
+            "status": 1
+        },
+        {
+            "id": 18,
+            "name": "<div id='svhiep'> <div class='ten'>18.MAZARAT </div> <div class='valu'>Map: DE_18</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31533/worm",
+            "status": 1
+        },
+        {
+            "id": 17,
+            "name": "<div id='svhiep'> <div class='ten'>17. NCN </div> <div class='valu'>Map: DE_17</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30339/wormy",
+            "status": 1
+        },
+        {
+            "id": 16,
+            "name": "<div id='svhiep'> <div class='ten'>16. IRAQ </div> <div class='valu'>Map: DE_16</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30265/wormy",
+            "status": 1
+        },
+        {
+            "id": 15,
+            "name": "<div id='svhiep'> <div class='ten'>15. ZIKO GAMING </div> <div class='valu'>Map: DE_15</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30106/wormy",
+            "status": 1
+        },
+        {
+            "id": 14,
+            "name": "<div id='svhiep'> <div class='ten'>14. MARSHMELO GAMING </div> <div class='valu'>Map: DE_14</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
+        },
+        {
+            "id": 13,
+            "name": "<div id='svhiep'> <div class='ten'>13. RIO GAMING </div> <div class='valu'>Map: DE_13</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://gra-a.wormate.io:31038/wormy",
+            "status": 1
+        },
+        {
+            "id": 12,
+            "name": "<div id='svhiep'> <div class='ten'>12. DZ GAMING </div> <div class='valu'>Map: DE_12</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://gra-a.wormate.io:30245/wormy",
+            "status": 1
+        },
+        {
+            "id": 11,
+            "name": "<div id='svhiep'> <div class='ten'>11. BSG </div> <div class='valu'>Map: DE_11</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:32581/wormy",
+            "status": 1
+        },
+        {
+            "id": 10,
+            "name": "<div id='svhiep'> <div class='ten'>10. REEM GAMING </div> <div class='valu'>Map: DE_10</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
+        },
+        {
+            "id": 9,
+            "name": "<div id='svhiep'> <div class='ten'>19. \u0627\u064a\u062a\u0645\u0627\u0643 - AitMak\u200e </div> <div class='valu'>Map: DE_9</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31038/wormy",
+            "status": 1
+        },
+        {
+            "id": 8,
+            "name": "<div id='svhiep'> <div class='ten'>08. \u0627\u0628\u0646 \u0627\u0644\u0634\u0627\u0645 </div> <div class='valu'>Map: DE_8</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30106/wormy",
+            "status": 1
+        },
+        {
+            "id": 7,
+            "name": "<div id='svhiep'> <div class='ten'>07. Glitch </div> <div class='valu'>Map: DE_7</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31392/wormy",
+            "status": 1
+        },
+        {
+            "id": 6,
+            "name": "<div id='svhiep'> <div class='ten'>06. \u0627\u0628\u0646 \u0646\u064a\u0646\u0648\u0649 Gaming</div> <div class='valu'>Map: DE_6</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
+        },
+        {
+            "id": 5,
+            "name": "<div id='svhiep'> <div class='ten'>05. EZI MIRAN </div> <div class='valu'>Map: DE_5</div> <div class='online'>ON</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:31750/wormy",
+            "status": 1
+        },
+        {
+            "id": 4,
+            "name": "<div id='svhiep'> <div class='ten'>04. Kurdo 101 Gaming </div> <div class='valu'>Map: DE_4</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
+        },
+        {
+            "id": 3,
+            "name": "<div id='svhiep'> <div class='ten'>03. KURDISTAN 75 </div> <div class='valu'>Map: DE_3</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30702/wormy",
+            "status": 1
+        },
+        {
+            "id": 2,
+            "name": "<div id='svhiep'> <div class='ten'>02. OH CLAN</div> <div class='valu'>Map: DE_2</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
+        },
+        {
+            "id": 1,
+            "name": "<div id='svhiep'> <div class='ten'>01.\ud83d\udd34 YT Nona Milano</div> <div class='valu'>Map: DE_1</div> <div class='offline'>OFF</div>  </div>",
+            "region": "peru",
+            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
+            "status": 1
         }
-    ],
-    "last_update": "2026-01-12 17:03:47"
+    ]
 }
