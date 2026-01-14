@@ -35,6 +35,15 @@
                 "en": "bbb"
             },
             "list": []
+        },
+        "ROOM_7329": {
+            "isCustom": true,
+            "id": "ROOM_7329",
+            "img": "photo-2022-1-7.absosrt.png",
+            "name": {
+                "en": "bbb"
+            },
+            "list": []
         }
     }
 }
