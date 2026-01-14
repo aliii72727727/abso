@@ -3196,6 +3196,35 @@
     },
     "skinArrayDict": [
     {
+        "id": 7764,
+        "guest": false,
+        "nonbuyable": 1,
+        "price": 0,
+        "priceBefore": 0,
+        "prime": "c__yllw",
+        "base": [
+            "skin_kerflag_i9_8",
+            "skin_kerflag_i9_7",
+            "skin_kerflag_i9_6",
+            "skin_kerflag_i9_5",
+            "skin_kerflag_i9_4",
+            "skin_kerflag_i9_3",
+            "skin_kerflag_i9_2",
+            "skin_kerflag_i9_1",
+            "skin_kerflag_i9_0"
+        ],
+        "glow": [
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw"
+        ]
+    },
+    {
         "id": 1998,
         "guest": false,
         "nonbuyable": false,
@@ -7467,7 +7496,7 @@
     }],
     "skinGroupArrayDict": [{
         "isCustom": true,
-        "id": "SAG-RAZA",
+        "id": "Kurdish",
         "name": {
             "en": "SAG - RAZA"
         },
@@ -7475,7 +7504,7 @@
     },
     {
         "isCustom": true,
-        "id": "Regular-Player",
+        "id": "عشوائي",
         "name": {
             "en": "Regular Player"
         },
@@ -7483,9 +7512,9 @@
     },
     {
         "isCustom": true,
-        "id": "MADARA-GAMING",
+        "id": "ARAB-FLG",
         "name": {
-            "en": "MADARA GAMING"
+            "en": "Arab flag"
         },
         "list": ["1095", "1096", "1097", "1098", "1099", "1100"]
     },
@@ -7495,9 +7524,13 @@
         "name": {
             "en": "عبسي تيك"
         },
-        "list": ["1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "1988", "1433", "9800"]
+        "list": ["7764", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "1988", "1433", "9800"]
     }],
     "textureDict": {
+    "skin_kerflag_i9": {
+        "custom": true,
+        "relativePath": "https://wormbmw.page.gd/skins/img/skin_6968145cb727b_skin_kurdishflag_08.png"
+    },
     "skin_absoflag_1": {
         "custom": true,
         "relativePath": "https://iraqcraft.store/images/img/lion_shield_2320.png"
@@ -10628,6 +10661,69 @@
         "c_a_tm2_B": "18d2f2"
     },
     "regionDict": {
+    "skin_kerflag_i9_0": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 0,
+        "y": 0
+    },
+    "skin_kerflag_i9_1": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 174,
+        "y": 0
+    },
+    "skin_kerflag_i9_2": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 348,
+        "y": 0
+    },
+    "skin_kerflag_i9_3": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 522,
+        "y": 0
+    },
+    "skin_kerflag_i9_4": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 696,
+        "y": 0
+    },
+    "skin_kerflag_i9_5": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 870,
+        "y": 0
+    },
+    "skin_kerflag_i9_6": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 1044,
+        "y": 0
+    },
+    "skin_kerflag_i9_7": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 1218,
+        "y": 0
+    },
+    "skin_kerflag_i9_8": {
+        "texture": "skin_kerflag_i9",
+        "h": 170,
+        "w": 174,
+        "x": 1396,
+        "y": 0
+    },
     "skin_absoflag_1_0": {
         "texture": "skin_absoflag_1",
         "h": 170,
