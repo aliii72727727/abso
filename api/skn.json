@@ -7466,8 +7466,6 @@
         "glow": ["a_death", "a_death", "a_death", "a_death", "a_death", "a_death", "a_death", "a_death", "a_death"]
     }],
     "skinGroupArrayDict": [{
-       [
-    {
         "isCustom": true,
         "id": "SAG-RAZA",
         "name": {
@@ -7498,8 +7496,6 @@
             "en": "عبسي تيك"
         },
         "list": ["1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "1988", "1433", "9800"]
-    }
-]
     }],
     "textureDict": {
     "skin_absoflag_1": {
