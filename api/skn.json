@@ -44,6 +44,15 @@
                 "en": "bbb"
             },
             "list": []
+        },
+        "ROOM_5266": {
+            "isCustom": true,
+            "id": "ROOM_5266",
+            "img": "TIK.AlFAHI.png",
+            "name": {
+                "en": "bbb"
+            },
+            "list": []
         }
     }
 }
