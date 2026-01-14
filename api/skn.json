@@ -2,5 +2,15 @@
     "revision": 80000,
     "visibleSkin": [],
     "skin": [],
-    "room": []
+    "room": {
+        "0764": {
+            "isCustom": true,
+            "id": "0764",
+            "img": "1768361849_arab-flag.png",
+            "name": {
+                "en": "arab"
+            },
+            "list": []
+        }
+    }
 }
