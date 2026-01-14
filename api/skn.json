@@ -1,11 +1,22 @@
-[
-  {
-    "isCustom": true,
-    "id": "1130",
-    "img": "images/skins/img/photo-2022-1-7.absosrt.png",
-    "name": {
-      "en": "abso"
+{
+    "0": {
+        "isCustom": true,
+        "id": "1130",
+        "img": "images\/skins\/img\/photo-2022-1-7.absosrt.png",
+        "name": {
+            "en": "abso"
+        },
+        "list": []
     },
-    "list": []
-  }
-]
+    "room": {
+        "ROOM_8133": {
+            "isCustom": true,
+            "id": "ROOM_8133",
+            "img": "photo-2022-1-7.absosrt.png",
+            "name": {
+                "en": "bbb"
+            },
+            "list": []
+        }
+    }
+}
