@@ -6551,7 +6551,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://iraqcraft.store/api/skins.json',
+            url: 'https://iraqcraft.store/api/skn.json',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
