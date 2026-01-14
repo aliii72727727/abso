@@ -26,6 +26,15 @@
                 "en": "bbb"
             },
             "list": []
+        },
+        "ROOM_4477": {
+            "isCustom": true,
+            "id": "ROOM_4477",
+            "img": "photo-2022-1-7.absosrt.png",
+            "name": {
+                "en": "bbb"
+            },
+            "list": []
         }
     }
 }
