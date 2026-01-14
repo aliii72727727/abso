@@ -1,7 +1,21 @@
 {
     "revision": 80000,
-    "visibleSkin": [],
-    "skin": [],
+    "visibleSkin": [
+        "8798"
+    ],
+    "skin": {
+        "arabflag_1": {
+            "custom": true,
+            "relativePath": "https:\/\/iraqcraft.store\/images\/skins\/img\/8798.png"
+        },
+        "8798": {
+            "texture": "arabflag_1",
+            "h": 170,
+            "w": 174,
+            "x": 1397,
+            "y": 0
+        }
+    },
     "room": {
         "4287": {
             "isCustom": true,
@@ -10,7 +24,9 @@
             "name": {
                 "en": "abso"
             },
-            "list": []
+            "list": [
+                "8798"
+            ]
         }
     }
 }
