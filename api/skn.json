@@ -4837,10 +4837,39 @@
         }
     },
     "skinArrayDict": [
+    {
+        "id": 4432,
+        "guest": false,
+        "nonbuyable": false,
+        "price": 0,
+        "priceBefore": 0,
+        "prime": "c__yllw",
+        "base": [
+            "skin_snprme_01_8",
+            "skin_snprme_01_7",
+            "skin_snprme_01_6",
+            "skin_snprme_01_5",
+            "skin_snprme_01_4",
+            "skin_snprme_01_3",
+            "skin_snprme_01_2",
+            "skin_snprme_01_1",
+            "skin_snprme_01_0"
+        ],
+        "glow": [
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw",
+            "a__yllw"
+        ]
+    },
         {
             "id": 5123,
             "guest": false,
-            "nonbuyable": 1,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -4869,7 +4898,7 @@
         {
             "id": 7764,
             "guest": false,
-            "nonbuyable": 1,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -18822,6 +18851,10 @@
         }
     ],
     "textureDict": {
+    "skin_snprme_01": {
+        "custom": true,
+        "relativePath": "https://iraqcraft.store/images/img/snake_staff_5986.png"
+    },
         "skin_absoflg_77": {
             "custom": true,
             "relativePath": "https:\/\/iraqcraft.store\/images\/img\/dragon_shield_8000.png"
@@ -21960,6 +21993,69 @@
         "c_a_tm2_B": "18d2f2"
     },
     "regionDict": {
+    "skin_snprme_01_0": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 0,
+        "y": 0
+    },
+    "skin_snprme_01_1": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 174,
+        "y": 0
+    },
+    "skin_snprme_01_2": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 348,
+        "y": 0
+    },
+    "skin_snprme_01_3": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 522,
+        "y": 0
+    },
+    "skin_snprme_01_4": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 696,
+        "y": 0
+    },
+    "skin_snprme_01_5": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 870,
+        "y": 0
+    },
+    "skin_snprme_01_6": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 1044,
+        "y": 0
+    },
+    "skin_snprme_01_7": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 1218,
+        "y": 0
+    },
+    "skin_snprme_01_8": {
+        "texture": "skin_snprme_01",
+        "h": 170,
+        "w": 174,
+        "x": 1396,
+        "y": 0
+    },
         "skin_absoflg_77_0": {
             "texture": "skin_absoflg_77",
             "h": 170,
