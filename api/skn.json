@@ -4837,6 +4837,35 @@
         }
     },
     "skinArrayDict": [
+    {
+        "id": 6478,
+        "guest": false,
+        "nonbuyable": true,
+        "price": 0,
+        "priceBefore": 0,
+        "prime": "a_white",
+        "base": [
+            "skin_sh_01_8",
+            "skin_sh_01_7",
+            "skin_sh_01_6",
+            "skin_sh_01_5",
+            "skin_sh_01_4",
+            "skin_sh_01_3",
+            "skin_sh_01_2",
+            "skin_sh_01_1",
+            "skin_sh_01_0"
+        ],
+        "glow": [
+            "a_white",
+            "a_white",
+            "a_white",
+            "a_white",
+            "a_white",
+            "a_white",
+            "a_white",
+            "a_white"
+        ]
+    },
         {
             "id": 5123,
             "guest": false,
@@ -18770,72 +18799,54 @@
     "skinGroupArrayDict": [
         {
             "isCustom": true,
-            "id": "STRE",
+            "id": "Arabic-Skin",
             "name": {
-                "en": "STREMARS"
+                "en": "سكينات عربية"
             },
             "list": [
-                "0000"
-            ]
-        },
-        {
-            "isCustom": true,
-            "id": "ARAB-FLG",
-            "name": {
-                "en": "سكينات عرب"
-            },
-            "list": [
-                "1095",
-                "1096",
-                "1097",
-                "1098",
-                "1099",
-                "1100",
-                "1094",
-                "1093",
-                "1092",
-                "1091"
-            ]
-        },
-        {
-            "isCustom": true,
-            "id": "Absi-Tech",
-            "name": {
-                "en": "عبسي تيك"
-            },
-            "list": [
-                "5123",
-                "1991",
-                "1992",
-                "1993",
-                "1994",
-                "1995",
-                "1996",
-                "1997",
-                "1998",
-                "1999",
-                "1988",
-                "1433",
-                "9800"
-            ]
-        },
-        {
-            "isCustom": true,
-            "id": "SNS",
-            "name": {
-                "en": "SANOS"
-            },
-            "list": [
-                "7676",
-                "7777",
-                "7878",
-                "7979",
-                "8181",
-                "8282"
+                "6478",
+                "6479",
+                "6480",
+                "6481",
+                "6482",
+                "6483",
+                "6484",
+                "6485",
+                "6486",
+                "6487",
+                "6488",
+                "6489",
+                "6490",
+                "6491",
+                "6492",
+                "6493",
+                "6494",
+                "6495",
+                "6496",
+                "6497",
+                "6498",
+                "6499",
+                "6500",
+                "6501",
+                "6502",
+                "6503",
+                "6504",
+                "6505",
+                "6506",
+                "6507",
+                "6508",
+                "6509",
+                "6510",
+                "6511",
+                "6512"
             ]
         }
     ],
     "textureDict": {
+    "skin_sh_01": {
+        "custom": true,
+        "relativePath": "https://i.ibb.co/DnFCCbM/e15f95a1cbf1.png"
+    },
         "skin_absoflg_77": {
             "custom": true,
             "relativePath": "https:\/\/iraqcraft.store\/images\/img\/dragon_shield_8000.png"
@@ -22006,6 +22017,69 @@
         "c_a_tm2_B": "18d2f2"
     },
     "regionDict": {
+    "skin_sh_01_0": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 0,
+        "y": 0
+    },
+    "skin_sh_01_1": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 174,
+        "y": 0
+    },
+    "skin_sh_01_2": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 348,
+        "y": 0
+    },
+    "skin_sh_01_3": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 522,
+        "y": 0
+    },
+    "skin_sh_01_4": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 696,
+        "y": 0
+    },
+    "skin_sh_01_5": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 870,
+        "y": 0
+    },
+    "skin_sh_01_6": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 1044,
+        "y": 0
+    },
+    "skin_sh_01_7": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 1218,
+        "y": 0
+    },
+    "skin_sh_01_8": {
+        "texture": "skin_sh_01",
+        "h": 170,
+        "w": 174,
+        "x": 1392,
+        "y": 0
+    },
         "skin_absoflg_77_0": {
             "texture": "skin_absoflg_77",
             "h": 170,
