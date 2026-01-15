@@ -4838,35 +4838,6 @@
     },
     "skinArrayDict": [
     {
-        "id": 4433,
-        "guest": false,
-        "nonbuyable": false,
-        "price": 0,
-        "priceBefore": 0,
-        "prime": "c__yllw",
-        "base": [
-            "skin_snipeuui_2_8",
-            "skin_snipeuui_2_7",
-            "skin_snipeuui_2_6",
-            "skin_snipeuui_2_5",
-            "skin_snipeuui_2_4",
-            "skin_snipeuui_2_3",
-            "skin_snipeuui_2_2",
-            "skin_snipeuui_2_1",
-            "skin_snipeuui_2_0"
-        ],
-        "glow": [
-            "a_white",
-            "a_white",
-            "a_white",
-            "a_white",
-            "a_white",
-            "a_white",
-            "a_white",
-            "a_white"
-        ]
-    },
-    {
         "id": 4432,
         "guest": false,
         "nonbuyable": false,
@@ -4877,7 +4848,7 @@
             "skin_snprme_01_8",
             "skin_snprme_01_7",
             "skin_snprme_01_6",
-            "skin_rme_01_5",
+            "skin_snprme_01_5",
             "skin_snprme_01_4",
             "skin_snprme_01_3",
             "skin_snprme_01_2",
@@ -4898,7 +4869,7 @@
         {
             "id": 5123,
             "guest": false,
-            "nonbuyable": 1,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -18880,13 +18851,9 @@
         }
     ],
     "textureDict": {
-    "skin_snipeuui_2": {
-        "custom": true,
-        "relativePath": "https://i.imgur.com/6rmSRXW.png"
-    },
     "skin_snprme_01": {
         "custom": true,
-        "relativePath": "https://iraqcraft.store/images/img/snake_staff_5986.png"
+        "relativePath": "https://i.imgur.com/6rmSRXW.png"
     },
         "skin_absoflg_77": {
             "custom": true,
@@ -22026,69 +21993,6 @@
         "c_a_tm2_B": "18d2f2"
     },
     "regionDict": {
-    "skin_snipeuui_2_0": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 0,
-        "y": 0
-    },
-    "skin_snipeuui_2_1": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 174,
-        "y": 0
-    },
-    "skin_snipeuui_2_2": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 348,
-        "y": 0
-    },
-    "skin_snipeuui_2_3": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 522,
-        "y": 0
-    },
-    "skin_snipeuui_2_4": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 696,
-        "y": 0
-    },
-    "skin_snipeuui_2_5": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 870,
-        "y": 0
-    },
-    "skin_snipeuui_2_6": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 1044,
-        "y": 0
-    },
-    "skin_snipeuui_2_7": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 1218,
-        "y": 0
-    },
-    "skin_snipeuui_2_8": {
-        "texture": "skin_snipeuui_2",
-        "h": 170,
-        "w": 174,
-        "x": 1396,
-        "y": 0
-    },
     "skin_snprme_01_0": {
         "texture": "skin_snprme_01",
         "h": 170,
