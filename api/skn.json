@@ -18811,14 +18811,6 @@
         },
         {
             "isCustom": true,
-            "id": "SNP",
-            "name": {
-                "en": "SNP CLAN"
-            },
-            "list": []
-        },
-        {
-            "isCustom": true,
             "id": "SNS",
             "name": {
                 "en": "SANOS"
