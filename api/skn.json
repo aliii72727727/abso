@@ -11560,26 +11560,25 @@
             "priceBefore": 0,
             "prime": "c__yllw",
             "base": [
-                "kurdistan75_06_8",
-                "kurdistan75_06_7",
-                "kurdistan75_06_6",
-                "kurdistan75_06_5",
-                "kurdistan75_06_4",
-                "kurdistan75_06_3",
-                "kurdistan75_06_2",
-                "kurdistan75_06_1",
-                "kurdistan75_06_0"
+                "skin_arabflag_009_8",
+                "skin_arabflag_009_7",
+                "skin_arabflag_009_6",
+                "skin_arabflag_009_5",
+                "skin_arabflag_009_4",
+                "skin_arabflag_009_3",
+                "skin_arabflag_009_2",
+                "skin_arabflag_009_1",
+                "skin_arabflag_009_0"
             ],
             "glow": [
-                "a_white",
-                "a_white",
-                "a_white",
-                "a_white",
-                "a_white",
-                "a_white",
-                "a_white",
-                "a_white",
-                "a_white"
+                "a__yllw",
+                "a__yllw",
+                "a__yllw",
+                "a__yllw",
+                "a__yllw",
+                "a__yllw",
+                "a__yllw",
+                "a__yllw"
             ]
         },
         {
@@ -21927,6 +21926,10 @@
             "relativePath": "https:\/\/i.imgur.com\/H9Ovur2.png",
             "createdAt": "2025-05-30 19:24:59",
             "expiresAt": "2025-06-02 19:24:59"
+        },
+        "skin_arabflag_009": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/PzCTzVFY\/image.png"
         }
     },
     "colorDict": {
@@ -55480,6 +55483,69 @@
             "y": 0,
             "createdAt": "2025-05-30 19:24:59",
             "expiresAt": "2025-06-02 19:24:59"
+        },
+        "skin_arabflag_009_0": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_arabflag_009_1": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_arabflag_009_2": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_arabflag_009_3": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_arabflag_009_4": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_arabflag_009_5": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_arabflag_009_6": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_arabflag_009_7": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_arabflag_009_8": {
+            "texture": "skin_arabflag_009",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
         }
     }
 }
