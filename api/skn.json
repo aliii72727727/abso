@@ -18816,6 +18816,21 @@
                 "en": "SNP CLAN"
             },
             "list": []
+        },
+        {
+            "isCustom": true,
+            "id": "SNS",
+            "name": {
+                "en": "SANOS"
+            },
+            "list": [
+                "7676",
+                "7777",
+                "7878",
+                "7979",
+                "8181",
+                "8282"
+            ]
         }
     ],
     "textureDict": {
