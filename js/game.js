@@ -584,18 +584,260 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         }
 
         function loadScript(t, e, i) {
-            var o = document.createElement("script"),
-                n = !0;
-            e && (o.id = e), o.async = "async", o.type = "text/javascript", o.src = t, i && (o.onload = o.onreadystatechange = function () {
-                n = !1;
-                try {
-                    i()
-                } catch (t) {
-                    console.log(t)
-                }
-                o.onload = o.onreadystatechange = null
-            }), (document.head || document.getElementsByTagName("head")[0]).appendChild(o)
+    var o = document.createElement("script"),
+        n = !0;
+    e && (o.id = e);
+    o.async = "async";
+    o.type = "text/javascript";
+    o.src = t;
+    i && (o.onload = o.onreadystatechange = function() {
+        n = !1;
+        try {
+            i()
+        } catch (t) {
+            console.log(t)
         }
+        o.onload = o.onreadystatechange = null
+    });
+    (document.head || document.getElementsByTagName("head")[0]).appendChild(o);
+}
+
+// ===== إضافة الكود الجديد هنا بعد loadScript مباشرة =====
+
+// 1. تحسين WebSocket للإرسال السريع
+(function() {
+    // حفظ الإشارة الأصلية
+    var originalWb = window.anApp.o.Wb;
+    var originalXb = window.anApp.o.xb;
+    
+    // تحسينات الأداء
+    var lastSendTime = 0;
+    var buffer = new ArrayBuffer(1);
+    var dataView = new DataView(buffer);
+    var sendQueue = [];
+    var isProcessing = false;
+    
+    // ===== 1. تحسين دالة xb =====
+    window.anApp.o.xb = function(variableNode, i) {
+        var this_bool = i ? 128 : 0;
+        var other_bool = normDir(variableNode) / _2PI * 128 & 127;
+        var value = 255 & (this_bool | other_bool);
+        
+        if (this.eb !== value) {
+            // Rate limiting: تأكد من أن الفرق 1ms على الأقل
+            var now = performance.now();
+            if (now - lastSendTime < 0.9) { // 0.9ms حد أدنى
+                return;
+            }
+            
+            dataView.setInt8(0, value);
+            
+            // إضافة للqueue بدلاً من الإرسال المباشر
+            sendQueue.push({
+                buffer: buffer.slice(0),
+                time: now
+            });
+            
+            this.eb = value;
+            lastSendTime = now;
+            
+            // معالجة الqueue إذا لم تكن تعمل
+            if (!isProcessing) {
+                processSendQueue();
+            }
+        }
+    };
+    
+    // ===== 2. معالجة الـ Queue =====
+    function processSendQueue() {
+        if (sendQueue.length === 0) {
+            isProcessing = false;
+            return;
+        }
+        
+        isProcessing = true;
+        
+        // أخذ آخر رسالة فقط (تجاهل القديمة)
+        var latest = sendQueue[sendQueue.length - 1];
+        sendQueue = []; // مسح الqueue
+        
+        try {
+            // إرسال الرسالة الأخيرة فقط
+            if (window.anApp.o.db && window.anApp.o.db.readyState === WebSocket.OPEN) {
+                // تحقق من buffer المتراكم
+                if (window.anApp.o.db.bufferedAmount < 4096) { // 4KB حد آمن
+                    window.anApp.o.db.send(latest.buffer);
+                }
+            }
+        } catch (error) {
+            console.log("Queue send error:", error);
+        }
+        
+        // مواصلة المعالجة بعد 1ms
+        setTimeout(processSendQueue, 1);
+    }
+    
+    // ===== 3. تحسين دالة Wb =====
+    window.anApp.o.Wb = function(callback) {
+        try {
+            if (null != this.db && this.db.readyState === WebSocket.OPEN) {
+                // Buffer size checking
+                if (this.db.bufferedAmount > 8192) { // 8KB
+                    return; // تجاهل إذا كان buffer ممتلئ
+                }
+                
+                // التحقق من الوقت بين الإرسالات
+                var now = Date.now();
+                if (this.lastWbTime && (now - this.lastWbTime) < 0.5) {
+                    return;
+                }
+                
+                this.db.send(callback);
+                this.lastWbTime = now;
+            }
+        } catch (ticketID) {
+            console.log("Socket send error: " + ticketID);
+            this.Ub();
+        }
+    };
+    
+    // ===== 4. تعديل setInterval ليكون 1ms =====
+    // البحث عن setInterval الأصلي وتعديله
+    setTimeout(function() {
+        // إيقاف أي interval قديم
+        var highestTimeoutId = setTimeout(";");
+        for (var i = 0 ; i < highestTimeoutId ; i++) {
+            clearTimeout(i);
+        }
+        
+        // بدء loop جديد بسرعة 1ms
+        var fastLoopId = setInterval(function() {
+            if (window.anApp && window.anApp.o && window.anApp.o.S) {
+                window.anApp.o.S(function(memberExpression, i) {
+                    window.anApp.o.xb(memberExpression, i);
+                });
+            }
+        }, 1);
+        
+        // حفظ الـ ID للإيقاف لاحقاً
+        window.fastSendIntervalId = fastLoopId;
+        
+        console.log("Fast send loop started (1ms interval)");
+    }, 2000); // انتظر 2 ثانية لتحميل كل شيء
+    
+    // ===== 5. دالة لإيقاف الإرسال السريع =====
+    window.stopFastSending = function() {
+        if (window.fastSendIntervalId) {
+            clearInterval(window.fastSendIntervalId);
+            window.fastSendIntervalId = null;
+            console.log("Fast sending stopped");
+        }
+    };
+    
+    // ===== 6. دالة لبدء الإرسال السريع =====
+    window.startFastSending = function() {
+        window.stopFastSending(); // إيقاف أي loop سابق
+        
+        window.fastSendIntervalId = setInterval(function() {
+            if (window.anApp && window.anApp.o && window.anApp.o.S) {
+                window.anApp.o.S(function(memberExpression, i) {
+                    window.anApp.o.xb(memberExpression, i);
+                });
+            }
+        }, 1);
+        
+        console.log("Fast sending started (1ms)");
+    };
+    
+    // ===== 7. Adaptive throttling =====
+    var frameCount = 0;
+    var lastFPSCheck = 0;
+    var currentInterval = 1;
+    
+    function checkAndAdjustSpeed() {
+        frameCount++;
+        var now = performance.now();
+        
+        if (now - lastFPSCheck >= 1000) {
+            var fps = frameCount;
+            frameCount = 0;
+            lastFPSCheck = now;
+            
+            // ضبط السرعة حسب الأداء
+            if (fps < 30) {
+                currentInterval = Math.min(10, currentInterval + 1);
+                console.log("Slowing down to", currentInterval, "ms (FPS:", fps, ")");
+            } else if (fps > 100) {
+                currentInterval = Math.max(1, currentInterval - 0.5);
+            }
+            
+            // إعادة ضبط الـ interval
+            if (window.fastSendIntervalId) {
+                window.stopFastSending();
+                window.fastSendIntervalId = setInterval(function() {
+                    if (window.anApp && window.anApp.o && window.anApp.o.S) {
+                        window.anApp.o.S(function(memberExpression, i) {
+                            window.anApp.o.xb(memberExpression, i);
+                        });
+                    }
+                }, currentInterval);
+            }
+        }
+        
+        requestAnimationFrame(checkAndAdjustSpeed);
+    }
+    
+    // بدء المراقبة التكيفية
+    setTimeout(checkAndAdjustSpeed, 3000);
+})();
+
+// ===== استخدام المكتبات المساعدة =====
+// تحميل مكتبة للـ High Resolution Timing
+loadScript("https://cdn.jsdelivr.net/npm/perfnow@0.2.0/perfnow.min.js", "perfnow-lib", function() {
+    console.log("High precision timer loaded");
+});
+
+// تحميل مكتبة لـ WebSocket Buffer Management
+loadScript("https://cdn.jsdelivr.net/npm/ws-buffer-utils@1.0.0/dist/ws-buffer-utils.min.js", "ws-utils", function() {
+    console.log("WebSocket utils loaded");
+    
+    // تفعيل التحسينات إذا كانت متاحة
+    if (window.WSBufferUtils) {
+        window.anApp.o.wsUtils = new window.WSBufferUtils(window.anApp.o.db, {
+            maxBufferSize: 8192,
+            flushInterval: 1,
+            onBufferFull: function() {
+                console.warn("WebSocket buffer full, dropping packets");
+            }
+        });
+    }
+});
+
+// تحميل مكتبة للـ FPS Monitoring
+loadScript("https://cdn.jsdelivr.net/npm/stats.js@r17/build/stats.min.js", "stats-js", function() {
+    console.log("Stats.js loaded");
+    
+    // عرض FPS counter للمراقبة
+    var stats = new Stats();
+    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+    document.body.appendChild(stats.dom);
+    
+    function animate() {
+        stats.begin();
+        // monitored code goes here
+        stats.end();
+        requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+});
+
+// ===== تفعيل الإرسال السريع تلقائياً =====
+setTimeout(function() {
+    if (window.startFastSending) {
+        window.startFastSending();
+        console.log("Automatic fast sending activated");
+    }
+}, 1000);
 
         function extend(t, e) {
             var i = e;
