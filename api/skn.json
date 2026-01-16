@@ -602,6 +602,7 @@
         1600
     ],
     "hatVariantArray": [
+        776,
         [
             702
         ],
@@ -649,12 +650,6 @@
         ],
         [
             722
-        ],
-        [
-            869
-        ],
-        [
-            870
         ],
         [
             723
@@ -958,6 +953,12 @@
         ],
         [
             868
+        ],
+        [
+            869
+        ],
+        [
+            870
         ],
         [
             872
@@ -3733,6 +3734,19 @@
             "base": [
                 {
                     "region": "hat_958"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "776": {
+            "id": 776,
+            "base": [
+                {
+                    "region": "hat_776"
                 }
             ],
             "guest": false,
@@ -8496,6 +8510,10 @@
         "skin_sh_11": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/tMXvQqXS\/8270a1284abd.png"
+        },
+        "hat_776": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
         }
     },
     "colorDict": {
@@ -38444,6 +38462,17 @@
             "w": 174,
             "x": 1392,
             "y": 0
+        },
+        "hat_776": {
+            "texture": "hat_776",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
         }
     }
 }
