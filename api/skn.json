@@ -604,6 +604,21 @@
     "hatVariantArray": [
         776,
         [
+            189
+        ],
+        [
+            234
+        ],
+        [
+            499
+        ],
+        [
+            694
+        ],
+        [
+            764
+        ],
+        [
             884
         ],
         [
@@ -611,6 +626,9 @@
         ],
         [
             981
+        ],
+        [
+            983
         ],
         [
             988
@@ -1303,6 +1321,84 @@
             "base": [
                 {
                     "region": "hat_884"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "983": {
+            "id": 983,
+            "base": [
+                {
+                    "region": "hat_983"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "764": {
+            "id": 764,
+            "base": [
+                {
+                    "region": "hat_764"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "694": {
+            "id": 694,
+            "base": [
+                {
+                    "region": "hat_694"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "499": {
+            "id": 499,
+            "base": [
+                {
+                    "region": "hat_499"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "234": {
+            "id": 234,
+            "base": [
+                {
+                    "region": "hat_234"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "189": {
+            "id": 189,
+            "base": [
+                {
+                    "region": "hat_189"
                 }
             ],
             "guest": false,
@@ -5450,6 +5546,30 @@
         "hat_884": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/r265XtdK\/234a3631b031.png"
+        },
+        "hat_983": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/rRhL5Z8R\/f18561beaefa.png"
+        },
+        "hat_764": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/n8m9hmkX\/0cf1ebead0d5.png"
+        },
+        "hat_694": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/R4tYZjWH\/7b96ec54c7a6.png"
+        },
+        "hat_499": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/9Hr4CMpF\/bc500e75f730.png"
+        },
+        "hat_234": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/9kHyT9gz\/b614e494f503.png"
+        },
+        "hat_189": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/Zzzd9TPT\/b1f5a4e470c7.png"
         }
     },
     "colorDict": {
@@ -33696,6 +33816,72 @@
         },
         "hat_884": {
             "texture": "hat_884",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_983": {
+            "texture": "hat_983",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_764": {
+            "texture": "hat_764",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_694": {
+            "texture": "hat_694",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_499": {
+            "texture": "hat_499",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_234": {
+            "texture": "hat_234",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_189": {
+            "texture": "hat_189",
             "x": 0,
             "y": 0,
             "w": 400,
