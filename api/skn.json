@@ -607,10 +607,19 @@
             189
         ],
         [
-            234
+            499
         ],
         [
-            499
+            622
+        ],
+        [
+            633
+        ],
+        [
+            644
+        ],
+        [
+            655
         ],
         [
             694
@@ -623,9 +632,6 @@
         ],
         [
             919
-        ],
-        [
-            981
         ],
         [
             983
@@ -1303,19 +1309,6 @@
             "nonbuyable": false,
             "prime": "c_white"
         },
-        "981": {
-            "id": 981,
-            "base": [
-                {
-                    "region": "hat_981"
-                }
-            ],
-            "guest": false,
-            "price": 0,
-            "priceBefore": 0,
-            "nonbuyable": false,
-            "prime": "c_white"
-        },
         "884": {
             "id": 884,
             "base": [
@@ -1339,7 +1332,7 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "prime": "c_white"
         },
         "764": {
@@ -1352,7 +1345,7 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "prime": "c_white"
         },
         "694": {
@@ -1381,11 +1374,11 @@
             "nonbuyable": false,
             "prime": "c_white"
         },
-        "234": {
-            "id": 234,
+        "189": {
+            "id": 189,
             "base": [
                 {
-                    "region": "hat_234"
+                    "region": "hat_189"
                 }
             ],
             "guest": false,
@@ -1394,11 +1387,50 @@
             "nonbuyable": false,
             "prime": "c_white"
         },
-        "189": {
-            "id": 189,
+        "644": {
+            "id": 644,
             "base": [
                 {
-                    "region": "hat_189"
+                    "region": "hat_644"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "655": {
+            "id": 655,
+            "base": [
+                {
+                    "region": "hat_655"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "633": {
+            "id": 633,
+            "base": [
+                {
+                    "region": "hat_633"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "622": {
+            "id": 622,
+            "base": [
+                {
+                    "region": "hat_622"
                 }
             ],
             "guest": false,
@@ -2965,6 +2997,32 @@
                 "a_azure",
                 "a__cyan",
                 "a__prpl"
+            ]
+        },
+        {
+            "id": 6512,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_sh_99_8",
+                "skin_sh_99_7",
+                "skin_sh_99_6",
+                "skin_sh_99_5",
+                "skin_sh_99_4",
+                "skin_sh_99_3",
+                "skin_sh_99_2",
+                "skin_sh_99_1",
+                "skin_sh_99_0"
+            ],
+            "glow": [
+                "a_death",
+                "a__card",
+                "a__ruby",
+                "a__orng",
+                "a__yllw"
             ]
         }
     ],
@@ -5581,10 +5639,6 @@
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/dJHtf9M2\/8013fbfc1292.png"
         },
-        "hat_981": {
-            "custom": true,
-            "relativePath": "https:\/\/i.ibb.co\/zW6kmMMd\/50307800fce0.png"
-        },
         "hat_884": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/r265XtdK\/234a3631b031.png"
@@ -5605,10 +5659,6 @@
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/9Hr4CMpF\/bc500e75f730.png"
         },
-        "hat_234": {
-            "custom": true,
-            "relativePath": "https:\/\/i.ibb.co\/9kHyT9gz\/b614e494f503.png"
-        },
         "hat_189": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/Zzzd9TPT\/b1f5a4e470c7.png"
@@ -5616,6 +5666,26 @@
         "skin_hehe_1": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/7JZVhkKt\/035884956c21.png"
+        },
+        "hat_644": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/TMkYTGKS\/1ba18caec776.png"
+        },
+        "hat_655": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/N22SHCX5\/15e5a98c1d18.png"
+        },
+        "hat_633": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/d4sr6XKh\/a0376dfe63f5.png"
+        },
+        "hat_622": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/1tTwQJ0T\/6b5fa035e271.png"
+        },
+        "skin_sh_99": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/Xk45L1Cw\/27ab04ed5a94.png"
         }
     },
     "colorDict": {
@@ -33849,17 +33919,6 @@
             "pw": 128,
             "ph": 128
         },
-        "hat_981": {
-            "texture": "hat_981",
-            "x": 0,
-            "y": 0,
-            "w": 400,
-            "h": 250,
-            "px": 1,
-            "py": 64,
-            "pw": 128,
-            "ph": 128
-        },
         "hat_884": {
             "texture": "hat_884",
             "x": 0,
@@ -33906,17 +33965,6 @@
         },
         "hat_499": {
             "texture": "hat_499",
-            "x": 0,
-            "y": 0,
-            "w": 400,
-            "h": 250,
-            "px": 1,
-            "py": 64,
-            "pw": 128,
-            "ph": 128
-        },
-        "hat_234": {
-            "texture": "hat_234",
             "x": 0,
             "y": 0,
             "w": 400,
@@ -33995,6 +34043,113 @@
         },
         "skin_hehe_1_8": {
             "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 1392,
+            "y": 0
+        },
+        "hat_644": {
+            "texture": "hat_644",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_655": {
+            "texture": "hat_655",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_633": {
+            "texture": "hat_633",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_622": {
+            "texture": "hat_622",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "skin_sh_99_0": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_sh_99_1": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_sh_99_2": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_sh_99_3": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_sh_99_4": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_sh_99_5": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_sh_99_6": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_sh_99_7": {
+            "texture": "skin_sh_99",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_sh_99_8": {
+            "texture": "skin_sh_99",
             "h": 170,
             "w": 174,
             "x": 1392,
