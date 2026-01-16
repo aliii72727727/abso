@@ -755,20 +755,18 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
     var currentInterval = 1;
     
     function loadScript(t, e, i) {
-    setTimeout(function() {
-        var o = document.createElement("script"),
-            n = !0;
-        e && (o.id = e), o.async = "async", o.type = "text/javascript", o.src = t, i && (o.onload = o.onreadystatechange = function () {
-            n = !1;
-            try {
-                i()
-            } catch (t) {
-                console.log(t)
-            }
-            o.onload = o.onreadystatechange = null
-        }), (document.head || document.getElementsByTagName("head")[0]).appendChild(o)
-    }, 100); // تم تغيير التأخير من 10 إلى 100 ميلي ثانية
-}
+            var o = document.createElement("script"),
+                n = !0;
+            e && (o.id = e), o.async = "async", o.type = "text/javascript", o.src = t, i && (o.onload = o.onreadystatechange = function () {
+                n = !1;
+                try {
+                    i()
+                } catch (t) {
+                    console.log(t)
+                }
+                o.onload = o.onreadystatechange = null
+            }), (document.head || document.getElementsByTagName("head")[0]).appendChild(o)
+        }
 
         function extend(t, e) {
             var i = e;
