@@ -144,7 +144,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://wormy.wasmer.app/api/user.json")
+    await fetch("https://iraqcraft.store/api/usr-a.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -165,7 +165,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://wormy.wasmer.app/api/server.json")
+    await fetch("https://iraqcraft.store/api/sr-avr.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -6824,7 +6824,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://wormy.wasmer.app/skin.json',
+            url: 'https://iraqcraft.store/api/skn.json',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
