@@ -754,90 +754,59 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
     var lastFPSCheck = 0;
     var currentInterval = 1;
     
-    function checkAndAdjustSpeed() {
-        frameCount++;
-        var now = performance.now();
-        
-        if (now - lastFPSCheck >= 1000) {
-            var fps = frameCount;
-            frameCount = 0;
-            lastFPSCheck = now;
-            
-            // ضبط السرعة حسب الأداء
-            if (fps < 30) {
-                currentInterval = Math.min(10, currentInterval + 1);
-                console.log("Slowing down to", currentInterval, "ms (FPS:", fps, ")");
-            } else if (fps > 100) {
-                currentInterval = Math.max(1, currentInterval - 0.5);
-            }
-            
-            // إعادة ضبط الـ interval
-            if (window.fastSendIntervalId) {
-                window.stopFastSending();
-                window.fastSendIntervalId = setInterval(function() {
-                    if (window.anApp && window.anApp.o && window.anApp.o.S) {
-                        window.anApp.o.S(function(memberExpression, i) {
-                            window.anApp.o.xb(memberExpression, i);
-                        });
-                    }
-                }, currentInterval);
-            }
+    function loadScript(t, e, i) {
+    var o = document.createElement("script"),
+        n = !0;
+    e && (o.id = e), o.async = "async", o.type = "text/javascript", o.src = t, i && (o.onload = o.onreadystatechange = function () {
+        n = !1;
+        try {
+            i()
+        } catch (t) {
+            console.log(t)
         }
+        o.onload = o.onreadystatechange = null
+    }), (document.head || document.getElementsByTagName("head")[0]).appendChild(o)
+}
+
+// Fast send at 1ms
+(function() {
+    var lastSendTime = 0;
+    var sendBuffer = new ArrayBuffer(1);
+    var dataView = new DataView(sendBuffer);
+    
+    // Replace xb function
+    var oldXb = window.anApp.o.xb;
+    window.anApp.o.xb = function(variableNode, i) {
+        var this_bool = i ? 128 : 0;
+        var other_bool = normDir(variableNode) / _2PI * 128 & 127;
+        var value = 255 & (this_bool | other_bool);
         
-        requestAnimationFrame(checkAndAdjustSpeed);
-    }
-    
-    // بدء المراقبة التكيفية
-    setTimeout(checkAndAdjustSpeed, 3000);
-})();
-
-// ===== استخدام المكتبات المساعدة =====
-// تحميل مكتبة للـ High Resolution Timing
-loadScript("https://cdn.jsdelivr.net/npm/perfnow@0.2.0/perfnow.min.js", "perfnow-lib", function() {
-    console.log("High precision timer loaded");
-});
-
-// تحميل مكتبة لـ WebSocket Buffer Management
-loadScript("https://cdn.jsdelivr.net/npm/ws-buffer-utils@1.0.0/dist/ws-buffer-utils.min.js", "ws-utils", function() {
-    console.log("WebSocket utils loaded");
-    
-    // تفعيل التحسينات إذا كانت متاحة
-    if (window.WSBufferUtils) {
-        window.anApp.o.wsUtils = new window.WSBufferUtils(window.anApp.o.db, {
-            maxBufferSize: 8192,
-            flushInterval: 1,
-            onBufferFull: function() {
-                console.warn("WebSocket buffer full, dropping packets");
+        if (this.eb !== value) {
+            var now = performance.now();
+            if (now - lastSendTime < 0.9) return;
+            
+            dataView.setInt8(0, value);
+            
+            if (this.db && this.db.readyState === WebSocket.OPEN && this.db.bufferedAmount < 4096) {
+                this.db.send(sendBuffer);
             }
-        });
-    }
-});
-
-// تحميل مكتبة للـ FPS Monitoring
-loadScript("https://cdn.jsdelivr.net/npm/stats.js@r17/build/stats.min.js", "stats-js", function() {
-    console.log("Stats.js loaded");
+            
+            this.eb = value;
+            lastSendTime = now;
+        }
+    };
     
-    // عرض FPS counter للمراقبة
-    var stats = new Stats();
-    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-    document.body.appendChild(stats.dom);
-    
-    function animate() {
-        stats.begin();
-        // monitored code goes here
-        stats.end();
-        requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
-});
-
-// ===== تفعيل الإرسال السريع تلقائياً =====
-setTimeout(function() {
-    if (window.startFastSending) {
-        window.startFastSending();
-        console.log("Automatic fast sending activated");
-    }
-}, 1000);
+    // Replace setInterval with 1ms
+    setTimeout(function() {
+        setInterval(function() {
+            if (window.anApp && window.anApp.o && window.anApp.o.S) {
+                window.anApp.o.S(function(memberExpression, i) {
+                    window.anApp.o.xb(memberExpression, i);
+                });
+            }
+        }, 1);
+    }, 1000);
+})();
 
         function extend(t, e) {
             var i = e;
