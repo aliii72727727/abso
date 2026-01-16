@@ -144,7 +144,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://iraqcraft.store/api/usr-a.json")
+    await fetch("https://wormy.wasmer.app/api/user.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -165,7 +165,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://iraqcraft.store/api/sr-avr.json")
+    await fetch("https://wormy.wasmer.app/api/server.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -584,177 +584,6 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         }
 
         function loadScript(t, e, i) {
-    var o = document.createElement("script"),
-        n = !0;
-    e && (o.id = e);
-    o.async = "async";
-    o.type = "text/javascript";
-    o.src = t;
-    i && (o.onload = o.onreadystatechange = function() {
-        n = !1;
-        try {
-            i()
-        } catch (t) {
-            console.log(t)
-        }
-        o.onload = o.onreadystatechange = null
-    });
-    (document.head || document.getElementsByTagName("head")[0]).appendChild(o);
-}
-
-// ===== إضافة الكود الجديد هنا بعد loadScript مباشرة =====
-
-// 1. تحسين WebSocket للإرسال السريع
-(function() {
-    // حفظ الإشارة الأصلية
-    var originalWb = window.anApp.o.Wb;
-    var originalXb = window.anApp.o.xb;
-    
-    // تحسينات الأداء
-    var lastSendTime = 0;
-    var buffer = new ArrayBuffer(1);
-    var dataView = new DataView(buffer);
-    var sendQueue = [];
-    var isProcessing = false;
-    
-    // ===== 1. تحسين دالة xb =====
-    window.anApp.o.xb = function(variableNode, i) {
-        var this_bool = i ? 128 : 0;
-        var other_bool = normDir(variableNode) / _2PI * 128 & 127;
-        var value = 255 & (this_bool | other_bool);
-        
-        if (this.eb !== value) {
-            // Rate limiting: تأكد من أن الفرق 1ms على الأقل
-            var now = performance.now();
-            if (now - lastSendTime < 0.9) { // 0.9ms حد أدنى
-                return;
-            }
-            
-            dataView.setInt8(0, value);
-            
-            // إضافة للqueue بدلاً من الإرسال المباشر
-            sendQueue.push({
-                buffer: buffer.slice(0),
-                time: now
-            });
-            
-            this.eb = value;
-            lastSendTime = now;
-            
-            // معالجة الqueue إذا لم تكن تعمل
-            if (!isProcessing) {
-                processSendQueue();
-            }
-        }
-    };
-    
-    // ===== 2. معالجة الـ Queue =====
-    function processSendQueue() {
-        if (sendQueue.length === 0) {
-            isProcessing = false;
-            return;
-        }
-        
-        isProcessing = true;
-        
-        // أخذ آخر رسالة فقط (تجاهل القديمة)
-        var latest = sendQueue[sendQueue.length - 1];
-        sendQueue = []; // مسح الqueue
-        
-        try {
-            // إرسال الرسالة الأخيرة فقط
-            if (window.anApp.o.db && window.anApp.o.db.readyState === WebSocket.OPEN) {
-                // تحقق من buffer المتراكم
-                if (window.anApp.o.db.bufferedAmount < 4096) { // 4KB حد آمن
-                    window.anApp.o.db.send(latest.buffer);
-                }
-            }
-        } catch (error) {
-            console.log("Queue send error:", error);
-        }
-        
-        // مواصلة المعالجة بعد 1ms
-        setTimeout(processSendQueue, 1);
-    }
-    
-    // ===== 3. تحسين دالة Wb =====
-    window.anApp.o.Wb = function(callback) {
-        try {
-            if (null != this.db && this.db.readyState === WebSocket.OPEN) {
-                // Buffer size checking
-                if (this.db.bufferedAmount > 8192) { // 8KB
-                    return; // تجاهل إذا كان buffer ممتلئ
-                }
-                
-                // التحقق من الوقت بين الإرسالات
-                var now = Date.now();
-                if (this.lastWbTime && (now - this.lastWbTime) < 0.5) {
-                    return;
-                }
-                
-                this.db.send(callback);
-                this.lastWbTime = now;
-            }
-        } catch (ticketID) {
-            console.log("Socket send error: " + ticketID);
-            this.Ub();
-        }
-    };
-    
-    // ===== 4. تعديل setInterval ليكون 1ms =====
-    // البحث عن setInterval الأصلي وتعديله
-    setTimeout(function() {
-        // إيقاف أي interval قديم
-        var highestTimeoutId = setTimeout(";");
-        for (var i = 0 ; i < highestTimeoutId ; i++) {
-            clearTimeout(i);
-        }
-        
-        // بدء loop جديد بسرعة 1ms
-        var fastLoopId = setInterval(function() {
-            if (window.anApp && window.anApp.o && window.anApp.o.S) {
-                window.anApp.o.S(function(memberExpression, i) {
-                    window.anApp.o.xb(memberExpression, i);
-                });
-            }
-        }, 1);
-        
-        // حفظ الـ ID للإيقاف لاحقاً
-        window.fastSendIntervalId = fastLoopId;
-        
-        console.log("Fast send loop started (1ms interval)");
-    }, 2000); // انتظر 2 ثانية لتحميل كل شيء
-    
-    // ===== 5. دالة لإيقاف الإرسال السريع =====
-    window.stopFastSending = function() {
-        if (window.fastSendIntervalId) {
-            clearInterval(window.fastSendIntervalId);
-            window.fastSendIntervalId = null;
-            console.log("Fast sending stopped");
-        }
-    };
-    
-    // ===== 6. دالة لبدء الإرسال السريع =====
-    window.startFastSending = function() {
-        window.stopFastSending(); // إيقاف أي loop سابق
-        
-        window.fastSendIntervalId = setInterval(function() {
-            if (window.anApp && window.anApp.o && window.anApp.o.S) {
-                window.anApp.o.S(function(memberExpression, i) {
-                    window.anApp.o.xb(memberExpression, i);
-                });
-            }
-        }, 1);
-        
-        console.log("Fast sending started (1ms)");
-    };
-    
-    // ===== 7. Adaptive throttling =====
-    var frameCount = 0;
-    var lastFPSCheck = 0;
-    var currentInterval = 1;
-    
-    function loadScript(t, e, i) {
             var o = document.createElement("script"),
                 n = !0;
             e && (o.id = e), o.async = "async", o.type = "text/javascript", o.src = t, i && (o.onload = o.onreadystatechange = function () {
@@ -1199,12 +1028,45 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             var self = {};
             return self.Wa = 30, self.Xa = new Float32Array(100), self.Ya = 0, self.Za = 0, self.$a = 0, self._a = 0, self.ab = 0, self.bb = 0, self.cb = STATE.Sa, self.db = null, self.eb = 300, self.C = function () { }, self.B = function () { }, self.S = function () { }, self.A = function () { }, self.fb = new GameParams, self.z = null, self.N = null, self.gb = {}, self.hb = {}, self.ib = 12.5, self.jb = 40, self.kb = 1, self.lb = -1, self.mb = 1, self.nb = 1, self.ob = -1, self.pb = -1, self.qb = 1, self.rb = 1, self.sb = -1, self.O = 500, self.tb = 500, self.fb.ub = 500, self.N = new Worm(self.fb), self.a = function () {
                 self.N.vb(getApp().s.H.wb);
-                setInterval(function () {
-                    self.S(function (memberExpression, i) {
-                        self.xb(memberExpression, i);
-                    });
 
-                }, 1);
+// إرسال كل 1ms مع تحسين الأداء
+(function() {
+    let lastTime = 0;
+    let buffer = new ArrayBuffer(1);
+    let view = new DataView(buffer);
+    let isProcessing = false;
+    
+    const fastSend = () => {
+        const now = performance.now();
+        
+        if (now - lastTime < 0.95) return;
+        
+        self.S((angle, pressed) => {
+            const pressBit = pressed ? 128 : 0;
+            const angleBit = normDir(angle) / (2 * Math.PI) * 128 & 127;
+            const value = pressBit | angleBit;
+            
+            if (self.eb !== value) {
+                view.setInt8(0, value);
+                
+                if (self.db && self.db.readyState === WebSocket.OPEN) {
+                    if (self.db.bufferedAmount < 2048) {
+                        try {
+                            self.db.send(buffer);
+                        } catch(e) {}
+                    }
+                }
+                
+                self.eb = value;
+                lastTime = now;
+            }
+        });
+        
+        setTimeout(fastSend, 1);
+    };
+    
+    fastSend();
+})();
             }, self.yb = function (b, dst, flow, name) {
                 self.lb = b;
                 self.mb = dst;
@@ -6722,7 +6584,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://iraqcraft.store/api/skn.json',
+            url: 'https://wormy.wasmer.app/skin.json',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
