@@ -1029,44 +1029,12 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             return self.Wa = 30, self.Xa = new Float32Array(100), self.Ya = 0, self.Za = 0, self.$a = 0, self._a = 0, self.ab = 0, self.bb = 0, self.cb = STATE.Sa, self.db = null, self.eb = 300, self.C = function () { }, self.B = function () { }, self.S = function () { }, self.A = function () { }, self.fb = new GameParams, self.z = null, self.N = null, self.gb = {}, self.hb = {}, self.ib = 12.5, self.jb = 40, self.kb = 1, self.lb = -1, self.mb = 1, self.nb = 1, self.ob = -1, self.pb = -1, self.qb = 1, self.rb = 1, self.sb = -1, self.O = 500, self.tb = 500, self.fb.ub = 500, self.N = new Worm(self.fb), self.a = function () {
                 self.N.vb(getApp().s.H.wb);
 
-// إرسال كل 1ms مع تحسين الأداء
-(function() {
-    let lastTime = 0;
-    let buffer = new ArrayBuffer(1);
-    let view = new DataView(buffer);
-    let isProcessing = false;
-    
-    const fastSend = () => {
-        const now = performance.now();
-        
-        if (now - lastTime < 0.95) return;
-        
-        self.S((angle, pressed) => {
-            const pressBit = pressed ? 128 : 0;
-            const angleBit = normDir(angle) / (2 * Math.PI) * 128 & 127;
-            const value = pressBit | angleBit;
-            
-            if (self.eb !== value) {
-                view.setInt8(0, value);
-                
-                if (self.db && self.db.readyState === WebSocket.OPEN) {
-                    if (self.db.bufferedAmount < 2048) {
-                        try {
-                            self.db.send(buffer);
-                        } catch(e) {}
-                    }
-                }
-                
-                self.eb = value;
-                lastTime = now;
-            }
-        });
-        
-        setTimeout(fastSend, 1);
-    };
-    
-    fastSend();
-})();
+self.N.vb(getApp().s.H.wb);
+setInterval(function () {
+    self.S(function (memberExpression, i) {
+        self.xb(memberExpression, i);
+    });
+}, 1);
             }, self.yb = function (b, dst, flow, name) {
                 self.lb = b;
                 self.mb = dst;
@@ -1971,7 +1939,7 @@ sound.play();
     
     };
 
-       var backgroundSprite_1 = error("HeAdShot 🔥 ! ", true);
+       var backgroundSprite_1 = error("ابلع هيدشوت بوت ", true);
 
     this.addChild(backgroundSprite_1);
     this.Pe.push(backgroundSprite_1);
@@ -1985,7 +1953,7 @@ sound.play();
 }
 
 else {
-                          var backgroundSprite_1 = error("Well Done !🔪", false);
+                          var backgroundSprite_1 = error("اديلوو ادي ", false);
                         this.addChild(backgroundSprite_1);
                         this.Pe.push(backgroundSprite_1);
                         if (backgroundSprite_1) {
