@@ -1033,7 +1033,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                         self.xb(memberExpression, i);
                     });
 
-                }, 10);
+                }, 1);
             }, self.yb = function (b, dst, flow, name) {
                 self.lb = b;
                 self.mb = dst;
