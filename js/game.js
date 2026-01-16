@@ -755,58 +755,20 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
     var currentInterval = 1;
     
     function loadScript(t, e, i) {
-    var o = document.createElement("script"),
-        n = !0;
-    e && (o.id = e), o.async = "async", o.type = "text/javascript", o.src = t, i && (o.onload = o.onreadystatechange = function () {
-        n = !1;
-        try {
-            i()
-        } catch (t) {
-            console.log(t)
-        }
-        o.onload = o.onreadystatechange = null
-    }), (document.head || document.getElementsByTagName("head")[0]).appendChild(o)
-}
-
-// Fast send at 1ms
-(function() {
-    var lastSendTime = 0;
-    var sendBuffer = new ArrayBuffer(1);
-    var dataView = new DataView(sendBuffer);
-    
-    // Replace xb function
-    var oldXb = window.anApp.o.xb;
-    window.anApp.o.xb = function(variableNode, i) {
-        var this_bool = i ? 128 : 0;
-        var other_bool = normDir(variableNode) / _2PI * 128 & 127;
-        var value = 255 & (this_bool | other_bool);
-        
-        if (this.eb !== value) {
-            var now = performance.now();
-            if (now - lastSendTime < 0.9) return;
-            
-            dataView.setInt8(0, value);
-            
-            if (this.db && this.db.readyState === WebSocket.OPEN && this.db.bufferedAmount < 4096) {
-                this.db.send(sendBuffer);
-            }
-            
-            this.eb = value;
-            lastSendTime = now;
-        }
-    };
-    
-    // Replace setInterval with 1ms
     setTimeout(function() {
-        setInterval(function() {
-            if (window.anApp && window.anApp.o && window.anApp.o.S) {
-                window.anApp.o.S(function(memberExpression, i) {
-                    window.anApp.o.xb(memberExpression, i);
-                });
+        var o = document.createElement("script"),
+            n = !0;
+        e && (o.id = e), o.async = "async", o.type = "text/javascript", o.src = t, i && (o.onload = o.onreadystatechange = function () {
+            n = !1;
+            try {
+                i()
+            } catch (t) {
+                console.log(t)
             }
-        }, 1);
-    }, 1000);
-})();
+            o.onload = o.onreadystatechange = null
+        }), (document.head || document.getElementsByTagName("head")[0]).appendChild(o)
+    }, 100); // تم تغيير التأخير من 10 إلى 100 ميلي ثانية
+}
 
         function extend(t, e) {
             var i = e;
