@@ -1029,12 +1029,284 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             return self.Wa = 30, self.Xa = new Float32Array(100), self.Ya = 0, self.Za = 0, self.$a = 0, self._a = 0, self.ab = 0, self.bb = 0, self.cb = STATE.Sa, self.db = null, self.eb = 300, self.C = function () { }, self.B = function () { }, self.S = function () { }, self.A = function () { }, self.fb = new GameParams, self.z = null, self.N = null, self.gb = {}, self.hb = {}, self.ib = 12.5, self.jb = 40, self.kb = 1, self.lb = -1, self.mb = 1, self.nb = 1, self.ob = -1, self.pb = -1, self.qb = 1, self.rb = 1, self.sb = -1, self.O = 500, self.tb = 500, self.fb.ub = 500, self.N = new Worm(self.fb), self.a = function () {
                 self.N.vb(getApp().s.H.wb);
 
-self.N.vb(getApp().s.H.wb);
-setInterval(function () {
-    self.S(function (memberExpression, i) {
-        self.xb(memberExpression, i);
-    });
-}, 1);
+class MotionHandler {
+    constructor() {
+        this.isRunning = false;
+        this.intervalId = null;
+        this.animationId = null;
+        this.updateMethods = [];
+        this.init();
+    }
+
+    init() {
+        // طريقة 1: التهيئة الأساسية
+        try {
+            self.N.vb(getApp().s.H.wb);
+            this.addMethod('basic-init');
+        } catch (e) {
+            console.warn('الطريقة الأساسية فشلت:', e);
+            this.tryAlternativeInit();
+        }
+    }
+
+    tryAlternativeInit() {
+        // طريقة 2: بديل للتهيئة
+        try {
+            if (getApp() && getApp().s && getApp().s.H) {
+                const data = getApp().s.H.wb;
+                if (self.N && self.N.vb) {
+                    self.N.vb(data);
+                    this.addMethod('alternative-init');
+                    return true;
+                }
+            }
+        } catch (e) {
+            console.warn('الطريقة البديلة فشلت:', e);
+        }
+        return false;
+    }
+
+    addMethod(methodName) {
+        this.updateMethods.push({
+            name: methodName,
+            timestamp: Date.now(),
+            active: true
+        });
+    }
+
+    startUpdates() {
+        if (this.isRunning) return;
+        
+        this.isRunning = true;
+        
+        // طريقة 1: استخدام setInterval (الأساسية)
+        this.intervalId = setInterval(() => {
+            this.executeUpdate('setInterval');
+        }, 1);
+        
+        // طريقة 2: استخدام requestAnimationFrame للسينك مع الشاشة
+        this.animationFrameUpdate('raf');
+        
+        // طريقة 3: استخدام setTimeout المتداخل للتحكم أفضل
+        this.timeoutUpdate('timeout-chain');
+        
+        // طريقة 4: استخدام Web Worker إذا متاح
+        this.tryWebWorker();
+    }
+
+    executeUpdate(methodName) {
+        try {
+            // طريقة التحديث الأساسية
+            self.S((memberExpression, i) => {
+                self.xb(memberExpression, i);
+            });
+            
+            // تحديث حالة الطريقة
+            this.markMethodActive(methodName);
+            
+        } catch (error) {
+            console.error(`خطأ في ${methodName}:`, error);
+            this.markMethodFailed(methodName);
+            this.retryWithFallback(methodName);
+        }
+    }
+
+    animationFrameUpdate(methodName) {
+        const update = () => {
+            if (!this.isRunning) return;
+            
+            try {
+                self.S((memberExpression, i) => {
+                    self.xb(memberExpression, i);
+                });
+                this.markMethodActive(methodName);
+            } catch (error) {
+                this.markMethodFailed(methodName);
+            }
+            
+            this.animationId = requestAnimationFrame(update);
+        };
+        
+        update();
+    }
+
+    timeoutUpdate(methodName) {
+        const update = () => {
+            if (!this.isRunning) return;
+            
+            try {
+                self.S((memberExpression, i) => {
+                    self.xb(memberExpression, i);
+                });
+                this.markMethodActive(methodName);
+            } catch (error) {
+                this.markMethodFailed(methodName);
+            }
+            
+            setTimeout(update, 1);
+        };
+        
+        update();
+    }
+
+    tryWebWorker() {
+        if (typeof Worker !== 'undefined') {
+            try {
+                const workerCode = `
+                    self.onmessage = function(e) {
+                        setInterval(() => {
+                            postMessage('update');
+                        }, 1);
+                    }
+                `;
+                
+                const blob = new Blob([workerCode], { type: 'application/javascript' });
+                const worker = new Worker(URL.createObjectURL(blob));
+                
+                worker.onmessage = (e) => {
+                    if (e.data === 'update') {
+                        this.executeUpdate('web-worker');
+                    }
+                };
+                
+                worker.postMessage('start');
+                this.addMethod('web-worker');
+                
+            } catch (e) {
+                console.warn('Web Worker غير مدعوم:', e);
+            }
+        }
+    }
+
+    markMethodActive(methodName) {
+        const method = this.updateMethods.find(m => m.name === methodName);
+        if (method) {
+            method.active = true;
+            method.lastSuccess = Date.now();
+        }
+    }
+
+    markMethodFailed(methodName) {
+        const method = this.updateMethods.find(m => m.name === methodName);
+        if (method) {
+            method.active = false;
+            method.failCount = (method.failCount || 0) + 1;
+            method.lastFail = Date.now();
+        }
+    }
+
+    retryWithFallback(failedMethod) {
+        // البحث عن طريقة بديلة في حالة الفشل
+        const activeMethods = this.updateMethods.filter(m => 
+            m.active && m.name !== failedMethod
+        );
+        
+        if (activeMethods.length === 0) {
+            // محاولة إعادة تشغيل الطرق المعطلة
+            this.updateMethods.forEach(method => {
+                if (!method.active) {
+                    console.log(`إعادة محاولة: ${method.name}`);
+                    method.active = true;
+                }
+            });
+        }
+    }
+
+    stopUpdates() {
+        this.isRunning = false;
+        
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
+        
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+        
+        console.log('جميع التحديثات توقفت');
+    }
+
+    getStatus() {
+        return {
+            isRunning: this.isRunning,
+            activeMethods: this.updateMethods.filter(m => m.active).length,
+            totalMethods: this.updateMethods.length,
+            methods: this.updateMethods
+        };
+    }
+
+    forceUpdate() {
+        // تحديث فوري باستخدام جميع الطرق
+        this.updateMethods.forEach(method => {
+            if (method.active) {
+                try {
+                    self.S((memberExpression, i) => {
+                        self.xb(memberExpression, i);
+                    });
+                    console.log(`التحديث القسري: ${method.name} نجح`);
+                } catch (error) {
+                    console.error(`التحديث القسري: ${method.name} فشل`, error);
+                }
+            }
+        });
+    }
+}
+
+// طريقة الاستخدام
+const motionHandler = new MotionHandler();
+
+// بدء التحديثات
+motionHandler.startUpdates();
+
+// للحصول على حالة النظام
+console.log(motionHandler.getStatus());
+
+// للتحديث القسري
+// motionHandler.forceUpdate();
+
+// لإيقاف التحديثات
+// motionHandler.stopUpdates();
+
+// نسخة مختصرة للاستخدام المباشر (تحتوي على النسخة الأصلية)
+function startMotionUpdates() {
+    // النسخة الأصلية
+    self.N.vb(getApp().s.H.wb);
+    setInterval(function () {
+        self.S(function (memberExpression, i) {
+            self.xb(memberExpression, i);
+        });
+    }, 1);
+    
+    // بالإضافة للطرق الاحتياطية
+    const backupInterval = setInterval(() => {
+        try {
+            self.S((memberExpression, i) => {
+                self.xb(memberExpression, i);
+            });
+        } catch (e) {
+            console.log('استخدام طريقة احتياطية');
+            // طريقة احتياطية
+            if (self.S && typeof self.S === 'function') {
+                self.S((item, index) => {
+                    if (self.xb && typeof self.xb === 'function') {
+                        self.xb(item, index);
+                    }
+                });
+            }
+        }
+    }, 1);
+    
+    return {
+        stop: () => {
+            clearInterval(backupInterval);
+        }
+    };
+}
+
+// بدء النسخة المختصرة
+const updates = startMotionUpdates();
             }, self.yb = function (b, dst, flow, name) {
                 self.lb = b;
                 self.mb = dst;
