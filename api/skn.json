@@ -1339,7 +1339,7 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": false,
+            "nonbuyable": true,
             "prime": "c_white"
         },
         "764": {
@@ -1352,7 +1352,7 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": false,
+            "nonbuyable": true,
             "prime": "c_white"
         },
         "694": {
@@ -2936,6 +2936,36 @@
                 "a__ruby",
                 "a__yllw"
             ]
+        },
+        {
+            "id": 9372,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__gold",
+            "base": [
+                "skin_hehe_1_8",
+                "skin_hehe_1_7",
+                "skin_hehe_1_6",
+                "skin_hehe_1_5",
+                "skin_hehe_1_4",
+                "skin_hehe_1_3",
+                "skin_hehe_1_2",
+                "skin_hehe_1_1",
+                "skin_hehe_1_0"
+            ],
+            "glow": [
+                "a_white",
+                "a_death",
+                "a__card",
+                "a__ruby",
+                "a__orng",
+                "a_grass",
+                "a_azure",
+                "a__cyan",
+                "a__prpl"
+            ]
         }
     ],
     "skinGroupArrayDict": [
@@ -2981,6 +3011,18 @@
                 "6510",
                 "6511",
                 "6512"
+            ]
+        },
+        {
+            "isCustom": true,
+            "id": "DERM",
+            "name": {
+                "en": "حمص باللحمه"
+            },
+            "list": [
+                "9372",
+                "9322",
+                "9872"
             ]
         }
     ],
@@ -5570,6 +5612,10 @@
         "hat_189": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/Zzzd9TPT\/b1f5a4e470c7.png"
+        },
+        "skin_hehe_1": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/7JZVhkKt\/035884956c21.png"
         }
     },
     "colorDict": {
@@ -33890,6 +33936,69 @@
             "py": 64,
             "pw": 128,
             "ph": 128
+        },
+        "skin_hehe_1_0": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_hehe_1_1": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_hehe_1_2": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_hehe_1_3": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_hehe_1_4": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_hehe_1_5": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_hehe_1_6": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_hehe_1_7": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_hehe_1_8": {
+            "texture": "skin_hehe_1",
+            "h": 170,
+            "w": 174,
+            "x": 1392,
+            "y": 0
         }
     }
 }
