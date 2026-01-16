@@ -772,6 +772,9 @@
             783
         ],
         [
+            784
+        ],
+        [
             785
         ],
         [
@@ -994,6 +997,9 @@
             893
         ],
         [
+            919
+        ],
+        [
             933
         ],
         [
@@ -1043,6 +1049,21 @@
         ],
         [
             958
+        ],
+        [
+            981
+        ],
+        [
+            986
+        ],
+        [
+            989
+        ],
+        [
+            991
+        ],
+        [
+            996
         ]
     ],
     "eyesVariantArray": [
@@ -3753,6 +3774,97 @@
             "price": 0,
             "priceBefore": 0,
             "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "989": {
+            "id": 989,
+            "base": [
+                {
+                    "region": "hat_989"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "784": {
+            "id": 784,
+            "base": [
+                {
+                    "region": "hat_784"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "981": {
+            "id": 981,
+            "base": [
+                {
+                    "region": "hat_981"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": true,
+            "prime": "c_white"
+        },
+        "991": {
+            "id": 991,
+            "base": [
+                {
+                    "region": "hat_991"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "986": {
+            "id": 986,
+            "base": [
+                {
+                    "region": "hat_986"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": true,
+            "prime": "c_white"
+        },
+        "919": {
+            "id": 919,
+            "base": [
+                {
+                    "region": "hat_919"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "996": {
+            "id": 996,
+            "base": [
+                {
+                    "region": "hat_996"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": true,
             "prime": "c_white"
         }
     },
@@ -8512,6 +8624,34 @@
             "relativePath": "https:\/\/i.ibb.co\/tMXvQqXS\/8270a1284abd.png"
         },
         "hat_776": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
+        },
+        "hat_989": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
+        },
+        "hat_784": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
+        },
+        "hat_981": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
+        },
+        "hat_991": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
+        },
+        "hat_986": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
+        },
+        "hat_919": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
+        },
+        "hat_996": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/pvccQXZK\/c6fd8662b646.png"
         }
@@ -38465,6 +38605,83 @@
         },
         "hat_776": {
             "texture": "hat_776",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_989": {
+            "texture": "hat_989",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_784": {
+            "texture": "hat_784",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_981": {
+            "texture": "hat_981",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_991": {
+            "texture": "hat_991",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_986": {
+            "texture": "hat_986",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_919": {
+            "texture": "hat_919",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_996": {
+            "texture": "hat_996",
             "x": 0,
             "y": 0,
             "w": 400,
