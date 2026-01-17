@@ -6199,7 +6199,6 @@ $(document).ready(function() {
         showNotification('تم حفظ الإعدادات', 'success');
     });
 });
-</div>`);
 
 
 
