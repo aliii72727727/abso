@@ -276,6 +276,17 @@
             "Client_KeyAccecs": "XTPRIVATESKIN",
             "VIP": "No",
             "Zoom": "No"
+        },
+        {
+            "id": 30,
+            "cliente_NOMBRE": "FadelShaker",
+            "cliente_ID": "gg_1053941035026711358013",
+            "cliente_DateStarted": "17-01-2026",
+            "cliente_DateExpired": "17-01-2026",
+            "status": 1,
+            "Client_KeyAccecs": "XTPRIVATESKIN",
+            "VIP": "No",
+            "Zoom": "No"
         }
     ]
 }
