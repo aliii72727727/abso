@@ -5892,7 +5892,6 @@ else {
           
           `);
 
-            
             ('#mm-store').after(`<div id="mm-store" style="float: right;position: relative;margin-right: 10px;min-width: 140px;">
     <div style="margin: 0;" id="loa831pibur0w4gv">
         <div onclick="openPopup()"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"> </i> Settings</div>
@@ -5979,6 +5978,7 @@ else {
         </div>
     </div>
 </div>`);
+            
 
             var button = document.getElementById("settingBtn");
             var content = document.getElementById("settingContent");
