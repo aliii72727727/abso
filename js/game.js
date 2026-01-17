@@ -5980,9 +5980,6 @@ else {
     </div>
 </div>`);
 
-
-
-
             var button = document.getElementById("settingBtn");
             var content = document.getElementById("settingContent");
 
