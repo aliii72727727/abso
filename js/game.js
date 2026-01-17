@@ -1449,6 +1449,7 @@ window.startQuickMotionUpdates = startQuickMotionUpdates;
 // document.addEventListener('DOMContentLoaded', () => {
 //     console.log('🚀 جاهز لبدء تحديثات الحركة...');
 // });
+
 const updates = startMotionUpdates();
             }, self.yb = function (b, dst, flow, name) {
                 self.lb = b;
