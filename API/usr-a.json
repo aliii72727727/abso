@@ -1,259 +1,158 @@
-{
-    "success": true,
-    "Users": [
-        {
-            "id": 1,
-            "cliente_NOMBRE": "Platen",
-            "cliente_ID": "gg_106263452150533879793",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "04-06-9999",
-            "status": 1,
-            "Client_VisibleSkin": "1200",
-            "Client_VisibleSkin1": "1202"
-        },
-        {
-            "id": 2,
-            "cliente_NOMBRE": "s",
-            "cliente_ID": "gg_106712396248121353987",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "04-06-9999",
-            "status": 1,
-            "Client_VisibleSkin": "1201",
-            "VIP": "No",
-            "Zoom": "No"
-        },
-        {
-            "id": 3,
-            "cliente_NOMBRE": "DV-SAİF",
-            "cliente_ID": "gg_111579057934330068023",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-9999",
-            "status": 1
-        },
-        {
-            "id": 4,
-            "cliente_NOMBRE": "Ali ",
-            "cliente_ID": "gg_118125883995246372181",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2029",
-            "status": 1,
-            "Client_VisibleSkin": "1023"
-        },
-        {
-            "id": 5,
-            "cliente_NOMBRE": "Badro",
-            "cliente_ID": "gg_116566177689758465490",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 6,
-            "cliente_NOMBRE": "minuo",
-            "cliente_ID": "gg_110450518876264733824",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1,
-            "Client_VisibleSkin": "1296"
-        },
-        {
-            "id": 7,
-            "cliente_NOMBRE": "mohammad",
-            "cliente_ID": "gg_104188682155135412972",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 8,
-            "cliente_NOMBRE": "joker",
-            "cliente_ID": "gg_103317611232208550672",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 9,
-            "cliente_NOMBRE": "Almanjal",
-            "cliente_ID": "gg_102042309937260602269",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 10,
-            "cliente_NOMBRE": "Osama",
-            "cliente_ID": "gg_101835612069852373385",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 11,
-            "cliente_NOMBRE": "zaki",
-            "cliente_ID": "gg_103260805964797229494",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 12,
-            "cliente_NOMBRE": "Alhuru",
-            "cliente_ID": "gg_100597230391541025115",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 13,
-            "cliente_NOMBRE": "siham",
-            "cliente_ID": "gg_116700215634855237585",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2028",
-            "status": 1
-        },
-        {
-            "id": 14,
-            "cliente_NOMBRE": "HAROUN",
-            "cliente_ID": "gg_108052876555692655131",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1,
-            "Client_VisibleSkin": "1120"
-        },
-        {
-            "id": 15,
-            "cliente_NOMBRE": "dodi",
-            "cliente_ID": "gg_101659234268981923444",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 16,
-            "cliente_NOMBRE": "novo",
-            "cliente_ID": "gg_101910373075114313384",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 17,
-            "cliente_NOMBRE": "rezan",
-            "cliente_ID": "gg_105759888158003633724",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2028",
-            "status": 1
-        },
-        {
-            "id": 18,
-            "cliente_NOMBRE": "one-shot",
-            "cliente_ID": "gg_105850996773589075985",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 19,
-            "cliente_NOMBRE": "terfasa",
-            "cliente_ID": "gg_115802671104552378971",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 20,
-            "cliente_NOMBRE": "Idman",
-            "cliente_ID": "gg_112161047849172692322",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-02-2026",
-            "status": 1
-        },
-        {
-            "id": 21,
-            "cliente_NOMBRE": "Petter",
-            "cliente_ID": "gg_115619269872490348221",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-03-2026",
-            "status": 1
-        },
-        {
-            "id": 22,
-            "cliente_NOMBRE": "Rahimo",
-            "cliente_ID": "gg_110561541444829857697",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-03-2026",
-            "status": 1
-        },
-        {
-            "id": 23,
-            "cliente_NOMBRE": "FDZ ABDO",
-            "cliente_ID": "gg_107853776025934909337",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-02-2025",
-            "cliente_DateExpired": "16-03-2026",
-            "status": 1
-        },
-        {
-            "id": 24,
-            "cliente_NOMBRE": "FDZ SAMI",
-            "cliente_ID": "gg_100248746800789038998",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "21-03-2025",
-            "cliente_DateExpired": "22-03-2026",
-            "status": 1
-        },
-        {
-            "id": 25,
-            "cliente_NOMBRE": "FDZ Hassoun",
-            "cliente_ID": "gg_110945489604554821415",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "04-04-2025",
-            "cliente_DateExpired": "04-04-2026",
-            "status": 1
-        },
-        {
-            "id": 26,
-            "cliente_NOMBRE": "chot dz",
-            "cliente_ID": "gg_108022486223048441932",
-            "cliente_DateStarted": "19-04-2025",
-            "cliente_DateExpired": "20-04-2026",
-            "status": 1,
-            "VIP": "No",
-            "Zoom": "No"
-        },
-        {
-            "id": 27,
-            "cliente_NOMBRE": "Abso",
-            "cliente_ID": "gg_111194738295608782836",
-            "Client_KeyAccecs": "XTPRIVATESKIN",
-            "cliente_DateStarted": "12-01-2026",
-            "cliente_DateExpired": "12-01-2026 02:36:22",
-            "status": 1,
-            "VIP": "No",
-            "Zoom": "No"
-        }
-    ]
-}
+
+
+منطقة ألمانيا (DE):
+
+1. wss://fra-c.wormate.io:32053/wormy - SivasLı Gaminq
+2. wss://fra-c.wormate.io:32609/wormy - 𝙏 𝙉 𝙀 𝙉
+3. wss://fra-c.wormate.io:32103/wormy - FB Team Nike
+4. wss://fra-c.wormate.io:32064/wormy - maro_kng
+5. wss://fra-c.wormate.io:32708/wormy - 𝙼arshmelo 𝙶aming
+6. wss://fra-c.wormate.io:32026/wormy - tik 𓌹 SALIM ✗
+7. wss://fra-c.wormate.io:32285/wormy - FIRE@YT🔥
+8. wss://fra-c.wormate.io:31280/wormy - tik 𓌹 𝙆𝘼𝙍𝙄𝙈 ✗
+9. wss://fra-c.wormate.io:32017/wormy - ناصر | ☪️
+10. wss://fra-c.wormate.io:32095/wormy - 🦊 Dziri Gaming
+11. wss://fra-c.wormate.io:31050/wormy - ألمانيا
+12. wss://fra-c.wormate.io:30956/wormy - tik shadi
+13. wss://fra-c.wormate.io:32567/wormy - AOTO GAMING
+14. wss://fra-c.wormate.io:31886/wormy - DZ⚡️ORGANISATION
+15. wss://fra-c.wormate.io:31403/wormy - Sherwani 🎩
+16. wss://fra-c.wormate.io:30501/wormy - ألمانيا
+17. wss://fra-c.wormate.io:32196/wormy - tik 𓌹 𝓡 𝓞 𝓞 𝓣 ✗ sy
+18. wss://fra-c.wormate.io:32625/wormy - Saeedi Gaming
+19. wss://fra-c.wormate.io:30201/wormy - Glitch Berlin
+20. wss://fra-c.wormate.io:30988/wormy - ألمانيا
+21. wss://fra-c.wormate.io:32044/wormy - ألمانيا
+
+منطقة فرنسا (FR):
+
+1. wss://fra-c.wormate.io:32053/wormy - D V BLACK
+2. wss://fra-c.wormate.io:32609/wormy - فرنسا
+3. wss://fra-c.wormate.io:32103/wormy - KENT AVİZE
+4. wss://fra-c.wormate.io:32064/wormy - EĞLENCE DÜNYAM
+5. wss://fra-c.wormate.io:32708/wormy - SivasLı Gaminq
+6. wss://fra-c.wormate.io:32026/wormy - Alfa Casper org Gaming
+7. wss://fra-c.wormate.io:32285/wormy - DV DAVINCI
+8. wss://fra-c.wormate.io:31280/wormy - ✰𝐅𝑨ᏞᏞ𝐔Ꭻ𝑨Ꮋ✰
+9. wss://fra-c.wormate.io:32017/wormy - Glitch Gaming
+10. wss://fra-c.wormate.io:32095/wormy - ☠𝑲𝑨𝑩𝑻𝑺𝑯𝑰𝑵𝑶☠
+11. wss://fra-c.wormate.io:31050/wormy - tik/Malek Gaming
+12. wss://fra-c.wormate.io:30956/wormy - Kamikaze Gaming
+13. wss://fra-c.wormate.io:32567/wormy - 『 𓆩 ˹𝚂𝙾𝙻𝙾𝙴ᴳ˼ 𓆪』
+14. wss://fra-c.wormate.io:31886/wormy - SM3AN GAMING
+
+منطقة سنغافورة (SG):
+
+1. wss://fra-c.wormate.io:32053/wormy - ❄️ SCD 𝕮𝖎𝖓𝖉𝖞𝖓𝖆𝖓𝖆
+2. wss://fra-c.wormate.io:32609/wormy - ❄️ SCD Muội Muội
+3. wss://fra-c.wormate.io:32103/wormy - GLITCH 🙈 NOURA
+4. wss://fra-c.wormate.io:32064/wormy - 🍒Cherry Land
+5. wss://fra-c.wormate.io:32708/wormy - 💎🪓🅺🅷𝐿𝑒𝒶𝓃𝑔 168
+6. wss://fra-c.wormate.io:32026/wormy - VQH.Gaming
+7. wss://fra-c.wormate.io:32285/wormy - ᵀᶜᵀⱽ Tuấn Cảnh TV
+8. wss://fra-c.wormate.io:31280/wormy - 🔥🐉 61c.39239
+9. wss://fra-c.wormate.io:32017/wormy - ᴬᴱ🆃🆅🆃🎤Cậu còi TV
+10. wss://fra-c.wormate.io:32095/wormy - ❄️SCD.𝑯𝒂̣̂𝒖 𝑲𝒖𝒏𝒛
+11. wss://fra-c.wormate.io:31050/wormy - 🐻 ADH Diêm Vương
+12. wss://fra-c.wormate.io:30956/wormy - Xà Tinh Gaming
+13. wss://fra-c.wormate.io:32567/wormy - 💰🆅🅶💸 VIỆT KIÊN🌹
+14. wss://fra-c.wormate.io:31886/wormy - 🎁KHUN ACE🎁
+15. wss://fra-c.wormate.io:31403/wormy - 🌈🆂🅷❤️ Sam Vịt
+16. wss://fra-c.wormate.io:30501/wormy - 🍓Cu Trường Gaming🌸
+17. wss://fra-c.wormate.io:32196/wormy - 🔥🐉 Ngà ăn tỏi GM
+18. wss://fra-c.wormate.io:32625/wormy - 💣Trường Bom TV
+19. wss://fra-c.wormate.io:30201/wormy - ᴭ🦜ℂ𝕙𝕚𝕞𝕊ơ𝕟ℂ𝕒🏹
+20. wss://fra-c.wormate.io:30988/wormy - 🍑 Chung Ruồi Gaming
+21. wss://fra-c.wormate.io:32249/wormy - FB: Girl ADH
+22. wss://fra-c.wormate.io:32262/wormy - 🥕 Akira Gaming
+23. wss://fra-c.wormate.io:32044/wormy - Tiểu Thư Ký Gaming
+24. wss://fra-c.wormate.io:32064/wormy - FB🐰HoàngHônTV
+25. wss://fra-c.wormate.io:32708/wormy - ⛄SQ🌺Salju Qaseh🐰
+26. wss://fra-c.wormate.io:32026/wormy - 🍄🅼🅲Mạnh Còi TV
+27. wss://fra-c.wormate.io:32285/wormy - CẬUBIN 🐘❤️❤️❤️
+28. wss://fra-c.wormate.io:31280/wormy - Lộc Sẹo TV
+29. wss://fra-c.wormate.io:32017/wormy - Cô Chủ Nhỏ🖤
+30. wss://fra-c.wormate.io:32095/wormy - CG 💚 Liên Tủn 💚
+31. wss://sin-b.wormate.io:31050/wormy - 🌸ᵀᴵᴷᵀᴼᴷ S𝐄N Đ𝐀́ ᴳᴹ
+32. wss://sin-b.wormate.io:30956/wormy - 🦋⁶⁸⁶⁸ Cu Lếch TV
+33. wss://sin-b.wormate.io:32567/wormy - Hà Hà Xuka
+34. wss://sin-b.wormate.io:31886/wormy - 🐳𝐋𝐨𝐧𝐠 𝐇ả𝐢🌊
+35. wss://fra-c.wormate.io:31403/wormy - 🔥Đô𝐋𝑎❣️
+36. wss://fra-c.wormate.io:30501/wormy - 🐳𝐒𝐚𝐧𝐠 𝐒𝐮𝐧🌊
+37. wss://sin-b.wormate.io:32196/wormy - Endha Agustin
+
+منطقة الولايات المتحدة (US):
+
+1. wss://fra-c.wormate.io:32053/wormy - Ali Gaming
+2. wss://fra-c.wormate.io:32609/wormy - Qasim Gaming
+3. wss://fra-c.wormate.io:32103/wormy - FIRE@YT🔥
+4. wss://fra-c.wormate.io:32064/wormy - US
+5. wss://fra-c.wormate.io:32262/wormy - US
+6. wss://fra-c.wormate.io:32285/wormy - US
+
+منطقة أستراليا (AU):
+
+1. wss://fra-c.wormate.io:32053/wormy - SRTIRAQTIK
+2. wss://fra-c.wormate.io:32609/wormy - Paman Rizky
+3. wss://fra-c.wormate.io:32103/wormy - أستراليا
+4. wss://fra-c.wormate.io:32064/wormy - أستراليا
+
+منطقة البرازيل (BR/Peru):
+
+1. wss://fra-c.wormate.io:32053/wormy - BR
+2. wss://fra-c.wormate.io:32609/wormy - BR
+3. wss://fra-c.wormate.io:32103/wormy - BR
+4. wss://fra-c.wormate.io:32064/wormy - BR
+5. wss://fra-c.wormate.io:32095/wormy - BR
+6. wss://fra-c.wormate.io:32262/wormy - BR
+7. wss://fra-c.wormate.io:32285/wormy - GO TO GR
+
+منطقة الإمارات (UAE/Mexico):
+
+1. wss://fra-c.wormate.io:32053/wormy - UAE
+2. wss://fra-c.wormate.io:32609/wormy - UAE
+3. wss://fra-c.wormate.io:32103/wormy - UAE
+4. wss://fra-c.wormate.io:32064/wormy - UAE
+5. wss://fra-c.wormate.io:32262/wormy - UAE
+6. wss://fra-c.wormate.io:31280/wormy - UAE
+7. wss://fra-c.wormate.io:31050/wormy - UAE -SCC
+
+منطقة ليتوانيا (LT/Canada):
+
+1. wss://fra-c.wormate.io:32053/wormy - Lithuania
+2. wss://fra-c.wormate.io:32609/wormy - Lithuania
+3. wss://fra-c.wormate.io:32103/wormy - Lithuania
+4. wss://fra-c.wormate.io:32064/wormy - Lithuania
+5. wss://fra-c.wormate.io:32262/wormy - Lithuania
+6. wss://fra-c.wormate.io:32095/wormy - Lithuania
+7. wss://fra-c.wormate.io:32285/wormy - Lithuania
+
+منطقة اليابان (JP):
+
+1. wss://fra-c.wormate.io:32053/wormy - SCC
+2. wss://fra-c.wormate.io:32609/wormy - SCC
+3. wss://fra-c.wormate.io:32103/wormy - SCC
+4. wss://fra-c.wormate.io:32064/wormy - SCC
+5. wss://fra-c.wormate.io:32095/wormy - SCC
+6. wss://fra-c.wormate.io:32262/wormy - New DE
+7. wss://fra-c.wormate.io:32285/wormy - New DE
+
+منطقة الهند (IN):
+
+1. wss://fra-c.wormate.io:32053/wormy - IN
+2. wss://fra-c.wormate.io:32609/wormy - IN
+3. wss://fra-c.wormate.io:32103/wormy - India
+4. wss://fra-c.wormate.io:32064/wormy - India
+5. wss://fra-c.wormate.io:32095/wormy - India
+6. wss://fra-c.wormate.io:32262/wormy - IN
+7. wss://fra-c.wormate.io:32262/wormy - IN
+
+منطقة أستراليا الثانية (AU/Granbretana):
+
+1. wss://fra-c.wormate.io:32053/wormy - AU
+2. wss://fra-c.wormate.io:32609/wormy - AU
+3. wss://fra-c.wormate.io:32103/wormy - AU
+4. wss://fra-c.wormate.io:32064/wormy - AU
+5. wss://fra-c.wormate.io:32095/wormy - AU - NEW
+6. wss://fra-c.wormate.io:32262/wormy - AU
+7. wss://fra-c.wormate.io:32285/wormy - AU
