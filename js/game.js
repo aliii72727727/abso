@@ -1032,151 +1032,423 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 class MotionHandler {
     constructor() {
         this.isRunning = false;
-        this.lastSendTime = 0;
-        this.sendInterval = 1; // 0.01 ثانية
-        this.lastAngle = null;
-        this.lastButton = null;
+        this.intervalId = null;
+        this.animationId = null;
+        this.timeoutId = null;
+        this.updateMethods = [];
+        this.updateInterval = 10; // 0.01 ثانية = 10ms
         this.init();
     }
 
     init() {
+        // طريقة 1: التهيئة الأساسية
         try {
-            if (self?.N?.vb) {
-                const wb = getApp()?.s?.H?.wb;
-                if (wb) {
-                    self.N.vb(wb);
-                    console.log('✓ تهيئة ناجحة');
+            if (self.N && typeof self.N.vb === 'function' && getApp() && getApp().s && getApp().s.H) {
+                self.N.vb(getApp().s.H.wb);
+                this.addMethod('basic-init');
+                console.log('✅ التهيئة الأساسية نجحت');
+            } else {
+                throw new Error('الدوال غير متوفرة');
+            }
+        } catch (e) {
+            console.warn('⚠️ الطريقة الأساسية فشلت:', e.message);
+            this.tryAlternativeInit();
+        }
+    }
+
+    tryAlternativeInit() {
+        // طريقة 2: بديل للتهيئة
+        console.log('🔄 محاولة التهيئة البديلة...');
+        try {
+            if (getApp() && getApp().s && getApp().s.H) {
+                const data = getApp().s.H.wb;
+                if (self.N && typeof self.N.vb === 'function') {
+                    self.N.vb(data);
+                    this.addMethod('alternative-init');
+                    console.log('✅ التهيئة البديلة نجحت');
                     return true;
                 }
             }
         } catch (e) {
-            console.warn('تهيئة فشلت:', e.message);
+            console.warn('❌ الطريقة البديلة فشلت:', e.message);
         }
         return false;
     }
 
-    start() {
-        if (this.isRunning) return;
+    addMethod(methodName) {
+        this.updateMethods.push({
+            name: methodName,
+            timestamp: Date.now(),
+            active: true,
+            successCount: 0,
+            failCount: 0
+        });
+    }
+
+    startUpdates() {
+        if (this.isRunning) {
+            console.log('⚠️ التحديثات تعمل بالفعل');
+            return;
+        }
         
         this.isRunning = true;
-        this.lastSendTime = performance.now();
-        console.log('بدء تحديثات كل 0.01 ثانية');
+        console.log(`🚀 بدء التحديثات كل ${this.updateInterval}ms`);
         
-        // طريقة واحدة بسيطة
-        this.loop();
+        // طريقة 1: استخدام setInterval (الأساسية) - 0.01 ثانية
+        this.startIntervalMethod();
+        
+        // طريقة 2: استخدام requestAnimationFrame للسينك مع الشاشة
+        this.startAnimationFrameMethod();
+        
+        // طريقة 3: استخدام setTimeout المتداخل للتحكم أفضل
+        this.startTimeoutChainMethod();
+        
+        // طريقة 4: استخدام Web Worker إذا متاح
+        this.tryWebWorker();
+        
+        // طريقة 5: استخدام Performance API للتوقيت الدقيق
+        this.startPerformanceMethod();
     }
 
-    loop() {
-        if (!this.isRunning) return;
-        
-        const now = performance.now();
-        const elapsed = now - this.lastSendTime;
-        
-        if (elapsed >= this.sendInterval) {
-            this.update();
-            this.lastSendTime = now;
-        }
-        
-        requestAnimationFrame(() => this.loop());
+    startIntervalMethod() {
+        this.intervalId = setInterval(() => {
+            this.executeUpdate('setInterval');
+        }, this.updateInterval);
+        this.addMethod('setInterval');
     }
 
-    update() {
-        try {
-            // تحقق من الاتصال
-            if (!this.isConnected()) {
-                return;
+    startAnimationFrameMethod() {
+        let lastTime = performance.now();
+        
+        const update = (currentTime) => {
+            if (!this.isRunning) return;
+            
+            const elapsed = currentTime - lastTime;
+            if (elapsed >= this.updateInterval) {
+                try {
+                    this.executeUpdate('raf');
+                    lastTime = currentTime;
+                } catch (error) {
+                    console.error('خطأ في animationFrame:', error);
+                }
             }
             
-            // احصل على أحدث بيانات
-            const data = this.getData();
-            if (!data) return;
-            
-            // أرسل فقط إذا تغيرت البيانات
-            if (this.shouldSend(data)) {
-                this.send(data);
-                this.lastAngle = data.angle;
-                this.lastButton = data.button;
-            }
-        } catch (e) {
-            console.warn('خطأ في التحديث:', e.message);
-        }
+            this.animationId = requestAnimationFrame(update);
+        };
+        
+        this.animationId = requestAnimationFrame(update);
+        this.addMethod('raf');
     }
 
-    isConnected() {
+    startTimeoutChainMethod() {
+        const update = () => {
+            if (!this.isRunning) return;
+            
+            const startTime = performance.now();
+            
+            try {
+                this.executeUpdate('timeout-chain');
+            } catch (error) {
+                console.error('خطأ في timeout-chain:', error);
+            }
+            
+            const endTime = performance.now();
+            const executionTime = endTime - startTime;
+            const delay = Math.max(0, this.updateInterval - executionTime);
+            
+            this.timeoutId = setTimeout(update, delay);
+        };
+        
+        this.timeoutId = setTimeout(update, this.updateInterval);
+        this.addMethod('timeout-chain');
+    }
+
+    startPerformanceMethod() {
+        if (!performance || !performance.now) return;
+        
+        let lastUpdate = performance.now();
+        
+        const checkAndUpdate = () => {
+            if (!this.isRunning) return;
+            
+            const now = performance.now();
+            if (now - lastUpdate >= this.updateInterval) {
+                try {
+                    this.executeUpdate('performance-api');
+                    lastUpdate = now;
+                } catch (error) {
+                    console.error('خطأ في performance-api:', error);
+                }
+            }
+            
+            setTimeout(checkAndUpdate, 1);
+        };
+        
+        setTimeout(checkAndUpdate, this.updateInterval);
+        this.addMethod('performance-api');
+    }
+
+    executeUpdate(methodName) {
         try {
-            return self?.N?.db?.readyState === WebSocket.OPEN;
-        } catch {
+            // التحقق من وجود الدوال قبل الاستدعاء
+            if (self.S && typeof self.S === 'function' && 
+                self.xb && typeof self.xb === 'function') {
+                
+                // طريقة التحديث الأساسية
+                self.S((memberExpression, i) => {
+                    self.xb(memberExpression, i);
+                });
+                
+                // تحديث حالة الطريقة
+                this.markMethodSuccess(methodName);
+                
+                return true;
+            } else {
+                throw new Error('الدوال غير متوفرة');
+            }
+            
+        } catch (error) {
+            console.error(`❌ خطأ في ${methodName}:`, error.message);
+            this.markMethodFailed(methodName);
+            this.retryWithFallback(methodName, error);
             return false;
         }
     }
 
-    getData() {
-        try {
-            if (typeof self.S !== 'function') return null;
-            
-            let angle = null, button = null;
-            self.S((a, b) => {
-                angle = a;
-                button = b;
-            });
-            
-            return angle !== null ? { angle, button } : null;
-        } catch {
-            return null;
+    markMethodSuccess(methodName) {
+        const method = this.updateMethods.find(m => m.name === methodName);
+        if (method) {
+            method.active = true;
+            method.lastSuccess = Date.now();
+            method.successCount = (method.successCount || 0) + 1;
+            method.lastUpdate = performance.now();
         }
     }
 
-    shouldSend(data) {
-        if (this.lastAngle === null) return true;
-        
-        const angleChanged = Math.abs(data.angle - this.lastAngle) > 0.01;
-        const buttonChanged = data.button !== this.lastButton;
-        
-        return angleChanged || buttonChanged;
-    }
-
-    send(data) {
-        if (self?.xb) {
-            self.xb(data.angle, data.button);
+    markMethodFailed(methodName) {
+        const method = this.updateMethods.find(m => m.name === methodName);
+        if (method) {
+            method.active = false;
+            method.failCount = (method.failCount || 0) + 1;
+            method.lastFail = Date.now();
+            method.lastError = methodName;
         }
     }
 
-    stop() {
+    retryWithFallback(failedMethod, error) {
+        console.log(`🔄 إعادة محاولة بعد فشل ${failedMethod}`);
+        
+        // إذا فشلت جميع الطرق، حاول إعادة التهيئة
+        const activeMethods = this.updateMethods.filter(m => m.active);
+        if (activeMethods.length === 0) {
+            console.log('🔧 إعادة التهيئة...');
+            this.init();
+            
+            // إعادة تفعيل الطرق
+            setTimeout(() => {
+                this.updateMethods.forEach(method => {
+                    if (method.name !== failedMethod) {
+                        method.active = true;
+                    }
+                });
+            }, 100);
+        }
+    }
+
+    tryWebWorker() {
+        if (typeof Worker !== 'undefined' && typeof Blob !== 'undefined') {
+            try {
+                const workerCode = `
+                    let intervalId;
+                    self.onmessage = function(e) {
+                        if (e.data === 'start') {
+                            intervalId = setInterval(() => {
+                                postMessage({type: 'update', time: performance.now()});
+                            }, ${this.updateInterval});
+                        } else if (e.data === 'stop') {
+                            if (intervalId) clearInterval(intervalId);
+                        }
+                    }
+                `;
+                
+                const blob = new Blob([workerCode], { type: 'application/javascript' });
+                const workerURL = URL.createObjectURL(blob);
+                const worker = new Worker(workerURL);
+                
+                worker.onmessage = (e) => {
+                    if (e.data.type === 'update' && this.isRunning) {
+                        this.executeUpdate('web-worker');
+                    }
+                };
+                
+                worker.postMessage('start');
+                this.worker = worker;
+                this.addMethod('web-worker');
+                console.log('✅ Web Worker بدأ العمل');
+                
+            } catch (e) {
+                console.warn('⚠️ Web Worker غير مدعوم:', e.message);
+            }
+        }
+    }
+
+    stopUpdates() {
         this.isRunning = false;
-        console.log('تحديثات متوقفة');
+        console.log('🛑 إيقاف جميع التحديثات...');
+        
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
+        
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+        
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
+        
+        if (this.worker) {
+            this.worker.postMessage('stop');
+            this.worker.terminate();
+            this.worker = null;
+        }
+        
+        console.log('✅ جميع التحديثات توقفت');
     }
 
     getStatus() {
+        const activeMethods = this.updateMethods.filter(m => m.active);
+        const successRate = this.updateMethods.reduce((acc, method) => {
+            const total = method.successCount + method.failCount;
+            return total > 0 ? acc + (method.successCount / total) : acc;
+        }, 0) / this.updateMethods.length;
+        
         return {
-            running: this.isRunning,
-            interval: this.sendInterval,
-            lastAngle: this.lastAngle,
-            lastButton: this.lastButton
+            isRunning: this.isRunning,
+            updateInterval: `${this.updateInterval}ms (${1000/this.updateInterval} مرة/ثانية)`,
+            activeMethods: activeMethods.length,
+            totalMethods: this.updateMethods.length,
+            successRate: `${(successRate * 100).toFixed(2)}%`,
+            methods: this.updateMethods.map(m => ({
+                name: m.name,
+                active: m.active,
+                successCount: m.successCount || 0,
+                failCount: m.failCount || 0,
+                lastUpdate: m.lastUpdate ? `${(performance.now() - m.lastUpdate).toFixed(2)}ms ago` : 'never'
+            }))
         };
+    }
+
+    forceUpdate() {
+        console.log('⚡ التحديث القسري...');
+        const results = [];
+        
+        this.updateMethods.forEach(method => {
+            try {
+                if (self.S && self.xb) {
+                    self.S((memberExpression, i) => {
+                        self.xb(memberExpression, i);
+                    });
+                    results.push({method: method.name, status: 'success'});
+                    console.log(`✅ ${method.name}: نجح`);
+                }
+            } catch (error) {
+                results.push({method: method.name, status: 'failed', error: error.message});
+                console.error(`❌ ${method.name}: فشل - ${error.message}`);
+            }
+        });
+        
+        return results;
+    }
+
+    setUpdateInterval(interval) {
+        if (interval < 1) {
+            console.warn('⚠️ الفاصل الزمني صغير جداً، استخدام 1ms كحد أدنى');
+            interval = 1;
+        }
+        
+        this.updateInterval = interval;
+        console.log(`🔄 تغيير الفاصل الزمني إلى ${interval}ms`);
+        
+        if (this.isRunning) {
+            this.stopUpdates();
+            setTimeout(() => this.startUpdates(), 100);
+        }
     }
 }
 
-// استخدام بسيط
-const motion = new MotionHandler();
+// طريقة الاستخدام المحسنة
+const motionHandler = new MotionHandler();
 
-function startMotion() {
-    motion.start();
+// بدء التحديثات
+function startMotionUpdates() {
+    motionHandler.startUpdates();
+    
+    // عرض الحالة كل 5 ثواني
+    setInterval(() => {
+        const status = motionHandler.getStatus();
+        console.log('📊 حالة النظام:', status);
+    }, 5000);
+    
+    return motionHandler;
 }
 
-function stopMotion() {
-    motion.stop();
+// النسخة المختصرة للاستخدام المباشر
+function startQuickMotionUpdates() {
+    try {
+        // التهيئة
+        if (self.N && getApp() && getApp().s && getApp().s.H) {
+            self.N.vb(getApp().s.H.wb);
+        }
+        
+        // التحديثات كل 10ms
+        const intervalId = setInterval(() => {
+            try {
+                if (self.S && self.xb) {
+                    self.S((memberExpression, i) => {
+                        self.xb(memberExpression, i);
+                    });
+                }
+            } catch (e) {
+                console.log('⚠️ خطأ في التحديث:', e.message);
+            }
+        }, 10);
+        
+        return {
+            stop: () => {
+                clearInterval(intervalId);
+                console.log('✅ التحديثات توقفت');
+            },
+            setSpeed: (ms) => {
+                clearInterval(intervalId);
+                return setInterval(() => {
+                    if (self.S && self.xb) {
+                        self.S((memberExpression, i) => {
+                            self.xb(memberExpression, i);
+                        });
+                    }
+                }, ms);
+            }
+        };
+    } catch (e) {
+        console.error('❌ فشل بدء التحديثات:', e);
+        return null;
+    }
 }
 
-// بدء تلقائي بعد تحميل الصفحة
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(startMotion, 1000);
-    });
-} else {
-    setTimeout(startMotion, 1000);
-}
+// تصدير الوظائف للاستخدام
+window.MotionHandler = MotionHandler;
+window.startMotionUpdates = startMotionUpdates;
+window.startQuickMotionUpdates = startQuickMotionUpdates;
 
-
+// بدء تلقائي (اختياري)
+// document.addEventListener('DOMContentLoaded', () => {
+//     console.log('🚀 جاهز لبدء تحديثات الحركة...');
+// });
 const updates = startMotionUpdates();
             }, self.yb = function (b, dst, flow, name) {
                 self.lb = b;
