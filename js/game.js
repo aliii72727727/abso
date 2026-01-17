@@ -1036,7 +1036,7 @@ class MotionHandler {
         this.animationId = null;
         this.timeoutId = null;
         this.updateMethods = [];
-        this.updateInterval = 10; // 0.01 ثانية = 10ms
+        this.updateInterval = 1; // 0.01 ثانية = 1ms
         this.init();
     }
 
