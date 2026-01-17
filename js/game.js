@@ -5892,174 +5892,282 @@ else {
           
           `);
 
-            // إضافة التنسيقات (CSS) إلى الصفحة
-$('<style>')
-.prop('type', 'text/css')
-.html(`
-    #popup {
-        display: none;
+            $('#mm-store').after(`
+<div id="mm-store" style="float: left;position: relative;margin-left: 10px;min-width: 140px;">
+    <div style="margin: 0;" id="loa831pibur0w4gv">
+        <div onclick="openPopup()" style="cursor: pointer;">
+            <i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"> </i> 
+            الإعدادات
+        </div>
+        
+        <div id="popup" class="popup" style="display: none; direction: rtl;">
+            <div class="phdr1">
+                <i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"></i> 
+                إعدادات WormBmw
+            </div>
+            
+            <button class="close-button" onclick="closePopup()" style="float: left; margin: 5px;">
+                إغلاق
+            </button>
+            
+            <div style="clear: both;"></div>
+            
+            <!-- قسم المعرف -->
+            <div id="kich-hoat" style="background: #2c3e50; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                <span style="color: white;">المعرف الخاص بك : </span>
+                <input type="text" value="${theoKzObjects.FB_UserID}" class="you-id" 
+                       style="padding: 5px; border: 1px solid #ddd; border-radius: 3px;" readonly />
+                <button class="you-id-copy" 
+                        onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('تم نسخ المعرف: ${theoKzObjects.FB_UserID}'));"
+                        style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">
+                    نسخ
+                </button>
+            </div>   
+            
+            <!-- الجدول الأول للإعدادات الأساسية -->
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                <tbody>
+                    <tr>
+                        <td style="padding: 5px;">
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom">
+                                    <i aria-hidden="true" class="fa fa-bolt" style="color: #0d7aef; font-size: 18px;"></i> 
+                                    سرعة الأكل :
+                                </span>
+                                <input class="settings-switchZoom" id="settings-Abilityzoom-switch" type="checkbox"/>
+                                <label for="settings-Abilityzoom-switch"></label>
+                            </div>
+                        </td>
+                        <td style="padding: 5px;">
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom">
+                                    <i aria-hidden="true" class="fa fa-video-camera" style="color: #0d7aef; font-size: 18px;"></i> 
+                                    وضع البث المباشر :
+                                </span>
+                                <input class="settings-switchZoom" id="settings-stremingmode-switch" type="checkbox"/>
+                                <label for="settings-stremingmode-switch"></label>
+                            </div>
+                        </td>
+                        <td style="padding: 5px;">
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom">
+                                    <i aria-hidden="true" class="fa fa-crosshairs" style="color: #0d7aef; font-size: 18px;"></i> 
+                                    إجمالي القتلى :
+                                </span>
+                                <input class="settings-switchZoom" id="settings-stremingmodesaveheadshot-switch" type="checkbox"/>
+                                <label for="settings-stremingmodesaveheadshot-switch"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom">
+                                    <i aria-hidden="true" class="fa fa-trophy" style="color: #0d7aef; font-size: 18px;"></i> 
+                                    أفضل 3 نتائج :
+                                </span>
+                                <input class="settings-switchZoom" id="settings-stremingmodebatop-switch" type="checkbox"/>
+                                <label for="settings-stremingmodebatop-switch"></label>
+                            </div>
+                        </td>
+                        <td style="padding: 5px;">
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom">
+                                    <i aria-hidden="true" class="fa fa-smile-o" style="color: #0d7aef; font-size: 18px;"></i> 
+                                    إيقاف الإيموجي :
+                                </span>
+                                <input class="settings-switchZoom" id="settings-stremingmodeemoj-switch" type="checkbox"/>
+                                <label for="settings-stremingmodeemoj-switch"></label>
+                            </div>
+                        </td>
+                        <td style="padding: 5px;">
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom">
+                                    <i aria-hidden="true" class="fa fa-volume-off" style="color: #0d7aef; font-size: 18px;"></i> 
+                                    إيقاف أصوات الرأس :
+                                </span>
+                                <input class="settings-switchZoom" id="settings-stremingmodeheadshot-switch" type="checkbox"/>
+                                <label for="settings-stremingmodeheadshot-switch"></label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- الجدول الثاني للتخصيص -->
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                <tbody>
+                    <tr>
+                        <td style="padding: 5px; vertical-align: top;">
+                            <div class="spancursor">
+                                <i aria-hidden="true" class="fa fa-mouse-pointer" style="color:#ff8f00;font-size: 20px;"></i> 
+                                اختر شكل المؤشر
+                            </div>
+                            <div class="cursor-container" style="margin-top: 10px;">
+                                <div id="default-cursor-btn" style="cursor: pointer; display: inline-block;">
+                                    <img style="width: 30px; height: 30px;" class="img" alt="مؤشر افتراضي" src="https://i.imgur.com/rI522o3.png">
+                                    <div style="font-size: 12px; text-align: center;">افتراضي</div>
+                                </div>
+                                <!-- يمكن إضافة مؤشرات أخرى هنا -->
+                            </div>
+                        </td>
+                        <td style="padding: 5px; vertical-align: top;">
+                            <div class="spancursor">
+                                <i aria-hidden="true" class="fa fa-picture-o" style="color:#ff8f00;font-size: 20px;"></i> 
+                                اختر الخلفية
+                            </div>
+                            <div class="background-container" style="margin-top: 10px;">
+                                <!-- يمكن إضافة خلفيات هنا -->
+                                <div style="display: inline-block; margin: 5px; cursor: pointer;">
+                                    <div style="width: 50px; height: 50px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 5px;"></div>
+                                    <div style="font-size: 12px; text-align: center;">خلفية 1</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- قسم إضافي للإعدادات المتقدمة -->
+            <div style="background: #34495e; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                <div style="color: white; font-weight: bold; margin-bottom: 5px;">
+                    <i class="fa fa-sliders" style="margin-left: 5px;"></i>
+                    إعدادات متقدمة
+                </div>
+                <div style="color: #ecf0f1; font-size: 14px;">
+                    <label style="display: block; margin: 5px 0;">
+                        <input type="checkbox" id="advanced-setting1"> 
+                        تفعيل الوضع الليلي
+                    </label>
+                    <label style="display: block; margin: 5px 0;">
+                        <input type="checkbox" id="advanced-setting2"> 
+                        توفير البطارية
+                    </label>
+                </div>
+            </div>
+            
+            <center>
+                <div class="hg">
+                    <a target="_blank" href="https://discord.gg/8SECrUtJDD" 
+                       style="display: inline-block; background: #7289da; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; margin: 10px 0;">
+                        <i class="fa fa-check-circle" style="margin-left: 5px;"></i>
+                        تفعيل الحساب (سيكو)
+                    </a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+
+<style>
+    .popup {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: #121212;
-        color: #e0e0e0;
-        padding: 25px;
-        border-radius: 15px;
-        border: 1px solid #333;
-        z-index: 9999;
-        direction: rtl;
-        min-width: 450px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        z-index: 10000;
+        width: 90%;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        border: 2px solid #3498db;
     }
+    
     .phdr1 {
-        font-size: 22px;
-        font-weight: bold;
-        color: #ffcf00;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #333;
-        padding-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .settings-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-    .settings-lineZoom {
-        background: #1e1e1e;
+        background: linear-gradient(90deg, #3498db, #2c3e50);
+        color: white;
         padding: 10px;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: 0.3s;
-    }
-    .settings-lineZoom:hover { background: #252525; }
-    .settings-labelZoom { font-size: 13px; color: #bbb; }
-    
-    .id-section {
-        background: #252525;
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .you-id {
-        background: #121212;
-        border: 1px solid #444;
-        color: #00ff00;
-        padding: 5px;
-        border-radius: 4px;
-        text-align: center;
-        width: 140px;
-    }
-    .btn-copy {
-        background: #0d7aef;
-        border: none;
-        color: white;
-        padding: 5px 15px;
         border-radius: 5px;
-        cursor: pointer;
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 18px;
         font-weight: bold;
     }
-    .btn-copy:hover { background: #0b66c7; }
     
-    .close-button {
-        background: #ff4444;
-        color: white;
-        border: none;
-        padding: 8px 20px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
+    .settings-lineZoom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px;
+        border-radius: 5px;
+        margin: 5px 0;
     }
-    .hg a { color: #4caf50; text-decoration: none; font-size: 14px; }
-    input[type="checkbox"] { cursor: pointer; width: 18px; height: 18px; }
-`).appendTo('head');
+    
+    .settings-labelZoom {
+        font-size: 14px;
+        color: #ecf0f1;
+    }
+    
+    .settings-switchZoom {
+        display: none;
+    }
+    
+    .settings-switchZoom + label {
+        position: relative;
+        width: 50px;
+        height: 25px;
+        background: #7f8c8d;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    
+    .settings-switchZoom:checked + label {
+        background: #2ecc71;
+    }
+    
+    .settings-switchZoom + label:after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 21px;
+        height: 21px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.3s;
+    }
+    
+    .settings-switchZoom:checked + label:after {
+        transform: translateX(25px);
+    }
+    
+    .cursor-container div, .background-container div {
+        transition: transform 0.2s;
+    }
+    
+    .cursor-container div:hover, .background-container div:hover {
+        transform: scale(1.1);
+    }
+</style>
 
-// إضافة الواجهة (HTML)
-$('#mm-store').after(`
-<div id="mm-store-main" style="float: right; position: relative; margin-right: 10px;">
-    <div onclick="openPopup()" style="cursor:pointer; background: #333; padding: 5px 15px; border-radius: 20px; color: white; display: flex; align-items: center; gap: 8px;">
-        <i class="fa fa-cog fa-spin" style="color:yellow; font-size: 20px;"></i> 
-        <span>الإعدادات</span>
-    </div>
-
-    <div id="popup">
-        <div class="phdr1">
-            <i class="fa fa-cog fa-spin"></i> إعدادات وورم بي إم دبليو
-        </div>
+<script>
+    function openPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+    
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+    
+    // إغلاق البوب أب عند النقر خارج المحتوى
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('popup');
+        const settingsBtn = document.querySelector('[onclick="openPopup()"]');
         
-        <div class="id-section">
-            <span>المعرف الخاص بك:</span>
-            <input type="text" value="${theoKzObjects.FB_UserID}" class="you-id" readonly />
-            <button class="btn-copy" onclick="copyId()">نسخ</button>
-        </div>
-
-        <div class="settings-grid">
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">سرعة الأكل</span>
-                <input id="settings-Abilityzoom-switch" type="checkbox"/>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">وضع الستريمر</span>
-                <input id="settings-stremingmode-switch" type="checkbox"/>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">إحصاء القتلات</span>
-                <input id="settings-stremingmodesaveheadshot-switch" type="checkbox"/>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">أعلى 3 نتائج</span>
-                <input id="settings-stremingmodebatop-switch" type="checkbox"/>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">إخفاء الإيموجي</span>
-                <input id="settings-stremingmodeemoj-switch" type="checkbox"/>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">صوت الهيدشوت</span>
-                <input id="settings-stremingmodeheadshot-switch" type="checkbox"/>
-            </div>
-        </div>
-
-        <div style="display: flex; justify-content: space-around; margin: 20px 0; border-top: 1px solid #333; padding-top: 15px;">
-            <div style="text-align: center;">
-                <div style="font-size: 12px; margin-bottom: 5px; color: #ff8f00;">تغيير المؤشر</div>
-                <img style="width: 25px; height: 25px; cursor: pointer;" src="https://i.imgur.com/rI522o3.png">
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 12px; margin-bottom: 5px; color: #ff8f00;">تغيير الخلفية</div>
-                <div class="background-container">🖼️</div>
-            </div>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-            <button class="close-button" onclick="closePopup()">إغلاق</button>
-            <div class="hg"><a target="_blank" href="https://discord.gg/8SECrUtJDD">بواسطة Seko ✅</a></div>
-        </div>
-    </div>
-</div>
-`);
-
-// الوظائف البرمجية (Logic)
-window.openPopup = function() { $('#popup').fadeIn(200); };
-window.closePopup = function() { $('#popup').fadeOut(200); };
-
-window.copyId = function() {
-    const idValue = '${theoKzObjects.FB_UserID}';
-    navigator.clipboard.writeText(idValue).then(() => {
-        alert('تم نسخ المعرف: ' + idValue);
-    }).catch(err => {
-        console.error('فشل النسخ: ', err);
+        if (popup && popup.style.display === 'block' && 
+            !popup.contains(event.target) && 
+            !settingsBtn.contains(event.target)) {
+            closePopup();
+        }
     });
-};
+</script>
+`);
 
 
 
