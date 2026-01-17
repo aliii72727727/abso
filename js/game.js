@@ -5892,6 +5892,7 @@ else {
           
           `);
 
+            
             $('#mm-store').after(`<div id="mm-store" style="float: right; position: relative; margin-right: 10px; min-width: 140px;">
     <div style="margin: 0;" id="loa831pibur0w4gv">
         <div onclick="openPopup()" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 5px; border-radius: 4px; transition: background 0.3s;">
