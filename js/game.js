@@ -5893,160 +5893,89 @@ else {
           `);
 
             
-            $('#mm-store').after(`<div id="mm-store" style="float: right; position: relative; margin-right: 10px; min-width: 140px;">
+            ('#mm-store').after(`<div id="mm-store" style="float: right;position: relative;margin-right: 10px;min-width: 140px;">
     <div style="margin: 0;" id="loa831pibur0w4gv">
-        <div onclick="openPopup()" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 5px; border-radius: 4px; transition: background 0.3s;">
-            <i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow; font-size: 25px;"></i> 
-            <span style="font-weight: bold;">الإعدادات</span>
-        </div>
-        
-        <div id="popup" class="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; color: white; padding: 20px; border-radius: 10px; z-index: 1000; min-width: 500px; border: 2px solid #333;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #444;">
-                <div class="phdr1" style="display: flex; align-items: center; gap: 10px; font-size: 20px;">
-                    <i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;"></i>
-                    <span>إعدادات WormBmw</span>
-                </div>
-                <button class="close-button" onclick="closePopup()" style="background: #ff4444; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
-                    إغلاق
-                </button>
-            </div>
+        <div onclick="openPopup()"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"> </i> Settings</div>
+        <div id="popup" class="popup">
+            <div class="phdr1"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"></i> WormBmw Settings</div>
+            <button class="close-button" onclick="closePopup()">Close</button>
             
-            <div id="kich-hoat" style="background: #2a2a2a; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <span style="font-weight: bold;">المعرف :</span>
-                    <input type="text" value="${theoKzObjects.FB_UserID}" class="you-id" style="flex: 1; padding: 8px; background: #333; color: white; border: 1px solid #555; border-radius: 4px;" readonly />
-                </div>
-                <button class="you-id-copy" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('تم نسخ معرفك: ${theoKzObjects.FB_UserID}'));"
-                    style="width: 100%; background: #4CAF50; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 8px;">
-                    <i class="fa fa-copy"></i> نسخ المعرف
-                </button>
+            <div id="kich-hoat">
+                ID : <input type="text" value="${theoKzObjects.FB_UserID}" class="you-id" />
+                <button class="you-id-copy" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID} copiado! copied!'));">COPY</button>
             </div>   
             
-            <div style="margin-bottom: 20px;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <tbody>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #444;">
-                                <div class="settings-lineZoom" style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="settings-labelZoom" style="display: flex; align-items: center; gap: 8px;">
-                                        <i aria-hidden="true" class="fa fa-bolt" style="color: #0d7aef;"></i>
-                                        <span>سرعة الأكل :</span>
-                                    </span>
-                                    <div style="position: relative;">
-                                        <input class="settings-switchZoom" id="settings-Abilityzoom-switch" type="checkbox" style="display: none;" />
-                                        <label for="settings-Abilityzoom-switch" style="cursor: pointer; width: 50px; height: 25px; background: #555; display: block; border-radius: 25px; position: relative; transition: background 0.3s;">
-                                            <span style="position: absolute; width: 21px; height: 21px; background: white; border-radius: 50%; top: 2px; left: 2px; transition: transform 0.3s;"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding: 10px; border: 1px solid #444;">
-                                <div class="settings-lineZoom" style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="settings-labelZoom" style="display: flex; align-items: center; gap: 8px;">
-                                        <i aria-hidden="true" class="fa fa-video-camera" style="color: #0d7aef;"></i>
-                                        <span>وضع البث :</span>
-                                    </span>
-                                    <div style="position: relative;">
-                                        <input class="settings-switchZoom" id="settings-stremingmode-switch" type="checkbox" style="display: none;" />
-                                        <label for="settings-stremingmode-switch" style="cursor: pointer; width: 50px; height: 25px; background: #555; display: block; border-radius: 25px; position: relative; transition: background 0.3s;"></label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding: 10px; border: 1px solid #444;">
-                                <div class="settings-lineZoom" style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="settings-labelZoom" style="display: flex; align-items: center; gap: 8px;">
-                                        <i aria-hidden="true" class="fa fa-crosshairs" style="color: #0d7aef;"></i>
-                                        <span>إجمالي القتل :</span>
-                                    </span>
-                                    <div style="position: relative;">
-                                        <input class="settings-switchZoom" id="settings-stremingmodesaveheadshot-switch" type="checkbox" style="display: none;" />
-                                        <label for="settings-stremingmodesaveheadshot-switch" style="cursor: pointer; width: 50px; height: 25px; background: #555; display: block; border-radius: 25px; position: relative; transition: background 0.3s;"></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #444;">
-                                <div class="settings-lineZoom" style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="settings-labelZoom" style="display: flex; align-items: center; gap: 8px;">
-                                        <i aria-hidden="true" class="fa fa-trophy" style="color: #0d7aef;"></i>
-                                        <span>أفضل 3 نتائج :</span>
-                                    </span>
-                                    <div style="position: relative;">
-                                        <input class="settings-switchZoom" id="settings-stremingmodebatop-switch" type="checkbox" style="display: none;" />
-                                        <label for="settings-stremingmodebatop-switch" style="cursor: pointer; width: 50px; height: 25px; background: #555; display: block; border-radius: 25px; position: relative; transition: background 0.3s;"></label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding: 10px; border: 1px solid #444;">
-                                <div class="settings-lineZoom" style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="settings-labelZoom" style="display: flex; align-items: center; gap: 8px;">
-                                        <i aria-hidden="true" class="fa fa-smile-o" style="color: #0d7aef;"></i>
-                                        <span>إيقاف الإيموجي :</span>
-                                    </span>
-                                    <div style="position: relative;">
-                                        <input class="settings-switchZoom" id="settings-stremingmodeemoj-switch" type="checkbox" style="display: none;" />
-                                        <label for="settings-stremingmodeemoj-switch" style="cursor: pointer; width: 50px; height: 25px; background: #555; display: block; border-radius: 25px; position: relative; transition: background 0.3s;"></label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding: 10px; border: 1px solid #444;">
-                                <div class="settings-lineZoom" style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="settings-labelZoom" style="display: flex; align-items: center; gap: 8px;">
-                                        <i aria-hidden="true" class="fa fa-volume-off" style="color: #0d7aef;"></i>
-                                        <span>إيقاف صوت الرأس :</span>
-                                    </span>
-                                    <div style="position: relative;">
-                                        <input class="settings-switchZoom" id="settings-stremingmodeheadshot-switch" type="checkbox" style="display: none;" />
-                                        <label for="settings-stremingmodeheadshot-switch" style="cursor: pointer; width: 50px; height: 25px; background: #555; display: block; border-radius: 25px; position: relative; transition: background 0.3s;"></label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Ability EatingSpeed :</span>
+                                <input class="settings-switchZoom" id="settings-Abilityzoom-switch" type="checkbox"/>
+                                <label for="settings-Abilityzoom-switch"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Modo Streamer :</span>
+                                <input class="settings-switchZoom" id="settings-stremingmode-switch" type="checkbox"/>
+                                <label for="settings-stremingmode-switch"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Total Kill : </span>
+                                <input class="settings-switchZoom" id="settings-stremingmodesaveheadshot-switch" type="checkbox"/>
+                                <label for="settings-stremingmodesaveheadshot-switch"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> 3 Top Score :</span>
+                                <input class="settings-switchZoom" id="settings-stremingmodebatop-switch" type="checkbox"/>
+                                <label for="settings-stremingmodebatop-switch"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Off Emoj :</span>
+                                <input class="settings-switchZoom" id="settings-stremingmodeemoj-switch" type="checkbox"/>
+                                <label for="settings-stremingmodeemoj-switch"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="settings-lineZoom">
+                                <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Off Sounds Headshot :</span>
+                                <input class="settings-switchZoom" id="settings-stremingmodeheadshot-switch" type="checkbox"/>
+                                <label for="settings-stremingmodeheadshot-switch"></label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             
-            <div style="margin-bottom: 20px;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <tbody>
-                        <tr>
-                            <td style="padding: 15px; border: 1px solid #444; vertical-align: top;">
-                                <div class="spancursor" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 18px;">
-                                    <i aria-hidden="true" class="fa fa-mouse-pointer" style="color:#ff8f00;"></i>
-                                    <span>اختر المؤشر</span>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Select Cursor</div>
+                            <div class="cursor-container">
+                                <div id="default-cursor-btn">
+                                    <img style="margin-top: -45px; margin-right: 60px; float: right; width: 25px; height: 28px;" class="img" alt="Imgur-Upload" src="https://i.imgur.com/rI522o3.png">
                                 </div>
-                                <div class="cursor-container" style="text-align: center;">
-                                    <div id="default-cursor-btn" style="cursor: pointer; display: inline-block; padding: 10px; border: 2px solid #555; border-radius: 8px; transition: border-color 0.3s;">
-                                        <img style="width: 32px; height: 32px;" class="img" alt="المؤشر الافتراضي" src="https://i.imgur.com/rI522o3.png">
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding: 15px; border: 1px solid #444; vertical-align: top;">
-                                <div class="spancursor" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 18px;">
-                                    <i aria-hidden="true" class="fa fa-image" style="color:#ff8f00;"></i>
-                                    <span>اختر الخلفية</span>
-                                </div>
-                                <div class="background-container" style="text-align: center;">
-                                    <div style="color: #888; padding: 20px; border: 2px dashed #555; border-radius: 8px;">
-                                        <i class="fa fa-plus" style="font-size: 24px; margin-bottom: 10px;"></i>
-                                        <div>إضافة خلفية</div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Select Background</div>
+                            <div class="background-container"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             
-            <center>
-                <div class="hg" style="margin-top: 20px;">
-                    <a target="_blank" href="https://discord.gg/8SECrUtJDD" 
-                       style="display: inline-block; background: linear-gradient(45deg, #7289da, #5865f2); color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: transform 0.3s;">
-                       <i class="fa fa-check-circle"></i> مفعل (Seko)
-                    </a>
-                </div>
-            </center>
+            <center><div class="hg"><a target="_blank" href="https://discord.gg/8SECrUtJDD">Activated (Seko)</a></div></center>
         </div>
     </div>
 </div>`);
