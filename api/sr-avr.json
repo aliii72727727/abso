@@ -1,12 +1,11 @@
 {
     "success": true,
-    "timestamp": "2026-01-17 03:54:59",
     "servers": [
         {
             "id": 931,
             "name": "🄰🅱🅂🅾 🅱🄼🆆",
             "region": "peru",
-            "serverUrl": "wss:\/\/fra-c.wormate.io:32609\/wormy",
+            "serverUrl": "wss://fra-c.wormate.io:32609/wormy",
             "status": 1,
             "mydata": 1
         }
