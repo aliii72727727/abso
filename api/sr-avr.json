@@ -3,7 +3,7 @@
     "servers": [
         {
             "id": 140,
-            "name": "W-UP DE",
+            "name": "W-BMW DE",
             "region": "peru",
             "serverUrl": "wss://fra-c.wormate.io:31280/wormy",
             "status": 1,
