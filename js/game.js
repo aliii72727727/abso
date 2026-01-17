@@ -1032,628 +1032,148 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 class MotionHandler {
     constructor() {
         this.isRunning = false;
-        this.intervalId = null;
-        this.animationId = null;
-        this.updateMethods = [];
         this.lastSendTime = 0;
-        this.sendInterval = 10; // 0.01 ثانية = 10 مللي ثانية
-        this.lastData = null;
-        this.batchData = [];
-        this.batchSize = 10;
+        this.sendInterval = 1; // 0.01 ثانية
+        this.lastAngle = null;
+        this.lastButton = null;
         this.init();
     }
 
     init() {
-        // تهيئة متقدمة مع معالجة الأخطاء
         try {
-            if (self && self.N && typeof self.N.vb === 'function') {
+            if (self?.N?.vb) {
                 const wb = getApp()?.s?.H?.wb;
                 if (wb) {
                     self.N.vb(wb);
-                    this.addMethod('init-socket');
-                    console.log('تهيئة Socket ناجحة');
-                } else {
-                    throw new Error('wb غير متاح');
+                    console.log('✓ تهيئة ناجحة');
+                    return true;
                 }
-            } else {
-                throw new Error('self.N أو self.N.vb غير متاحين');
             }
         } catch (e) {
-            console.warn('التهيئة الأساسية فشلت:', e.message);
-            this.tryAlternativeInit();
+            console.warn('تهيئة فشلت:', e.message);
         }
-    }
-
-    tryAlternativeInit() {
-        // طريقة بديلة للتهيئة
-        const maxRetries = 3;
-        let retryCount = 0;
-        
-        const attemptInit = () => {
-            try {
-                const app = getApp();
-                if (app && app.s && app.s.H) {
-                    const wb = app.s.H.wb;
-                    if (wb && self.N && typeof self.N.vb === 'function') {
-                        self.N.vb(wb);
-                        this.addMethod('alt-init-socket');
-                        console.log('التهيئة البديلة ناجحة');
-                        return true;
-                    }
-                }
-            } catch (e) {
-                console.warn(`محاولة التهيئة البديلة ${retryCount + 1} فشلت:`, e.message);
-            }
-            return false;
-        };
-        
-        while (retryCount < maxRetries) {
-            if (attemptInit()) {
-                return true;
-            }
-            retryCount++;
-        }
-        console.error('فشلت جميع محاولات التهيئة البديلة');
         return false;
     }
 
-    addMethod(methodName) {
-        this.updateMethods.push({
-            name: methodName,
-            timestamp: Date.now(),
-            active: true,
-            failCount: 0,
-            lastSuccess: null,
-            lastFail: null
-        });
-    }
-
-    startUpdates() {
-        if (this.isRunning) {
-            console.warn('التحديثات قيد التشغيل بالفعل');
-            return;
-        }
+    start() {
+        if (this.isRunning) return;
         
         this.isRunning = true;
-        this.lastSendTime = Date.now();
-        console.log('بدء تحديثات الحركة كل 0.01 ثانية');
+        this.lastSendTime = performance.now();
+        console.log('بدء تحديثات كل 0.01 ثانية');
         
-        // الطريقة الأساسية: setTimeout متداخل مع التحكم بالزمن
-        this.startTimeoutChain();
+        // طريقة واحدة بسيطة
+        this.loop();
+    }
+
+    loop() {
+        if (!this.isRunning) return;
         
-        // الطريقة الاحتياطية: requestAnimationFrame
-        this.startAnimationFrame();
+        const now = performance.now();
+        const elapsed = now - this.lastSendTime;
         
-        // الطريقة الثالثة: Web Worker إذا متاح
-        if (this.canUseWebWorker()) {
-            this.startWebWorker();
+        if (elapsed >= this.sendInterval) {
+            this.update();
+            this.lastSendTime = now;
         }
         
-        // مراقبة الأداء
-        this.startPerformanceMonitor();
+        requestAnimationFrame(() => this.loop());
     }
 
-    startTimeoutChain() {
-        const update = () => {
-            if (!this.isRunning) return;
-            
-            const now = Date.now();
-            const elapsed = now - this.lastSendTime;
-            
-            // تحديث فقط إذا مر 0.01 ثانية على الأقل
-            if (elapsed >= this.sendInterval) {
-                try {
-                    this.executeUpdate('timeout-chain');
-                    this.lastSendTime = now;
-                } catch (error) {
-                    this.handleUpdateError('timeout-chain', error);
-                }
-            }
-            
-            // حساب الوقت المتبقي للحدث التالي بدقة
-            const nextInterval = Math.max(1, this.sendInterval - (Date.now() - now));
-            setTimeout(update, nextInterval);
-        };
-        
-        update();
-    }
-
-    startAnimationFrame() {
-        let lastFrameTime = 0;
-        
-        const update = (timestamp) => {
-            if (!this.isRunning) return;
-            
-            // استخدام timestamp بدقة عالية
-            if (!lastFrameTime) lastFrameTime = timestamp;
-            const elapsed = timestamp - lastFrameTime;
-            
-            // تحديث كل 10ms تقريباً (100 فريم/ثانية)
-            if (elapsed >= this.sendInterval) {
-                try {
-                    this.executeUpdate('animation-frame');
-                    lastFrameTime = timestamp;
-                } catch (error) {
-                    this.handleUpdateError('animation-frame', error);
-                }
-            }
-            
-            this.animationId = requestAnimationFrame(update);
-        };
-        
-        this.animationId = requestAnimationFrame(update);
-    }
-
-    canUseWebWorker() {
-        return typeof Worker !== 'undefined' && 
-               typeof Blob !== 'undefined' && 
-               typeof URL !== 'undefined' &&
-               typeof URL.createObjectURL !== 'undefined';
-    }
-
-    startWebWorker() {
+    update() {
         try {
-            const workerCode = `
-                let lastUpdate = 0;
-                const interval = 10; // 0.01 ثانية
-                
-                self.onmessage = function(e) {
-                    if (e.data === 'start') {
-                        const updateLoop = () => {
-                            const now = performance.now();
-                            if (now - lastUpdate >= interval) {
-                                postMessage('update');
-                                lastUpdate = now;
-                            }
-                            setTimeout(updateLoop, 1);
-                        };
-                        updateLoop();
-                    }
-                };
-            `;
-            
-            const blob = new Blob([workerCode], { type: 'application/javascript' });
-            this.worker = new Worker(URL.createObjectURL(blob));
-            
-            this.worker.onmessage = (e) => {
-                if (e.data === 'update' && this.isRunning) {
-                    this.executeUpdate('web-worker');
-                }
-            };
-            
-            this.worker.onerror = (error) => {
-                console.error('خطأ في Web Worker:', error);
-                this.markMethodFailed('web-worker');
-                this.cleanupWorker();
-            };
-            
-            this.worker.postMessage('start');
-            this.addMethod('web-worker');
-            
-        } catch (e) {
-            console.warn('Web Worker غير مدعوم:', e.message);
-        }
-    }
-
-    cleanupWorker() {
-        if (this.worker) {
-            this.worker.terminate();
-            this.worker = null;
-        }
-    }
-
-    executeUpdate(methodName) {
-        const currentTime = Date.now();
-        
-        // التحقق من جاهزية الاتصال
-        if (!this.isConnectionReady()) {
-            console.warn('الاتصال غير جاهز، تأجيل الإرسال');
-            return;
-        }
-        
-        // الحصول على أحدث بيانات الحركة
-        const motionData = this.getLatestMotionData();
-        if (!motionData) {
-            console.warn('لا توجد بيانات حركة متاحة');
-            return;
-        }
-        
-        // التحقق من تغير البيانات لتجنب الإرسال الزائد
-        if (this.hasDataChanged(motionData)) {
-            try {
-                // إرسال البيانات
-                this.sendMotionData(motionData);
-                
-                // تحديث البيانات الأخيرة
-                this.lastData = JSON.parse(JSON.stringify(motionData));
-                
-                // تسجيل النجاح
-                this.markMethodActive(methodName);
-                this.logPerformance(currentTime);
-                
-            } catch (error) {
-                this.handleSendError(methodName, error, motionData);
+            // تحقق من الاتصال
+            if (!this.isConnected()) {
+                return;
             }
+            
+            // احصل على أحدث بيانات
+            const data = this.getData();
+            if (!data) return;
+            
+            // أرسل فقط إذا تغيرت البيانات
+            if (this.shouldSend(data)) {
+                this.send(data);
+                this.lastAngle = data.angle;
+                this.lastButton = data.button;
+            }
+        } catch (e) {
+            console.warn('خطأ في التحديث:', e.message);
         }
     }
 
-    isConnectionReady() {
+    isConnected() {
         try {
-            // التحقق من وجود Socket وجاهزيته
-            return self && self.N && self.N.db && 
-                   self.N.db.readyState === WebSocket.OPEN;
-        } catch (e) {
+            return self?.N?.db?.readyState === WebSocket.OPEN;
+        } catch {
             return false;
         }
     }
 
-    getLatestMotionData() {
+    getData() {
         try {
-            // الحصول على زاوية الاتجاه وحالة الزر
-            if (typeof self.S === 'function') {
-                let angle = null;
-                let buttonState = null;
-                
-                // استخدام callback للحصول على البيانات
-                self.S((a, b) => {
-                    angle = a;
-                    buttonState = b;
-                });
-                
-                if (angle !== null && buttonState !== null) {
-                    return {
-                        angle: angle,
-                        buttonState: buttonState,
-                        timestamp: Date.now(),
-                        sequence: this.getNextSequence()
-                    };
-                }
-            }
-        } catch (e) {
-            console.error('خطأ في الحصول على بيانات الحركة:', e);
-        }
-        return null;
-    }
-
-    getNextSequence() {
-        if (!this.sequence) this.sequence = 0;
-        this.sequence = (this.sequence + 1) % 1000000;
-        return this.sequence;
-    }
-
-    hasDataChanged(newData) {
-        if (!this.lastData) return true;
-        
-        // مقارنة الزاوية بدقة معقولة
-        const angleDiff = Math.abs(newData.angle - this.lastData.angle);
-        const buttonChanged = newData.buttonState !== this.lastData.buttonState;
-        
-        // إرسال إذا تغير الزر أو تغيرت الزاوية بشكل ملحوظ
-        return buttonChanged || angleDiff > 0.01;
-    }
-
-    sendMotionData(motionData) {
-        // استخدام الدالة الأصلية xb للإرسال
-        if (self && typeof self.xb === 'function') {
-            self.xb(motionData.angle, motionData.buttonState);
-        } else {
-            throw new Error('دالة الإرسال xb غير متاحة');
-        }
-    }
-
-    handleSendError(methodName, error, motionData) {
-        console.error(`خطأ في الإرسال (${methodName}):`, error.message);
-        
-        // إضافة البيانات الفاشلة للدُفعة
-        this.batchData.push({
-            ...motionData,
-            retryCount: 0
-        });
-        
-        // محاولة إعادة الإرسال
-        this.retryFailedData();
-        
-        this.markMethodFailed(methodName);
-    }
-
-    retryFailedData() {
-        if (this.batchData.length === 0) return;
-        
-        const maxRetries = 3;
-        const successful = [];
-        
-        for (let i = 0; i < this.batchData.length; i++) {
-            const data = this.batchData[i];
+            if (typeof self.S !== 'function') return null;
             
-            if (data.retryCount >= maxRetries) {
-                console.warn(`تجاوزت بيانات الحركة الحد الأقصى لمحاولات إعادة الإرسال`);
-                continue;
-            }
-            
-            try {
-                data.retryCount++;
-                this.sendMotionData(data);
-                successful.push(i);
-            } catch (e) {
-                // استمرار المحاولة في الدفعة القادمة
-            }
-        }
-        
-        // إزالة البيانات التي نجحت إعادة إرسالها
-        for (let i = successful.length - 1; i >= 0; i--) {
-            this.batchData.splice(successful[i], 1);
-        }
-        
-        // تنظيف الدفعة إذا أصبحت كبيرة جداً
-        if (this.batchData.length > this.batchSize * 2) {
-            this.batchData = this.batchData.slice(0, this.batchSize);
-        }
-    }
-
-    handleUpdateError(methodName, error) {
-        console.warn(`خطأ في التحديث (${methodName}):`, error.message);
-        this.markMethodFailed(methodName);
-        
-        // التحقق من وجود طرق بديلة
-        setTimeout(() => {
-            this.retryWithFallback(methodName);
-        }, 100);
-    }
-
-    markMethodActive(methodName) {
-        const method = this.updateMethods.find(m => m.name === methodName);
-        if (method) {
-            method.active = true;
-            method.lastSuccess = Date.now();
-            method.failCount = 0;
-        }
-    }
-
-    markMethodFailed(methodName) {
-        const method = this.updateMethods.find(m => m.name === methodName);
-        if (method) {
-            method.active = false;
-            method.failCount = (method.failCount || 0) + 1;
-            method.lastFail = Date.now();
-            
-            // إذا فشلت الطريقة عدة مرات، حاول إعادة تهيئتها
-            if (method.failCount > 5) {
-                console.warn(`إعادة تهيئة الطريقة ${methodName} بعد فشل متكرر`);
-                this.reinitializeMethod(methodName);
-            }
-        }
-    }
-
-    reinitializeMethod(methodName) {
-        switch (methodName) {
-            case 'init-socket':
-            case 'alt-init-socket':
-                setTimeout(() => {
-                    this.init();
-                }, 1000);
-                break;
-            case 'web-worker':
-                this.cleanupWorker();
-                if (this.canUseWebWorker()) {
-                    setTimeout(() => {
-                        this.startWebWorker();
-                    }, 2000);
-                }
-                break;
-        }
-    }
-
-    retryWithFallback(failedMethod) {
-        const activeMethods = this.updateMethods.filter(m => m.active);
-        
-        if (activeMethods.length === 0) {
-            console.log('إعادة تشغيل جميع الطرق المعطلة...');
-            this.updateMethods.forEach(method => {
-                if (!method.active && method.failCount < 10) {
-                    method.active = true;
-                    console.log(`إعادة محاولة: ${method.name}`);
-                }
+            let angle = null, button = null;
+            self.S((a, b) => {
+                angle = a;
+                button = b;
             });
-        }
-        
-        // إذا استمر الفشل، حاول البدء من جديد
-        if (activeMethods.length === 0 && this.isRunning) {
-            setTimeout(() => {
-                this.stopUpdates();
-                setTimeout(() => {
-                    this.startUpdates();
-                }, 100);
-            }, 5000);
+            
+            return angle !== null ? { angle, button } : null;
+        } catch {
+            return null;
         }
     }
 
-    startPerformanceMonitor() {
-        if (this.performanceInterval) clearInterval(this.performanceInterval);
+    shouldSend(data) {
+        if (this.lastAngle === null) return true;
         
-        this.performanceInterval = setInterval(() => {
-            const status = this.getStatus();
-            const activeCount = status.activeMethods;
-            const totalCount = status.totalMethods;
-            
-            if (activeCount === 0 && totalCount > 0 && this.isRunning) {
-                console.error('جميع طرق التحديث معطلة، إعادة التشغيل...');
-                this.stopUpdates();
-                setTimeout(() => {
-                    this.startUpdates();
-                }, 1000);
-            }
-            
-            // تنظيف ذاكرة الدُفعة إذا استمرت لفترة طويلة
-            if (this.batchData.length > 0) {
-                const now = Date.now();
-                this.batchData = this.batchData.filter(data => 
-                    now - data.timestamp < 5000 // الاحتفاظ لمدة 5 ثوانٍ فقط
-                );
-            }
-            
-        }, 5000); // مراقبة كل 5 ثوانٍ
+        const angleChanged = Math.abs(data.angle - this.lastAngle) > 0.01;
+        const buttonChanged = data.button !== this.lastButton;
+        
+        return angleChanged || buttonChanged;
     }
 
-    logPerformance(timestamp) {
-        if (!this.lastLogTime) this.lastLogTime = Date.now();
-        
-        const now = Date.now();
-        const elapsed = now - this.lastLogTime;
-        
-        if (elapsed >= 10000) { // تسجيل الأداء كل 10 ثوانٍ
-            const status = this.getStatus();
-            console.log(`أداء النظام: ${status.activeMethods}/${status.totalMethods} طريقة نشطة`);
-            this.lastLogTime = now;
+    send(data) {
+        if (self?.xb) {
+            self.xb(data.angle, data.button);
         }
     }
 
-    stopUpdates() {
-        if (!this.isRunning) return;
-        
+    stop() {
         this.isRunning = false;
-        console.log('إيقاف تحديثات الحركة');
-        
-        // إيقاف جميع المؤقتات
-        if (this.intervalId) {
-            clearInterval(this.intervalId);
-            this.intervalId = null;
-        }
-        
-        if (this.animationId) {
-            cancelAnimationFrame(this.animationId);
-            this.animationId = null;
-        }
-        
-        if (this.performanceInterval) {
-            clearInterval(this.performanceInterval);
-            this.performanceInterval = null;
-        }
-        
-        // تنظيف Web Worker
-        this.cleanupWorker();
-        
-        // تنظيف البيانات المؤقتة
-        this.batchData = [];
-        this.lastData = null;
-        
-        console.log('تم إيقاف جميع التحديثات');
+        console.log('تحديثات متوقفة');
     }
 
     getStatus() {
-        const now = Date.now();
-        const activeMethods = this.updateMethods.filter(m => m.active);
-        
         return {
-            isRunning: this.isRunning,
-            activeMethods: activeMethods.length,
-            totalMethods: this.updateMethods.length,
-            failedMethods: this.updateMethods.filter(m => m.failCount > 0).length,
-            batchSize: this.batchData.length,
-            methods: this.updateMethods.map(m => ({
-                name: m.name,
-                active: m.active,
-                failCount: m.failCount,
-                lastSuccess: m.lastSuccess ? now - m.lastSuccess + 'ms ago' : 'never',
-                lastFail: m.lastFail ? now - m.lastFail + 'ms ago' : 'never'
-            }))
+            running: this.isRunning,
+            interval: this.sendInterval,
+            lastAngle: this.lastAngle,
+            lastButton: this.lastButton
         };
     }
-
-    forceUpdate() {
-        console.log('إرسال تحديث فوري...');
-        const motionData = this.getLatestMotionData();
-        if (motionData) {
-            try {
-                this.sendMotionData(motionData);
-                console.log('التحديث الفوري ناجح');
-            } catch (error) {
-                console.error('التحديث الفوري فشل:', error);
-            }
-        }
-    }
 }
 
-// وظيفة مساعدة للاستخدام السهل
-function createMotionHandler() {
-    const handler = new MotionHandler();
-    
-    // التحقق من الجاهزية قبل البدء
-    setTimeout(() => {
-        const status = handler.getStatus();
-        if (status.totalMethods > 0) {
-            handler.startUpdates();
-            console.log('تم بدء تحديثات الحركة بنجاح');
-        } else {
-            console.error('فشل في تهيئة معالج الحركة');
-        }
-    }, 100);
-    
-    return handler;
+// استخدام بسيط
+const motion = new MotionHandler();
+
+function startMotion() {
+    motion.start();
 }
 
-// طريقة الاستخدام
-let motionHandler = null;
-
-function initializeMotionSystem() {
-    if (motionHandler && motionHandler.isRunning) {
-        console.warn('نظام الحركة يعمل بالفعل');
-        return motionHandler;
-    }
-    
-    motionHandler = createMotionHandler();
-    
-    // إضافة معالج للأخطاء غير المتوقعة
-    window.addEventListener('error', (event) => {
-        if (motionHandler && motionHandler.isRunning) {
-            console.error('خطأ غير متوقع في نظام الحركة:', event.error);
-            // لا تتوقف تلقائياً، فقط سجل الخطأ
-        }
-    });
-    
-    // إعادة التشغيل التلقائي عند استعادة الاتصال
-    window.addEventListener('online', () => {
-        if (motionHandler && !motionHandler.isRunning) {
-            console.log('استعادة الاتصال، إعادة تشغيل نظام الحركة...');
-            setTimeout(() => {
-                motionHandler.startUpdates();
-            }, 1000);
-        }
-    });
-    
-    return motionHandler;
+function stopMotion() {
+    motion.stop();
 }
 
-// بدء النظام عند تحميل الصفحة
+// بدء تلقائي بعد تحميل الصفحة
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(initializeMotionSystem, 2000); // تأخير لضمان تحميل النظام
+        setTimeout(startMotion, 1000);
     });
 } else {
-    setTimeout(initializeMotionSystem, 2000);
-}
-
-// نسخة مبسطة للاستخدام المباشر
-function startOptimizedMotionUpdates() {
-    const handler = new MotionHandler();
-    handler.sendInterval = 10; // 0.01 ثانية
-    
-    // البدء مع تأخير قصير
-    setTimeout(() => {
-        handler.startUpdates();
-    }, 100);
-    
-    // إرجاع واجهة تحكم مبسطة
-    return {
-        stop: () => handler.stopUpdates(),
-        status: () => handler.getStatus(),
-        forceUpdate: () => handler.forceUpdate(),
-        setInterval: (ms) => {
-            if (ms >= 1 && ms <= 1000) {
-                handler.sendInterval = ms;
-                console.log(`تم تعيين معدل التحديث إلى ${ms}ms`);
-            }
-        }
-    };
+    setTimeout(startMotion, 1000);
 }
 
 
