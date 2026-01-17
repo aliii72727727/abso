@@ -5892,228 +5892,293 @@ else {
           
           `);
 
-            // دالة فتح وإغلاق الإعدادات
-function openSettings() {
-    var popup = document.getElementById("settings-popup");
-    var overlay = document.getElementById("settings-overlay");
-    popup.style.display = "block";
-    overlay.style.display = "block";
-    updateSettingsUI(); // تحديث واجهة الإعدادات عند الفتح
+            $('#mm-store').after(`
+<div id="mm-store" style="float: right; position: relative; margin-right: 10px; min-width: 140px;">
+    <div style="margin: 0;" id="loa831pibur0w4gv">
+        <div class="settings-toggle" onclick="openPopup()">
+            <i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow; font-size: 25px;"></i> الإعدادات
+        </div>
+        
+        <div id="popup" class="popup">
+            <div class="popup-header">
+                <i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow; font-size: 25px;"></i> 
+                إعدادات WormBmw
+            </div>
+            
+            <button class="close-button" onclick="closePopup()">
+                <i class="fa fa-times"></i> إغلاق
+            </button>
+            
+            <div class="id-section">
+                <div class="id-label">المعرف:</div>
+                <input type="text" value="${theoKzObjects.FB_UserID}" class="user-id" readonly />
+                <button class="copy-btn" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('تم نسخ المعرف: ${theoKzObjects.FB_UserID}!'));">
+                    <i class="fa fa-copy"></i> نسخ
+                </button>
+            </div>   
+            
+            <div class="settings-grid">
+                <table class="settings-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="setting-item">
+                                    <span class="setting-label">
+                                        <i class="fa fa-bolt" style="color: #0d7aef; font-size: 18px;"></i> 
+                                        سرعة الأكل:
+                                    </span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="settings-Abilityzoom-switch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="setting-item">
+                                    <span class="setting-label">
+                                        <i class="fa fa-video-camera" style="color: #0d7aef; font-size: 18px;"></i> 
+                                        وضع البث:
+                                    </span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="settings-stremingmode-switch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="setting-item">
+                                    <span class="setting-label">
+                                        <i class="fa fa-crosshairs" style="color: #0d7aef; font-size: 18px;"></i> 
+                                        إجمالي القتل:
+                                    </span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="settings-stremingmodesaveheadshot-switch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="setting-item">
+                                    <span class="setting-label">
+                                        <i class="fa fa-trophy" style="color: #0d7aef; font-size: 18px;"></i> 
+                                        أفضل 3 نتائج:
+                                    </span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="settings-stremingmodebatop-switch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="setting-item">
+                                    <span class="setting-label">
+                                        <i class="fa fa-smile-o" style="color: #0d7aef; font-size: 18px;"></i> 
+                                        إيقاف الإيموجي:
+                                    </span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="settings-stremingmodeemoj-switch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="setting-item">
+                                    <span class="setting-label">
+                                        <i class="fa fa-volume-off" style="color: #0d7aef; font-size: 18px;"></i> 
+                                        إيقاف صوت الرأس:
+                                    </span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="settings-stremingmodeheadshot-switch">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="customization-section">
+                <div class="customization-row">
+                    <div class="customization-item">
+                        <div class="customization-title">
+                            <i class="fa fa-mouse-pointer" style="color:#ff8f00; font-size: 20px;"></i> 
+                            اختر المؤشر
+                        </div>
+                        <div class="cursor-container">
+                            <button id="default-cursor-btn" class="cursor-btn active">
+                                <img class="cursor-img" alt="المؤشر الافتراضي" src="https://i.imgur.com/rI522o3.png">
+                                <span>افتراضي</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="customization-item">
+                        <div class="customization-title">
+                            <i class="fa fa-picture-o" style="color:#ff8f00; font-size: 20px;"></i> 
+                            اختر الخلفية
+                        </div>
+                        <div class="background-container">
+                            <!-- سيتم إضافة خيارات الخلفية هنا -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="activation-section">
+                <a class="activation-btn" target="_blank" href="https://discord.gg/8SECrUtJDD">
+                    <i class="fa fa-check-circle"></i> التفعيل (Seko)
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+`);
+
+// إضافة CSS
+$('head').append(`
+<style>
+/* الأنميشن والتخطيط العام */
+.settings-toggle {
+    cursor: pointer;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
-function closeSettings() {
-    var popup = document.getElementById("settings-popup");
-    var overlay = document.getElementById("settings-overlay");
-    popup.style.display = "none";
-    overlay.style.display = "none";
+.settings-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-// إضافة CSS أنيق للإعدادات
-const settingsCSS = `
-<style id="wormbmw-settings-css">
-/* إعدادات WormBMW */
-#settings-popup {
+/* نافذة الإعدادات */
+.popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    border: 2px solid #00ff9d;
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #667eea;
     border-radius: 15px;
-    box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
-    z-index: 10000;
-    overflow-y: auto;
-    animation: popupSlide 0.3s ease-out;
-}
-
-@keyframes popupSlide {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-
-#settings-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    z-index: 9999;
-}
-
-.settings-header {
-    background: linear-gradient(90deg, #00ff9d, #00b8ff);
     padding: 20px;
-    border-radius: 13px 13px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    z-index: 1000;
+    min-width: 800px;
+    color: white;
+    box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+    backdrop-filter: blur(10px);
 }
 
-.settings-header h2 {
-    margin: 0;
-    color: white;
+.popup-header {
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 20px;
+    color: #fff;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #667eea;
 }
 
-.close-settings {
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     background: #ff4757;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 8px 15px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
     font-weight: bold;
-    transition: all 0.3s;
 }
 
-.close-settings:hover {
-    background: #ff3838;
-    transform: scale(1.05);
+.close-button:hover {
+    background: #ff6b81;
+    transform: scale(1.1);
 }
 
-.settings-content {
-    padding: 25px;
-    color: white;
-}
-
-.user-id-section {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+/* قسم المعرف */
+.id-section {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
     border-radius: 10px;
-    margin-bottom: 25px;
-    border: 1px solid rgba(0, 255, 157, 0.3);
-}
-
-.user-id-section h3 {
-    color: #00ff9d;
-    margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.id-input-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+.id-label {
+    font-weight: bold;
+    color: #0d7aef;
 }
 
-.user-id-input {
+.user-id {
     flex: 1;
-    padding: 12px;
-    border: 2px solid #00b8ff;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid #667eea;
+    border-radius: 5px;
     color: white;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s;
+    direction: ltr;
+    text-align: center;
 }
 
-.user-id-input:focus {
-    border-color: #00ff9d;
-    box-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
-}
-
-.copy-id-btn {
-    background: linear-gradient(45deg, #00b8ff, #0095ff);
+.copy-btn {
+    background: linear-gradient(135deg, #4cd964 0%, #5ac8fa 100%);
     color: white;
     border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
     font-weight: bold;
-    transition: all 0.3s;
+}
+
+.copy-btn:hover {
+    background: linear-gradient(135deg, #5ac8fa 0%, #4cd964 100%);
+    transform: scale(1.05);
+}
+
+/* إعدادات التبديل */
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    margin: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.setting-item:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #667eea;
+}
+
+.setting-label {
+    font-size: 14px;
+    color: #ddd;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.copy-id-btn:hover {
-    background: linear-gradient(45deg, #00ff9d, #00b8ff);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.4);
-}
-
-.settings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 25px;
-}
-
-.settings-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
-}
-
-.settings-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #00ff9d;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(0, 255, 157, 0.2);
-}
-
-.settings-card h4 {
-    color: #00b8ff;
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.switch-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    padding: 12px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-}
-
-.switch-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    color: #e0e0e0;
-}
-
-.switch-label i {
-    color: #00ff9d;
-    font-size: 18px;
-}
-
-/* تصميم التبديل الحديث */
+/* تصميم المفاتيح التبديل */
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 24px;
 }
 
 .switch input {
@@ -6129,16 +6194,16 @@ const settingsCSS = `
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, #ff4757, #ff6b81);
+    background-color: #ccc;
     transition: .4s;
-    border-radius: 34px;
+    border-radius: 24px;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
+    height: 16px;
+    width: 16px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -6147,597 +6212,141 @@ const settingsCSS = `
 }
 
 input:checked + .slider {
-    background: linear-gradient(90deg, #00ff9d, #00b8ff);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 input:checked + .slider:before {
-    transform: translateX(30px);
+    transform: translateX(26px);
 }
 
-/* قسم المؤشرات والخلفيات */
+/* قسم التخصيص */
 .customization-section {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
+    background: rgba(255,255,255,0.05);
     border-radius: 10px;
-    margin-top: 20px;
-}
-
-.customization-section h3 {
-    color: #ff9d00;
-    margin-top: 0;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.customization-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-}
-
-.custom-item {
-    position: relative;
-    cursor: pointer;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s;
-    border: 2px solid transparent;
-}
-
-.custom-item:hover {
-    transform: scale(1.05);
-    border-color: #00ff9d;
-}
-
-.custom-item.selected {
-    border-color: #00b8ff;
-    box-shadow: 0 0 15px rgba(0, 184, 255, 0.5);
-}
-
-.custom-item img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    display: block;
-}
-
-.custom-name {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 8px;
-    font-size: 12px;
-    text-align: center;
-}
-
-/* قسم التنشيط */
-.activation-section {
-    text-align: center;
-    margin-top: 30px;
     padding: 20px;
-    background: linear-gradient(135deg, rgba(0, 255, 157, 0.1), rgba(0, 184, 255, 0.1));
-    border-radius: 10px;
-    border: 2px dashed #00ff9d;
+    margin: 20px 0;
+    border: 1px solid rgba(255,143,0,0.3);
 }
 
-.activation-btn {
-    background: linear-gradient(45deg, #ff9d00, #ff6b00);
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.activation-btn:hover {
-    background: linear-gradient(45deg, #ffb300, #ff8500);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 157, 0, 0.4);
-}
-
-/* رسالة التنبيه */
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    background: linear-gradient(90deg, #00ff9d, #00b8ff);
-    color: white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
-    z-index: 10001;
+.customization-row {
     display: flex;
-    align-items: center;
-    gap: 15px;
-    animation: slideIn 0.3s ease-out;
-    max-width: 400px;
+    gap: 30px;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.notification.success {
-    background: linear-gradient(90deg, #00ff9d, #00b8ff);
-}
-
-.notification.info {
-    background: linear-gradient(90deg, #00b8ff, #0095ff);
-}
-
-.notification.warning {
-    background: linear-gradient(90deg, #ff9d00, #ff6b00);
-}
-
-.notification i {
-    font-size: 24px;
-}
-
-.notification-content {
+.customization-item {
     flex: 1;
 }
 
-.notification-title {
+.customization-title {
+    font-size: 18px;
     font-weight: bold;
+    margin-bottom: 15px;
+    color: #ff8f00;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* المؤشرات */
+.cursor-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cursor-btn {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.cursor-btn:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+}
+
+.cursor-btn.active {
+    border-color: #4cd964;
+    background: rgba(76, 217, 100, 0.1);
+}
+
+.cursor-img {
+    width: 32px;
+    height: 32px;
     margin-bottom: 5px;
 }
 
-.notification-message {
-    font-size: 14px;
-    opacity: 0.9;
+/* زر التفعيل */
+.activation-section {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-.close-notification {
-    background: none;
-    border: none;
+.activation-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff8a00 0%, #e52e71 100%);
     color: white;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 0;
-    margin-left: 10px;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
-/* تصميم متجاوب */
-@media (max-width: 768px) {
-    #settings-popup {
-        width: 95%;
-        max-height: 95vh;
+.activation-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(229, 46, 113, 0.4);
+}
+
+/* الجداول */
+.settings-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+.settings-table td {
+    padding: 5px;
+}
+
+/* التجاوب */
+@media (max-width: 850px) {
+    .popup {
+        min-width: 95%;
+        max-width: 95%;
+        padding: 15px;
     }
     
-    .settings-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .customization-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .id-input-group {
+    .customization-row {
         flex-direction: column;
+        gap: 20px;
+    }
+    
+    .settings-table {
+        border-spacing: 5px;
     }
 }
 </style>
-`;
-
-// إضافة CSS للصفحة
-document.head.insertAdjacentHTML('beforeend', settingsCSS);
-
-// دالة لعرض الإشعارات
-function showNotification(title, message, type = 'success') {
-    // إزالة أي إشعارات سابقة
-    const oldNotification = document.querySelector('.notification');
-    if (oldNotification) {
-        oldNotification.remove();
-    }
-    
-    const icon = type === 'success' ? '✓' : 'ℹ️';
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.innerHTML = `
-        <i>${icon}</i>
-        <div class="notification-content">
-            <div class="notification-title">${title}</div>
-            <div class="notification-message">${message}</div>
-        </div>
-        <button class="close-notification" onclick="this.parentElement.remove()">×</button>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // إزالة الإشعار تلقائياً بعد 3 ثوانٍ
-    setTimeout(() => {
-        if (notification.parentElement) {
-            notification.remove();
-        }
-    }, 3000);
-}
-
-// دالة تحديث واجهة الإعدادات
-function updateSettingsUI() {
-    // تحديث حالة المفاتيح
-    const switches = {
-        'ability-speed': localStorage.getItem('mySwitch') === 'on',
-        'streamer-mode': localStorage.getItem('ModeStremer') === 'true',
-        'save-kills': localStorage.getItem('ModeStremersaveheadshot') === 'true',
-        'top-3': localStorage.getItem('ModeStremerbatop') === 'true',
-        'hide-emojis': localStorage.getItem('ModeStremeremoj') === 'true',
-        'mute-headshot': localStorage.getItem('ModeStremerheadshot') === 'true'
-    };
-    
-    Object.keys(switches).forEach(id => {
-        const checkbox = document.getElementById(id);
-        if (checkbox) {
-            checkbox.checked = switches[id];
-        }
-    });
-    
-    // تحديث المؤشر المحدد
-    const selectedCursor = localStorage.cursorSeleccionado;
-    if (selectedCursor) {
-        document.querySelectorAll('.cursor-item').forEach(item => {
-            if (item.dataset.cursor === selectedCursor) {
-                item.classList.add('selected');
-            } else {
-                item.classList.remove('selected');
-            }
-        });
-    }
-    
-    // تحديث الخلفية المحددة
-    const selectedBg = localStorage.fondoSeleccionado;
-    if (selectedBg) {
-        document.querySelectorAll('.bg-item').forEach(item => {
-            if (item.dataset.bg === selectedBg) {
-                item.classList.add('selected');
-            } else {
-                item.classList.remove('selected');
-            }
-        });
-    }
-}
-
-// دالة النسخ مع إشعار
-function copyUserId() {
-    const userId = theoKzObjects.FB_UserID || document.querySelector('.user-id-input').value;
-    navigator.clipboard.writeText(userId)
-        .then(() => {
-            showNotification('تم النسخ!', `تم نسخ ID المستخدم: ${userId}`);
-        })
-        .catch(err => {
-            console.error('فشل النسخ:', err);
-            showNotification('خطأ!', 'فشل نسخ ID المستخدم', 'warning');
-        });
-}
-
-// دوال التحكم في الإعدادات مع إشعارات
-function toggleSetting(settingId, settingName) {
-    const checkbox = document.getElementById(settingId);
-    const isEnabled = checkbox.checked;
-    
-    switch(settingId) {
-        case 'ability-speed':
-            theoKzObjects.eat_animation = isEnabled ? 1 : 0.0025;
-            localStorage.setItem('mySwitch', isEnabled ? 'on' : 'off');
-            break;
-        case 'streamer-mode':
-            theoKzObjects.ModeStremer = isEnabled;
-            localStorage.setItem('ModeStremer', isEnabled ? 'true' : 'false');
-            break;
-        case 'save-kills':
-            theoKzObjects.ModeStremersaveheadshot = isEnabled;
-            localStorage.setItem('ModeStremersaveheadshot', isEnabled ? 'true' : 'false');
-            setTimeout(() => location.reload(), 500);
-            break;
-        case 'top-3':
-            theoKzObjects.ModeStremerbatop = isEnabled;
-            localStorage.setItem('ModeStremerbatop', isEnabled ? 'true' : 'false');
-            break;
-        case 'hide-emojis':
-            theoKzObjects.ModeStremeremoj = isEnabled;
-            localStorage.setItem('ModeStremeremoj', isEnabled ? 'true' : 'false');
-            break;
-        case 'mute-headshot':
-            theoKzObjects.ModeStremerheadshot = isEnabled;
-            localStorage.setItem('ModeStremerheadshot', isEnabled ? 'true' : 'false');
-            break;
-    }
-    
-    const status = isEnabled ? 'مفعّلة' : 'معطّلة';
-    showNotification(
-        'تم التحديث!',
-        `ميزة "${settingName}" ${status}`,
-        isEnabled ? 'success' : 'info'
-    );
-}
-
-// دالة اختيار المؤشر
-function selectCursor(cursorUrl) {
-    localStorage.cursorSeleccionado = cursorUrl;
-    $('#game-cont, #game-canvas, body').css({
-        'cursor': 'url(' + cursorUrl + '), default'
-    });
-    
-    showNotification('تم التحديث!', 'تم تغيير شكل المؤشر بنجاح');
-    updateSettingsUI();
-}
-
-// دالة اختيار الخلفية
-function selectBackground(bgUrl, bgName) {
-    localStorage.fondoSeleccionado = bgUrl;
-    _anApp.q.Cf = new POGL._b(_anApp.q.fn_o(bgUrl));
-    
-    showNotification('تم التحديث!', `تم تغيير الخلفية إلى: ${bgName}`);
-    updateSettingsUI();
-}
-
-// دالة إعادة تعيين المؤشر الافتراضي
-function resetCursor() {
-    delete localStorage.cursorSeleccionado;
-    $('#game-cont, #game-canvas, body').css('cursor', 'default');
-    
-    showNotification('تم التحديث!', 'تم إعادة تعيين المؤشر إلى الافتراضي');
-    updateSettingsUI();
-}
-
-// إنشاء واجهة الإعدادات
-function createSettingsPopup() {
-    const settingsHTML = `
-    <div id="settings-overlay" onclick="closeSettings()"></div>
-    <div id="settings-popup">
-        <div class="settings-header">
-            <h2><i class="fa fa-cog fa-spin"></i> إعدادات WormBMW</h2>
-            <button class="close-settings" onclick="closeSettings()">إغلاق</button>
-        </div>
-        
-        <div class="settings-content">
-            <!-- قسم ID المستخدم -->
-            <div class="user-id-section">
-                <h3><i class="fa fa-user"></i> معلومات المستخدم</h3>
-                <div class="id-input-group">
-                    <input type="text" class="user-id-input" value="${theoKzObjects.FB_UserID}" readonly>
-                    <button class="copy-id-btn" onclick="copyUserId()">
-                        <i class="fa fa-copy"></i> نسخ الـ ID
-                    </button>
-                </div>
-            </div>
-            
-            <!-- قسم إعدادات اللعبة -->
-            <div class="settings-grid">
-                <!-- العمود الأول -->
-                <div class="settings-card">
-                    <h4><i class="fa fa-tachometer"></i> إعدادات الأداء</h4>
-                    
-                    <div class="switch-group">
-                        <span class="switch-label">
-                            <i class="fa fa-bolt"></i> سرعة الأكل
-                        </span>
-                        <label class="switch">
-                            <input type="checkbox" id="ability-speed" 
-                                   onchange="toggleSetting('ability-speed', 'سرعة الأكل')">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="switch-group">
-                        <span class="switch-label">
-                            <i class="fa fa-gamepad"></i> وضع المباشر
-                        </span>
-                        <label class="switch">
-                            <input type="checkbox" id="streamer-mode" 
-                                   onchange="toggleSetting('streamer-mode', 'وضع المباشر')">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <!-- العمود الثاني -->
-                <div class="settings-card">
-                    <h4><i class="fa fa-chart-bar"></i> إحصائيات</h4>
-                    
-                    <div class="switch-group">
-                        <span class="switch-label">
-                            <i class="fa fa-save"></i> حفظ القتلى
-                        </span>
-                        <label class="switch">
-                            <input type="checkbox" id="save-kills" 
-                                   onchange="toggleSetting('save-kills', 'حفظ القتلى')">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="switch-group">
-                        <span class="switch-label">
-                            <i class="fa fa-trophy"></i> عرض الـ3 الأوائل
-                        </span>
-                        <label class="switch">
-                            <input type="checkbox" id="top-3" 
-                                   onchange="toggleSetting('top-3', 'الـ3 الأوائل')">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <!-- العمود الثالث -->
-                <div class="settings-card">
-                    <h4><i class="fa fa-eye"></i> العرض</h4>
-                    
-                    <div class="switch-group">
-                        <span class="switch-label">
-                            <i class="fa fa-smile"></i> إخفاء الإيموجيات
-                        </span>
-                        <label class="switch">
-                            <input type="checkbox" id="hide-emojis" 
-                                   onchange="toggleSetting('hide-emojis', 'إخفاء الإيموجيات')">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="switch-group">
-                        <span class="switch-label">
-                            <i class="fa fa-volume-mute"></i> كتم أصوات الهيدشوت
-                        </span>
-                        <label class="switch">
-                            <input type="checkbox" id="mute-headshot" 
-                                   onchange="toggleSetting('mute-headshot', 'كتم أصوات الهيدشوت')">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- قسم التخصيص -->
-            <div class="customization-section">
-                <h3><i class="fa fa-paint-brush"></i> تخصيص</h3>
-                
-                <h4 style="color: #00b8ff; margin-top: 20px;"><i class="fa fa-mouse-pointer"></i> المؤشرات</h4>
-                <div class="customization-grid" id="cursors-container">
-                    <!-- سيتم إضافة المؤشرات هنا -->
-                </div>
-                
-                <h4 style="color: #00b8ff; margin-top: 20px;"><i class="fa fa-image"></i> الخلفيات</h4>
-                <div class="customization-grid" id="backgrounds-container">
-                    <!-- سيتم إضافة الخلفيات هنا -->
-                </div>
-            </div>
-            
-            <!-- قسم التنشيط -->
-            <div class="activation-section">
-                <button class="activation-btn" onclick="window.open('https://discord.gg/8SECrUtJDD', '_blank')">
-                    <i class="fa fa-bolt"></i> الدخول إلى سيرفر الدعم
-                </button>
-            </div>
-        </div>
-    </div>
-    `;
-    
-    // إضافة واجهة الإعدادات للصفحة
-    document.body.insertAdjacentHTML('beforeend', settingsHTML);
-    
-    // إضافة المؤشرات
-    const cursorsContainer = document.getElementById('cursors-container');
-    const backgroundsContainer = document.getElementById('backgrounds-container');
-    
-    // إضافة مؤشر افتراضي
-    cursorsContainer.innerHTML += `
-        <div class="custom-item cursor-item" onclick="resetCursor()">
-            <img src="https://i.imgur.com/rI522o3.png" alt="افتراضي">
-            <div class="custom-name">افتراضي</div>
-        </div>
-    `;
-    
-    // إضافة المؤشرات المخصصة
-    cursorUrl.forEach(cursor => {
-        cursorsContainer.innerHTML += `
-            <div class="custom-item cursor-item" data-cursor="${cursor.url}" 
-                 onclick="selectCursor('${cursor.url}')">
-                <img src="${cursor.url}" alt="${cursor.nombre}">
-                <div class="custom-name">${cursor.nombre}</div>
-            </div>
-        `;
-    });
-    
-    // إضافة الخلفيات
-    backgroundArena.forEach(bg => {
-        backgroundsContainer.innerHTML += `
-            <div class="custom-item bg-item" data-bg="${bg.url}" 
-                 onclick="selectBackground('${bg.url}', '${bg.nombre}')">
-                <img src="${bg.url}" alt="${bg.nombre}">
-                <div class="custom-name">${bg.nombre}</div>
-            </div>
-        `;
-    });
-}
-
-// تهيئة الإعدادات عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    // إنشاء واجهة الإعدادات
-    createSettingsPopup();
-    
-    // تحديث واجهة الإعدادات
-    updateSettingsUI();
-    
-    // إضافة زر الإعدادات للواجهة الرئيسية
-    const settingsBtn = `
-        <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9998;">
-            <button onclick="openSettings()" style="
-                background: linear-gradient(45deg, #00ff9d, #00b8ff);
-                color: white;
-                border: none;
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                font-size: 24px;
-                cursor: pointer;
-                box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
-                transition: all 0.3s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0, 255, 157, 0.6)'"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 20px rgba(0, 255, 157, 0.4)'">
-                <i class="fa fa-cog"></i>
-            </button>
-        </div>
-    `;
-    
-    document.body.insertAdjacentHTML('beforeend', settingsBtn);
-});
-
-// استبدال الكود القديم
-$('#mm-store').after(`
-    <div id="mm-store" style="float: right; position: relative; margin-right: 10px; min-width: 140px;">
-        <div style="margin: 0;" id="loa831pibur0w4gv">
-            <div onclick="openSettings()" style="
-                cursor: pointer;
-                padding: 10px 15px;
-                background: linear-gradient(45deg, #00ff9d, #00b8ff);
-                color: white;
-                border-radius: 8px;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                transition: all 0.3s;
-            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(0, 255, 157, 0.3)'"
-            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                <i class="fa fa-cog fa-spin"></i> الإعدادات
-            </div>
-        </div>
-    </div>
 `);
 
-// تحديث دالة نسخ ID لتعمل مع الحقل الجديد
-function updateCopyIdButton() {
-    const userIdInput = document.querySelector('.user-id-input');
-    const copyBtn = document.querySelector('.copy-id-btn');
-    
-    if (userIdInput && copyBtn) {
-        copyBtn.onclick = function() {
-            copyUserId();
-        };
-    }
+// دوال فتح وإغلاق النافذة
+function openPopup() {
+    document.getElementById('popup').style.display = 'block';
 }
 
-// تحديث زر النسخ عند تحميل الصفحة
-setTimeout(updateCopyIdButton, 1000);
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
 </div>`);
 
 
