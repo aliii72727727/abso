@@ -2,52 +2,259 @@
 
 
 
-// ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
+// ✅ Advanced Anti-AFKLite: نظام خمول متطور
 var intervalID = null;
 var afkTimer = null;
-var afkTimeoutMs = 2000; // 2 saniye sonra devreye girer
+var inputTimer = null;
+var afkTimeoutMs = 2000; // وقت بدء الخمول العادي
+var immediateAFKTimeoutMs = 100; // وقت بدء الخمول المباشر
+var rapidInputThreshold = 3; // عدد الإدخالات المتتالية
+var rapidInputTimeWindow = 500; // نافذة زمنية للكشف عن الإدخال السريع
 var antiAFKStarted = false;
 var lastSk = 0;
 var directionToggle = 1;
+var inputCount = 0;
+var rapidInputDetected = false;
+var lastInputTime = 0;
+var movementStyle = "swing"; // swing, circle, random, spiral
+var debugMode = false; // وضع التصحيح
 
-function startMicroAFK() {
+// إعدادات متقدمة للحركة
+var movementConfig = {
+    swing: { angle: Math.PI / 180, interval: 100 }, // ±1 درجة
+    circle: { angle: Math.PI / 90, interval: 150 }, // ±2 درجة
+    random: { minAngle: Math.PI / 360, maxAngle: Math.PI / 60, interval: 120 }, // 0.5-3 درجة
+    spiral: { baseAngle: Math.PI / 360, increment: 0.1, interval: 100 } // حركة لولبية
+};
+
+// 📊 تسجيل النشاط
+var activityLog = {
+    startTime: null,
+    afkSessions: 0,
+    totalAFKTime: 0,
+    lastAFKStart: null
+};
+
+// 🔧 وظيفة تسجيل النشاط
+function logActivity(event) {
+    if (debugMode) {
+        console.log(`[Anti-AFK] ${event} - ${new Date().toLocaleTimeString()}`);
+    }
+}
+
+// 🎯 بدء نظام الخمول الذكي
+function startSmartAFK(immediate = false) {
+    if (antiAFKStarted) return;
+    
     clearInterval(intervalID);
+    
+    activityLog.lastAFKStart = Date.now();
+    activityLog.afkSessions++;
+    
+    // اختيار نمط الحركة بناءً على الكشف
+    let style = rapidInputDetected ? "circle" : movementStyle;
+    let config = movementConfig[style];
+    
+    let currentAngle = 0;
+    let spiralCounter = 0;
+    
     intervalID = setInterval(function () {
         try {
             if (anApp?.s?.H?.sk !== undefined) {
-                let pi = Math.PI;
-                let offset = pi / 180 * 2; // tam ±2 derece
-                lastSk += offset * directionToggle;
-                directionToggle *= -1; // bir sağ, bir sol
-                anApp.s.H.sk = lastSk;
+                let newSk = lastSk;
+                
+                switch(style) {
+                    case "swing":
+                        newSk += config.angle * directionToggle;
+                        directionToggle *= -1;
+                        break;
+                        
+                    case "circle":
+                        newSk += config.angle;
+                        break;
+                        
+                    case "random":
+                        let randomAngle = config.minAngle + Math.random() * (config.maxAngle - config.minAngle);
+                        newSk += Math.random() > 0.5 ? randomAngle : -randomAngle;
+                        break;
+                        
+                    case "spiral":
+                        spiralCounter++;
+                        newSk += config.baseAngle + (spiralCounter * config.increment);
+                        if (spiralCounter > 50) spiralCounter = 0;
+                        break;
+                }
+                
+                // تطبيق الحدود الدائرية (0 إلى 2π)
+                newSk = newSk % (2 * Math.PI);
+                if (newSk < 0) newSk += 2 * Math.PI;
+                
+                anApp.s.H.sk = newSk;
+                lastSk = newSk;
+                
+                logActivity(`AFK Movement - Style: ${style}, Angle: ${newSk.toFixed(4)}`);
             }
         } catch (err) {
-            // hata olursa sessiz geç
+            if (debugMode) console.error("[Anti-AFK Error]", err);
         }
-    }, 150);
+    }, config.interval);
+    
     antiAFKStarted = true;
+    rapidInputDetected = false;
+    
+    logActivity(`AFK Started - Immediate: ${immediate}, Style: ${style}`);
 }
 
-document.addEventListener("mousemove", () => {
-    clearTimeout(afkTimer);
-    try {
-        if (anApp?.s?.H?.sk !== undefined) {
-            lastSk = anApp.s.H.sk;
-        }
-    } catch {}
-
-    if (antiAFKStarted) {
-        clearInterval(intervalID);
-        intervalID = null;
-        antiAFKStarted = false;
+// ⏹️ إيقاف نظام الخمول
+function stopAFK() {
+    if (!antiAFKStarted) return;
+    
+    clearInterval(intervalID);
+    intervalID = null;
+    antiAFKStarted = false;
+    
+    // حساب وقت الخمول
+    if (activityLog.lastAFKStart) {
+        let sessionTime = Date.now() - activityLog.lastAFKStart;
+        activityLog.totalAFKTime += sessionTime;
+        logActivity(`AFK Stopped - Session: ${sessionTime}ms, Total: ${activityLog.totalAFKTime}ms`);
     }
+}
 
-    afkTimer = setTimeout(() => {
-        if (!antiAFKStarted) {
-            startMicroAFK();
+// 🔍 كشف الإدخال السريع
+function detectRapidInput() {
+    let now = Date.now();
+    inputCount++;
+    
+    if (now - lastInputTime < rapidInputTimeWindow) {
+        if (inputCount >= rapidInputThreshold) {
+            rapidInputDetected = true;
+            logActivity(`Rapid Input Detected - Count: ${inputCount}`);
+            
+            // بدء الخمول المباشر
+            clearTimeout(afkTimer);
+            clearTimeout(inputTimer);
+            setTimeout(() => {
+                if (!antiAFKStarted) {
+                    startSmartAFK(true);
+                }
+            }, immediateAFKTimeoutMs);
         }
-    }, afkTimeoutMs);
+    } else {
+        inputCount = 1;
+    }
+    
+    lastInputTime = now;
+    
+    // إعادة تعيين العداد بعد فترة
+    clearTimeout(inputTimer);
+    inputTimer = setTimeout(() => {
+        inputCount = 0;
+        rapidInputDetected = false;
+    }, rapidInputTimeWindow * 2);
+}
+
+// 🖱️🎮 مستمعات الإدخال المتعددة
+var inputEvents = ["mousemove", "mousedown", "mouseup", "keydown", "keyup", "wheel", "touchstart", "touchmove"];
+
+inputEvents.forEach(eventType => {
+    document.addEventListener(eventType, function(e) {
+        // تجاهل بعض الأحداث غير المهمة
+        if (eventType === "mousemove" && e.movementX === 0 && e.movementY === 0) return;
+        
+        detectRapidInput();
+        
+        clearTimeout(afkTimer);
+        
+        try {
+            if (anApp?.s?.H?.sk !== undefined) {
+                lastSk = anApp.s.H.sk;
+            }
+        } catch {}
+        
+        stopAFK();
+        
+        afkTimer = setTimeout(() => {
+            if (!antiAFKStarted) {
+                startSmartAFK(false);
+            }
+        }, afkTimeoutMs);
+        
+        logActivity(`Input Detected - Type: ${eventType}`);
+    }, { passive: true });
 });
+
+// 🎛️ تحكم يدوي من وحدة التحكم
+window.AFKLite = {
+    start: function(style = "swing") {
+        movementStyle = style;
+        startSmartAFK(true);
+    },
+    
+    stop: function() {
+        stopAFK();
+    },
+    
+    setStyle: function(style) {
+        if (movementConfig[style]) {
+            movementStyle = style;
+            logActivity(`Style Changed to: ${style}`);
+        }
+    },
+    
+    setSpeed: function(interval) {
+        movementConfig.swing.interval = interval;
+        movementConfig.circle.interval = interval;
+        movementConfig.random.interval = interval;
+        movementConfig.spiral.interval = interval;
+        logActivity(`Speed Changed to: ${interval}ms`);
+    },
+    
+    setAngle: function(degrees) {
+        let radians = Math.PI / 180 * degrees;
+        movementConfig.swing.angle = radians;
+        movementConfig.circle.angle = radians;
+        logActivity(`Angle Changed to: ${degrees}°`);
+    },
+    
+    getStats: function() {
+        return {
+            isActive: antiAFKStarted,
+            totalSessions: activityLog.afkSessions,
+            totalTime: activityLog.totalAFKTime,
+            currentStyle: movementStyle,
+            rapidInputDetected: rapidInputDetected
+        };
+    },
+    
+    toggleDebug: function() {
+        debugMode = !debugMode;
+        console.log(`Debug Mode: ${debugMode ? "ON" : "OFF"}`);
+    }
+};
+
+// 📱 دعم أجهزة الجوال
+if ('ontouchstart' in window) {
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+}
+
+// ⚡ تهيئة النظام
+activityLog.startTime = Date.now();
+logActivity("Anti-AFKLite System Initialized");
+
+console.log(`
+✅ Anti-AFKLite Loaded!
+Commands available:
+- AFKLite.start('swing|circle|random|spiral')
+- AFKLite.stop()
+- AFKLite.setStyle('style')
+- AFKLite.setSpeed(ms)
+- AFKLite.setAngle(degrees)
+- AFKLite.getStats()
+- AFKLite.toggleDebug()
+`);
 
 
 var SITE_XTHOST = "https://iraqcraft.store/";
@@ -216,7 +423,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://iraqcraft.store/api/svr-a.json")
+    await fetch("https://iraqcraft.store/api/sr-avr.json")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
