@@ -1656,10 +1656,7 @@ function startOptimizedMotionUpdates() {
     };
 }
 
-// تصدير للاستخدام العالمي
-window.MotionHandler = MotionHandler;
-window.startOptimizedMotionUpdates = startOptimizedMotionUpdates;
-window.getMotionHandler = () => motionHandler;
+
 const updates = startMotionUpdates();
             }, self.yb = function (b, dst, flow, name) {
                 self.lb = b;
