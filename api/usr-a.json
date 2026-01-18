@@ -265,6 +265,17 @@
             "Client_KeyAccecs": "XTPRIVATESKIN",
             "VIP": "No",
             "Zoom": "No"
+        },
+        {
+            "id": 31,
+            "cliente_NOMBRE": "4433",
+            "cliente_ID": "gg_108022486223048441992",
+            "cliente_DateStarted": "18-01-2026",
+            "cliente_DateExpired": "18-01-2026",
+            "status": 1,
+            "Client_KeyAccecs": "XTPRIVATESKIN",
+            "VIP": "No",
+            "Zoom": "No"
         }
     ]
 }
