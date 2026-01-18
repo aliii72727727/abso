@@ -45,7 +45,7 @@
 //     }, afkTimeoutMs);
 // });
 
-var vLSHttps25yt551githubio = "https://iraqcraft.store/";
+var vLSHttps25yt551githubio = "https://25yt551.github.io/worm2/";
 window.detectLog = null;
 const vO = {
   BETAisSkinCustom(p671) {
@@ -8754,7 +8754,7 @@ window.addEventListener("keydown", p1340 => {
   }
 });
 var v1408 = new Date().getTime();
-var v1409 = "https://iraqcraft.store/css/game.css" + v1408;
+var v1409 = "https://25yt551.github.io/worm2/css/new.css?v=" + v1408;
 function f235() {
   var v1410 = document.createElement("link");
   v1410.rel = "stylesheet";
