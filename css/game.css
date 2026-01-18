@@ -149,18 +149,184 @@ body {font-family: wormdv; }
 }
 
 #game-wrap #game-cont #background-canvas {
-  width:100%;
-  height:100%;
-  position:absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   cursor: url(https://i.imgur.com/0zaJ1Jq.png), auto !important;
-  background-image: url(https://i.imgur.com/9PJ2W2I.jpeg);
-  background-repeat: no-repeat;
-  background-color: #e0e3bf !important;
-  background-size: cover;
+  
+  /* التدرج اللوني المطلوب */
+  background: 
+    radial-gradient(
+      circle at center,
+      #3a5874 0%,      /* أزرق داكن في المركز */
+      #557e66 35%,     /* أخضر مزرق عند 35% */
+      #3a2b23 70%,     /* بني غامق عند 70% */
+      #0e0f18 100%     /* أسود مزرق عند الحواف */
+    );
+  
+  /* تأثيرات كريسمس متحركة */
+  position: relative;
+  overflow: hidden;
+}
+
+/* تأثير الثلج المتساقط */
+#game-wrap #game-cont #background-canvas::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 10px,
+      rgba(255, 255, 255, 0.3) 10px,
+      rgba(255, 255, 255, 0.3) 20px
+    );
+  animation: snowfall 15s linear infinite;
+}
+
+/* ندفات ثلج متحركة */
+#game-wrap #game-cont #background-canvas::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.2) 2px, transparent 2px),
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2) 3px, transparent 3px),
+    radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.15) 4px, transparent 4px),
+    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.15) 3px, transparent 3px),
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+  background-size: 200px 200px, 300px 300px, 400px 400px, 300px 300px, 200px 200px;
+  animation: snowflakes 20s linear infinite;
+  opacity: 0.7;
+}
+
+/* أضواء كريسمس متلألئة */
+.christmas-lights {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 20px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 1;
+}
+
+.light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: twinkle 2s infinite;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.light:nth-child(1) { animation-delay: 0s; background-color: #ff0000; } /* أحمر */
+.light:nth-child(2) { animation-delay: 0.2s; background-color: #00ff00; } /* أخضر */
+.light:nth-child(3) { animation-delay: 0.4s; background-color: #ffff00; } /* أصفر */
+.light:nth-child(4) { animation-delay: 0.6s; background-color: #ff00ff; } /* وردي */
+.light:nth-child(5) { animation-delay: 0.8s; background-color: #00ffff; } /* سماوي */
+
+/* تأثيرات إضافية كريسمس */
+.christmas-decoration {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.3;
+  animation: float 8s infinite ease-in-out;
+}
+
+.decoration-1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.decoration-2 {
+  top: 25%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.decoration-3 {
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.decoration-4 {
+  bottom: 30%;
+  right: 25%;
+  animation-delay: 6s;
+}
+
+/* الأنيميشنز */
+@keyframes snowfall {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(100vh + 50px));
+  }
+}
+
+@keyframes snowflakes {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 200px 200px, 300px 300px, 400px 400px, 300px 300px, 200px 200px;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+/* لروابط الموقع */
+a {
+  position: relative;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: rgba(58, 88, 116, 0.2);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  background: rgba(85, 126, 102, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* لجعل تأثيرات الكريسمس أكثر شفافية على المحتوى */
+#game-cont {
+  position: relative;
+  z-index: 2;
 }
 
 
