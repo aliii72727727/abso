@@ -209,72 +209,48 @@ let vO5 = {
 let vO6 = {
   Api_listServer: []
 };
-async function f114() {
-  await fetch("https://iraqcraft.store/api/usr-a.json").then(p682 => p682.json()).then(p683 => {
-    if (p683.success) {
-      let v797 = p683.Users;
-      const v798 = new Date();
-      v798.setHours(0, 0, 0, 0);
-      vO5.clientesActivos = v797.filter(p684 => {
-        if (p684.cliente_DateExpired) {
-          const v799 = new Date(p684.cliente_DateExpired);
-          return v799 >= v798;
-        }
-        return true;
-      });
-    } else {
-      vO5 = {
-        clientesVencidos: [],
-        clientesActivos: []
-      };
-      alert("حدث خطأ أثناء تحميل العملاء");
-    }
-  }).catch(p685 => {
-    console.error("Error loading users:", p685);
-    alert("حدث خطأ اثناء التحميل يرجي تحديث الصفحة F5.");
-  });
+async function loadUsers() {
+    await fetch("https://iraqcraft.store/api/usr-a.json")
+        .then(response => response.json())
+        .then(response => {
+            if (response.success) {
+                let allClients = response.Users;
+
+                clientes.clientesActivos = allClients.filter(cliente => {
+                    return cliente.cliente_ID
+                });
+
+            } else {
+                clientes = {
+                    clientesVencidos: [],
+                    clientesActivos: []
+                };
+                alert("An error occurred while loading clients");
+            }
+        })
 }
-async function f115(p686, p687 = 3, p688 = 2000) {
-  for (let vLN1 = 1; vLN1 <= p687; vLN1++) {
-    try {
-      const v800 = await fetch(p686);
-      if (!v800.ok) {
-        throw new Error("HTTP error! status: " + v800.status);
-      }
-      const v801 = await v800.json();
-      return v801;
-    } catch (e4) {
-      console.error("Attempt " + vLN1 + " failed: " + e4.message);
-      if (vLN1 < p687) {
-        await new Promise(p689 => setTimeout(p689, p688));
-      } else {
-        throw e4;
-      }
-    }
-  }
+
+async function loadServers() {
+    await fetch("https://iraqcraft.store/api/sr-avr.json")
+        .then(response => response.json())
+        .then(response => {
+            if (response.success) {
+                let allServers = response.servers;
+
+                servers.Api_listServer = allServers.filter(server_ => {
+                    return server_.serverUrl
+                });
+            } else {
+                servers = {
+                    Api_listServer: []
+                };
+                alert("An error occurred while loading the servers");
+            }
+        })
 }
-async function f116() {
-  try {
-    const v802 = await f115("https://iraqcraft.store/api/sr-avr.json");
-    if (v802.success) {
-      let v803 = v802.servers;
-      vO6.Api_listServer = v803.filter(p690 => p690.serverUrl);
-    } else {
-      vO6 = {
-        Api_listServer: []
-      };
-      alert("حدث خطأ أثناء تحميل السيرفرات");
-    }
-  } catch (e5) {
-    console.error("Failed to load servers after multiple attempts:", e5);
-    vO6 = {
-      Api_listServer: []
-    };
-    alert("حدث خطأ أثناء تحميل السيرفرات. يرجى إعادة المحاولة لاحقًا.");
-  }
-}
-f114();
-f116();
+loadUsers();
+loadServers();
+
 $(".store-view-cont").append("<div id=\"idReplaceSkin\"></div>");
 var v$112 = $("#idReplaceSkin");
 const vO7 = {
