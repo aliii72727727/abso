@@ -1,4 +1,897 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 @import url("https://wormatefriendsglobal.com/css/font.css");
+
+/* إصلاح مشاكل CSS العامة */
+* {
+    box-sizing: border-box;
+}
+
+/* دعم اللغة العربية */
+:root {
+    --primary-color: #ff0000;
+    --secondary-color: #ffffff;
+    --accent-color: #f7941d;
+    --text-color: #ffffff;
+    --background-dark: #000000;
+    --background-light: #333333;
+}
+
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="ltr"] {
+    direction: ltr;
+    text-align: left;
+}
+
+/* إصلاح scrollbar */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    display: block;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #ff3333;
+}
+
+body, html {
+    background-color: var(--background-light);
+    height: 100%;
+    width: 100%;
+    min-width: 320px;
+    min-height: 320px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'vuonghiep', 'Cairo', sans-serif;
+    color: var(--text-color);
+}
+
+/* إصلاح تعريفات ID */
+#gameContainer {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+/* تحسين قائمة اللعبة الرئيسية */
+#main-menu-view {
+    font-family: 'vuonghiep', 'Cairo', sans-serif;
+}
+
+/* عناصر القائمة بالعربية */
+#mm-player-username {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تحسين الأزرار */
+.mm-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Cairo', sans-serif;
+    text-transform: uppercase;
+}
+
+.mm-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+/* تحسين مربعات المحتوى */
+.description-box {
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    background-color: var(--background-dark);
+    padding: 15px;
+    margin: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+/* نص عربي محسّن */
+.arabic-text {
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: justify;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.arabic-text h1 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.arabic-text h2 {
+    color: var(--accent-color);
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.arabic-text p {
+    margin-bottom: 10px;
+}
+
+/* تحسين العرض على الأجهزة المحمولة */
+@media (max-width: 768px) {
+    #stretch-box {
+        transform: scale(0.9) !important;
+    }
+    
+    .arabic-text {
+        font-size: 14px;
+    }
+    
+    .mm-button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #stretch-box {
+        transform: scale(0.8) !important;
+    }
+    
+    .arabic-text {
+        font-size: 12px;
+    }
+}
+
+/* تحسين شريط التقدم */
+.progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 3px 20px 5px var(--primary-color) !important;
+}
+
+.progress-fill {
+    background: var(--primary-color);
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+/* رسائل الإشعارات */
+.notification-ar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    z-index: 10000;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* تحسين شكل الإعلانات */
+.ad-container {
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* تنسيق الجدول */
+.arabic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Cairo', sans-serif;
+}
+
+.arabic-table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 12px;
+    text-align: right;
+}
+
+.arabic-table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: right;
+}
+
+.arabic-table tr:hover {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+/* تحسين نمط الإدخال */
+.arabic-input {
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 100%;
+    direction: rtl;
+}
+
+.arabic-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(247, 148, 29, 0.5);
+}
+
+/* تحسين التبويبات */
+.arabic-tabs {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+.arabic-tab {
+    padding: 10px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.arabic-tab.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.arabic-tab:hover:not(.active) {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+/* تحسين القوائم */
+.arabic-list {
+    list-style-type: none;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+.arabic-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+}
+
+.arabic-list li:hover {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.arabic-list li::before {
+    content: "•";
+    color: var(--primary-color);
+    margin-left: 10px;
+}
+
+/* تحسين الأيقونات */
+.icon-ar {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* رسائل الخطأ */
+.error-message-ar {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+    font-family: 'Cairo', sans-serif;
+    color: #ffcccc;
+}
+
+.success-message-ar {
+    background: rgba(0, 255, 0, 0.2);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+    font-family: 'Cairo', sans-serif;
+    color: #ccffcc;
+}
+
+/* تحسين شعار اللعبة */
+.game-logo-ar {
+    text-align: center;
+    margin: 20px 0;
+    font-family: 'Cairo', sans-serif;
+    font-size: 32px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* تحسين تنسيق الوقت */
+.time-display-ar {
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    color: var(--accent-color);
+    direction: ltr;
+    display: inline-block;
+}
+
+/* تحسين التلميحات */
+.tooltip-ar {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-ar .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--background-dark);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px;
+    border: 1px solid var(--primary-color);
+}
+
+.tooltip-ar:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* تحسين شريط البحث */
+.search-bar-ar {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+}
+
+.search-bar-ar:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+/* تحسين أزرار الوسائط الاجتماعية */
+.social-button-ar {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.social-button-ar.facebook {
+    background: #3b5998;
+}
+
+.social-button-ar.twitter {
+    background: #1da1f2;
+}
+
+.social-button-ar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* تحسين عرض النتائج */
+.result-box-ar {
+    background: linear-gradient(135deg, var(--primary-color), var(--background-dark));
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+.result-title-ar {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.result-value-ar {
+    font-size: 48px;
+    color: var(--accent-color);
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(247, 148, 29, 0.5);
+}
+
+/* تحسين الروابط */
+.link-ar {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: 'Cairo', sans-serif;
+}
+
+.link-ar:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* تحسين شعار الدعم */
+.support-badge-ar {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+/* تحسين الرسوم المتحركة */
+@keyframes pulse-ar {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.pulse-effect {
+    animation: pulse-ar 2s infinite;
+}
+
+/* تحسين الصور */
+.image-container-ar {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+}
+
+.image-container-ar img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.image-container-ar:hover img {
+    transform: scale(1.1);
+}
+
+/* تحسين العناوين */
+.section-title-ar {
+    font-family: 'Cairo', sans-serif;
+    font-size: 28px;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 30px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent-color);
+    position: relative;
+}
+
+.section-title-ar::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+}
+
+/* تحسين الفواصل */
+.separator-ar {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+    margin: 20px 0;
+}
+
+/* تحسين الأزرار الصغيرة */
+.small-button-ar {
+    padding: 5px 10px;
+    font-size: 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.small-button-ar:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+/* تحسين النماذج */
+.form-group-ar {
+    margin-bottom: 20px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.form-label-ar {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* تحسين تنبيهات الرسائل */
+.message-alert-ar {
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family: 'Cairo', sans-serif;
+    border-right: 5px solid;
+}
+
+.message-alert-ar.info {
+    background: rgba(0, 123, 255, 0.2);
+    border-color: #007bff;
+    color: #cce5ff;
+}
+
+.message-alert-ar.warning {
+    background: rgba(255, 193, 7, 0.2);
+    border-color: #ffc107;
+    color: #fff3cd;
+}
+
+.message-alert-ar.danger {
+    background: rgba(220, 53, 69, 0.2);
+    border-color: #dc3545;
+    color: #f8d7da;
+}
+
+/* تحسين حجم النص للمحتوى العربي */
+.arabic-content {
+    font-size: 18px;
+    line-height: 1.8;
+    letter-spacing: 0;
+}
+
+/* تحسين خلفية اللعبة */
+.background-pattern-ar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, rgba(255,0,0,0.1) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,0,0,0.1) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,0,0,0.1) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,0,0,0.1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    z-index: -1;
+}
+
+/* تحسين تأثيرات التركيز */
+.focus-effect:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.3);
+}
+
+/* تحسين شريط الحالة */
+.status-bar-ar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid var(--primary-color);
+    font-family: 'Cairo', sans-serif;
+}
+
+.status-item-ar {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.status-icon-ar {
+    margin-left: 8px;
+    color: var(--accent-color);
+}
+
+/* تحسين القائمة المنسدلة */
+.dropdown-ar {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content-ar {
+    display: none;
+    position: absolute;
+    background: var(--background-dark);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--primary-color);
+}
+
+.dropdown-ar:hover .dropdown-content-ar {
+    display: block;
+}
+
+.dropdown-item-ar {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+    font-family: 'Cairo', sans-serif;
+}
+
+.dropdown-item-ar:hover {
+    background: var(--primary-color);
+}
+
+/* تحسين أزرار التبديل */
+.switch-ar {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch-ar input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-ar {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider-ar:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider-ar {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider-ar:before {
+    transform: translateX(30px);
+}
+
+/* تحسين التنقل */
+.navbar-ar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.nav-brand-ar {
+    font-family: 'Cairo', sans-serif;
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links-ar {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link-ar {
+    color: white;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-link-ar:hover {
+    color: var(--accent-color);
+}
+
+/* تحسين الشارات */
+.badge-ar {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 12px;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+.badge-ar.primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.badge-ar.secondary {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* تحسين البطاقات */
+.card-ar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.card-ar:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.card-title-ar {
+    font-family: 'Cairo', sans-serif;
+    font-size: 20px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.card-content-ar {
+    font-family: 'Cairo', sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* تحسين شريط الصوت */
+.volume-control-ar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.volume-slider-ar {
+    width: 100px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.volume-slider-ar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* تحسين الشعار الدوار */
+.spinning-logo-ar {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* تحسين الرسائل المرحلية */
+.stage-message-ar {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cairo', sans-serif;
+    font-size: 48px;
+    color: var(--primary-color);
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* تحسين شكل المؤشر */
+.custom-cursor {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23ff0000" opacity="0.5"/></svg>') 16 16, auto;
+}
+
+/* تحسين نهاية الملف */
+.game-footer-ar {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Cairo', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 0, 0, 0.3);
+    margin-top: 50px;
+}
 
 ::-webkit-scrollbar{display:none}*
 body,html{background-color:#333;height:100%;width:100%;min-width:320px;min-height:320px;padding:0;margin:0;overflow:hidden;font-family: vuonghiep;}
