@@ -1,4 +1,49 @@
-
+// ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
+// var intervalID = null;
+// var afkTimer = null;
+// var afkTimeoutMs = 2000; // 2 saniye sonra devreye girer
+// var antiAFKStarted = false;
+// var lastSk = 0;
+// var directionToggle = 1;
+// 
+// function startMicroAFK() {
+//     clearInterval(intervalID);
+//     intervalID = setInterval(function () {
+//         try {
+//             if (anApp?.s?.H?.sk !== undefined) {
+//                 let pi = Math.PI;
+//                 let offset = pi / 180 * 2; // tam ±2 derece
+//                 lastSk += offset * directionToggle;
+//                 directionToggle *= -1; // bir sağ, bir sol
+//                 anApp.s.H.sk = lastSk;
+//             }
+//         } catch (err) {
+//             // hata olursa sessiz geç
+//         }
+//     }, 150);
+//     antiAFKStarted = true;
+// }
+// 
+// document.addEventListener("mousemove", () => {
+//     clearTimeout(afkTimer);
+//     try {
+//         if (anApp?.s?.H?.sk !== undefined) {
+//             lastSk = anApp.s.H.sk;
+//         }
+//     } catch {}
+// 
+//     if (antiAFKStarted) {
+//         clearInterval(intervalID);
+//         intervalID = null;
+//         antiAFKStarted = false;
+//     }
+// 
+//     afkTimer = setTimeout(() => {
+//         if (!antiAFKStarted) {
+//             startMicroAFK();
+//         }
+//     }, afkTimeoutMs);
+// });
 
 var var_weburl = "https://wormateserkanconnect.github.io/app2";
 window.detectLog = null;
