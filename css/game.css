@@ -149,18 +149,160 @@ body {font-family: vuonghiep; }
 }
 
 #game-wrap #game-cont #background-canvas {
-  width:100%;
-  height:100%;
-  position:absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  cursor: url(https://i.imgur.com/0zaJ1Jq.png), auto !important;
-      background: radial-gradient(rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .15) 30%, rgba(255, 255, 255, .3) 32%, rgba(255, 255, 255, 0) 33%) 0 0, radial-gradient(rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .1) 11%, rgba(255, 255, 255, .3) 13%, rgba(255, 255, 255, 0) 14%) 0 0, radial-gradient(rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 17%, rgba(255, 255, 255, .43) 19%, rgba(255, 255, 255, 0) 20%) 0 110px, radial-gradient(rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 11%, rgba(255, 255, 255, .4) 13%, rgba(255, 255, 255, 0) 14%) -130px -170px, radial-gradient(rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 11%, rgba(255, 255, 255, .4) 13%, rgba(255, 255, 255, 0) 14%) 130px 370px, radial-gradient(rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .1) 11%, rgba(255, 255, 255, .2) 13%, rgba(255, 255, 255, 0) 14%) 0 0, linear-gradient(45deg, rgb(66, 133, 244) 20%, rgb(25, 103, 210) 100%);
-    background-size: 100px 100px, 470px 470px, 210px 210px, 310px 310px, 230px 230px, 530px 530px, 100% 100%;
-
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+  /* مؤشر عادي (إزالة المؤشر القديم) */
+  cursor: auto !important;
+  
+  /* خلفية أساسية بالصورة + تأثير أحمر */
+  background: 
+    /* طبقة سوداء خفيفة على الحواف متحركة */
+    radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0.7) 100%) center center / 200% 200%,
     
+    /* تأثير أحمر خفيف على كل الصورة */
+    linear-gradient(rgba(255, 0, 0, 0.15), rgba(255, 0, 0, 0.15)),
+    
+    /* خلفية الصورة الرئيسية */
+    url('https://i.ibb.co/R4vGbqFd/image.png') center center / cover;
+  
+  /* تحريك الظل الأسود على الحواف */
+  animation: shadowMove 8s ease-in-out infinite alternate;
+  
+  /* طبقة القلوب */
+  position: relative;
+  overflow: hidden;
+}
+
+/* إنشاء القلوب الصغيرة */
+#game-wrap #game-cont #background-canvas::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url('https://i.ibb.co/1tXB0wmg/image.png'),
+    url('https://i.ibb.co/1tXB0wmg/image.png'),
+    url('https://i.ibb.co/1tXB0wmg/image.png');
+  background-size: 40px 40px, 30px 30px, 25px 25px;
+  background-position: 
+    10% 20%, 
+    50% 10%, 
+    90% 30%;
+  background-repeat: repeat;
+  opacity: 0.4;
+  filter: 
+    hue-rotate(0deg) 
+    brightness(0.8) 
+    saturate(0.7);
+  animation: heartsFloat 20s linear infinite;
+}
+
+/* إنشاء تساقط الثلج */
+#game-wrap #game-cont #background-canvas::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url('https://i.ibb.co/C3DjwNjk/image.png'),
+    url('https://i.ibb.co/C3DjwNjk/image.png'),
+    url('https://i.ibb.co/C3DjwNjk/image.png');
+  background-size: 35px 35px, 25px 25px, 20px 20px;
+  background-position: 
+    0 0, 
+    50px 100px, 
+    100px 50px;
+  background-repeat: repeat;
+  opacity: 0.3;
+  filter: 
+    brightness(2) 
+    hue-rotate(180deg) 
+    drop-shadow(0 0 5px rgba(173, 216, 230, 0.7));
+  animation: snowFall 15s linear infinite;
+  mix-blend-mode: screen;
+}
+
+/* تحريك الظل الأسود */
+@keyframes shadowMove {
+  0% {
+    background-position: 
+      -20% -20%, 
+      center center, 
+      center center;
+  }
+  100% {
+    background-position: 
+      20% 20%, 
+      center center, 
+      center center;
+  }
+}
+
+/* تحريك القلوب */
+@keyframes heartsFloat {
+  0% {
+    background-position: 
+      10% 0%, 
+      50% -100px, 
+      90% -50px;
+    filter: 
+      hue-rotate(0deg) 
+      brightness(0.8) 
+      saturate(0.7);
+  }
+  50% {
+    filter: 
+      hue-rotate(10deg) 
+      brightness(1) 
+      saturate(0.9);
+  }
+  100% {
+    background-position: 
+      10% 100vh, 
+      50% calc(100vh + 100px), 
+      90% calc(100vh + 50px);
+    filter: 
+      hue-rotate(20deg) 
+      brightness(0.8) 
+      saturate(0.7);
+  }
+}
+
+/* تحريك الثلج */
+@keyframes snowFall {
+  0% {
+    background-position: 
+      0 0, 
+      50px -100px, 
+      100px -50px;
+  }
+  100% {
+    background-position: 
+      0 100vh, 
+      50px calc(100vh - 100px), 
+      100px calc(100vh - 50px);
+  }
+}
+
+/* تحسينات إضافية */
+#game-wrap #game-cont #background-canvas:hover::before {
+  opacity: 0.6;
+  transition: opacity 0.5s;
+}
+
+#game-wrap #game-cont #background-canvas:hover::after {
+  opacity: 0.5;
+  transition: opacity 0.5s;
 }
 
 
