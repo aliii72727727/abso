@@ -1,3 +1,4 @@
+
 // ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
 // var intervalID = null;
 // var afkTimer = null;
@@ -1206,41 +1207,41 @@ window.addEventListener("load", function () {
       }();
     }
    function f151() {
-      var vO12 = {
-        Wa: 30,
-        Xa: new Float32Array(100),
-        Ya: 0,
-        Za: 0,
-        $a: 0,
-        _a: 0,
-        ab: 0,
-        bb: 0,
-        cb: 0,
-        db: null,
-        eb: 300,
-        C: function () {},
-        B: function () {},
-        S: function () {},
-        A: function () {},
-        fb: new vF109(),
-        z: null,
-        N: null,
-        gb: {},
-        hb: {},
-        ib: 12.5,
-        jb: 40,
-        kb: 1,
-        lb: -1,
-        mb: 1,
-        nb: 1,
-        ob: -1,
-        pb: -1,
-        qb: 1,
-        rb: 1,
-        sb: -1,
-        O: 500,
-        tb: 500
-      };
+      var vO12 = {
+        Wa: 30,
+        Xa: new Float32Array(100),
+        Ya: 0,
+        Za: 0,
+        $a: 0,
+        _a: 0,
+        ab: 0,
+        bb: 0,
+        cb: 0,
+        db: null,
+        eb: 300,
+        C: function () {},
+        B: function () {},
+        S: function () {},
+        A: function () {},
+        fb: new vF109(),
+        z: null,
+        N: null,
+        gb: {},
+        hb: {},
+        ib: 12.5,
+        jb: 40,
+        kb: 1,
+        lb: -1,
+        mb: 1,
+        nb: 1,
+        ob: -1,
+        pb: -1,
+        qb: 1,
+        rb: 1,
+        sb: -1,
+        O: 500,
+        tb: 500
+      };
 
     let vHBTimer;
 
@@ -1264,246 +1265,246 @@ window.addEventListener("load", function () {
         }, 10);
     }
 
-      vO12.fb.ub = 500;
-      vO12.N = new vF135(vO12.fb);
-      vO12.a = function () {
-        vO12.N.vb(f123().s.H.wb);
-        setInterval(function () {
-          vO12.S(function (p779, p780) {
-            vO12.xb(p779, p780);
-          });
-        }, 10);
-      };
-      vO12.yb = function (p781, p782, p783, p784) {
-        vO12.lb = p781;
-        vO12.mb = p782;
-        vO12.nb = p783;
-        vO12.ob = p784;
-        vO12.zb();
-      };
-      vO12.Ab = function (p785) {
-        vO12.kb = p785;
-        vO12.zb();
-      };
-      vO12.zb = function () {
-        vO12.pb = vO12.lb - vO12.kb;
-        vO12.qb = vO12.mb + vO12.kb;
-        vO12.rb = vO12.nb - vO12.kb;
-        vO12.sb = vO12.ob + vO12.kb;
-      };
-      vO12.Qa = function (p786, p787) {
-        vO12.$a += p787;
-        vO12.Za -= vO12.Ya * 0.2 * p787;
-        vO12.z.Bb();
-        if (vO12.db != null && (vO12.cb === 2 || vO12.cb === 3)) {
-          vO12.Cb(p786, p787);
-          vO12.jb = 4 + vO12.ib * vO12.N.Db;
-        }
-        var v877 = 1000 / Math.max(1, p787);
-        var vLN06 = 0;
-        var vLN07 = 0;
-        for (; vLN07 < vO12.Xa.length - 1; vLN07++) {
-          vLN06 = vLN06 + vO12.Xa[vLN07];
-          vO12.Xa[vLN07] = vO12.Xa[vLN07 + 1];
-        }
-        vO12.Xa[vO12.Xa.length - 1] = v877;
-        vO12.Wa = (vLN06 + v877) / vO12.Xa.length;
-      };
-      vO12.Eb = function (p788, p789) {
-        return p788 > vO12.pb && p788 < vO12.qb && p789 > vO12.rb && p789 < vO12.sb;
-      };
-      vO12.Cb = function (p790, p791) {
-        var v878 = vO12.$a + vO12.Za;
-        var v879 = (v878 - vO12._a) / (vO12.ab - vO12._a);
-        vO12.N.Fb(p790, p791);
-        vO12.N.Gb(p790, p791, v879, vO12.Eb);
-        var vLN08 = 0;
-        var v880;
-        for (v880 in vO12.hb) {
-          var v881 = vO12.hb[v880];
-          v881.Fb(p790, p791);
-          v881.Gb(p790, p791, v879, vO12.Eb);
-          if (v881.Hb && v881.Db > vLN08) {
-            vLN08 = v881.Db;
-          }
-          if (!v881.Ib && (!!(v881.Jb < 0.005) || !v881.Hb)) {
-            v881.Kb();
-            delete vO12.hb[v881.Mb.Lb];
-          }
-        }
-        vO12.Ab(vLN08 * 3);
-        var v882;
-        for (v882 in vO12.gb) {
-          var v883 = vO12.gb[v882];
-          v883.Fb(p790, p791);
-          v883.Gb(p790, p791, vO12.Eb);
-          if (v883.Nb && (v883.Jb < 0.005 || !vO12.Eb(v883.Ob, v883.Pb))) {
-            v883.Kb();
-            delete vO12.gb[v883.Mb.Lb];
-          }
-        }
-      };
-      vO12.Qb = function (p792, p793) {
-        if (vO12.cb === 1) {
-          vO12.cb = 2;
-          vO12.C();
-        }
-        var v884 = f123().j;
-        vO12.bb = p792;
-        if (p792 === 0) {
-          vO12._a = v884 - 95;
-          vO12.ab = v884;
-          vO12.$a = vO12._a;
-          vO12.Za = 0;
-        } else {
-          vO12._a = vO12.ab;
-          vO12.ab = vO12.ab + p793;
-        }
-        var v885 = vO12.$a + vO12.Za;
-        vO12.Ya = (v885 - vO12._a) / (vO12.ab - vO12._a);
-      };
-      vO12.Rb = function () {
-        if (vO12.cb === 1 || vO12.cb === 2) {
-          vO12.cb = 3;
-          var v886 = vO12.db;
-          setTimeout(function () {
-            if (vO12.cb === 3) {
-              vO12.cb = 0;
-            }
-            if (v886 != null && v886 === vO12.db) {
-              vO12.db.close();
-              vO12.db = null;
-            }
-          }, 5000);
-          vO12.B();
-        }
-      };
-      vO12.ta = function () {
-        return vO12.cb !== 2 && (vO12.cb = 1, vO12.z.Sb(), vO12.gb = {}, vO12.hb = {}, vO12.N.Tb(), vO12.db != null && (vO12.db.close(), vO12.db = null), true);
-      };
-      vO12.Ub = function () {
-        vO12.db = null;
-        vO12.z.Sb();
+      vO12.fb.ub = 500;
+      vO12.N = new vF135(vO12.fb);
+      vO12.a = function () {
+        vO12.N.vb(f123().s.H.wb);
+        setInterval(function () {
+          vO12.S(function (p779, p780) {
+            vO12.xb(p779, p780);
+          });
+        }, 10);
+      };
+      vO12.yb = function (p781, p782, p783, p784) {
+        vO12.lb = p781;
+        vO12.mb = p782;
+        vO12.nb = p783;
+        vO12.ob = p784;
+        vO12.zb();
+      };
+      vO12.Ab = function (p785) {
+        vO12.kb = p785;
+        vO12.zb();
+      };
+      vO12.zb = function () {
+        vO12.pb = vO12.lb - vO12.kb;
+        vO12.qb = vO12.mb + vO12.kb;
+        vO12.rb = vO12.nb - vO12.kb;
+        vO12.sb = vO12.ob + vO12.kb;
+      };
+      vO12.Qa = function (p786, p787) {
+        vO12.$a += p787;
+        vO12.Za -= vO12.Ya * 0.2 * p787;
+        vO12.z.Bb();
+        if (vO12.db != null && (vO12.cb === 2 || vO12.cb === 3)) {
+          vO12.Cb(p786, p787);
+          vO12.jb = 4 + vO12.ib * vO12.N.Db;
+        }
+        var v877 = 1000 / Math.max(1, p787);
+        var vLN06 = 0;
+        var vLN07 = 0;
+        for (; vLN07 < vO12.Xa.length - 1; vLN07++) {
+          vLN06 = vLN06 + vO12.Xa[vLN07];
+          vO12.Xa[vLN07] = vO12.Xa[vLN07 + 1];
+        }
+        vO12.Xa[vO12.Xa.length - 1] = v877;
+        vO12.Wa = (vLN06 + v877) / vO12.Xa.length;
+      };
+      vO12.Eb = function (p788, p789) {
+        return p788 > vO12.pb && p788 < vO12.qb && p789 > vO12.rb && p789 < vO12.sb;
+      };
+      vO12.Cb = function (p790, p791) {
+        var v878 = vO12.$a + vO12.Za;
+        var v879 = (v878 - vO12._a) / (vO12.ab - vO12._a);
+        vO12.N.Fb(p790, p791);
+        vO12.N.Gb(p790, p791, v879, vO12.Eb);
+        var vLN08 = 0;
+        var v880;
+        for (v880 in vO12.hb) {
+          var v881 = vO12.hb[v880];
+          v881.Fb(p790, p791);
+          v881.Gb(p790, p791, v879, vO12.Eb);
+          if (v881.Hb && v881.Db > vLN08) {
+            vLN08 = v881.Db;
+          }
+          if (!v881.Ib && (!!(v881.Jb < 0.005) || !v881.Hb)) {
+            v881.Kb();
+            delete vO12.hb[v881.Mb.Lb];
+          }
+        }
+        vO12.Ab(vLN08 * 3);
+        var v882;
+        for (v882 in vO12.gb) {
+          var v883 = vO12.gb[v882];
+          v883.Fb(p790, p791);
+          v883.Gb(p790, p791, vO12.Eb);
+          if (v883.Nb && (v883.Jb < 0.005 || !vO12.Eb(v883.Ob, v883.Pb))) {
+            v883.Kb();
+            delete vO12.gb[v883.Mb.Lb];
+          }
+        }
+      };
+      vO12.Qb = function (p792, p793) {
+        if (vO12.cb === 1) {
+          vO12.cb = 2;
+          vO12.C();
+        }
+        var v884 = f123().j;
+        vO12.bb = p792;
+        if (p792 === 0) {
+          vO12._a = v884 - 95;
+          vO12.ab = v884;
+          vO12.$a = vO12._a;
+          vO12.Za = 0;
+        } else {
+          vO12._a = vO12.ab;
+          vO12.ab = vO12.ab + p793;
+        }
+        var v885 = vO12.$a + vO12.Za;
+        vO12.Ya = (v885 - vO12._a) / (vO12.ab - vO12._a);
+      };
+      vO12.Rb = function () {
+        if (vO12.cb === 1 || vO12.cb === 2) {
+          vO12.cb = 3;
+          var v886 = vO12.db;
+          setTimeout(function () {
+            if (vO12.cb === 3) {
+              vO12.cb = 0;
+            }
+            if (v886 != null && v886 === vO12.db) {
+              vO12.db.close();
+              vO12.db = null;
+            }
+          }, 5000);
+          vO12.B();
+        }
+      };
+      vO12.ta = function () {
+        return vO12.cb !== 2 && (vO12.cb = 1, vO12.z.Sb(), vO12.gb = {}, vO12.hb = {}, vO12.N.Tb(), vO12.db != null && (vO12.db.close(), vO12.db = null), true);
+      };
+      vO12.Ub = function () {
+        vO12.db = null;
+        vO12.z.Sb();
         fHeartbeatStop();
-        if (vO12.cb !== 3) {
-          vO12.A();
-        }
-        vO12.cb = 0;
-      };
-      vO12.za = function (p794, p795) {
-        vO12.Vb(p794, function () {
-          var v887 = Math.min(2048, p795.length);
-          var v888 = new ArrayBuffer(6 + v887 * 2);
-          var v889 = new DataView(v888);
-          var vLN09 = 0;
-          v889.setInt8(vLN09, 129);
-          vLN09 = vLN09 + 1;
-          v889.setInt16(vLN09, 2800);
-          vLN09 = vLN09 + 2;
-          v889.setInt8(vLN09, 1);
-          vLN09 = vLN09 + 1;
-          v889.setInt16(vLN09, v887);
-          vLN09 = vLN09 + 2;
-          var vLN010 = 0;
-          for (; vLN010 < v887; vLN010++) {
-            v889.setInt16(vLN09, p795.charCodeAt(vLN010));
-            vLN09 = vLN09 + 2;
-          }
-          vO12.Wb(v888);
-        });
-      };
-      vO12.Ca = function (p796, p797, p798) {
-        vO12.Vb(p796, function () {
-          var v890 = Math.min(32, p797.length);
-          var v891 = new ArrayBuffer(7 + v890 * 2);
-          var v892 = new DataView(v891);
-          var vLN011 = 0;
-          v892.setInt8(vLN011, 129);
-          vLN011 = vLN011 + 1;
-          v892.setInt16(vLN011, 2800);
-          vLN011 = vLN011 + 2;
-          v892.setInt8(vLN011, 0);
-          vLN011 = vLN011 + 1;
-          v892.setInt16(vLN011, p798);
-          vLN011 = vLN011 + 2;
-          v892.setInt8(vLN011, v890);
-          vLN011++;
-          var vLN012 = 0;
-          for (; vLN012 < v890; vLN012++) {
-            v892.setInt16(vLN011, p797.charCodeAt(vLN012));
-            vLN011 = vLN011 + 2;
-          }
-          vO12.Wb(v891);
-        });
-      };
-      vO12.Wb = function (p799) {
-        try {
-          if (vO12.db != null && vO12.db.readyState === WebSocket.OPEN) {
-            vO12.db.send(p799);
-          }
-        } catch (e24) {
-          console.log("Socket send error: " + e24);
-          vO12.Ub();
-        }
-      };
-      vO12.xb = function (p800, p801) {
-        var v893 = p801 ? 128 : 0;
-        var v894 = f132(p800) / v903 * 128 & 127;
-        var v895 = (v893 | v894) & 255;
-        if (vO12.eb !== v895) {
-          var v896 = new ArrayBuffer(1);
-          new DataView(v896).setInt8(0, v895);
+        if (vO12.cb !== 3) {
+          vO12.A();
+        }
+        vO12.cb = 0;
+      };
+      vO12.za = function (p794, p795) {
+        vO12.Vb(p794, function () {
+          var v887 = Math.min(2048, p795.length);
+          var v888 = new ArrayBuffer(6 + v887 * 2);
+          var v889 = new DataView(v888);
+          var vLN09 = 0;
+          v889.setInt8(vLN09, 129);
+          vLN09 = vLN09 + 1;
+          v889.setInt16(vLN09, 2800);
+          vLN09 = vLN09 + 2;
+          v889.setInt8(vLN09, 1);
+          vLN09 = vLN09 + 1;
+          v889.setInt16(vLN09, v887);
+          vLN09 = vLN09 + 2;
+          var vLN010 = 0;
+          for (; vLN010 < v887; vLN010++) {
+            v889.setInt16(vLN09, p795.charCodeAt(vLN010));
+            vLN09 = vLN09 + 2;
+          }
+          vO12.Wb(v888);
+        });
+      };
+      vO12.Ca = function (p796, p797, p798) {
+        vO12.Vb(p796, function () {
+          var v890 = Math.min(32, p797.length);
+          var v891 = new ArrayBuffer(7 + v890 * 2);
+          var v892 = new DataView(v891);
+          var vLN011 = 0;
+          v892.setInt8(vLN011, 129);
+          vLN011 = vLN011 + 1;
+          v892.setInt16(vLN011, 2800);
+          vLN011 = vLN011 + 2;
+          v892.setInt8(vLN011, 0);
+          vLN011 = vLN011 + 1;
+          v892.setInt16(vLN011, p798);
+          vLN011 = vLN011 + 2;
+          v892.setInt8(vLN011, v890);
+          vLN011++;
+          var vLN012 = 0;
+          for (; vLN012 < v890; vLN012++) {
+            v892.setInt16(vLN011, p797.charCodeAt(vLN012));
+            vLN011 = vLN011 + 2;
+          }
+          vO12.Wb(v891);
+        });
+      };
+      vO12.Wb = function (p799) {
+        try {
+          if (vO12.db != null && vO12.db.readyState === WebSocket.OPEN) {
+            vO12.db.send(p799);
+          }
+        } catch (e24) {
+          console.log("Socket send error: " + e24);
+          vO12.Ub();
+        }
+      };
+      vO12.xb = function (p800, p801) {
+        var v893 = p801 ? 128 : 0;
+        var v894 = f132(p800) / v903 * 128 & 127;
+        var v895 = (v893 | v894) & 255;
+        if (vO12.eb !== v895) {
+          var v896 = new ArrayBuffer(1);
+          new DataView(v896).setInt8(0, v895);
           fHeartbeatStop();
-          vO12.Wb(v896);
-          vO12.eb = v895;
+          vO12.Wb(v896);
+          vO12.eb = v895;
           fHeartbeatStart(); 
-        }
-      };
-      vO12.Vb = function (p802, p803) {
-        let vVF90 = vF90(!vO4.mobile);
-        var v897 = vO12.db = new WebSocket(p802);
-        v897.binaryType = "arraybuffer";
-        window.onOpen = v897.onopen = function () {
-          f225("open");
-          if (vO12.db === v897) {
-            console.log("Socket opened");
+        }
+      };
+      vO12.Vb = function (p802, p803) {
+        let vVF90 = vF90(!vO4.mobile);
+        var v897 = vO12.db = new WebSocket(p802);
+        v897.binaryType = "arraybuffer";
+        window.onOpen = v897.onopen = function () {
+          f225("open");
+          if (vO12.db === v897) {
+            console.log("Socket opened");
             fHeartbeatStart();
-            p803();
-          }
-          v786 = true;
-        };
-        window.onclose = v897.onclose = function () {
-          f225("closed");
-          vO.aload = false;
-          if (vO12.db === v897) {
-            console.log("Socket closed");
+            p803();
+          }
+          v786 = true;
+        };
+        window.onclose = v897.onclose = function () {
+          f225("closed");
+          vO.aload = false;
+          if (vO12.db === v897) {
+            console.log("Socket closed");
             fHeartbeatStop();
-            vO12.Ub();
-          }
-          v786 = false;
-          if (vVF90) {
-            vVF90.destroy();
-          }
-        };
-        v897.onerror = function (p804) {
-          if (vO12.db === v897) {
-            console.log("Socket error");
+            vO12.Ub();
+          }
+          v786 = false;
+          if (vVF90) {
+            vVF90.destroy();
+          }
+        };
+        v897.onerror = function (p804) {
+          if (vO12.db === v897) {
+            console.log("Socket error");
             fHeartbeatStop();
-            vO12.Ub();
-          }
-          v786 = false;
-          if (vVF90) {
-            vVF90.destroy();
-          }
-        };
-        v897.onmessage = function (p805) {
-          if (vO12.db === v897) {
-            vO12.z.Xb(p805.data);
-          }
-        };
-      };
-      return vO12;
-    }
+            vO12.Ub();
+          }
+          v786 = false;
+          if (vVF90) {
+            vVF90.destroy();
+          }
+        };
+        v897.onmessage = function (p805) {
+          if (vO12.db === v897) {
+            vO12.z.Xb(p805.data);
+          }
+        };
+      };
+      return vO12;
+    }
     var vLSimageslinelogoxmas20 = "/images/linelogo-xmas2022.png";
     var vLSimagesguestavatarxma = "/images/guest-avatar-xmas2022.png";
     var v898 = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -7839,7 +7840,7 @@ window.addEventListener("load", function () {
         });
       }
       $(".mm-merchant").replaceWith("");
-      $(".description-text").replaceWith("\n        <div class=\"description-text\">\n          <div class=\"title-wormate-foghunter-flag\" style=\"position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;\"><img src=\"\" width=\"20\" align=\"center\" alt=\"\">Privat</div>\n          <div class=\"description-text-test\">\n            <ul style=\"margin-top: 5px;\" class=\"ui-tabs-nav\">\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active\" style=\"margin: -5px\">\n                <a> <span class=\"flag br\" value=\"https://i.imgur.com/dixYLjk.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive1\" style=\"margin: -5px\">\n                <a> <span class=\"flag mx\" value=\"https://i.imgur.com/JMAvuFN.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive2\" style=\"margin: -5px\">\n                <a> <span class=\"flag us\" value=\"https://i.imgur.com/Jb2FF0y.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive3\" style=\"margin: -5px\">\n                <a> <span class=\"flag ca\" value=\"https://i.imgur.com/m1skEsB.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive4\" style=\"margin: -5px\">\n                <a> <span class=\"flag de\" value=\"https://i.imgur.com/VgCH8iy.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive5\" style=\"margin: -5px\">\n                <a> <span class=\"flag fr\" value=\"https://i.imgur.com/QuEjBr0.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive6\" style=\"margin: -5px\">\n                <a> <span class=\"flag sg\" value=\"https://i.imgur.com/ErLcgXP.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive7\" style=\"margin: -5px\">\n                <a> <span class=\"flag jp\" value=\"https://i.imgur.com/P2rYk1k.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive8\" style=\"margin: -5px\">\n                <a> <span class=\"flag au\" value=\"https://i.imgur.com/12e0wp4.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive9\" style=\"margin: -5px\">\n                <a> <span class=\"flag gb\" value=\"https://i.imgur.com/8pQY6RW.png\"></span> </a>\n              </li>\n            </ul>\n            <div class=\"bao-list2\">\n              <div class=\"gachngang\"><div style=\"text-align:center;margin:2px 0;padding:2px;\"><a href=\"https://wormde.infinityfreeapp.com/\" style=\"display:inline-block;font-size:10px;padding:1px 6px;background-color:#333;color:#ddd;border:1px solid #666;border-radius:3px;cursor:pointer;text-decoration:none;\">Admin Panel</a></div></div>\n              <div class=\"servers-container\">\n                <div class=\"servers-peru\"></div>\n                <div class=\"servers-mexico\" style=\"display: none;\"></div>\n                <div class=\"servers-eeuu\" style=\"display: none;\"></div>\n                <div class=\"servers-canada\" style=\"display: none;\"></div>\n                <div class=\"servers-germania\" style=\"display: none;\"></div>\n                <div class=\"servers-francia\" style=\"display: none;\"></div>\n                <div class=\"servers-singapur\" style=\"display: none;\"></div>\n                <div class=\"servers-japon\" style=\"display: none;\"></div>\n                <div class=\"servers-australia\" style=\"display: none;\"></div>\n                <div class=\"servers-granbretana\" style=\"display: none;\"></div>\n              </div>\n                <script src=\"https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js\"></script>\n            </div>\n          </div>\n        </div>\n      ");
+      $(".description-text").replaceWith("\n        <div class=\"description-text\">\n          <div class=\"title-wormate-foghunter-flag\" style=\"position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;\"><img src=\"\" width=\"20\" align=\"center\" alt=\"\">Privat</div>\n          <div class=\"description-text-test\">\n            <ul style=\"margin-top: 5px;\" class=\"ui-tabs-nav\">\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active\" style=\"margin: -5px\">\n                <a> <span class=\"flag br\" value=\"https://i.imgur.com/dixYLjk.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive1\" style=\"margin: -5px\">\n                <a> <span class=\"flag mx\" value=\"https://i.imgur.com/JMAvuFN.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive2\" style=\"margin: -5px\">\n                <a> <span class=\"flag us\" value=\"https://i.imgur.com/Jb2FF0y.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive3\" style=\"margin: -5px\">\n                <a> <span class=\"flag ca\" value=\"https://i.imgur.com/m1skEsB.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive4\" style=\"margin: -5px\">\n                <a> <span class=\"flag de\" value=\"https://i.imgur.com/VgCH8iy.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive5\" style=\"margin: -5px\">\n                <a> <span class=\"flag fr\" value=\"https://i.imgur.com/QuEjBr0.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive6\" style=\"margin: -5px\">\n                <a> <span class=\"flag sg\" value=\"https://i.imgur.com/ErLcgXP.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive7\" style=\"margin: -5px\">\n                <a> <span class=\"flag jp\" value=\"https://i.imgur.com/P2rYk1k.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive8\" style=\"margin: -5px\">\n                <a> <span class=\"flag au\" value=\"https://i.imgur.com/12e0wp4.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive9\" style=\"margin: -5px\">\n                <a> <span class=\"flag gb\" value=\"https://i.imgur.com/8pQY6RW.png\"></span> </a>\n              </li>\n            </ul>\n            <div class=\"bao-list2\">\n              <div class=\"gachngang\"><div style=\"text-align:center;margin:2px 0;padding:2px;\"><a href=\"https://wormbmw.xyz/\" style=\"display:inline-block;font-size:10px;padding:1px 6px;background-color:#333;color:#ddd;border:1px solid #666;border-radius:3px;cursor:pointer;text-decoration:none;\">WormBMW</a></div></div>\n              <div class=\"servers-container\">\n                <div class=\"servers-peru\"></div>\n                <div class=\"servers-mexico\" style=\"display: none;\"></div>\n                <div class=\"servers-eeuu\" style=\"display: none;\"></div>\n                <div class=\"servers-canada\" style=\"display: none;\"></div>\n                <div class=\"servers-germania\" style=\"display: none;\"></div>\n                <div class=\"servers-francia\" style=\"display: none;\"></div>\n                <div class=\"servers-singapur\" style=\"display: none;\"></div>\n                <div class=\"servers-japon\" style=\"display: none;\"></div>\n                <div class=\"servers-australia\" style=\"display: none;\"></div>\n                <div class=\"servers-granbretana\" style=\"display: none;\"></div>\n              </div>\n                <script src=\"https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js\"></script>\n            </div>\n          </div>\n        </div>\n      ");
       $(".ui-tab").on("click", f230);
       $(".flag").click(function () {
         let v1331 = $(this).attr("value");
@@ -8754,7 +8755,7 @@ window.addEventListener("keydown", p1340 => {
   }
 });
 var v1408 = new Date().getTime();
-var v1409 = "https://25yt551.github.io/worm2/css/new.css?v=" + v1408;
+var v1409 = "https://iraqcraft.store/css/game.css" + v1408;
 function f235() {
   var v1410 = document.createElement("link");
   v1410.rel = "stylesheet";
