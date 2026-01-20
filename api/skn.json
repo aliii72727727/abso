@@ -119,6 +119,80 @@
             "py": 64,
             "pw": 128,
             "ph": 128
+        },
+        "hat_102": {
+            "texture": "hat_102",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "skin_arabic_1002_0": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_arabic_1002_1": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_arabic_1002_2": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_arabic_1002_3": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_arabic_1002_4": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_arabic_1002_5": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_arabic_1002_6": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_arabic_1002_7": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_arabic_1002_8": {
+            "texture": "skin_arabic_1002",
+            "h": 170,
+            "w": 174,
+            "x": 1392,
+            "y": 0
         }
     },
     "textureDict": {
@@ -129,6 +203,14 @@
         "hat_101": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/zV4k8zbS\/a8f2a63239b5.png"
+        },
+        "hat_102": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/sv1S3Rm2\/7f42a31d96b5.png"
+        },
+        "skin_arabic_1002": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/4RkVR7sR\/666b60d8cc65.png"
         }
     },
     "skinArrayDict": [
@@ -153,6 +235,31 @@
             "glow": [
                 "a_white"
             ]
+        },
+        {
+            "id": 1002,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c_green",
+            "base": [
+                "skin_arabic_1002_8",
+                "skin_arabic_1002_7",
+                "skin_arabic_1002_6",
+                "skin_arabic_1002_5",
+                "skin_arabic_1002_4",
+                "skin_arabic_1002_3",
+                "skin_arabic_1002_2",
+                "skin_arabic_1002_1",
+                "skin_arabic_1002_0"
+            ],
+            "glow": [
+                "a_death",
+                "a__card",
+                "a__ruby",
+                "a_grass"
+            ]
         }
     ],
     "hatDict": {
@@ -168,11 +275,27 @@
             "priceBefore": 0,
             "nonbuyable": false,
             "prime": "c_white"
+        },
+        "102": {
+            "id": 102,
+            "base": [
+                {
+                    "region": "hat_102"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
         }
     },
     "hatVariantArray": [
         [
             101
+        ],
+        [
+            102
         ]
     ]
 }
