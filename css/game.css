@@ -149,155 +149,260 @@ body {font-family: vuonghiep; }
 }
 
 #game-wrap #game-cont #background-canvas {
+  /* التموضع والأبعاد */
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  z-index: 1;
   
-  /* مؤشر عادي (إزالة المؤشر القديم) */
+  /* المؤشر */
   cursor: auto !important;
   
-  /* خلفية أساسية بالصورة + تأثير أحمر */
+  /* خلفية متدرجة - نسخة محسنة */
   background: 
-    /* طبقة سوداء خفيفة على الحواف متحركة */
-    radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0.7) 100%) center center / 200% 200%,
+    radial-gradient(
+      circle at center,
+      #3a5874 0%,
+      #557e66 35%,
+      #3a2b23 70%,
+      #0e0f18 100%
+    ),
     
-    /* تأثير أحمر خفيف على كل الصورة */
-    linear-gradient(rgba(255, 0, 0, 0.15), rgba(255, 0, 0, 0.15)),
+    /* طبقة تأثير أحمر خفيف */
+    linear-gradient(
+      rgba(255, 0, 0, 0.08),
+      rgba(255, 0, 0, 0.08)
+    ),
     
-    /* خلفية الصورة الرئيسية */
-    url('https://i.ibb.co/R4vGbqFd/image.png') center center / cover;
+    /* خلفية الصورة */
+    url('https://i.ibb.co/R4vGbqFd/image.png') center / cover;
   
-  /* تحريك الظل الأسود على الحواف */
-  animation: shadowMove 8s ease-in-out infinite alternate;
+  /* طبقات الخلفية تظهر بشكل صحيح */
+  background-blend-mode: normal, overlay, normal;
   
-  /* طبقة القلوب */
-  position: relative;
-  overflow: hidden;
+  /* أداء أفضل للرسوم المتحركة */
+  will-change: background-position;
 }
 
-/* إنشاء القلوب الصغيرة */
+/* تأثير القلوب - نسخة محسنة */
 #game-wrap #game-cont #background-canvas::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    url('https://i.ibb.co/1tXB0wmg/image.png'),
-    url('https://i.ibb.co/1tXB0wmg/image.png'),
-    url('https://i.ibb.co/1tXB0wmg/image.png');
-  background-size: 40px 40px, 30px 30px, 25px 25px;
-  background-position: 
-    10% 20%, 
-    50% 10%, 
-    90% 30%;
+  inset: 0;
+  
+  /* قلوب واحدة فقط للتقليل من الطلبات */
+  background-image: url('https://i.ibb.co/1tXB0wmg/image.png');
+  background-size: 40px;
   background-repeat: repeat;
-  opacity: 0.4;
+  background-position: 0 0;
+  
+  /* المظهر */
+  opacity: 0.25;
   filter: 
-    hue-rotate(0deg) 
-    brightness(0.8) 
-    saturate(0.7);
-  animation: heartsFloat 20s linear infinite;
+    brightness(0.8)
+    sepia(0.3)
+    hue-rotate(320deg);
+  
+  /* الرسوم المتحركة */
+  animation: 
+    heartsFloat 40s linear infinite,
+    heartsPulse 4s ease-in-out infinite alternate;
+  
+  /* أداء أفضل */
+  will-change: background-position, opacity, filter;
+  pointer-events: none;
 }
 
-/* إنشاء تساقط الثلج */
+/* تأثير الثلج - نسخة محسنة */
 #game-wrap #game-cont #background-canvas::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    url('https://i.ibb.co/C3DjwNjk/image.png'),
-    url('https://i.ibb.co/C3DjwNjk/image.png'),
-    url('https://i.ibb.co/C3DjwNjk/image.png');
-  background-size: 35px 35px, 25px 25px, 20px 20px;
-  background-position: 
-    0 0, 
-    50px 100px, 
-    100px 50px;
+  inset: 0;
+  
+  /* ثلج واحد فقط للتقليل من الطلبات */
+  background-image: url('https://i.ibb.co/C3DjwNjk/image.png');
+  background-size: 25px;
   background-repeat: repeat;
-  opacity: 0.3;
+  background-position: 0 0;
+  
+  /* المظهر */
+  opacity: 0.15;
   filter: 
-    brightness(2) 
-    hue-rotate(180deg) 
-    drop-shadow(0 0 5px rgba(173, 216, 230, 0.7));
-  animation: snowFall 15s linear infinite;
+    brightness(1.5)
+    contrast(1.2)
+    blur(0.5px);
+  
+  /* الرسوم المتحركة */
+  animation: snowFall 25s linear infinite;
+  
+  /* مزج الألوان */
   mix-blend-mode: screen;
+  
+  /* أداء أفضل */
+  will-change: background-position;
+  pointer-events: none;
 }
 
-/* تحريك الظل الأسود */
-@keyframes shadowMove {
-  0% {
-    background-position: 
-      -20% -20%, 
-      center center, 
-      center center;
-  }
-  100% {
-    background-position: 
-      20% 20%, 
-      center center, 
-      center center;
-  }
-}
+/* ========== ANIMATIONS ========== */
 
-/* تحريك القلوب */
-@keyframes heartsFloat {
-  0% {
-    background-position: 
-      10% 0%, 
-      50% -100px, 
-      90% -50px;
-    filter: 
-      hue-rotate(0deg) 
-      brightness(0.8) 
-      saturate(0.7);
-  }
-  50% {
-    filter: 
-      hue-rotate(10deg) 
-      brightness(1) 
-      saturate(0.9);
-  }
-  100% {
-    background-position: 
-      10% 100vh, 
-      50% calc(100vh + 100px), 
-      90% calc(100vh + 50px);
-    filter: 
-      hue-rotate(20deg) 
-      brightness(0.8) 
-      saturate(0.7);
-  }
-}
-
-/* تحريك الثلج */
+/* حركة الثلج السلسة */
 @keyframes snowFall {
   0% {
     background-position: 
-      0 0, 
-      50px -100px, 
-      100px -50px;
+      0 0,
+      25% -100px;
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.2;
   }
   100% {
     background-position: 
-      0 100vh, 
-      50px calc(100vh - 100px), 
-      100px calc(100vh - 50px);
+      0 100vh,
+      25% calc(100vh + 100px);
+    opacity: 0.15;
   }
 }
 
-/* تحسينات إضافية */
-#game-wrap #game-cont #background-canvas:hover::before {
-  opacity: 0.6;
-  transition: opacity 0.5s;
+/* حركة القلوب العائمة */
+@keyframes heartsFloat {
+  0% {
+    background-position: 
+      0 0,
+      15% 0;
+  }
+  25% {
+    background-position: 
+      5% 25vh,
+      20% 30vh;
+  }
+  50% {
+    background-position: 
+      10% 50vh,
+      25% 55vh;
+  }
+  75% {
+    background-position: 
+      5% 75vh,
+      20% 80vh;
+  }
+  100% {
+    background-position: 
+      0 100vh,
+      15% 105vh;
+  }
+}
+
+/* نبضات خفيفة للقلوب */
+@keyframes heartsPulse {
+  0%, 100% {
+    opacity: 0.2;
+    filter: 
+      brightness(0.7)
+      sepia(0.3)
+      hue-rotate(320deg);
+  }
+  50% {
+    opacity: 0.35;
+    filter: 
+      brightness(0.9)
+      sepia(0.4)
+      hue-rotate(325deg);
+  }
+}
+
+/* تحريك الخلفية المتدرجة */
+@keyframes gradientShift {
+  0% {
+    background-position: 
+      0% 0%,
+      0% 0%,
+      center center;
+  }
+  33% {
+    background-position: 
+      100% 100%,
+      0% 0%,
+      center center;
+  }
+  66% {
+    background-position: 
+      0% 100%,
+      0% 0%,
+      center center;
+  }
+  100% {
+    background-position: 
+      100% 0%,
+      0% 0%,
+      center center;
+  }
+}
+
+/* تأثير على التحويم - اختياري */
+@media (hover: hover) and (pointer: fine) {
+  #game-wrap #game-cont #background-canvas:hover::before {
+    opacity: 0.4;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ========== RESPONSIVE OPTIMIZATIONS ========== */
+
+/* للأجهزة المحمولة - تقليل الرسوم المتحركة */
+@media (max-width: 768px) {
+  #game-wrap #game-cont #background-canvas::before,
+  #game-wrap #game-cont #background-canvas::after {
+    animation-duration: 60s;
+    opacity: 0.15;
+  }
+  
+  #game-wrap #game-cont #background-canvas::after {
+    background-size: 20px;
+    opacity: 0.1;
+  }
+}
+
+/* تقليل الحركة لمستخدمي "prefers-reduced-motion" */
+@media (prefers-reduced-motion: reduce) {
+  #game-wrap #game-cont #background-canvas::before,
+  #game-wrap #game-cont #background-canvas::after {
+    animation: none !important;
+  }
+}
+
+/* ========== DARK/LIGHT MODE SUPPORT ========== */
+@media (prefers-color-scheme: dark) {
+  #game-wrap #game-cont #background-canvas::before {
+    opacity: 0.2;
+    filter: 
+      brightness(0.6)
+      sepia(0.4)
+      hue-rotate(330deg);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  #game-wrap #game-cont #background-canvas {
+    background: 
+      radial-gradient(
+        circle at center,
+        #5a7894 0%,
+        #75a084 35%,
+        #5a4b43 70%,
+        #2e2f38 100%
+      ),
+      linear-gradient(
+        rgba(255, 0, 0, 0.05),
+        rgba(255, 0, 0, 0.05)
+      ),
+      url('https://i.ibb.co/R4vGbqFd/image.png') center / cover;
+  }
+  
+  #game-wrap #game-cont #background-canvas::before {
+    opacity: 0.15;
+  }
 }
 
 #game-wrap #game-cont #background-canvas:hover::after {
