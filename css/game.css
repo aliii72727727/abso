@@ -4923,49 +4923,61 @@ input[type="color"]::-moz-color-swatch {
 #final-share-fb {
   display: none !important;
 }
-/* ===== Game Wrapper ===== */
+/* ===== الحاوية الرئيسية (ثابتة) ===== */
 #game-wrap {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 
-  /* الحواف السوداء مع ضباب خفيف */
+  /* حواف سوداء مع ضباب خفيف */
   border: 2px solid rgba(0, 0, 0, 0.9);
   box-shadow:
     inset 0 0 60px rgba(0, 0, 0, 0.6),
-    0 0 40px rgba(0, 0, 0, 0.8);
+    0 0 35px rgba(0, 0, 0, 0.8);
 
-  /* حركة الخلفيات */
-  animation: bgSlider 12s infinite ease-in-out;
+  background: black;
+}
+
+/* ===== طبقة الخلفية المتحركة فقط ===== */
+#game-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  animation:
+    bgImages 12s infinite ease-in-out,
+    bgMotion 6s infinite alternate ease-in-out;
 }
 
-/* ===== طبقة ضباب سوداء خفيفة فوق الخلفية ===== */
+/* ===== تثبيت محتوى اللعبة فوق الخلفية ===== */
+#game-wrap > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== ضباب أسود خفيف فوق الخلفية ===== */
 #game-wrap::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
   background: radial-gradient(
     circle,
     rgba(0, 0, 0, 0.15) 0%,
     rgba(0, 0, 0, 0.55) 100%
   );
-  pointer-events: none;
-  z-index: 1;
 }
 
-/* ===== حركة Zoom خفيفة للخلفية ===== */
-#game-wrap {
-  animation:
-    bgSlider 12s infinite ease-in-out,
-    bgZoom 6s infinite alternate ease-in-out;
-}
-
-/* ===== تبديل الصور كل 3 ثواني ===== */
-@keyframes bgSlider {
+/* ===== تبديل الصور كل 3 ثواني (بدون لمس اللعبة) ===== */
+@keyframes bgImages {
   0% {
     background-image: url("https://i.ibb.co/Kck6fjTb/image.jpg");
   }
@@ -4983,15 +4995,16 @@ input[type="color"]::-moz-color-swatch {
   }
 }
 
-/* ===== تكبير وتصغير ناعم ===== */
-@keyframes bgZoom {
+/* ===== حركة ناعمة للخلفية فقط ===== */
+@keyframes bgMotion {
   0% {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.08);
+    transform: scale(1.06);
   }
 }
+
 
 
 
