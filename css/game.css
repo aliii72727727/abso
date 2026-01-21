@@ -4487,3 +4487,56 @@ input[type="color"]::-moz-color-swatch {
 
 
 
+
+/* ===================== */
+/* CUSTOM ANIMATED BACKGROUND */
+/* ===================== */
+
+body {
+  background: transparent !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: bgSlide 12s infinite ease-in-out;
+}
+
+@keyframes bgSlide {
+  0%   { background-image: url("https://i.ibb.co/Kck6fjTb/image.jpg"); }
+  25%  { background-image: url("https://i.ibb.co/N2sH2Z1G/image.jpg"); }
+  50%  { background-image: url("https://i.ibb.co/GvdTs7GT/image.png"); }
+  75%  { background-image: url("https://i.ibb.co/rR56QJ0C/image.jpg"); }
+  100% { background-image: url("https://i.ibb.co/Kck6fjTb/image.jpg"); }
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+}
+
+/* ===================== */
+/* GAME FRAME ENHANCEMENT */
+/* ===================== */
+
+#game-wrap {
+  background: transparent !important;
+  border: 3px solid rgba(0,0,0,0.85);
+  box-shadow:
+    0 0 25px rgba(0,0,0,0.9),
+    inset 0 0 30px rgba(0,0,0,0.6);
+}
+
+#stretch-box {
+  backdrop-filter: blur(2px);
+}
+
