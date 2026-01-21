@@ -7895,27 +7895,101 @@ $("#saveMessages").on("click", () => {
         vO4.FoodShadow = $(this).val();
         localStorage.ComidaShadow = vO4.FoodShadow;
       });
-      $("#mm-advice-cont").html("\n        <div class=\"vietnam\" style=\"display: grid !important; grid-template-columns: 1fr 1fr 1fr; gap: 8.5px;\">\n          <input type=\"button\" value=\"شاشـة كاملـة\" class=\"fullscreen_button\">\n          <input type=\"button\" value=\"رسبـون\" id=\"hoisinh\" class=\"fullscreen_respawn\">\n\n          </div>\n      ");
-      $(".mm-merchant-cont").html("\n  <div style=\"display: flex; justify-content: center; align-items: center;margin-top:10px\">\n    <a href=\"https://www.youtube.com/wormde\" target=\"_blank\" style=\"margin-right: 10px;\">\n      <img src=\"https://wormateup.live/images/hiep_img/\" alt=\"\" width=\"155\">\n    </a>\n    <a href=\"https://wormateup.live.com\" target=\"_blank\">\n      <img src=\"https://i.imgur.com/V.png\" alt=\"\" width=\"155\">\n    </a>\n  </div>");
-      $(document).ready(function () {
-        $(".fullscreen_button").on("click", function () {
-          if (document.fullScreenElement && document.fullScreenElement !== null || !document.mozFullScreen && !document.webkitIsFullScreen) {
-            if (document.documentElement.requestFullScreen) {
-              document.documentElement.requestFullScreen();
-            } else if (document.documentElement.mozRequestFullScreen) {
-              document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullScreen) {
-              document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-            }
-          } else if (document.cancelFullScreen) {
-            document.cancelFullScreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-          }
-        });
-      });
+      // تحديث محتوى النصائح
+$("#mm-advice-cont").html(`
+  <div class="vietnam-buttons">
+    <input type="button" value="شاشـة كاملـة" class="btn fullscreen_button">
+    <input type="button" value="رسبـون" id="hoisinh" class="btn respawn_button">
+  </div>
+`);
+
+// تحديث المحتوى التجاري
+$(".mm-merchant-cont").html(`
+  <div class="merchant-links">
+    <a href="https://www.youtube.com/wormde" target="_blank">
+      <img src="https://wormateup.live/images/hiep_img/" alt="" width="155">
+    </a>
+    <a href="https://wormateup.live.com" target="_blank">
+      <img src="https://i.imgur.com/V.png" alt="" width="155">
+    </a>
+  </div>
+`);
+
+// CSS خفيف جدًا
+$("<style>")
+  .prop("type", "text/css")
+  .html(`
+    .vietnam-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      justify-items: center;
+      margin-top: 10px;
+    }
+    .btn {
+      padding: 8px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff6f00; /* برتقالي */
+      color: #fff;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background-color: #e65c00;
+    }
+    .merchant-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      gap: 10px;
+    }
+    .merchant-links img {
+      border-radius: 5px;
+      transition: transform 0.2s;
+    }
+    .merchant-links img:hover {
+      transform: scale(1.05);
+    }
+  `)
+  .appendTo("head");
+
+// وظيفة الشاشة الكاملة
+$(document).ready(function () {
+  $(".fullscreen_button").on("click", function () {
+    if (!document.fullscreenElement) {
+      // الدخول في وضع الشاشة الكاملة
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
+      }
+    } else {
+      // الخروج من وضع الشاشة الكاملة
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  });
+
+  // زر ريسبون (هنا مجرد مثال للتنبيه)
+  $("#hoisinh").on("click", function () {
+    alert("تم تفعيل ريسبون!"); // تقدر تستبدل الوظيفة الحقيقية هنا
+  });
+});
       $("#hoisinh").click(function () {
         let vV_0x2b5e54 = vV_0x2b5e54;
         if (vV_0x2b5e54) {
@@ -7987,7 +8061,7 @@ $("#saveMessages").on("click", () => {
 $(".description-text").replaceWith(`
   <div class="description-text">
     <div class="title-wormate-foghunter-flag" style="position:absolute;top:0;z-index:1;width:92%;margin-left:-2px;">
-      <img src="" width="20" align="center" alt="">Privat
+      <img src="" width="20" align="center" alt="">
     </div>
 
     <div class="description-text-test">
