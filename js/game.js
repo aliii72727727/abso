@@ -7867,15 +7867,59 @@ window.addEventListener("load", function () {
         });
       }
       $(".mm-merchant").replaceWith("");
-      $(".description-text").replaceWith("\n        <div class=\"description-text\">\n          <div class=\"title-wormate-foghunter-flag\" style=\"position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;\"><img src=\"\" width=\"20\" align=\"center\" alt=\"\">Privat</div>\n          <div class=\"description-text-test\">\n            <ul style=\"margin-top: 5px;\" class=\"ui-tabs-nav\">\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active\" style=\"margin: -5px\">\n                <a> <span class=\"flag br\" value=\"https://i.imgur.com/dixYLjk.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive1\" style=\"margin: -5px\">\n                <a> <span class=\"flag mx\" value=\"https://i.imgur.com/JMAvuFN.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive2\" style=\"margin: -5px\">\n                <a> <span class=\"flag us\" value=\"https://i.imgur.com/Jb2FF0y.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive3\" style=\"margin: -5px\">\n                <a> <span class=\"flag ca\" value=\"https://i.imgur.com/m1skEsB.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive4\" style=\"margin: -5px\">\n                <a> <span class=\"flag de\" value=\"https://i.imgur.com/VgCH8iy.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive5\" style=\"margin: -5px\">\n                <a> <span class=\"flag fr\" value=\"https://i.imgur.com/QuEjBr0.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive6\" style=\"margin: -5px\">\n                <a> <span class=\"flag sg\" value=\"https://i.imgur.com/ErLcgXP.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive7\" style=\"margin: -5px\">\n                <a> <span class=\"flag jp\" value=\"https://i.imgur.com/P2rYk1k.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive8\" style=\"margin: -5px\">\n                <a> <span class=\"flag au\" value=\"https://i.imgur.com/12e0wp4.png\"></span> </a>\n              </li>\n              <li class=\"ui-tabs-tab ui-tab ui-tab-inactive9\" style=\"margin: -5px\">\n                <a> <span class=\"flag gb\" value=\"https://i.imgur.com/8pQY6RW.png\"></span> </a>\n              </li>\n            </ul>\n            <div class=\"bao-list2\">\n              <div class=\"gachngang\"><div style=\"text-align:center;margin:2px 0;padding:2px;\"><a href=\"https://wormbmw.xyz/\" style=\"display:inline-block;font-size:10px;padding:1px 6px;background-color:#333;color:#ddd;border:1px solid #666;border-radius:3px;cursor:pointer;text-decoration:none;\">WormBMW</a></div></div>\n              <div class=\"servers-container\">\n                <div class=\"servers-peru\"></div>\n                <div class=\"servers-mexico\" style=\"display: none;\"></div>\n                <div class=\"servers-eeuu\" style=\"display: none;\"></div>\n                <div class=\"servers-canada\" style=\"display: none;\"></div>\n                <div class=\"servers-germania\" style=\"display: none;\"></div>\n                <div class=\"servers-francia\" style=\"display: none;\"></div>\n                <div class=\"servers-singapur\" style=\"display: none;\"></div>\n                <div class=\"servers-japon\" style=\"display: none;\"></div>\n                <div class=\"servers-australia\" style=\"display: none;\"></div>\n                <div class=\"servers-granbretana\" style=\"display: none;\"></div>\n              </div>\n                <script src=\"https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js\"></script>\n            </div>\n          </div>\n        </div>\n      ");
-      $(".ui-tab").on("click", f230);
-      $(".flag").click(function () {
-        let v1331 = $(this).attr("value");
-        vO4.flag = v1331;
-        vO7.containerImgS.texture = vO7.onclickServer;
-        retundFlagError();
-        console.log(v1331);
-      });
+
+$(".description-text").replaceWith(`
+  <div class="description-text">
+    <div class="title-wormate-foghunter-flag" style="position:absolute;top:0;z-index:1;width:92%;margin-left:-2px;">
+      <img src="" width="20" align="center" alt="">Privat
+    </div>
+
+    <div class="description-text-test">
+      <ul style="margin-top:5px;" class="ui-tabs-nav">
+
+        <li class="ui-tabs-tab ui-tab ui-tab-active" style="margin:-5px">
+          <a><span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span></a>
+        </li>
+
+        <li class="ui-tabs-tab ui-tab" style="margin:-5px">
+          <a><span class="flag fr" value="https://i.imgur.com/QuEjBr0.png"></span></a>
+        </li>
+
+        <li class="ui-tabs-tab ui-tab" style="margin:-5px">
+          <a><span class="flag au" value="https://i.imgur.com/12e0wp4.png"></span></a>
+        </li>
+
+      </ul>
+
+      <div class="bao-list2">
+        <div class="servers-container">
+          <div class="servers-germania"></div>
+          <div class="servers-francia" style="display:none;"></div>
+          <div class="servers-australia" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+`);
+
+$(".ui-tab").on("click", function () {
+  $(".ui-tab").removeClass("ui-tab-active");
+  $(this).addClass("ui-tab-active");
+
+  $(".servers-container > div").hide();
+
+  if ($(this).find(".de").length) $(".servers-germania").show();
+  if ($(this).find(".fr").length) $(".servers-francia").show();
+  if ($(this).find(".au").length) $(".servers-australia").show();
+});
+
+$(".flag").on("click", function () {
+  let v1331 = $(this).attr("value");
+  vO4.flag = v1331;
+  vO7.containerImgS.texture = vO7.onclickServer;
+  retundFlagError();
+  console.log(v1331);
+});
       for (a = 0; a < vO6.Api_listServer.length; a++) {
         var v1332 = vO6.Api_listServer[a].serverUrl;
         var v1333 = vO6.Api_listServer[a].name;
