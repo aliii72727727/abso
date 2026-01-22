@@ -7652,249 +7652,183 @@ window.addEventListener("load", function () {
       }
       localStorage.setItem("SaveGameXT", JSON.stringify(vO4));
     }, false);
-    let vA17 = [{
-      nombre: "chuot 1",
-      url: "https://i.imgur.com/SjFtyqp.png"
-    }, {
-      nombre: "chuot 2",
-      url: "https://i.imgur.com/4QC2Exd.png"
-    }, {
-      nombre: "chuot 3",
-      url: "https://i.imgur.com/PfdBkc2.png"
-    }, {
-      nombre: "chuot 4",
-      url: "https://i.imgur.com/vD4zoMk.png"
-    }, {
-      nombre: "chuot 5",
-      url: "https://i.imgur.com/n4N79UI.png"
-    }, {
-      nombre: "arrow",
-      url: "https://cdn.custom-cursor.com/db/234/32/arrow2291.png"
-    }, {
-      nombre: "Superman",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/Superman_Cursor.png"
-    }, {
-      nombre: "Kratos",
-      url: "https://cdn.custom-cursor.com/128/assets/pointers/32/GOW_Kratos_Pointer.png"
-    }, {
-      nombre: "Pusheen_Ca",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/Pusheen_Cat_Cursor.png"
-    }, {
-      nombre: "lipstick",
-      url: "https://i.imgur.com/zNlNdlx.png"
-    }, {
-      nombre: "AKM",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/PUBG_AKM_Cursor.png"
-    }, {
-      nombre: "Cherries_Pointer",
-      url: "https://cdn.custom-cursor.com/db/pointer/32/Cherries_Pointer.png"
-    }, {
-      nombre: "Tom_and_JerryCurso",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/Tom_and_JerryCursor.png"
-    }, {
-      nombre: "JerryPointer",
-      url: "https://cdn.custom-cursor.com/db/pointer/32/Tom_and_JerryPointer.png"
-    }];
-    let vA18 = [{
-      nombre: "Default",
-      url: "https://i.imgur.com/8ubx4RA.png"
-    }, {
-      nombre: "Schwarze Background",
-      url: "https://i.imgur.com/3cxXwZ6.png"
-    }, {
-      nombre: "light blue",
-      url: "https://i.imgur.com/dWtJFIx.png"
-    }, {
-      nombre: "woman",
-      url: "https://i.imgur.com/19YALRi.png"
-    }, {
-      nombre: "Navidad",
-      url: "https://i.imgur.com/PSRIvVM.png"
-    }, {
-      nombre: "Mal3ab",
-      url: "https://i.imgur.com/MlCgOma.png"
-    }, {
-      nombre: "Galaxy_Star",
-      url: "https://i.imgur.com/yayb9Ru.png"
-    }, {
-      nombre: "Desert",
-      url: "https://asserts.wormworld.io/backgrounds/bkgnd7.png"
-    }];
-    vO4.loading = true;
-    var vLS4 = "";
-    vLS4 += "</div>";
-    vLS4 += "</div>";
-    vLS4 += "</div>";
-    vLS4 += "<div id=\"wormcerca\">";
-    vLS4 += "<img class=\"pwrups v0\" style=\"display: none;\" src=\"https://i.imgur.com/M1LFPpp.png\">";
-    vLS4 += "<img class=\"pwrups v1\" style=\"display: none;\" src=\"https://i.imgur.com/z162iYa.png\">";
-    vLS4 += "<img class=\"pwrups v2\" style=\"display: none;\" src=\"https://i.imgur.com/kXlF32q.png\">";
-    vLS4 += "<img class=\"pwrups v3\" style=\"display: none;\" src=\"https://i.imgur.com/kJ6oz7e.png\">";
-    vLS4 += "<img class=\"pwrups v4\" style=\"display: none;\" src=\"https://i.imgur.com/l3ds43O.png\">";
-    vLS4 += "<img class=\"pwrups v5\" style=\"display: none;\" src=\"https://i.imgur.com/FqA56k6.png\">";
-    vLS4 += "<img class=\"pwrups v6\" style=\"display: none;\" src=\"https://i.imgur.com/mSCZeEp.png\">";
-    vLS4 += "</div>";
-    vLS4 += "<img class=\"worm_1\" src=\"https://i.imgur.com/iekrYYm.png\"><span class=\"Worm_cerca\"></span>";
-    vLS4 += "</div><div class=\"worm_4\"><button id=\"settingBtn\"><img src=\"https://i.imgur.com/bKAe6W9.png\"/></button><div id=\"settingContent\"><div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n        <span class=\"settings_span\">Power-ups-Size: </span>\n        <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n        </div>\n        \n      <div class=\"container1\">\n      <span class=\"settings_span\">Power-ups-Aura: </span>\n      <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n      </div>\n       \n      <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Size: </span>\n                    <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n                    </div>\n                    <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Shadow: </span>\n                    <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n                    </div>\n    </div>\n    </div><div style=\"display:none\" id=\"zoom-container\"><div id=\"zoom-out\">-</div><div id=\"zoom-in\">+</div><div class=\"worm_3\">x.<span id=\"zoom-percentage\"></span>";
-    $("#game-view").append(vLS4);
-    function f217(p1307) {
-      if (vO4.PropertyManager) {
-        p1307.skinId = vO4.PropertyManager.rh;
-        p1307.eyesId = vO4.PropertyManager.sh;
-        p1307.mouthId = vO4.PropertyManager.th;
-        p1307.glassesId = vO4.PropertyManager.uh;
-        p1307.hatId = vO4.PropertyManager.vh;
-      }
-    }
-    function f218() {
-      // =======================
-// تحديث واجهة الإعدادات
-// =======================
-$("#mm-event-text").replaceWith(
-  '<div class="text-vnxx"><a href="https://www.wormateup.live">privat</a></div>'
-);
+    /* ===============================
+   SETTINGS + UI CLEAN VERSION
+   =============================== */
 
-$("#mm-store").after(`
-<div id="mm-settings" style="float:right;position:relative;margin-right:10px;min-width:140px;">
-  <div id="settings-wrapper">
-    <div id="openSettings" style="cursor:pointer;">
-      <i class="fa fa-cog fa-spin" style="color:yellow;font-size:25px;"></i> Settings
+// ====== CURSORS ======
+const vA17 = [
+  { nombre: "chuot 1", url: "https://i.imgur.com/SjFtyqp.png" },
+  { nombre: "chuot 2", url: "https://i.imgur.com/4QC2Exd.png" },
+  { nombre: "chuot 3", url: "https://i.imgur.com/PfdBkc2.png" },
+  { nombre: "chuot 4", url: "https://i.imgur.com/vD4zoMk.png" },
+  { nombre: "chuot 5", url: "https://i.imgur.com/n4N79UI.png" },
+  { nombre: "arrow", url: "https://cdn.custom-cursor.com/db/234/32/arrow2291.png" },
+  { nombre: "Superman", url: "https://cdn.custom-cursor.com/db/cursor/32/Superman_Cursor.png" },
+  { nombre: "Kratos", url: "https://cdn.custom-cursor.com/128/assets/pointers/32/GOW_Kratos_Pointer.png" }
+];
+
+// ====== BACKGROUNDS ======
+const vA18 = [
+  { nombre: "Default", url: "https://i.imgur.com/8ubx4RA.png" },
+  { nombre: "Black", url: "https://i.imgur.com/3cxXwZ6.png" },
+  { nombre: "Blue", url: "https://i.imgur.com/dWtJFIx.png" },
+  { nombre: "Galaxy", url: "https://i.imgur.com/yayb9Ru.png" }
+];
+
+// ====== HTML UI ======
+const settingsHTML = `
+<div id="mm-settings">
+  <div id="openSettings">⚙ Settings</div>
+
+  <div id="popup">
+    <div class="popup-header">
+      ⚙ Game Settings
+      <span id="closePopup">✖</span>
     </div>
 
-    <div id="popup" class="popup" style="display:none;">
-      <div class="phdr1" style="display:flex;align-items:center;justify-content:center;">
-        <i class="fa fa-cog fa-spin" style="color:yellow;font-size:22px;margin-right:5px;"></i>
-        <span>Game Settings</span>
+    <div class="tabs">
+      <button data-tab="game" class="active">Game</button>
+      <button data-tab="messages">Messages</button>
+    </div>
+
+    <div class="tab-content active" id="tab-game">
+      <div class="row">
+        ID:
+        <input type="text" value="${vO4.FB_UserID}" readonly>
+        <button id="copyID">COPY</button>
       </div>
 
-      <button id="closePopup">Close</button>
+      <label><input type="checkbox" id="eatFast"> Eat Fast</label>
+      <label><input type="checkbox" id="hsSound"> Headshot Sound</label>
 
-      <div class="tab-buttons" style="display:flex;gap:5px;margin:10px 0;">
-        <button data-tab="game" class="active">Game</button>
-        <button data-tab="messages">Messages</button>
-      </div>
+      <select id="soundSelect">
+        <option value="">None</option>
+        <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option>
+        <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option>
+      </select>
+    </div>
 
-      <div class="tab-content active" id="tab-game">
-        <div style="margin-bottom:5px;">
-          ID:
-          <input type="text" value="${vO4.FB_UserID}" readonly style="width:100px;">
-          <button id="copyID">COPY</button>
-        </div>
-
-        <label>
-          Eat Fast:
-          <input type="checkbox" id="eatFast">
-        </label>
-
-        <label>
-          Headshot Sound:
-          <input type="checkbox" id="hsSound">
-        </label>
-
-        <select id="soundSelect">
-          <option value="">None</option>
-          <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option>
-          <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option>
+    <div class="tab-content" id="tab-messages">
+      <label>Kill Message
+        <select id="killSelect">
+          <option value="Well Done!">حاول مجددا بوت</option>
+          <option value="Nice Try">حريكااا الحيط</option>
         </select>
-      </div>
+      </label>
 
-      <div class="tab-content" id="tab-messages">
-        <div style="margin-bottom:5px;">
-          Kill Message:
-          <select id="killSelect">
-            <option value="Well Done!">حاول مجددا بوت !</option>
-            <option value="Nice Try">حريكااا الحيط</option>
-          </select>
-        </div>
+      <label>Headshot Message
+        <select id="headshotSelect">
+          <option value="HEADSHOT">اديلو ادي</option>
+          <option value="BOOM">علوبي بوت</option>
+        </select>
+      </label>
 
-        <div style="margin-bottom:5px;">
-          Headshot Message:
-          <select id="headshotSelect">
-            <option value="HEADSHOT">اديلو ادي</option>
-            <option value="BOOM">علوبي بوت</option>
-          </select>
-        </div>
-
-        <button id="saveMessages">Save</button>
-      </div>
+      <button id="saveMessages">Save</button>
     </div>
   </div>
 </div>
-`);
+`;
 
-// =======================
-// عناصر التحكم
-// =======================
+$("#mm-store").after(settingsHTML);
+
+// ====== CSS (أبيض + برتقالي خفيف) ======
+$("<style>").text(`
+#mm-settings{
+  position:relative;
+  float:right;
+  margin-right:10px;
+  font-family:tahoma;
+}
+#openSettings{
+  cursor:pointer;
+  color:#ff9800;
+  font-weight:bold;
+}
+#popup{
+  display:none;
+  position:absolute;
+  right:0;
+  top:30px;
+  width:260px;
+  background:#fff;
+  border:2px solid #ff9800;
+  border-radius:8px;
+  color:#000;
+  padding:8px;
+  z-index:9999;
+}
+.popup-header{
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+  color:#ff9800;
+}
+.tabs{
+  display:flex;
+  gap:5px;
+  margin:8px 0;
+}
+.tabs button{
+  flex:1;
+  border:1px solid #ff9800;
+  background:#fff;
+  cursor:pointer;
+}
+.tabs button.active{
+  background:#ff9800;
+  color:#fff;
+}
+.tab-content{ display:none; }
+.tab-content.active{ display:block; }
+.row{
+  display:flex;
+  gap:5px;
+  margin-bottom:6px;
+}
+`).appendTo("head");
+
+// ====== LOGIC ======
 const popup = $("#popup");
 const audio = new Audio();
 
-// فتح وغلق البوب اب
-$("#openSettings").on("click", () => popup.show());
+$("#openSettings").on("click", () => popup.toggle());
 $("#closePopup").on("click", () => popup.hide());
 
-// نسخ الـ ID
 $("#copyID").on("click", () => navigator.clipboard.writeText(vO4.FB_UserID));
 
-// التبويبات
-$(".tab-buttons button").on("click", function () {
-  $(".tab-buttons button").removeClass("active");
+$(".tabs button").on("click", function () {
+  $(".tabs button").removeClass("active");
   $(this).addClass("active");
-
   $(".tab-content").removeClass("active");
   $("#tab-" + $(this).data("tab")).addClass("active");
 });
 
-// التحكم بالصوت
 $("#soundSelect").on("change", function () {
-  const src = this.value;
-  localStorage.setItem("hsSoundSrc", src);
-  if ($("#hsSound").prop("checked")) {
-    audio.src = src;
+  localStorage.hsSoundSrc = this.value;
+  if ($("#hsSound").prop("checked") && this.value) {
+    audio.src = this.value;
     audio.play();
   }
 });
 
 $("#hsSound").on("change", function () {
-  localStorage.setItem("hsSoundEnabled", this.checked);
+  localStorage.hsSoundEnabled = this.checked;
   if (!this.checked) audio.pause();
 });
 
-// حفظ الرسائل
 $("#saveMessages").on("click", () => {
-  localStorage.setItem("killMsg", $("#killSelect").val());
-  localStorage.setItem("hsMsg", $("#headshotSelect").val());
-  alert("Messages saved!");
+  localStorage.killMsg = $("#killSelect").val();
+  localStorage.hsMsg = $("#headshotSelect").val();
+  alert("Saved!");
 });
 
-// =======================
-// تحميل الإعدادات المخزنة
-// =======================
-(function loadSettings() {
-  $("#killSelect").val(localStorage.getItem("killMsg"));
-  $("#headshotSelect").val(localStorage.getItem("hsMsg"));
-  $("#hsSound").prop("checked", localStorage.getItem("hsSoundEnabled") === "true");
-  $("#soundSelect").val(localStorage.getItem("hsSoundSrc"));
-})();
-      $("#PortionSize").on("input", function () {
-        vO4.PortionSize = $(this).val();
-        localStorage.PotenciadorSize = vO4.PortionSize;
-      });
-      $("#PortionAura").on("input", function () {
-        vO4.PortionAura = $(this).val();
-        localStorage.PotenciadorAura = vO4.PortionAura;
-      });
-      $("#smoothCamera").on("input", function () {
-        vO4.smoothCamera = $(this).val();
-        localStorage.smoothCamera = vO4.smoothCamera;
-      });
-      $("#FoodSize").on("input", function () {
-        vO4.FoodSize = $(this).val();
-        localStorage.ComidaSize = vO4.FoodSize;
-      });
-      $("#FoodShadow").on("input", function () {
-        vO4.FoodShadow = $(this).val();
-        localStorage.ComidaShadow = vO4.FoodShadow;
-      });
+// ====== LOAD SAVED ======
+$("#killSelect").val(localStorage.killMsg);
+$("#headshotSelect").val(localStorage.hsMsg);
+$("#hsSound").prop("checked", localStorage.hsSoundEnabled === "true");
+$("#soundSelect").val(localStorage.hsSoundSrc);
+      
       // تحديث محتوى النصائح
 $("#mm-advice-cont").html(`
   <div class="vietnam-buttons">
