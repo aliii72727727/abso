@@ -5140,3 +5140,51 @@ input[type="color"]::-moz-color-swatch {
     width: 40px;
     top: -50px;
 }
+
+
+/* =====================================================
+   UPDATED THEME – TRUST EDITION
+   Core Colors: ORANGE / BLACK / GRAY / WHITE
+   Animated Background: BLUE / PURPLE / PINK
+===================================================== */
+
+:root{
+  --orange:#ff9800;
+  --orange-soft:#ffb74d;
+  --black:#0b0b0b;
+  --gray-dark:#1f1f1f;
+  --gray:#2c2c2c;
+  --gray-soft:#3a3a3a;
+  --white:#ffffff;
+  --text-soft:#cfcfcf;
+  --border-orange:rgba(255,152,0,.4);
+}
+
+body{
+  background:linear-gradient(120deg,#1a237e,#6a1b9a,#ad1457,#283593);
+  background-size:400% 400%;
+  animation:bgMove 15s ease infinite;
+  color:var(--white);
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+*{
+  text-shadow:none!important;
+  filter:none!important;
+}
+
+.flag,.flag-item{
+  background:var(--gray-dark);
+  border:2px solid var(--border-orange);
+  border-radius:10px;
+}
+
+.store,.store-panel{
+  background:linear-gradient(135deg,var(--black),var(--gray));
+  border:2px solid var(--orange);
+}
