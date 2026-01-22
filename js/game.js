@@ -9127,3 +9127,97 @@ window.KeepAliveCircle = {
     }
   }
 };
+/***********************
+ * FAVORITE SKINS SYSTEM
+ ***********************/
+
+// تحميل المفضلة
+function getFavoriteSkins() {
+  return JSON.parse(localStorage.getItem("favoriteSkins") || "[]");
+}
+
+// حفظ المفضلة
+function saveFavoriteSkins(list) {
+  localStorage.setItem("favoriteSkins", JSON.stringify(list));
+}
+
+// الجلد الأساسي
+function setDefaultSkin(skinId) {
+  localStorage.setItem("defaultSkin", skinId);
+}
+function getDefaultSkin() {
+  return localStorage.getItem("defaultSkin");
+}
+
+// إضافة زر Add Skin داخل المتجر
+function injectAddSkinButton(skinId) {
+  if (document.querySelector(".add-skin-btn")) return;
+
+  const btn = document.createElement("button");
+  btn.className = "add-skin-btn";
+  btn.textContent = "Add Skin";
+
+  let favs = getFavoriteSkins();
+  if (favs.includes(skinId)) {
+    btn.style.background = "#2ecc71";
+  }
+
+  btn.onclick = function () {
+    let favs = getFavoriteSkins();
+
+    if (favs.includes(skinId)) {
+      favs = favs.filter(s => s !== skinId);
+      btn.style.background = "#e74c3c";
+    } else {
+      favs.push(skinId);
+      btn.style.background = "#2ecc71";
+    }
+
+    saveFavoriteSkins(favs);
+  };
+
+  document.body.appendChild(btn);
+}
+
+// CSS خفيف للزر
+const style = document.createElement("style");
+style.innerHTML = `
+.add-skin-btn{
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  padding:8px 14px;
+  font-weight:bold;
+  border:none;
+  border-radius:6px;
+  background:#e74c3c;
+  color:#fff;
+  cursor:pointer;
+  z-index:9999;
+}
+`;
+document.head.appendChild(style);
+
+// تبديل الجلود بزر 1
+let skinIndex = 0;
+document.addEventListener("keydown", function (e) {
+  const favs = getFavoriteSkins();
+  if (!favs.length) return;
+
+  if (e.key === "1") {
+    skinIndex = (skinIndex + 1) % favs.length;
+    applySkin(favs[skinIndex]);
+  }
+
+  if (e.key === "7") {
+    const def = getDefaultSkin();
+    if (def) applySkin(def);
+  }
+});
+
+// دالة تطبيق الجلد (اربطها بدالتك الأصلية)
+function applySkin(skinId) {
+  if (window.setSkin) {
+    window.setSkin(skinId);
+  }
+}
