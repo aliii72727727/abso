@@ -15,10 +15,10 @@
         canvas.style.transform = `scale(${gameZoom})`;
     }
 
-    /* ===== PC CONTROLS ===== */
+    /* ===== PC CONTROLS (Mouse + Keyboard) ===== */
     window.addEventListener("wheel", (e) => {
-        if (!canvas || e.target !== canvas) return;
-        e.preventDefault();
+        if (!canvas) return;
+        e.preventDefault(); // منع scroll الصفحة
         gameZoom += e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP;
         gameZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, gameZoom));
         applyZoom();
@@ -35,7 +35,7 @@
 
     /* ===== MOBILE BUTTONS ===== */
     function createMobileZoomUI() {
-        if (!("ontouchstart" in window)) return;
+        if (!("ontouchstart" in window)) return; // فقط للجوال
 
         const wrap = document.createElement("div");
         wrap.style.cssText = `
@@ -70,10 +70,9 @@
     }
 
     /* ===== INIT ===== */
-    applyZoom(); // فعال مباشرة عند التحميل
+    applyZoom(); // تفعيل الزوم مباشرة
     createMobileZoomUI();
-    console.log("✅ Game Zoom Activated");
-
+    console.log("✅ Game Zoom Activated for PC & Mobile");
 })();
 
 
