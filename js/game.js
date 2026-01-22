@@ -7898,8 +7898,8 @@ $("#saveMessages").on("click", () => {
       // تحديث محتوى النصائح
 $("#mm-advice-cont").html(`
   <div class="vietnam-buttons">
-    <input type="button" value="FULL SCREEN" class="btn btn-fullscreen fullscreen_button">
-    <input type="button" value="RESPAWN" id="hoisinh" class="btn btn-respawn">
+    <input type="button" value="شاشـة كاملـة" class="btn fullscreen_button">
+    <input type="button" value="رسبـون" id="hoisinh" class="btn respawn_button">
   </div>
 `);
 
@@ -7916,72 +7916,79 @@ $(".mm-merchant-cont").html(`
 `);
 
 // CSS خفيف جدًا
-$("<style>").prop("type", "text/css").html(`
-  .vietnam-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-top: 10px;
-    align-items: center;
-  }
+$("<style>")
+  .prop("type", "text/css")
+  .html(`
+    .vietnam-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      justify-items: center;
+      margin-top: 10px;
+    }
+    .btn {
+      padding: 8px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff6f00; /* برتقالي */
+      color: #fff;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background-color: #e65c00;
+    }
+    .merchant-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      gap: 10px;
+    }
+    .merchant-links img {
+      border-radius: 5px;
+      transition: transform 0.2s;
+    }
+    .merchant-links img:hover {
+      transform: scale(1.05);
+    }
+  `)
+  .appendTo("head");
 
-  .btn {
-    width: 160px;
-    padding: 8px 0;
-    font-size: 13px;
-    font-weight: 700;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #fff;
-  }
-
-  .btn-fullscreen {
-    background: #5f5f5f; /* رصاصي */
-  }
-
-  .btn-fullscreen:hover {
-    background: #4a4a4a;
-  }
-
-  .btn-respawn {
-    background: #c62828; /* أحمر */
-  }
-
-  .btn-respawn:hover {
-    background: #a61f1f;
-  }
-
-  .merchant-links {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-`).appendTo("head");
-
-// وظيفة FULL SCREEN
+// وظيفة الشاشة الكاملة
 $(document).ready(function () {
-
   $(".fullscreen_button").on("click", function () {
     if (!document.fullscreenElement) {
+      // الدخول في وضع الشاشة الكاملة
       if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
       } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
+        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
       }
     } else {
+      // الخروج من وضع الشاشة الكاملة
       if (document.exitFullscreen) {
         document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
       }
     }
   });
 
-  // زر RESPAWN (مكان ربط الوظيفة الحقيقية)
+  // زر ريسبون (هنا مجرد مثال للتنبيه)
   $("#hoisinh").on("click", function () {
-    alert("RESPAWN");
+    alert("تم تفعيل ريسبون!"); // تقدر تستبدل الوظيفة الحقيقية هنا
   });
-
 });
       $("#hoisinh").click(function () {
         let vV_0x2b5e54 = vV_0x2b5e54;
@@ -9127,97 +9134,118 @@ window.KeepAliveCircle = {
     }
   }
 };
-/***********************
- * FAVORITE SKINS SYSTEM
- ***********************/
 
-// تحميل المفضلة
-function getFavoriteSkins() {
-  return JSON.parse(localStorage.getItem("favoriteSkins") || "[]");
-}
 
-// حفظ المفضلة
-function saveFavoriteSkins(list) {
-  localStorage.setItem("favoriteSkins", JSON.stringify(list));
-}
+/* ===============================
+   FAVORITE SKINS – SAFE INTEGRATION
+   =============================== */
+(function () {
+  try {
+    // Helpers
+    const LS_FAV = "favoriteSkins";
+    const LS_DEF = "defaultSkin";
+    const $ = (q) => document.querySelector(q);
 
-// الجلد الأساسي
-function setDefaultSkin(skinId) {
-  localStorage.setItem("defaultSkin", skinId);
-}
-function getDefaultSkin() {
-  return localStorage.getItem("defaultSkin");
-}
-
-// إضافة زر Add Skin داخل المتجر
-function injectAddSkinButton(skinId) {
-  if (document.querySelector(".add-skin-btn")) return;
-
-  const btn = document.createElement("button");
-  btn.className = "add-skin-btn";
-  btn.textContent = "Add Skin";
-
-  let favs = getFavoriteSkins();
-  if (favs.includes(skinId)) {
-    btn.style.background = "#2ecc71";
-  }
-
-  btn.onclick = function () {
-    let favs = getFavoriteSkins();
-
-    if (favs.includes(skinId)) {
-      favs = favs.filter(s => s !== skinId);
-      btn.style.background = "#e74c3c";
-    } else {
-      favs.push(skinId);
-      btn.style.background = "#2ecc71";
+    function getFavs() {
+      try { return JSON.parse(localStorage.getItem(LS_FAV) || "[]"); } catch(e){ return []; }
+    }
+    function setFavs(a) {
+      localStorage.setItem(LS_FAV, JSON.stringify(a));
+    }
+    function setDefaultSkin(id) {
+      if (id != null) localStorage.setItem(LS_DEF, String(id));
+    }
+    function getDefaultSkin() {
+      return localStorage.getItem(LS_DEF);
     }
 
-    saveFavoriteSkins(favs);
-  };
+    // Try to resolve current selected skin from common globals
+    function resolveCurrentSkin() {
+      return window.currentSkin || window.selectedSkin || window.skinId || null;
+    }
 
-  document.body.appendChild(btn);
-}
+    // Apply skin using common APIs if present
+    function applySkin(id) {
+      if (!id) return;
+      if (typeof window.setSkin === "function") return window.setSkin(id);
+      if (typeof window.changeSkin === "function") return window.changeSkin(id);
+      // fallback: expose event
+      window.dispatchEvent(new CustomEvent("applySkin", { detail: id }));
+    }
 
-// CSS خفيف للزر
-const style = document.createElement("style");
-style.innerHTML = `
-.add-skin-btn{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  padding:8px 14px;
-  font-weight:bold;
-  border:none;
-  border-radius:6px;
-  background:#e74c3c;
-  color:#fff;
-  cursor:pointer;
-  z-index:9999;
-}
-`;
-document.head.appendChild(style);
+    // UI Button
+    function ensureButton() {
+      if ($(".add-skin-btn")) return;
+      const btn = document.createElement("button");
+      btn.className = "add-skin-btn";
+      btn.textContent = "Add Skin";
+      btn.onclick = () => {
+        const id = resolveCurrentSkin();
+        if (!id) return;
+        let favs = getFavs();
+        const idx = favs.indexOf(id);
+        if (idx >= 0) {
+          favs.splice(idx, 1);
+          btn.style.background = "#e74c3c";
+        } else {
+          favs.push(id);
+          btn.style.background = "#2ecc71";
+          setDefaultSkin(getDefaultSkin() || id);
+        }
+        setFavs(favs);
+      };
+      document.body.appendChild(btn);
+      refreshBtn();
+    }
 
-// تبديل الجلود بزر 1
-let skinIndex = 0;
-document.addEventListener("keydown", function (e) {
-  const favs = getFavoriteSkins();
-  if (!favs.length) return;
+    function refreshBtn() {
+      const btn = $(".add-skin-btn");
+      if (!btn) return;
+      const id = resolveCurrentSkin();
+      const favs = getFavs();
+      btn.style.background = favs.includes(id) ? "#2ecc71" : "#e74c3c";
+    }
 
-  if (e.key === "1") {
-    skinIndex = (skinIndex + 1) % favs.length;
-    applySkin(favs[skinIndex]);
+    // Styles
+    const style = document.createElement("style");
+    style.textContent = `
+      .add-skin-btn{
+        position:fixed; right:16px; bottom:90px; z-index:99999;
+        padding:8px 14px; border:none; border-radius:6px;
+        font-weight:700; color:#fff; cursor:pointer;
+        background:#e74c3c;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Observe store open (generic)
+    const obs = new MutationObserver(() => {
+      // when store panels appear, ensure button
+      if (document.querySelector(".store, .store-panel")) ensureButton();
+      refreshBtn();
+    });
+    obs.observe(document.documentElement, { childList:true, subtree:true });
+
+    // Key bindings: 1 cycle favs, 7 back to default
+    let idx = 0;
+    document.addEventListener("keydown", (e) => {
+      const favs = getFavs();
+      if (!favs.length) return;
+      if (e.key === "1") {
+        idx = (idx + 1) % favs.length;
+        applySkin(favs[idx]);
+      }
+      if (e.key === "7") {
+        const d = getDefaultSkin();
+        if (d) applySkin(d);
+      }
+    });
+
+    // Expose for compatibility
+    window.FavoriteSkins = {
+      getFavs, setFavs, applySkin, setDefaultSkin
+    };
+  } catch (e) {
+    console.error("FavoriteSkins init error", e);
   }
-
-  if (e.key === "7") {
-    const def = getDefaultSkin();
-    if (def) applySkin(def);
-  }
-});
-
-// دالة تطبيق الجلد (اربطها بدالتك الأصلية)
-function applySkin(skinId) {
-  if (window.setSkin) {
-    window.setSkin(skinId);
-  }
-}
+})();
