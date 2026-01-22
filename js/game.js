@@ -1,149 +1,122 @@
 
-var TIME = new Date().getTime();
-var linkCSS = "https://wormateserkanconnect.github.io/DV/custom.css?v=" + TIME;
-
-// دالة لتحميل الأنماط
-function loadStylesheet(url) {
-    return new Promise((resolve, reject) => {
-        var linkElement = document.createElement("link");
-        linkElement.rel = "stylesheet";
-        linkElement.type = "text/css";
-        linkElement.href = url;
-        linkElement.onload = resolve;
-        linkElement.onerror = reject;
-        document.head.appendChild(linkElement);
-    });
-}
-
-// دالة لتحميل السكربتات
-function loadScript(url, defer = true) {
-    return new Promise((resolve, reject) => {
-        var scriptElement = document.createElement("script");
-        scriptElement.type = "text/javascript";
-        scriptElement.src = url;
-        scriptElement.defer = defer;
-        scriptElement.onload = resolve;
-        scriptElement.onerror = reject;
-        document.head.appendChild(scriptElement);
-    });
-}
-
-// تحميل الأنماط
-loadStylesheet(linkCSS)
-    .then(() => {
-        return loadStylesheet("https://www.baddawi.com/FDZ/fonts/font.css");
-    })
-    .then(() => {
-        return loadScript("https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js");
-    })
-    .then(() => {
-        return loadStylesheet("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
-    })
-    .catch(error => {
-        console.error("Error loading scripts or stylesheets:", error.message);
-    });
-
-// تعريف نوع البيانات
-var _typeof = (function() {
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-        return function(obj) {
-            return typeof obj;
-        };
-    } else {
-        return function(obj) {
-            if (obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype) {
-                return "symbol";
-            } else {
-                return typeof obj;
-            }
-        };
-    }
+/* === BACKGROUND PATCH (Added) === */
+(function(){
+  try {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center,
+          #3a5874 0%,
+          #557e66 35%,
+          #3a2b23 70%,
+          #0e0f18 100%) !important;
+        overflow: hidden;
+      }
+      canvas {
+        background: transparent !important;
+      }
+    `;
+    document.head.appendChild(style);
+  } catch(e){}
 })();
-
-// متغير للتحكم في تفعيل أو تعطيل شاشة التحميل
-let isLoadingEnabled = true; // قم بتغيير هذه القيمة إلى false لتعطيل شاشة التحميل
-
-// إضافة المحتوى داخل الصفحة بعد تحميل الأنماط
-Promise.all([
-    loadStylesheet(linkCSS),
-    loadStylesheet("https://www.baddawi.com/FDZ/fonts/font.css"),
-    loadStylesheet("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
-]).then(() => {
-    if (isLoadingEnabled) {
-        document.documentElement.insertAdjacentHTML("beforeend", `
-            <div class="fixed-background" id="loading-screen">
-                <div class="loading-background"></div>
-                <img src="https://i.imgur.com/sdNj43J.png" alt="server logo" class="logo">
-                
-                ${Array.from({ length: 12 }).map((_, i) => {
-                    const angle = i / 12 * (Math.PI * 2);
-                    const x = Math.cos(angle) * 120;
-                    const y = Math.sin(angle) * 120;
-                    return `<i class="fa-solid fa-heart heart" style="transform: translate(${x}px, ${y}px);"></i>`;
-                }).join("")}
-
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-            </div>
-        `);
-        
-        window.onload = function () {
-            document.getElementById("progress-bar").style.width = "100%";
-            setTimeout(() => {
-                document.getElementById("loading-screen").style.opacity = "0";
-                setTimeout(() => {
-                    document.getElementById("loading-screen").remove();
-                }, 500);
-            }, 6000);
-        };
-    }
-});
+/* === END BACKGROUND PATCH === */
 
 
-var SITE_XTHOST = "https://wormateserkanconnect.github.io/DV";
+// ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
+// var intervalID = null;
+// var afkTimer = null;
+// var afkTimeoutMs = 2000; // 2 saniye sonra devreye girer
+// var antiAFKStarted = false;
+// var lastSk = 0;
+// var directionToggle = 1;
+// 
+// function startMicroAFK() {
+//     clearInterval(intervalID);
+//     intervalID = setInterval(function () {
+//         try {
+//             if (anApp?.s?.H?.sk !== undefined) {
+//                 let pi = Math.PI;
+//                 let offset = pi / 180 * 2; // tam ±2 derece
+//                 lastSk += offset * directionToggle;
+//                 directionToggle *= -1; // bir sağ, bir sol
+//                 anApp.s.H.sk = lastSk;
+//             }
+//         } catch (err) {
+//             // hata olursa sessiz geç
+//         }
+//     }, 150);
+//     antiAFKStarted = true;
+// }
+// 
+// document.addEventListener("mousemove", () => {
+//     clearTimeout(afkTimer);
+//     try {
+//         if (anApp?.s?.H?.sk !== undefined) {
+//             lastSk = anApp.s.H.sk;
+//         }
+//     } catch {}
+// 
+//     if (antiAFKStarted) {
+//         clearInterval(intervalID);
+//         intervalID = null;
+//         antiAFKStarted = false;
+//     }
+// 
+//     afkTimer = setTimeout(() => {
+//         if (!antiAFKStarted) {
+//             startMicroAFK();
+//         }
+//     }, afkTimeoutMs);
+// });
+
+var vLSHttps25yt551githubio = "https://25yt551.github.io/worm2/";
 window.detectLog = null;
-const _wrmxt = {
-  BETAisSkinCustom(skin) {
-    var regex = /[a-zA-Z]/;
-    return typeof skin === "string" && regex.test(skin);
+const vO = {
+  BETAisSkinCustom(p671) {
+    var v781 = /[a-zA-Z]/;
+    return typeof p671 === "string" && v781.test(p671);
   },
-  testSkinCustom: function (skin) {
-    if (_wrmxt.BETAisSkinCustom(skin)) {
+  testSkinCustom: function (p672) {
+    if (vO.BETAisSkinCustom(p672)) {
       return 34 || 33;
     } else {
-      return skin;
+      return p672;
     }
   },
-  testSkinMod: function (modValue) {
-    return modValue >= 399 && modValue < 999;
+  testSkinMod: function (p673) {
+    return p673 >= 399 && p673 < 999;
   },
-  testWear: function (wearValue) {
-    return wearValue >= 399 && wearValue < 999;
+  testWear: function (p674) {
+    return p674 >= 399 && p674 < 999;
   },
-  isNumberValid: function (numberInput) {
-    return numberInput !== "" && numberInput !== null && numberInput !== undefined && !isNaN(numberInput);
+  isNumberValid: function (p675) {
+    return p675 !== "" && p675 !== null && p675 !== undefined && !isNaN(p675);
   },
-  validInput: function (inputValue) {
-    if (!_wrmxt.testSkinMod(inputValue) && !_wrmxt.BETAisSkinCustom(inputValue)) {
-      return inputValue;
+  validInput: function (p676) {
+    if (!vO.testSkinMod(p676) && !vO.BETAisSkinCustom(p676)) {
+      return p676;
     }
     try {
-      let skinReplaceValue = $("#inputReplaceSkin").val();
-      return encodeURI(_wrmxt.isNumberValid(skinReplaceValue) ? skinReplaceValue : 35);
-    } catch (error) {
+      let v782 = $("#inputReplaceSkin").val();
+      return encodeURI(vO.isNumberValid(v782) ? v782 : 35);
+    } catch (e2) {
       return encodeURI(35);
     }
   },
   aload: false,
   aId: 0
 };
-var inputReplaceSkin = localStorage.getItem("inputReplaceSkin");
-var PilotoAutomatico = null;
-var isPlaying = false;
-var pwrups = {};
+var v783 = localStorage.getItem("inputReplaceSkin");
+var v784;
+var v785 = null;
+var v786 = false;
+var vO2 = {};
 window.keyMove = 81;
-var theoEvents = {
+var vO3 = {
   eventoPrincipal: null,
   joystick: {
     positionMode: "L",
@@ -158,18 +131,17 @@ var theoEvents = {
     pxy: 110
   }
 };
-var theoKzObjects = {
+var vO4 = {
   FB_UserID: "",
   smoothCamera: 0.5,
   eat_animation: 0.0025,
-  flag: "https://i.imgur.com/EkbSd65.png",
+  flag: "https://i.imgur.com/P6RvwPc.png",
   PortionSize: localStorage.PotenciadorSize || 2,
   PortionAura: localStorage.PotenciadorAura || 1.2,
   PortionTransparent: 0.8,
   FoodTransparent: 0.3,
   ModeStremer: false,
   ModeStremerbatop: false,
-  ModeStremermuiten: false,
   ModeStremeremoj: false,
   ModeStremerheadshot: false,
   ModeStremersaveheadshot: false,
@@ -182,7 +154,7 @@ var theoKzObjects = {
   headshot: 0,
   visibleSkin: [],
   pL: [],
-  gamePad: theoEvents.joystick,
+  gamePad: vO3.joystick,
   mobile: false,
   loading: false,
   kill: 0,
@@ -195,95 +167,153 @@ var theoKzObjects = {
 };
 saveGameLocal = localStorage.getItem("SaveGameXT");
 if (saveGameLocal && saveGameLocal !== "null") {
-  let t = JSON.parse(saveGameLocal);
-  for (let e in t) {
-    theoKzObjects[e] = t[e];
+  let v787 = JSON.parse(saveGameLocal);
+  for (let v788 in v787) {
+    vO4[v788] = v787[v788];
   }
 }
-theoKzObjects.loading = true;
-
-const PhoneChecked = function () {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  const mobile = /android|iphone|ipad|ipod|blackberry|iemobile|windows phone|opera mini|mobile/i.test(userAgent);
-  theoKzObjects.mobile = mobile;
-  return mobile;
+vO4.loading = true;
+const vF88 = function () {
+  let v789 = false;
+  vO4.mobile = false;
+  const v790 = navigator.userAgent || navigator.vendor || window.opera;
+  const vA = ["android", "bb", "meego", "avantgo", "bada", "blackberry", "blazer", "compal", "elaine", "fennec", "hiptop", "iemobile", "iphone", "ipod", "iris", "kindle", "lge", "maemo", "midp", "mmp", "mobile", "firefox", "netfront", "opera", "palm", "phone", "plucker", "pocket", "psp", "symbian", "treo", "vodafone", "wap", "windows ce", "xda", "ipad", "playbook", "silk"];
+  if (vA.some(p677 => v790.toLowerCase().includes(p677))) {
+    vO4.mobile = true;
+    v789 = true;
+  }
+  return v789;
 };
-
-const RechekingPhone = function () {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  return /android|iphone|ipad|ipod|blackberry|iemobile|windows phone|opera mini|mobile/i.test(userAgent);
+const vF89 = function () {
+  let v791 = false;
+  var v792 = navigator.userAgent || navigator.vendor || window.opera;
+  const vA2 = ["android", "bb", "meego", "avantgo", "bada", "blackberry", "blazer", "compal", "elaine", "fennec", "hiptop", "iemobile", "iphone", "ipod", "iris", "kindle", "lge", "maemo", "midp", "mmp", "mobile", "firefox", "netfront", "opera", "palm", "phone", "plucker", "pocket", "psp", "symbian", "treo", "vodafone", "wap", "windows ce", "xda", "ipad", "playbook", "silk"];
+  v791 = vA2.some(p678 => v792.toLowerCase().includes(p678));
+  return v791;
 };
-
-const loadJoy = function (gamePadOptions) {
-  let joystickInstance;
+const vF90 = function (p679) {
+  let v793;
   try {
-    console.log(gamePadOptions);
-    if (!theoKzObjects.gamePad) {
-      theoKzObjects.gamePad = theoEvents.joystick;
+    console.log(p679);
+    if (!vO4.gamePad) {
+      vO4.gamePad = vO3.joystick;
     }
-    if (RechekingPhone() && (gamePadOptions || theoKzObjects.gamePad.checked)) {
-      joystickInstance = nipplejs.create(theoKzObjects.gamePad);
-      joystickInstance.on("move", function (event, data) {
-        theoEvents.eventoPrincipal.sk = data.angle.radian <= Math.PI ? data.angle.radian * -1 : Math.PI - (data.angle.radian - Math.PI);
-        console.log(data);
+    if (vF89() && (p679 || vO4.gamePad.checked)) {
+      v793 = nipplejs.create(vO4.gamePad);
+      v793.on("move", function (p680, p681) {
+        vO3.eventoPrincipal.sk = p681.angle.radian <= Math.PI ? p681.angle.radian * -1 : Math.PI - (p681.angle.radian - Math.PI);
+        console.log(p681);
       });
     }
-    return joystickInstance;
-  } catch (error) {
-    console.log(error);
+    return v793;
+  } catch (e3) {
+    console.log(e3);
   }
 };
-let clientes = {
+if (typeof PIXI === "undefined") {
+  var v794 = document.createElement("script");
+  v794.src = "https://pixijs.download/release/pixi.js";
+  v794.type = "text/javascript";
+  v794.onload = function () {
+    f113();
+  };
+  document.head.appendChild(v794);
+} else {
+  f113();
+}
+function f113() {
+  let v795 = new PIXI.Application();
+  document.body.appendChild(v795.view);
+  let v796 = new PIXI.Graphics();
+  v796.beginFill(16711680);
+  v796.drawCircle(400, 300, 50);
+  v796.endFill();
+  v795.stage.addChild(v796);
+}
+let vO5 = {
   clientesVencidos: [],
   clientesActivos: []
 };
-let servers = {
+let vO6 = {
   Api_listServer: []
 };
-async function loadUsers() {
-  await fetch("https://www.baddawi.com/FDZ/api/users.php").then(response => response.json()).then(data => {
-    if (data.success) {
-      let usersList = data.Users;
-      clientes.clientesActivos = usersList.filter(user => {
-        return user.cliente_ID;
+async function f114() {
+  await fetch("https://iraqcraft.store/api/usr-a.json").then(p682 => p682.json()).then(p683 => {
+    if (p683.success) {
+      let v797 = p683.Users;
+      const v798 = new Date();
+      v798.setHours(0, 0, 0, 0);
+      vO5.clientesActivos = v797.filter(p684 => {
+        if (p684.cliente_DateExpired) {
+          const v799 = new Date(p684.cliente_DateExpired);
+          return v799 >= v798;
+        }
+        return true;
       });
     } else {
-      clientes = {
+      vO5 = {
         clientesVencidos: [],
         clientesActivos: []
       };
-      alert("An error occurred while loading clients");
+      alert("حدث خطأ أثناء تحميل العملاء");
     }
+  }).catch(p685 => {
+    console.error("Error loading users:", p685);
+    alert("حدث خطأ اثناء التحميل يرجي تحديث الصفحة F5.");
   });
 }
-async function loadServers() {
-  await fetch("https://www.baddawi.com/FDZ/api/server.php").then(response => response.json()).then(data => {
-    if (data.success) {
-      let serversList = data.servers;
-      servers.Api_listServer = serversList.filter(server => {
-        return server.serverUrl;
-      });
+async function f115(p686, p687 = 3, p688 = 2000) {
+  for (let vLN1 = 1; vLN1 <= p687; vLN1++) {
+    try {
+      const v800 = await fetch(p686);
+      if (!v800.ok) {
+        throw new Error("HTTP error! status: " + v800.status);
+      }
+      const v801 = await v800.json();
+      return v801;
+    } catch (e4) {
+      console.error("Attempt " + vLN1 + " failed: " + e4.message);
+      if (vLN1 < p687) {
+        await new Promise(p689 => setTimeout(p689, p688));
+      } else {
+        throw e4;
+      }
+    }
+  }
+}
+async function f116() {
+  try {
+    const v802 = await f115("https://iraqcraft.store/api/sr-avr.json");
+    if (v802.success) {
+      let v803 = v802.servers;
+      vO6.Api_listServer = v803.filter(p690 => p690.serverUrl);
     } else {
-      servers = {
+      vO6 = {
         Api_listServer: []
       };
-      alert("An error occurred while loading the servers");
+      alert("حدث خطأ أثناء تحميل السيرفرات");
     }
-  });
+  } catch (e5) {
+    console.error("Failed to load servers after multiple attempts:", e5);
+    vO6 = {
+      Api_listServer: []
+    };
+    alert("حدث خطأ أثناء تحميل السيرفرات. يرجى إعادة المحاولة لاحقًا.");
+  }
 }
-loadUsers();
-loadServers();
+f114();
+f116();
 $(".store-view-cont").append("<div id=\"idReplaceSkin\"></div>");
-var StoreSkinID = $("#idReplaceSkin");
-const ctx = {
+var v$112 = $("#idReplaceSkin");
+const vO7 = {
   fontStyle: {
     name: new PIXI.TextStyle({
-      fill: "#FFFF00",
-      fontSize: 11,
+      fill: "#f79425",
+      fontSize: 12,
       lineJoin: "round",
       stroke: "#EFFA45",
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700"
+      fontFamily: "wormde",
+      fontWeight: "bold"
     }),
     blanco: new PIXI.TextStyle({
       align: "center",
@@ -293,68 +323,47 @@ const ctx = {
       stroke: "#FFF",
       strokeThickness: 1,
       whiteSpace: "normal",
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700",
+      fontWeight: "bold",
       wordWrap: true
     }),
     morado: new PIXI.TextStyle({
       align: "center",
-      fill: "#FFFF00",
-      fontSize: 10,
+      fill: "#FFFFFF",
+      fontSize: 11,
       lineJoin: "round",
-      stroke: "#FAA845",
+      stroke: "white",
       strokeThickness: 1,
       whiteSpace: "normal",
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700",
       wordWrap: true
     }),
     morado1: new PIXI.TextStyle({
       align: "center",
       fill: "#FFF",
-      fontSize: 10,
+      fontSize: 11,
       lineJoin: "round",
-      stroke: "#FAA845",
+      stroke: "white",
       strokeThickness: 1,
       whiteSpace: "normal",
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700",
       wordWrap: true
     }),
     amarillo: new PIXI.TextStyle({
       align: "center",
-      fill: "#FFFF00",
-      fontSize: 10,
+      fill: "#f8d968",
+      fontSize: 12,
       lineJoin: "round",
-      stroke: "#FAA845",
+      stroke: "red",
       strokeThickness: 1,
       whiteSpace: "normal",
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700",
       wordWrap: true
     }),
     amarillo1: new PIXI.TextStyle({
       align: "center",
-      fill: "#FFF",
-      fontSize: 10,
+      fill: "#f8d968",
+      fontSize: 12,
       lineJoin: "round",
-      stroke: "#FAA845",
+      stroke: "red",
       strokeThickness: 1,
       whiteSpace: "normal",
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700",
-      wordWrap: true
-    }),
-    anheadshot: new PIXI.TextStyle({
-      align: "center",
-      fill: "#FFF",
-      fontSize: 0,
-      lineJoin: "round",
-      stroke: "#FAA845",
-      strokeThickness: 1,
-      whiteSpace: "normal",
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700",
       wordWrap: true
     }),
     keysColor: new PIXI.TextStyle({
@@ -365,122 +374,149 @@ const ctx = {
       stroke: "#fff009",
       strokeThickness: 1,
       whiteSpace: "normal",
-      fontWeight: "700",
-      fontFamily: "HelveticaNeueLT",
+      fontWeight: "bold",
+      fontFamily: "wormde",
       wordWrap: true
     })
   }
 };
-
-ctx.clock = PIXI.Sprite.from("https://i.imgur.com/v6szE9c.png");
-ctx.clock.width = 100;
-ctx.clock.height = 100;
-ctx.clock.x = -50;
-ctx.clock.y = -50;
-ctx.value_server = new PIXI.Text("WFC", ctx.fontStyle.name);
-ctx.value_server.x = 25;
-ctx.value_server.y = 0;
-ctx.label_hs = new PIXI.Text("HS", ctx.fontStyle.amarillo);
-ctx.value1_hs = new PIXI.Text("0", ctx.fontStyle.amarillo);
-ctx.label_kill = new PIXI.Text("KL", ctx.fontStyle.morado);
-ctx.value1_kill = new PIXI.Text("0", ctx.fontStyle.morado);
-if (theoKzObjects.ModeStremersaveheadshot) {
-  ctx.value2_hs = new PIXI.Text("", ctx.fontStyle.amarillo1);
-  ctx.value2_kill = new PIXI.Text("", ctx.fontStyle.morado1);
-} else {
-  ctx.value2_hs = new PIXI.Text("", ctx.fontStyle.amarillo1);
-  ctx.value2_kill = new PIXI.Text("", ctx.fontStyle.morado1);
+vO7.clock = PIXI.Sprite.fromImage("https://timmapwormate.com/images/store/clock.png");
+vO7.clock.width = 100;
+vO7.clock.height = 100;
+vO7.clock.x = -50;
+vO7.clock.y = -50;
+const v804 = new PIXI.Application({
+  width: window.innerWidth,
+  height: window.innerHeight
+});
+document.body.appendChild(v804.view);
+vO7.hoisinhnhanh = PIXI.Sprite.from("https://i.imgur.com/QZfm7vv.png");
+vO7.hoisinhnhanh.width = 23;
+vO7.hoisinhnhanh.height = 23;
+vO7.top10sv = PIXI.Sprite.fromImage("https://i.imgur.com/UbRiUYr.png");
+vO7.top10sv.height = 25;
+vO7.top10sv.width = 100;
+vO7.top10sv.x = 60;
+vO7.top10sv.y = -50;
+vO7.quaytron = PIXI.Sprite.from("https://i.imgur.com/a7lVOy5.png");
+vO7.quaytron.width = -23;
+vO7.quaytron.height = -23;
+v804.stage.addChild(vO7.hoisinhnhanh);
+v804.stage.addChild(vO7.quaytron);
+function f117() {
+  const vLN300 = 300;
+  const v805 = -90;
+  vO7.hoisinhnhanh.x = window.innerWidth - vO7.hoisinhnhanh.width - vLN300;
+  vO7.hoisinhnhanh.y = v805;
+  vO7.quaytron.x = vO7.hoisinhnhanh.x - vO7.quaytron.width - 10;
+  vO7.quaytron.y = v805;
 }
-
-ctx.label_hs.x = 65;
-ctx.label_hs.y = 100;
-ctx.label_kill.x = 15;
-ctx.label_kill.y = 100;
-ctx.value1_hs.x = 65;
-ctx.value1_hs.y = 116;
-ctx.value1_kill.x = 15;
-ctx.value1_kill.y = 116;
-ctx.value2_hs.x = 65;
-ctx.value2_hs.y = 133;
-ctx.value2_kill.x = 15;
-ctx.value2_kill.y = 133;
-ctx.containerCountInfo = new PIXI.Container();
-ctx.containerCountInfo.x = -45;
-ctx.containerCountInfo.y = -52;
-ctx.containerCountInfo.addChild(ctx.value_server);
-ctx.containerCountInfo.addChild(ctx.label_hs);
-ctx.containerCountInfo.addChild(ctx.value1_hs);
-ctx.containerCountInfo.addChild(ctx.value2_hs);
-ctx.containerCountInfo.addChild(ctx.label_kill);
-ctx.containerCountInfo.addChild(ctx.value1_kill);
-ctx.containerCountInfo.addChild(ctx.value2_kill);
-ctx.imgServerbase = PIXI.Texture.from("https://i.imgur.com/BpjEbZJ.png");
-ctx.borderurl = null;
-ctx.onclickServer = PIXI.Texture.from(theoKzObjects.flag); // تحديث إلى PIXI.Texture.from
-ctx.containerImgS = new PIXI.Sprite(ctx.imgServerbase);
-ctx.containerImgS.anchor.set(0.5);
-ctx.containerImgS.x = 0;
-ctx.containerImgS.y = 8;
-ctx.containerImgS.width = 20;
-ctx.containerImgS.height = 13;
-ctx.borderImg = new PIXI.Sprite(ctx.borderurl);
-ctx.borderImg.anchor.set(0.5);
-ctx.borderImg.x = -2;
-ctx.borderImg.y = 78;
-ctx.borderImg.width = 110;
-ctx.borderImg.height = 60;
-ctx.setServer = function (serverName) {
-  ctx.value_server.text = serverName || "WFC";
+f117();
+window.addEventListener("resize", () => {
+  v804.renderer.resize(window.innerWidth, window.innerHeight);
+  f117();
+});
+vO7.value_server = new PIXI.Text("?", vO7.fontStyle.name);
+vO7.value_server.x = 17;
+vO7.value_server.y = 3;
+vO7.label_hs = new PIXI.Text("HS", vO7.fontStyle.amarillo);
+vO7.value1_hs = new PIXI.Text("0", vO7.fontStyle.amarillo);
+vO7.label_kill = new PIXI.Text("KL", vO7.fontStyle.morado);
+vO7.value1_kill = new PIXI.Text("0", vO7.fontStyle.morado);
+if (vO4.ModeStremersaveheadshot) {
+  vO7.value2_hs = new PIXI.Text("", vO7.fontStyle.amarillo1);
+  vO7.value2_kill = new PIXI.Text("", vO7.fontStyle.morado1);
+} else {
+  vO7.value2_hs = new PIXI.Text("", vO7.fontStyle.amarillo1);
+  vO7.value2_kill = new PIXI.Text("", vO7.fontStyle.morado1);
+}
+vO7.label_kill.x = 66;
+vO7.label_kill.y = 127;
+vO7.label_hs.x = 11;
+vO7.label_hs.y = 127;
+vO7.value1_kill.x = 66;
+vO7.value1_kill.y = 142;
+vO7.value1_hs.x = 11;
+vO7.value1_hs.y = 142;
+vO7.value2_kill.x = 66;
+vO7.value2_kill.y = 158;
+vO7.value2_hs.x = 11;
+vO7.value2_hs.y = 158;
+vO7.containerCountInfo = new PIXI.Container();
+vO7.containerCountInfo.x = -45;
+vO7.containerCountInfo.y = -76;
+vO7.containerCountInfo.addChild(vO7.value_server);
+vO7.containerCountInfo.addChild(vO7.label_hs);
+vO7.containerCountInfo.addChild(vO7.value1_hs);
+vO7.containerCountInfo.addChild(vO7.value2_hs);
+vO7.containerCountInfo.addChild(vO7.label_kill);
+vO7.containerCountInfo.addChild(vO7.value1_kill);
+vO7.containerCountInfo.addChild(vO7.value2_kill);
+vO7.imgServerbase = PIXI.Texture.fromImage("https://i.imgur.com/BZkMiJj.png");
+vO7.borderurl = PIXI.Texture.fromImage("https://i.imgur.com/wYJAfmO0.png");
+vO7.onclickServer = PIXI.Texture.fromImage(vO4.flag);
+vO7.containerImgS = new PIXI.Sprite(vO7.imgServerbase);
+vO7.containerImgS.anchor.set(0.5);
+vO7.containerImgS.x = 0;
+vO7.containerImgS.y = 18;
+vO7.containerImgS.width = 25;
+vO7.containerImgS.height = 20;
+vO7.borderImg = new PIXI.Sprite(vO7.borderurl);
+vO7.borderImg.anchor.set(0.5);
+vO7.borderImg.x = -2;
+vO7.borderImg.y = 78;
+vO7.borderImg.width = 110;
+vO7.borderImg.height = 60;
+vO7.setServer = function (p691) {
+  vO7.value_server.text = p691 || "?";
 };
-
-ctx.setCountGame = function (kills, playerScore, headshotCount, playerHeadshotCount) {
- "use strict";
-  ctx.value1_hs.text = playerScore;
-  ctx.value1_kill.text = kills;
-  if (theoKzObjects.ModeStremersaveheadshot) {
-    ctx.value2_hs.text = playerHeadshotCount;
-    ctx.value2_kill.text = headshotCount;
+vO7.setCountGame = function (p692, p693, p694, p695) {
+  vO7.value1_hs.text = p693;
+  vO7.value1_kill.text = p692;
+  if (vO4.ModeStremersaveheadshot) {
+    vO7.value2_hs.text = p695;
+    vO7.value2_kill.text = p694;
   }
 };
-
-var _typeof = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function (input) {
-  return typeof input;
-} : function (value) {
-  if (value && typeof Symbol == "function" && value.constructor === Symbol && value !== Symbol.prototype) {
+"use strict";
+var v806 = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function (p696) {
+  return typeof p696;
+} : function (p697) {
+  if (p697 && typeof Symbol == "function" && p697.constructor === Symbol && p697 !== Symbol.prototype) {
     return "symbol";
   } else {
-    return typeof value;
+    return typeof p697;
   }
 };
-var GoogleAuth;
+var v807;
 (function () {
   try {
-    console.log(function (inputString, replacements) {
-      for (var index = 0; index < replacements.length; index += 2) {
-        inputString = inputString.replaceAll(replacements[index], replacements[index + 1]);
+    console.log(function (p698, p699) {
+      for (var vLN0 = 0; vLN0 < p699.length; vLN0 += 2) {
+        p698 = p698.replaceAll(p699[vLN0], p699[vLN0 + 1]);
       }
-      return inputString;
+      return p698;
     }("N-syo.632.oyhs`2./oSo+-2:dhydMdy/32/o+`3:o/62`/o+. .+osYYyso+-.osyQSs6662NyW.63 yW:`+QQ+ -Ms-.:ymmy3+Yo``+Y:6.Qs-+WWhYs:sHhyyHys/6662NoWs63 yW:+Ss:.-+Ss:`M-3.M` .YyySYys32`QSs.2``-Hh-32sH-66 `..3 `..`3N.Wh.63yW-Ss.3`Ss+`Mh/:+hmmo2/yy++yys//Y-3 oS/`Sso`3 ohy6oH.3..6 -Hh. -+Qs/ N /W+62`Wo:Ss32Sso.MMmd+.3syy` .-` :Y+3+Ss//Q+3 +H`32sHhsyHho6-Hh`:S+--+S+N2+W` `+y+2+W.:Ss.3.Ss+/M-:ymmh.2-Y.32+Ys2+Ss+o+/Q-3oH/32Hho-://:`6 Hh`So3`SsN3oHhs-sHhsoW/ `Sso:-:Q.hM-2ymmh. /Yo`3 sYy./Q`3+Sso2`W`3`Hh.66`Hh:So3-SoN3 +Why+yWh/3-oQSso-`Mm:2/Md+/Yy+3 oYy:Q/3 `Q. -W-3`WsYys/`+oo.:Hh//So//Ss-N32-sys:3:S+.6-/+++:-3oHo3 ohdh/`+So:3 .+S/`/oo:6.+s+` `+yyo`3 +yQYs: +oo..shy. -+oSo/. NN", ["W", "hhhh", "Q", "ssss", "M", "mmm", "Y", "yyy", "H", "hh", "S", "ss", "6", "      ", "3", "   ", "2", "  ", "N", "\n"]));
-  } catch (error) {}
+  } catch (e6) {}
 })();
 window.addEventListener("load", function () {
-  function checkBrowserCompatibility() {
-    (function (window, document, Modernizr) {
-      function isTypeOf(variable, type) {
-        return (variable === undefined ? "undefined" : _typeof(variable)) === type;
+  function f118() {
+    (function (p700, p701, p702) {
+      function f119(p703, p704) {
+        return (p703 === p702 ? "undefined" : v806(p703)) === p704;
       }
-      function createElement() {
-        if (typeof document.createElement != "function") {
-          return document.createElement(arguments[0]);
-        } else if (isSVG) {
-          return document.createElementNS.call(document, "http://www.w3.org/2000/svg", arguments[0]);
+      function f120() {
+        if (typeof p701.createElement != "function") {
+          return p701.createElement(arguments[0]);
+        } else if (v810) {
+          return p701.createElementNS.call(p701, "http://www.w3.org/2000/svg", arguments[0]);
         } else {
-          return document.createElement.apply(document, arguments);
+          return p701.createElement.apply(p701, arguments);
         }
       }
-      var featureTests = [];
-      var featureList = [];
-      var Modernizr = {
+      var vA3 = [];
+      var vA4 = [];
+      var vO8 = {
         _version: "3.3.1",
         _config: {
           classPrefix: "",
@@ -489,362 +525,363 @@ window.addEventListener("load", function () {
           usePrefixes: true
         },
         _q: [],
-        on: function (testName, callback) {
-          var self = this;
+        on: function (p705, p706) {
+          var vThis38 = this;
           setTimeout(function () {
-            callback(self[testName]);
+            p706(vThis38[p705]);
           }, 0);
         },
-        addTest: function (testName, testFn, options) {
-          featureList.push({
-            name: testName,
-            fn: testFn,
-            options: options
+        addTest: function (p707, p708, p709) {
+          vA4.push({
+            name: p707,
+            fn: p708,
+            options: p709
           });
         },
-        addAsyncTest: function (testFn) {
-          featureList.push({
+        addAsyncTest: function (p710) {
+          vA4.push({
             name: null,
-            fn: testFn
+            fn: p710
           });
         }
       };
-      function ModernizrProto() {}
-      ModernizrProto.prototype = Modernizr;
-      ModernizrProto = new ModernizrProto();
-      var supportsWebSocket = false;
+      function f121() {}
+      f121.prototype = vO8;
+      f121 = new f121();
+      var v808 = false;
       try {
-        supportsWebSocket = "WebSocket" in window && window.WebSocket.CLOSING === 2;
-      } catch (error) {}
-      ModernizrProto.addTest("websockets", supportsWebSocket);
-      var documentElement = document.documentElement;
-      var isSVG = documentElement.nodeName.toLowerCase() === "svg";
-      ModernizrProto.addTest("canvas", function () {
-        var canvas = createElement("canvas");
-        return !!canvas.getContext && !!canvas.getContext("2d");
+        v808 = "WebSocket" in p700 && p700.WebSocket.CLOSING === 2;
+      } catch (e7) {}
+      f121.addTest("websockets", v808);
+      var v809 = p701.documentElement;
+      var v810 = v809.nodeName.toLowerCase() === "svg";
+      f121.addTest("canvas", function () {
+        var vF120 = f120("canvas");
+        return !!vF120.getContext && !!vF120.getContext("2d");
       });
-      ModernizrProto.addTest("canvastext", function () {
-        return ModernizrProto.canvas !== false && typeof createElement("canvas").getContext("2d").fillText == "function";
+      f121.addTest("canvastext", function () {
+        return f121.canvas !== false && typeof f120("canvas").getContext("2d").fillText == "function";
       });
       (function () {
-        var testNames;
-        var feature;
-        var testName;
-        var testFn;
-        var count;
-        var testCase;
-        var splitCase;
-        for (var i in featureList) {
-          if (featureList.hasOwnProperty(i)) {
-            testNames = [];
-            feature = featureList[i];
-            if (feature.name && (testNames.push(feature.name.toLowerCase()), feature.options && feature.options.aliases && feature.options.aliases.length)) {
-              for (testName = 0; testName < feature.options.aliases.length; testName++) {
-                testNames.push(feature.options.aliases[testName].toLowerCase());
+        var v811;
+        var v812;
+        var v813;
+        var v814;
+        var v815;
+        var v816;
+        var v817;
+        for (var v818 in vA4) {
+          if (vA4.hasOwnProperty(v818)) {
+            v811 = [];
+            v812 = vA4[v818];
+            if (v812.name && (v811.push(v812.name.toLowerCase()), v812.options && v812.options.aliases && v812.options.aliases.length)) {
+              for (v813 = 0; v813 < v812.options.aliases.length; v813++) {
+                v811.push(v812.options.aliases[v813].toLowerCase());
               }
             }
-            testFn = isTypeOf(feature.fn, "function") ? feature.fn() : feature.fn;
-            count = 0;
-            for (; count < testNames.length; count++) {
-              testCase = testNames[count];
-              splitCase = testCase.split(".");
-              if (splitCase.length === 1) {
-                ModernizrProto[splitCase[0]] = testFn;
+            v814 = f119(v812.fn, "function") ? v812.fn() : v812.fn;
+            v815 = 0;
+            for (; v815 < v811.length; v815++) {
+              v816 = v811[v815];
+              v817 = v816.split(".");
+              if (v817.length === 1) {
+                f121[v817[0]] = v814;
               } else {
-          if (!!ModernizrProto[splitCase[0]] && !(ModernizrProto[splitCase[0]] instanceof Boolean)) {
-            // بدلاً من استخدام new Boolean، نستخدم القيم البسيطة
-            ModernizrProto[splitCase[0]] = Boolean(ModernizrProto[splitCase[0]]);
+                if (!!f121[v817[0]] && !(f121[v817[0]] instanceof Boolean)) {
+                  f121[v817[0]] = new Boolean(f121[v817[0]]);
                 }
-                ModernizrProto[splitCase[0]][splitCase[1]] = testFn;
+                f121[v817[0]][v817[1]] = v814;
               }
-              featureTests.push((testFn ? "" : "no-") + splitCase.join("-"));
+              vA3.push((v814 ? "" : "no-") + v817.join("-"));
             }
           }
         }
       })();
-      (function (tests) {
-        var className = documentElement.className;
-        var classPrefix = ModernizrProto._config.classPrefix || "";
-        if (isSVG) {
-          className = className.baseVal;
+      (function (p711) {
+        var v819 = v809.className;
+        var v820 = f121._config.classPrefix || "";
+        if (v810) {
+          v819 = v819.baseVal;
         }
-        if (ModernizrProto._config.enableJSClass) {
-          var noJsClass = new RegExp("(^|\\s)" + classPrefix + "no-js(\\s|$)");
-          className = className.replace(noJsClass, "$1" + classPrefix + "js$2");
+        if (f121._config.enableJSClass) {
+          var v821 = new RegExp("(^|\\s)" + v820 + "no-js(\\s|$)");
+          v819 = v819.replace(v821, "$1" + v820 + "js$2");
         }
-        if (ModernizrProto._config.enableClasses) {
-          className += " " + classPrefix + tests.join(" " + classPrefix);
-          if (isSVG) {
-            documentElement.className.baseVal = className;
+        if (f121._config.enableClasses) {
+          v819 += " " + v820 + p711.join(" " + v820);
+          if (v810) {
+            v809.className.baseVal = v819;
           } else {
-            documentElement.className = className;
+            v809.className = v819;
           }
         }
-      })(featureTests);
-      delete Modernizr.addTest;
-      delete Modernizr.addAsyncTest;
-      for (var i = 0; i < ModernizrProto._q.length; i++) {
-        ModernizrProto._q[i]();
+      })(vA3);
+      delete vO8.addTest;
+      delete vO8.addAsyncTest;
+      for (var vLN02 = 0; vLN02 < f121._q.length; vLN02++) {
+        f121._q[vLN02]();
       }
-      window.Modernizr = ModernizrProto;
+      p700.Modernizr = f121;
     })(window, document);
     return Modernizr.websockets && Modernizr.canvas && Modernizr.canvastext;
   }
-  function updatePowerUps(powerUpId, powerUpType, value) {
-    const powerUpValues = [38, 38, 38, 120, 38, 25, 38];
-    const colors = ["#FFD500", "#FFC75A", "#00B2ED", "#FF4544", "#0094D7", "#CCCF81", "#ff0999"];
-    let adjustedValue = powerUpValues[powerUpType] - parseInt((value == 0.99 ? 1 : value) * powerUpValues[powerUpType] / 1);
-    const textStyle = new PIXI.TextStyle({
+  function f122(p712, p713, p714) {
+    const vA5 = [38, 38, 38, 120, 38, 25, 38];
+    const vA6 = ["#FFD500", "#FFC75A", "#00B2ED", "#FF4544", "#0094D7", "#CCCF81", "#ff0999"];
+    let v822 = vA5[p713] - parseInt((p714 == 0.99 ? 1 : p714) * vA5[p713] / 1);
+    const v823 = new PIXI.TextStyle({
       align: "center",
-      fill: colors[powerUpType],
+      fill: vA6[p713],
       fontSize: 25,
       lineJoin: "round",
       whiteSpace: "normal",
       wordWrap: true,
-      fontFamily: "HelveticaNeueLT",
-      fontWeight: "700"
+      dropShadow: true,
+      dropShadowBlur: 6,
+      fontFamily: "wormde",
+      fontWeight: "bold"
     });
-    let powerUpKey = "pwr_clock" + powerUpType;
-    if (!pwrups[powerUpKey] && powerUpValues[powerUpType] === adjustedValue) {
-      pwrups[powerUpKey] = new PIXI.Text(adjustedValue, textStyle);
-      pwrups[powerUpKey].y = 61;
-      powerUpId.Tf[powerUpType].addChild(pwrups[powerUpKey]);
+    let v824 = "pwr_clock" + p713;
+    if (!vO2[v824] && vA5[p713] === v822) {
+      vO2[v824] = new PIXI.Text(v822, v823);
+      vO2[v824].y = 61;
+      p712.Tf[p713].addChild(vO2[v824]);
     }
-    if (pwrups[powerUpKey]) {
-      pwrups[powerUpKey].x = adjustedValue >= 100 ? 11 : adjustedValue >= 10 ? 18 : 26;
-      pwrups[powerUpKey].text = adjustedValue;
-      if (adjustedValue === 0) {
-        delete pwrups[powerUpKey];
+    if (vO2[v824]) {
+      vO2[v824].x = v822 >= 100 ? 11 : v822 >= 10 ? 18 : 26;
+      vO2[v824].text = v822;
+      if (v822 === 0) {
+        delete vO2[v824];
       }
     }
   }
   document.getElementById("game-wrap").style.display = "block";
-  if (!checkBrowserCompatibility()) {
+  if (!f118()) {
     document.getElementById("error-view").style.display = "block";
     return;
   }
   (function () {
-    function initializeApp() {
-            window.anApp = appInstance; // إسناد
-      return window.anApp; // إرجاع
+    function f123() {
+      return window.anApp = vUndefined28;
     }
-    function getCookie(cookieName) {
-      const cookiePrefix = cookieName + "=";
-      const cookiesArray = document.cookie.split(";");
-      for (let i = 0; i < cookiesArray.length; i++) {
-        let cookie = cookiesArray[i];
-        while (cookie.charAt(0) === " ") {
-          cookie = cookie.substring(1);
+    function f124(p715) {
+      const v825 = p715 + "=";
+      const v826 = document.cookie.split(";");
+      for (let vLN03 = 0; vLN03 < v826.length; vLN03++) {
+        let v827 = v826[vLN03];
+        while (v827.charAt(0) === " ") {
+          v827 = v827.substring(1);
         }
-        if (cookie.indexOf(cookiePrefix) === 0) {
-          return cookie.substring(cookiePrefix.length, cookie.length);
+        if (v827.indexOf(v825) === 0) {
+          return v827.substring(v825.length, v827.length);
         }
       }
       return "";
     }
-    function setCookie(name, value, days) {
-      var expiryDate = new Date();
-      expiryDate.setTime(expiryDate.getTime() + days * 86400000);
-      var expiresString = "expires=" + expiryDate.toUTCString();
-      document.cookie = name + "=" + value + "; " + expiresString + "; path=/";
+    function f125(p716, p717, p718) {
+      var v828 = new Date();
+      v828.setTime(v828.getTime() + p718 * 86400000);
+      var v829 = "expires=" + v828.toUTCString();
+      document.cookie = p716 + "=" + p717 + "; " + v829 + "; path=/";
     }
-    function localizeMessage(key) {
-      return window.I18N_MESSAGES[key];
+    function f126(p719) {
+      return window.I18N_MESSAGES[p719];
     }
-    function getLocalizedText(messages) {
-      if (messages[languageKey]) {
-        return messages[languageKey];
-      } else if (messages.en) {
-        return messages.en;
+    function f127(p720) {
+      if (p720[v899]) {
+        return p720[v899];
+      } else if (p720.en) {
+        return p720.en;
       } else {
-        return messages.x;
+        return p720.x;
       }
     }
-    function formatTime(seconds) {
-      var secondsString = (Math.floor(seconds) % 60).toString();
-      var minutesString = (Math.floor(seconds / 60) % 60).toString();
-      var hoursString = (Math.floor(seconds / 3600) % 24).toString();
-      var daysString = Math.floor(seconds / 86400).toString();
-      var daysLabel = localizeMessage("util.time.days");
-      var hoursLabel = localizeMessage("util.time.hours");
-      var minutesLabel = localizeMessage("util.time.min");
-      var secondsLabel = localizeMessage("util.time.sec");
-      if (daysString > 0) {
-        return daysString + " " + daysLabel + " " + hoursString + " " + hoursLabel + " " + minutesString + " " + minutesLabel + " " + secondsString + " " + secondsLabel;
-      } else if (hoursString > 0) {
-        return hoursString + " " + hoursLabel + " " + minutesString + " " + minutesLabel + " " + secondsString + " " + secondsLabel;
-      } else if (minutesString > 0) {
-        return minutesString + " " + minutesLabel + " " + secondsString + " " + secondsLabel;
+    function f128(p721) {
+      var v830 = (Math.floor(p721) % 60).toString();
+      var v831 = (Math.floor(p721 / 60) % 60).toString();
+      var v832 = (Math.floor(p721 / 3600) % 24).toString();
+      var v833 = Math.floor(p721 / 86400).toString();
+      var vF126 = f126("util.time.days");
+      var vF1262 = f126("util.time.hours");
+      var vF1263 = f126("util.time.min");
+      var vF1264 = f126("util.time.sec");
+      if (v833 > 0) {
+        return v833 + " " + vF126 + " " + v832 + " " + vF1262 + " " + v831 + " " + vF1263 + " " + v830 + " " + vF1264;
+      } else if (v832 > 0) {
+        return v832 + " " + vF1262 + " " + v831 + " " + vF1263 + " " + v830 + " " + vF1264;
+      } else if (v831 > 0) {
+        return v831 + " " + vF1263 + " " + v830 + " " + vF1264;
       } else {
-        return secondsString + " " + secondsLabel;
+        return v830 + " " + vF1264;
       }
     }
-    function replaceHrefWithTarget(link) {
-      if (link.includes("href")) {
-        return link.replaceAll("href", "target=\"_black\" href");
+    function f129(p722) {
+      if (p722.includes("href")) {
+        return p722.replaceAll("href", "target=\"_black\" href");
       } else {
-        return link;
+        return p722;
       }
     }
-    function loadScript(src, id, callback) {
-      var script = document.createElement("script");
-      var loaded = true;
-      if (id) {
-        script.id = id;
+    function f130(p723, p724, p725) {
+      var v834 = document.createElement("script");
+      var v835 = true;
+      if (p724) {
+        v834.id = p724;
       }
-      script.async = "async";
-      script.type = "text/javascript";
-      script.src = src;
-      if (callback) {
-        script.onload = script.onreadystatechange = function () {
-          loaded = false;
+      v834.async = "async";
+      v834.type = "text/javascript";
+      v834.src = p723;
+      if (p725) {
+        v834.onload = v834.onreadystatechange = function () {
+          v835 = false;
           try {
-            callback();
-          } catch (error) {
-            console.log(error);
+            p725();
+          } catch (e8) {
+            console.log(e8);
           }
-          script.onload = script.onreadystatechange = null;
+          v834.onload = v834.onreadystatechange = null;
         };
       }
-      (document.head || document.getElementsByTagName("head")[0]).appendChild(script);
+      (document.head || document.getElementsByTagName("head")[0]).appendChild(v834);
     }
-    function inheritPrototype(parent, child) {
-      child.prototype = Object.create(parent.prototype);
-      child.prototype.constructor = child;
-      child.parent = parent;
-      return child;
+    function f131(p726, p727) {
+      var vP727 = p727;
+      vP727.prototype = Object.create(p726.prototype);
+      vP727.prototype.constructor = vP727;
+      vP727.parent = p726;
+      return vP727;
     }
-    function normalizeIndex(index) {
-      index %= arrayLength;
-      if (index < 0) {
-        return index + arrayLength;
+    function f132(p728) {
+      p728 %= v903;
+      if (p728 < 0) {
+        return p728 + v903;
       } else {
-        return index;
+        return p728;
       }
     }
-    function clamp(value, min, max) {
-      return constrain(max, value, min);
+    function f133(p729, p730, p731) {
+      return f134(p731, p729, p730);
     }
-    function constrain(value, min, max) {
-      if (value > max) {
-        return max;
-      } else if (value < min) {
-        return min;
-      } else if (Number.isFinite(value)) {
-        return value;
+    function f134(p732, p733, p734) {
+      if (p732 > p734) {
+        return p734;
+      } else if (p732 < p733) {
+        return p733;
+      } else if (Number.isFinite(p732)) {
+        return p732;
       } else {
-        return (min + max) * 0.5;
+        return (p733 + p734) * 0.5;
       }
     }
-    function lerp(start, end, delta, t) {
-      if (end > start) {
-        return Math.min(end, start + delta * t);
+    function f135(p735, p736, p737, p738) {
+      if (p736 > p735) {
+        return Math.min(p736, p735 + p737 * p738);
       } else {
-        return Math.max(end, start - delta * t);
+        return Math.max(p736, p735 - p737 * p738);
       }
     }
-    function exponentialDecay(start, end, duration, time, totalDuration) {
-      return end + (start - end) * Math.pow(1 - time, duration / totalDuration);
+    function f136(p739, p740, p741, p742, p743) {
+      return p740 + (p739 - p740) * Math.pow(1 - p742, p741 / p743);
     }
-    function mix(valueA, valueB, alpha) {
-      return valueA * (1 - alpha) + valueB * alpha;
+    function f137(p744, p745, p746) {
+      return p744 * (1 - p746) + p745 * p746;
     }
-    function arraySplice(array, startIndex, deleteCount, items) {
-      var actualStart = deleteCount;
-      var actualDeleteCount = startIndex;
-      var endIndex = startIndex + items;
-      if (array == null) {
+    function f138(p747, p748, p749, p750) {
+      var vP749 = p749;
+      var vP748 = p748;
+      var v836 = p748 + p750;
+      if (p747 == null) {
         throw new TypeError("this is null or not defined");
       }
-      var length = array.length >>> 0;
-      var relativeStart = actualStart >> 0;
-      var effectiveStart = relativeStart < 0 ? Math.max(length + relativeStart, 0) : Math.min(relativeStart, length);
-      var relativeDeleteCount = actualDeleteCount >> 0;
-      var effectiveDeleteCount = relativeDeleteCount < 0 ? Math.max(length + relativeDeleteCount, 0) : Math.min(relativeDeleteCount, length);
-      var newLength = endIndex === undefined ? length : endIndex >> 0;
-      var effectiveNewLength = newLength < 0 ? Math.max(length + newLength, 0) : Math.min(newLength, length);
-      var remainingLength = Math.min(effectiveNewLength - effectiveDeleteCount, length - effectiveStart);
-      var step = 1;
-      for (effectiveDeleteCount < effectiveStart && effectiveStart < effectiveDeleteCount + remainingLength && (step = -1, effectiveDeleteCount += remainingLength - 1, effectiveStart += remainingLength - 1); remainingLength > 0;) {
-        if (effectiveDeleteCount in array) {
-          array[effectiveStart] = array[effectiveDeleteCount];
+      var v837 = p747.length >>> 0;
+      var v838 = vP749 >> 0;
+      var v839 = v838 < 0 ? Math.max(v837 + v838, 0) : Math.min(v838, v837);
+      var v840 = vP748 >> 0;
+      var v841 = v840 < 0 ? Math.max(v837 + v840, 0) : Math.min(v840, v837);
+      var v842 = v836 === undefined ? v837 : v836 >> 0;
+      var v843 = v842 < 0 ? Math.max(v837 + v842, 0) : Math.min(v842, v837);
+      var v844 = Math.min(v843 - v841, v837 - v839);
+      var vLN12 = 1;
+      for (v841 < v839 && v839 < v841 + v844 && (vLN12 = -1, v841 += v844 - 1, v839 += v844 - 1); v844 > 0;) {
+        if (v841 in p747) {
+          p747[v839] = p747[v841];
         } else {
-          delete array[effectiveStart];
+          delete p747[v839];
         }
-        effectiveDeleteCount += step;
-        effectiveStart += step;
-        remainingLength--;
+        v841 += vLN12;
+        v839 += vLN12;
+        v844--;
       }
-      return array;
+      return p747;
     }
-    function getCanvasContext(canvas) {
-      return canvas.getContext("2d");
+    function f139(p751) {
+      return p751.getContext("2d");
     }
-    function removeFromParent(element) {
-      if (element.parent != null) {
-        element.parent.removeChild(element);
+    function f140(p752) {
+      if (p752.parent != null) {
+        p752.parent.removeChild(p752);
       }
     }
-    function randomElement(array) {
-      return array[parseInt(Math.random() * array.length)];
+    function f141(p753) {
+      return p753[parseInt(Math.random() * p753.length)];
     }
-    function generateRandomString() {
+    function f142() {
       return Math.random().toString(36).substring(2, 15);
     }
-    function hslColor(hue, saturation, lightness) {
-      var adjustedSaturation = (1 - Math.abs(lightness * 2 - 1)) * saturation;
-      var adjustedLightness = adjustedSaturation * (1 - Math.abs(hue / 60 % 2 - 1));
-      var middleLightness = lightness - adjustedSaturation / 2;
-      if (hue >= 0 && hue < 60) {
-        return [middleLightness + adjustedSaturation, middleLightness + adjustedLightness, middleLightness + 0];
-      } else if (hue >= 60 && hue < 120) {
-        return [middleLightness + adjustedLightness, middleLightness + adjustedSaturation, middleLightness + 0];
-      } else if (hue >= 120 && hue < 180) {
-        return [middleLightness + 0, middleLightness + adjustedSaturation, middleLightness + adjustedLightness];
-      } else if (hue >= 180 && hue < 240) {
-        return [middleLightness + 0, middleLightness + adjustedLightness, middleLightness + adjustedSaturation];
-      } else if (hue >= 240 && hue < 300) {
-        return [middleLightness + adjustedLightness, middleLightness + 0, middleLightness + adjustedSaturation];
+    function f143(p754, p755, p756) {
+      var v845 = (1 - Math.abs(p756 * 2 - 1)) * p755;
+      var v846 = v845 * (1 - Math.abs(p754 / 60 % 2 - 1));
+      var v847 = p756 - v845 / 2;
+      if (p754 >= 0 && p754 < 60) {
+        return [v847 + v845, v847 + v846, v847 + 0];
+      } else if (p754 >= 60 && p754 < 120) {
+        return [v847 + v846, v847 + v845, v847 + 0];
+      } else if (p754 >= 120 && p754 < 180) {
+        return [v847 + 0, v847 + v845, v847 + v846];
+      } else if (p754 >= 180 && p754 < 240) {
+        return [v847 + 0, v847 + v846, v847 + v845];
+      } else if (p754 >= 240 && p754 < 300) {
+        return [v847 + v846, v847 + 0, v847 + v845];
       } else {
-        return [middleLightness + adjustedSaturation, middleLightness + 0, middleLightness + adjustedLightness];
+        return [v847 + v845, v847 + 0, v847 + v846];
       }
     }
-    function initializeAdBlocker() {
-      function displayAdBlockerMessages() {
-        let adBlockStatus = theoKzObjects.adblock ? 1 : 5;
-        $("#adbl-1").text(localizeMessage("index.game.antiadblocker.msg1"));
-        $("#adbl-2").text(localizeMessage("index.game.antiadblocker.msg2"));
-        $("#adbl-3").text(localizeMessage("index.game.antiadblocker.msg3"));
-        $("#adbl-4").text(localizeMessage("index.game.antiadblocker.msg4").replace("{0}", 10));
-        $("#adbl-continue span").text(localizeMessage("index.game.antiadblocker.continue"));
+    function f144() {
+      function f145() {
+        let v848 = vO4.adblock ? 1 : 5;
+        $("#adbl-1").text(f126("index.game.antiadblocker.msg1"));
+        $("#adbl-2").text(f126("index.game.antiadblocker.msg2"));
+        $("#adbl-3").text(f126("index.game.antiadblocker.msg3"));
+        $("#adbl-4").text(f126("index.game.antiadblocker.msg4").replace("{0}", 10));
+        $("#adbl-continue span").text(f126("index.game.antiadblocker.continue"));
         $("#adbl-continue").hide();
-        $("#" + adBlockContainerId).fadeIn(500);
-        var remainingTime = adBlockStatus;
-        for (var i = 0; i < adBlockStatus; i++) {
+        $("#" + vLSJDHnkHtYwyXyVgG9).fadeIn(500);
+        var vV848 = v848;
+        for (var vLN04 = 0; vLN04 < v848; vLN04++) {
           setTimeout(function () {
-            remainingTime--;
-            $("#adbl-4").text(localizeMessage("index.game.antiadblocker.msg4").replace("{0}", remainingTime));
-            if (remainingTime === 0) {
+            vV848--;
+            $("#adbl-4").text(f126("index.game.antiadblocker.msg4").replace("{0}", vV848));
+            if (vV848 === 0) {
               console.log("aipAABC");
               try {
                 ga("send", "event", "antiadblocker", window.runtimeHash + "_complete");
-              } catch (error) {}
+              } catch (e9) {}
               $("#adbl-continue").fadeIn(200);
             }
-          }, (i + 1) * 1000);
+          }, (vLN04 + 1) * 1000);
         }
       }
-      var adPlayerInitialized = false;
-      function adPlayerCallback() {}
-      var adBlockController = {};
-      var adBlockContainerId = "JDHnkHtYwyXyVgG9";
+      var v849 = false;
+      function f146() {}
+      var vO9 = {};
+      var vLSJDHnkHtYwyXyVgG9 = "JDHnkHtYwyXyVgG9";
       $("#adbl-continue").click(function () {
-        $("#" + adBlockContainerId).fadeOut(500);
-        adPlayerCallback(false);
+        $("#" + vLSJDHnkHtYwyXyVgG9).fadeOut(500);
+        f146(false);
       });
-      adBlockController.a = function (callback) {
-        adPlayerCallback = callback;
-        if (!adPlayerInitialized) {
+      vO9.a = function (p757) {
+        f146 = p757;
+        if (!v849) {
           try {
             aiptag.cmd.player.push(function () {
               aiptag.adplayer = new aipPlayer({
@@ -856,350 +893,348 @@ window.addEventListener("load", function () {
                 PREROLL_ELEM: function () {
                   return document.getElementById("1eaom01c3pxu9wd3");
                 },
-                AIP_COMPLETE: function (data) {
-                  console.log("AdPlayer Complete");
-                  adPlayerCallback(true);
+                AIP_COMPLETE: function (p758) {
+                  console.log("aipC");
+                  f146(true);
                   $("#1eaom01c3pxu9wd3").hide();
-                  $("#" + adBlockContainerId).hide();
+                  $("#" + vLSJDHnkHtYwyXyVgG9).hide();
                   try {
                     ga("send", "event", "preroll", window.runtimeHash + "_complete");
-                  } catch (error) {}
+                  } catch (e10) {}
                 },
                 AIP_REMOVE: function () {}
               });
             });
-            adPlayerInitialized = true;
-          } catch (error) {}
+            v849 = true;
+          } catch (e11) {}
         }
       };
-      adBlockController.b = function () {
+      vO9.b = function () {
         if (aiptag.adplayer !== undefined) {
-          console.log("AdPlayer Started");
+          console.log("aipS");
           try {
             ga("send", "event", "preroll", window.runtimeHash + "_request");
-          } catch (error) {}
-          displayAdBlockerMessages();
+          } catch (e12) {}
+          f145();
         } else {
-          console.log("AdBlocker Alert");
+          console.log("aipAABS");
           try {
             ga("send", "event", "antiadblocker", window.runtimeHash + "_start");
-          } catch (error) {}
-          displayAdBlockerMessages();
+          } catch (e13) {}
+          f145();
         }
       };
-      return adBlockController;
+      return vO9;
     }
-    function createBannerManager(bannerId, displayTagId) {
-      var bannerElement = $("#" + bannerId);
-      var displayTag = displayTagId;
-      var bannerManager = {};
-      var isDisplayed = false;
-      bannerManager.a = function () {
-        if (!isDisplayed) {
-          bannerElement.empty();
-          bannerElement.append("<div id='" + displayTag + "'></div>");
+    function f147(p759, p760) {
+      var v$113 = $("#" + p759);
+      var vP760 = p760;
+      var vO10 = {};
+      var v850 = false;
+      vO10.a = function () {
+        if (!v850) {
+          v$113.empty();
+          v$113.append("<div id='" + vP760 + "'></div>");
           try {
             try {
               ga("send", "event", "banner", window.runtimeHash + "_display");
-            } catch (error) {}
+            } catch (e14) {}
             aiptag.cmd.display.push(function () {
-              aipDisplayTag.display(displayTag);
+              aipDisplayTag.display(vP760);
             });
-            isDisplayed = true;
-          } catch (error) {}
+            v850 = true;
+          } catch (e15) {}
         }
       };
-      bannerManager.c = function () {
+      vO10.c = function () {
         try {
           try {
             ga("send", "event", "banner", window.runtimeHash + "_refresh");
-          } catch (error) {}
+          } catch (e16) {}
           aiptag.cmd.display.push(function () {
-            aipDisplayTag.display(displayTag);
+            aipDisplayTag.display(vP760);
           });
-        } catch (error) {}
+        } catch (e17) {}
       };
-      return bannerManager;
+      return vO10;
     }
-    function _0x4f9dac() {
-      function setUserId(userId) {
-        var uniqueId = userId + Math.floor(Math.random() * 65535) * 37;
-        setCookie(cookieData.d, uniqueId, 30);
+    function f148() {
+      function f149(p761) {
+        var v851 = p761 + Math.floor(Math.random() * 65535) * 37;
+        f125(vF104.d, v851, 30);
       }
-      function getUserId() {
-        return parseInt(getCookie(cookieData.d)) % 37;
+      function f150() {
+        return parseInt(f124(vF104.d)) % 37;
       }
       return function () {
-        var userId = getUserId();
-if (userId < 0 || userId >= appConfig.e) {
-    console.log("init1 pSC: " + userId);
-    if (userId < 0 || userId >= appConfig.e) {
-        userId = Math.max(0, appConfig.e - 2);
-        console.log("init2 pSC: " + userId);
-    }
-}
-        var appInstance = {};
-        appInstance = appInstance;
-        appInstance.f = appConfig;
-        appInstance.g = false;
-        appInstance.i = Date.now();
-        appInstance.j = 0;
-        appInstance.k = 0;
-        appInstance.l = null;
-        appInstance.m = geoLocation;
-        appInstance.n = languageKey;
-        appInstance.o = null;
-        appInstance.p = null;
-        appInstance.q = null;
-        appInstance.r = null;
-        appInstance.s = null;
-        appInstance.t = null;
-        appInstance.u = null;
+        var vF150 = f150();
+        console.log("init1 pSC: " + vF150);
+        if (!(vF150 >= 0) || !(vF150 < v1322.e)) {
+          vF150 = Math.max(0, v1322.e - 2);
+          console.log("init2 pSC: " + vF150);
+        }
+        var vO11 = {};
+        vUndefined28 = vO11;
+        vO11.f = v1322;
+        vO11.g = false;
+        vO11.i = Date.now();
+        vO11.j = 0;
+        vO11.k = 0;
+        vO11.l = null;
+        vO11.m = vUndefined27;
+        vO11.n = v899;
+        vO11.o = null;
+        vO11.p = null;
+        vO11.q = null;
+        vO11.r = null;
+        vO11.s = null;
+        vO11.t = null;
+        vO11.u = null;
         try {
           if (navigator && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-              if (position.coords !== undefined) {
-                var coords = position.coords;
-                if (coords.latitude !== undefined && coords.longitude !== undefined) {
-                  appInstance.l = position;
+            navigator.geolocation.getCurrentPosition(function (p762) {
+              if (p762.coords !== undefined) {
+                var v852 = p762.coords;
+                if (v852.latitude !== undefined && v852.longitude !== undefined) {
+                  vO11.l = p762;
                 }
               }
-            }, function (error) {});
+            }, function (p763) {});
           }
-        } catch (error) {}
-        appInstance.v = function () {
-          appInstance.p = new Player();
-          appInstance.q = new Action();
-          appInstance.r = new Renderer();
-          appInstance.s = new Scene();
-          appInstance.t = new Transition();
-          appInstance.u = new User();
-          appInstance.o = new Options();
-          appInstance.o.z = new SubOptions(appInstance.o);
-          appInstance.a();
+        } catch (e18) {}
+        vO11.v = function () {
+          vO11.p = new vF98();
+          vO11.q = new vF127();
+          vO11.r = new vF100();
+          vO11.s = new vF128();
+          vO11.t = new vF122();
+          vO11.u = new vF130();
+          vO11.o = new f151();
+          vO11.o.z = new vF116(vO11.o);
+          vO11.a();
         };
-        appInstance.a = function () {
+        vO11.a = function () {
           try {
             ga("send", "event", "app", window.runtimeHash + "_init");
-          } catch (error) {}
-          appInstance.o.A = function () {
-            appInstance.o.B();
+          } catch (e19) {}
+          vO11.o.A = function () {
+            vO11.o.B();
           };
-          appInstance.o.C = function () {
-            var audioState = appInstance.s.F.D();
+          vO11.o.C = function () {
+            var v853 = vO11.s.F.D();
             try {
-              ga("send", "event", "game", window.runtimeHash + "_start", audioState);
-            } catch (error) {}
-            appInstance.r.G(Renderer.AudioState.H);
-            appInstance.s.I(appInstance.s.H.J());
+              ga("send", "event", "game", window.runtimeHash + "_start", v853);
+            } catch (e20) {}
+            vO11.r.G(vF100.AudioState.H);
+            vO11.s.I(vO11.s.H.J());
           };
-          appInstance.o.B = function () {
+          vO11.o.B = function () {
             try {
               ga("send", "event", "game", window.runtimeHash + "_end");
-            } catch (error) {}
+            } catch (e21) {}
             if ($("body").height() >= 430) {
-              appInstance.f.K.c();
+              vO11.f.K.c();
             }
-            appInstance.p.L();
+            vO11.p.L();
             (function () {
-              var position = Math.floor(appInstance.o.N.M);
-              var otherData = appInstance.o.O;
-              if (appInstance.u.P()) {
-                appInstance.u.Q(function () {
-                  appInstance.R(position, otherData);
+              var v854 = Math.floor(vO11.o.N.M);
+              var v855 = vO11.o.O;
+              if (vO11.u.P()) {
+                vO11.u.Q(function () {
+                  vO11.R(v854, v855);
                 });
               } else {
-                appInstance.R(position, otherData);
+                vO11.R(v854, v855);
               }
             })();
           };
-          appInstance.o.S = function (callback) {
-            callback(appInstance.s.H.T(), appInstance.s.H.U());
+          vO11.o.S = function (p764) {
+            p764(vO11.s.H.T(), vO11.s.H.U());
           };
-          appInstance.u.V(function () {
-            if (appInstance.p.W) {
-              appInstance.r.G(Renderer.AudioState.F);
-              appInstance.s.I(appInstance.s.F);
+          vO11.u.V(function () {
+            if (vO11.p.W) {
+              vO11.r.G(vF100.AudioState.F);
+              vO11.s.I(vO11.s.F);
             }
-            if (appInstance.u.P()) {
+            if (vO11.u.P()) {
               try {
-                var userId = appInstance.u.X();
-                ga("set", "userId", userId);
-              } catch (error) {}
+                var v856 = vO11.u.X();
+                ga("set", "userId", v856);
+              } catch (e22) {}
             }
-            if (appInstance.Y() && appInstance.u.P() && !appInstance.u.Z()) {
-              appInstance.$(false, false);
-              appInstance.s.aa._(new CustomSkin());
+            if (vO11.Y() && vO11.u.P() && !vO11.u.Z()) {
+              vO11.$(false, false);
+              vO11.s.aa._(new vF178());
             } else {
-              appInstance.ba(true);
+              vO11.ba(true);
             }
           });
-          appInstance.p.ca(function () {
-            appInstance.r.G(Renderer.AudioState.F);
-            appInstance.s.I(appInstance.s.F);
+          vO11.p.ca(function () {
+            vO11.r.G(vF100.AudioState.F);
+            vO11.s.I(vO11.s.F);
           });
-          appInstance.q.a(function () {
-            appInstance.o.a();
-            appInstance.r.a();
-            appInstance.s.a();
-            appInstance.t.a();
-            appInstance.p.a();
-            appInstance.u.a();
-            if (appInstance.Y() && !appInstance.Z()) {
-              appInstance.s.aa._(new CustomSkin());
+          vO11.q.a(function () {
+            vO11.o.a();
+            vO11.r.a();
+            vO11.s.a();
+            vO11.t.a();
+            vO11.p.a();
+            vO11.u.a();
+            if (vO11.Y() && !vO11.Z()) {
+              vO11.s.aa._(new vF178());
             } else {
-              appInstance.ba(true);
+              vO11.ba(true);
             }
           });
         };
-        appInstance.da = function (value) {
-          if (appInstance.u.P()) {
-            var userId = appInstance.u.ea();
-            $.get(apiUrl + "/pub/wuid/" + userId + "/consent/change?value=" + encodeURI(value), function (response) {});
+        vO11.da = function (p765) {
+          if (vO11.u.P()) {
+            var v857 = vO11.u.ea();
+            $.get(vLSHttpsgatewaywormatei + "/pub/wuid/" + v857 + "/consent/change?value=" + encodeURI(p765), function (p766) {});
           }
         };
-        appInstance.fa = function (callback) {
-          var userId = appInstance.u.ea();
-          var audioState = appInstance.s.F.D();
-          var skinData = appInstance.s.F.ga();
-          var skinId = appInstance.t.ha(itemIds.ia);
-          var eyesId = appInstance.t.ha(itemIds.ja);
-          var mouthId = appInstance.t.ha(itemIds.ka);
-          var glassesId = appInstance.t.ha(itemIds.la);
-          var hatId = appInstance.t.ha(itemIds.ma);
-          var positionValue = 0;
-          if (appInstance.l != null) {
-            var latitude = appInstance.l.coords.latitude;
-            var longitude = appInstance.l.coords.longitude;
-            positionValue = Math.max(0, Math.min(32767, (latitude + 90) / 180 * 32768)) << 1 | 1 | Math.max(0, Math.min(65535, (longitude + 180) / 360 * 65536)) << 16;
+        vO11.fa = function (p767) {
+          var v858 = vO11.u.ea();
+          var v859 = vO11.s.F.D();
+          var v860 = vO11.s.F.ga();
+          var v861 = vO11.t.ha(vF124.ia);
+          var v862 = vO11.t.ha(vF124.ja);
+          var v863 = vO11.t.ha(vF124.ka);
+          var v864 = vO11.t.ha(vF124.la);
+          var v865 = vO11.t.ha(vF124.ma);
+          var vLN05 = 0;
+          if (vO11.l != null) {
+            var v866 = vO11.l.coords.latitude;
+            var v867 = vO11.l.coords.longitude;
+            vLN05 = Math.max(0, Math.min(32767, (v866 + 90) / 180 * 32768)) << 1 | 1 | Math.max(0, Math.min(65535, (v867 + 180) / 360 * 65536)) << 16;
           }
-          _wrmxt.testSkinCustom(skinId);
-          let formattedSkinData = "x" + (skinId > 9999 ? "0000" : skinId.toString().padStart(4, 0)) + (hatId > 999 ? "000" : hatId.toString().padStart(3, 0)) + (eyesId > 999 ? "000" : eyesId.toString().padStart(3, 0)) + (mouthId > 999 ? "000" : mouthId.toString().padStart(3, 0));
-          skinData = (skinData.length >= 32 ? skinData.substr(0, 16) : skinData.substr(0, 16).padEnd(16, "x")) + formattedSkinData;
-          skinData = skinData.trim();
-          console.log(skinData);
-          var requestUrl = apiUrl + "/pub/wuid/" + userId + "/start?gameMode=" + encodeURI(audioState) + "&gh=" + positionValue + "&nickname=" + encodeURI(skinData) + "&skinId=" + _wrmxt.validInput(skinId) + "&eyesId=" + encodeURI(eyesId) + "&mouthId=" + encodeURI(mouthId) + "&glassesId=" + encodeURI(glassesId) + "&hatId=" + encodeURI(hatId);
-          console.log("urlRequest: " + requestUrl);
-          $.get(requestUrl, function (response) {
-            var serverUrl = response.server_url;
-            callback(serverUrl);
+          vO.testSkinCustom(v861);
+          let v868 = "?" + (v861 > 9999 ? "0000" : v861.toString().padStart(4, 0)) + (v865 > 999 ? "000" : v865.toString().padStart(3, 0)) + (v862 > 999 ? "000" : v862.toString().padStart(3, 0)) + (v863 > 999 ? "000" : v863.toString().padStart(3, 0));
+          v860 = (v860.length >= 32 ? v860.substr(0, 16) : v860.substr(0, 16).padEnd(16, "_")) + v868;
+          v860 = v860.trim();
+          console.log(v860);
+          var v869 = vLSHttpsgatewaywormatei + "/pub/wuid/" + v858 + "/start?gameMode=" + encodeURI(v859) + "&gh=" + vLN05 + "&nickname=" + encodeURI(v860) + "&skinId=" + vO.validInput(v861) + "&eyesId=" + encodeURI(v862) + "&mouthId=" + encodeURI(v863) + "&glassesId=" + encodeURI(v864) + "&hatId=" + encodeURI(v865);
+          console.log("urlRequest: " + v869);
+          $.get(v869, function (p768) {
+            var v870 = p768.server_url;
+            p767(v870);
           });
         };
-        appInstance.na = function () {
-          userId++;
-          console.log("start pSC: " + userId);
-          if (!appInstance.f.oa && userId >= appInstance.f.e) {
-            appInstance.s.I(appInstance.s.pa);
-            appInstance.r.G(Renderer.AudioState.qa);
-            appInstance.f.ra.b();
+        vO11.na = function () {
+          vF150++;
+          console.log("start pSC: " + vF150);
+          if (!vO11.f.oa && vF150 >= vO11.f.e) {
+            vO11.s.I(vO11.s.pa);
+            vO11.r.G(vF100.AudioState.qa);
+            vO11.f.ra.b();
           } else {
-            setUserId(userId);
-            appInstance.sa();
+            f149(vF150);
+            vO11.sa();
           }
         };
-        appInstance.sa = function (callback) {
-          if (appInstance.o.ta()) {
-            appInstance.s.I(appInstance.s.ua);
-            appInstance.r.G(Renderer.AudioState.ua);
-            var audioState = appInstance.s.F.D();
-            setCookie(cookieData.va, audioState, 30);
-            console.log("save gm: " + audioState);
-            var skinName = appInstance.s.xa.wa();
-            setCookie(cookieData.ya, skinName, 30);
-            console.log("save sPN: " + skinName);
-            if (appInstance.u.P()) {
-              appInstance.fa(function (serverUrl) {
-                hoisinhnhanh = callback ? callback : serverUrl;
-                appInstance.o.za(window.server_url || serverUrl, appInstance.u.ea());
+        vO11.sa = function (p769) {
+          if (vO11.o.ta()) {
+            vO11.s.I(vO11.s.ua);
+            vO11.r.G(vF100.AudioState.ua);
+            var v871 = vO11.s.F.D();
+            f125(vF104.va, v871, 30);
+            console.log("save gm: " + v871);
+            var v872 = vO11.s.xa.wa();
+            f125(vF104.ya, v872, 30);
+            console.log("save sPN: " + v872);
+            if (vO11.u.P()) {
+              vO11.fa(function (p770) {
+                v784 = p769 ? p769 : p770;
+                vO11.o.za(window.server_url || p770, vO11.u.ea());
               });
             } else {
-              var skinId = appInstance.s.F.ga();
-              setCookie(cookieData.Aa, skinId, 30);
-              var itemId = appInstance.t.ha(itemIds.ia);
-              setCookie(cookieData.Ba, itemId, 30);
-              appInstance.fa(function (serverUrl) {
-                hoisinhnhanh = callback ? callback : serverUrl;
-                appInstance.o.Ca(serverUrl, skinId, itemId);
+              var v873 = vO11.s.F.ga();
+              f125(vF104.Aa, v873, 30);
+              var v874 = vO11.t.ha(vF124.ia);
+              f125(vF104.Ba, v874, 30);
+              vO11.fa(function (p771) {
+                v784 = p769 ? p769 : p771;
+                vO11.o.Ca(p771, v873, v874);
               });
             }
           }
         };
-        appInstance.R = function (param1, param2) {
-          var skinId = appInstance.s.F.ga();
-          appInstance.s.H.Da(param1, param2, skinId);
-          appInstance.r.G(Renderer.AudioState.Ea);
-          appInstance.s.I(appInstance.s.H.Fa());
+        vO11.R = function (p772, p773) {
+          var v875 = vO11.s.F.ga();
+          vO11.s.H.Da(p772, p773, v875);
+          vO11.r.G(vF100.AudioState.Ea);
+          vO11.s.I(vO11.s.H.Fa());
         };
-        appInstance.Ga = function () {
-          if (!appInstance.Ha()) {
-            return appInstance.t.Ia();
+        vO11.Ga = function () {
+          if (!vO11.Ha()) {
+            return vO11.t.Ia();
           }
-          var cookieValue = parseInt(getCookie(cookieData.Ba));
-          if (cookieValue != null && appInstance.t.Ja(cookieValue, itemIds.ia)) {
-            return cookieValue;
+          var vParseInt2 = parseInt(f124(vF104.Ba));
+          if (vParseInt2 != null && vO11.t.Ja(vParseInt2, vF124.ia)) {
+            return vParseInt2;
           } else {
-            return appInstance.t.Ia();
+            return vO11.t.Ia();
           }
         };
-        appInstance.Ka = function (value) {
-          setCookie(cookieData.La, !!value, 1800);
+        vO11.Ka = function (p774) {
+          f125(vF104.La, !!p774, 1800);
         };
-        appInstance.Ha = function () {
-          return getCookie(cookieData.La) === "true";
+        vO11.Ha = function () {
+          return f124(vF104.La) === "true";
         };
-        appInstance.ba = function (value) {
-          if (value != appInstance.g) {
-            appInstance.g = value;
-            var consentData = consentData || {};
-            consentData.consented = value;
-            consentData.gdprConsent = value;
-            appInstance.f.Ma.a();
-            appInstance.f.K.a();
-            appInstance.f.ra.a(function (response) {
-              if (response) {
-                setUserId(userId = 0);
+        vO11.ba = function (p775) {
+          if (p775 != vO11.g) {
+            vO11.g = p775;
+            var v876 = v876 || {};
+            v876.consented = p775;
+            v876.gdprConsent = p775;
+            vO11.f.Ma.a();
+            vO11.f.K.a();
+            vO11.f.ra.a(function (p776) {
+              if (p776) {
+                f149(vF150 = 0);
               }
-              appInstance.sa();
+              vO11.sa();
             });
           }
         };
-        appInstance.$ = function (value, callback) {
-          setCookie(cookieData.Na, value ? "true" : "false");
-          if (callback) {
-            appInstance.da(value);
+        vO11.$ = function (p777, p778) {
+          f125(vF104.Na, p777 ? "true" : "false");
+          if (p778) {
+            vO11.da(p777);
           }
-          appInstance.ba(value);
+          vO11.ba(p777);
         };
-        appInstance.Z = function () {
-          switch (getCookie(cookieData.Na)) {
+        vO11.Z = function () {
+          switch (f124(vF104.Na)) {
             case "true":
               return true;
             default:
               return false;
           }
         };
-        appInstance.Y = function () {
+        vO11.Y = function () {
           try {
-            return !!window.isIPInEEA || appInstance.l != null && !!DataReader.Oa(appInstance.l.coords.latitude, appInstance.l.coords.longitude);
-          } catch (error) {
+            return !!window.isIPInEEA || vO11.l != null && !!vF105.Oa(vO11.l.coords.latitude, vO11.l.coords.longitude);
+          } catch (e23) {
             return true;
           }
         };
-        appInstance.Pa = function () {
-          appInstance.j = Date.now();
-          appInstance.k = appInstance.j - appInstance.i;
-          appInstance.o.Qa(appInstance.j, appInstance.k);
-          appInstance.s.Qa(appInstance.j, appInstance.k);
-          appInstance.i = appInstance.j;
+        vO11.Pa = function () {
+          vO11.j = Date.now();
+          vO11.k = vO11.j - vO11.i;
+          vO11.o.Qa(vO11.j, vO11.k);
+          vO11.s.Qa(vO11.j, vO11.k);
+          vO11.i = vO11.j;
         };
-        appInstance.Ra = function () {
-          appInstance.s.Ra();
+        vO11.Ra = function () {
+          vO11.s.Ra();
         };
-        return appInstance;
+        return vO11;
       }();
     }
-    function Options() {
-      var options = {
+   function f151() {
+      var vO12 = {
         Wa: 30,
         Xa: new Float32Array(100),
         Ya: 0,
@@ -1215,7 +1250,7 @@ if (userId < 0 || userId >= appConfig.e) {
         B: function () {},
         S: function () {},
         A: function () {},
-        fb: new SomeClass(),
+        fb: new vF109(),
         z: null,
         N: null,
         gb: {},
@@ -1234,431 +1269,471 @@ if (userId < 0 || userId >= appConfig.e) {
         O: 500,
         tb: 500
       };
-      options.fb.ub = 500;
-      options.N = new AnotherClass(options.fb);
-      options.a = function () {
-        options.N.vb(initializeApp().s.H.wb);
+
+    let vHBTimer;
+
+    function fHeartbeatStop() {
+        if (vHBTimer) {
+            clearInterval(vHBTimer);
+            vHBTimer = null;
+        }
+    }
+
+    function fHeartbeatStart() {
+        fHeartbeatStop(); 
+        vHBTimer = setInterval(() => {
+            if (vO12.db && vO12.db.readyState === WebSocket.OPEN) {
+                if (vO12.eb !== 300) {
+                    var v896 = new ArrayBuffer(1);
+                    new DataView(v896).setInt8(0, vO12.eb);
+                    vO12.db.send(v896);
+                }
+            }
+        }, 10);
+    }
+
+      vO12.fb.ub = 500;
+      vO12.N = new vF135(vO12.fb);
+      vO12.a = function () {
+        vO12.N.vb(f123().s.H.wb);
         setInterval(function () {
-          options.S(function (arg1, arg2) {
-            options.xb(arg1, arg2);
+          vO12.S(function (p779, p780) {
+            vO12.xb(p779, p780);
           });
         }, 10);
       };
-      options.yb = function (val1, val2, val3, val4) {
-        options.lb = val1;
-        options.mb = val2;
-        options.nb = val3;
-        options.ob = val4;
-        options.zb();
+      vO12.yb = function (p781, p782, p783, p784) {
+        vO12.lb = p781;
+        vO12.mb = p782;
+        vO12.nb = p783;
+        vO12.ob = p784;
+        vO12.zb();
       };
-      options.Ab = function (size) {
-        options.kb = size;
-        options.zb();
+      vO12.Ab = function (p785) {
+        vO12.kb = p785;
+        vO12.zb();
       };
-      options.zb = function () {
-        options.pb = options.lb - options.kb;
-        options.qb = options.mb + options.kb;
-        options.rb = options.nb - options.kb;
-        options.sb = options.ob + options.kb;
+      vO12.zb = function () {
+        vO12.pb = vO12.lb - vO12.kb;
+        vO12.qb = vO12.mb + vO12.kb;
+        vO12.rb = vO12.nb - vO12.kb;
+        vO12.sb = vO12.ob + vO12.kb;
       };
-      options.Qa = function (arg1, deltaTime) {
-        options.$a += deltaTime;
-        options.Za -= options.Ya * 0.2 * deltaTime;
-        options.z.Bb();
-        if (options.db != null && (options.cb === 2 || options.cb === 3)) {
-          options.Cb(arg1, deltaTime);
-          options.jb = 4 + options.ib * options.N.Db;
+      vO12.Qa = function (p786, p787) {
+        vO12.$a += p787;
+        vO12.Za -= vO12.Ya * 0.2 * p787;
+        vO12.z.Bb();
+        if (vO12.db != null && (vO12.cb === 2 || vO12.cb === 3)) {
+          vO12.Cb(p786, p787);
+          vO12.jb = 4 + vO12.ib * vO12.N.Db;
         }
-        var timeElapsed = 1000 / Math.max(1, deltaTime);
-        var sum = 0;
-        var index = 0;
-        for (; index < options.Xa.length - 1; index++) {
-          sum = sum + options.Xa[index];
-          options.Xa[index] = options.Xa[index + 1];
+        var v877 = 1000 / Math.max(1, p787);
+        var vLN06 = 0;
+        var vLN07 = 0;
+        for (; vLN07 < vO12.Xa.length - 1; vLN07++) {
+          vLN06 = vLN06 + vO12.Xa[vLN07];
+          vO12.Xa[vLN07] = vO12.Xa[vLN07 + 1];
         }
-        options.Xa[options.Xa.length - 1] = timeElapsed;
-        options.Wa = (sum + timeElapsed) / options.Xa.length;
+        vO12.Xa[vO12.Xa.length - 1] = v877;
+        vO12.Wa = (vLN06 + v877) / vO12.Xa.length;
       };
-      options.Eb = function (x, y) {
-        return x > options.pb && x < options.qb && y > options.rb && y < options.sb;
+      vO12.Eb = function (p788, p789) {
+        return p788 > vO12.pb && p788 < vO12.qb && p789 > vO12.rb && p789 < vO12.sb;
       };
-      options.Cb = function (arg1, arg2) {
-        var adjustedSample = options.$a + options.Za;
-        var ratio = (adjustedSample - options._a) / (options.ab - options._a);
-        options.N.Fb(arg1, arg2);
-        options.N.Gb(arg1, arg2, ratio, options.Eb);
-        var maxDb = 0;
-        var item;
-        for (item in options.hb) {
-          var sample = options.hb[item];
-          sample.Fb(arg1, arg2);
-          sample.Gb(arg1, arg2, ratio, options.Eb);
-          if (sample.Hb && sample.Db > maxDb) {
-            maxDb = sample.Db;
+      vO12.Cb = function (p790, p791) {
+        var v878 = vO12.$a + vO12.Za;
+        var v879 = (v878 - vO12._a) / (vO12.ab - vO12._a);
+        vO12.N.Fb(p790, p791);
+        vO12.N.Gb(p790, p791, v879, vO12.Eb);
+        var vLN08 = 0;
+        var v880;
+        for (v880 in vO12.hb) {
+          var v881 = vO12.hb[v880];
+          v881.Fb(p790, p791);
+          v881.Gb(p790, p791, v879, vO12.Eb);
+          if (v881.Hb && v881.Db > vLN08) {
+            vLN08 = v881.Db;
           }
-if (!sample.Ib && (sample.Jb < 0.005 || !sample.Hb)) {
-    if (!sample.Ib && (sample.Jb < 0.005 || !sample.Hb)) {
-        sample.Kb();
-        delete options.hb[sample.Mb.Lb];
-    }
-}
+          if (!v881.Ib && (!!(v881.Jb < 0.005) || !v881.Hb)) {
+            v881.Kb();
+            delete vO12.hb[v881.Mb.Lb];
+          }
         }
-        options.Ab(maxDb * 3);
-        var anotherItem;
-        for (anotherItem in options.gb) {
-          var secondarySample = options.gb[anotherItem];
-          secondarySample.Fb(arg1, arg2);
-          secondarySample.Gb(arg1, arg2, options.Eb);
-          if (secondarySample.Nb && (secondarySample.Jb < 0.005 || !options.Eb(secondarySample.Ob, secondarySample.Pb))) {
-            secondarySample.Kb();
-            delete options.gb[secondarySample.Mb.Lb];
+        vO12.Ab(vLN08 * 3);
+        var v882;
+        for (v882 in vO12.gb) {
+          var v883 = vO12.gb[v882];
+          v883.Fb(p790, p791);
+          v883.Gb(p790, p791, vO12.Eb);
+          if (v883.Nb && (v883.Jb < 0.005 || !vO12.Eb(v883.Ob, v883.Pb))) {
+            v883.Kb();
+            delete vO12.gb[v883.Mb.Lb];
           }
         }
       };
-      options.Qb = function (param1, param2) {
-        if (options.cb === 1) {
-          options.cb = 2;
-          options.C();
+      vO12.Qb = function (p792, p793) {
+        if (vO12.cb === 1) {
+          vO12.cb = 2;
+          vO12.C();
         }
-        var currentTime = initializeApp().j;
-        options.bb = param1;
-        if (param1 === 0) {
-          options._a = currentTime - 95;
-          options.ab = currentTime;
-          options.$a = options._a;
-          options.Za = 0;
+        var v884 = f123().j;
+        vO12.bb = p792;
+        if (p792 === 0) {
+          vO12._a = v884 - 95;
+          vO12.ab = v884;
+          vO12.$a = vO12._a;
+          vO12.Za = 0;
         } else {
-          options._a = options.ab;
-          options.ab = options.ab + param2;
+          vO12._a = vO12.ab;
+          vO12.ab = vO12.ab + p793;
         }
-        var adjustedSample = options.$a + options.Za;
-        options.Ya = (adjustedSample - options._a) / (options.ab - options._a);
+        var v885 = vO12.$a + vO12.Za;
+        vO12.Ya = (v885 - vO12._a) / (vO12.ab - vO12._a);
       };
-      options.Rb = function () {
-        if (options.cb === 1 || options.cb === 2) {
-          options.cb = 3;
-          var tempDb = options.db;
+      vO12.Rb = function () {
+        if (vO12.cb === 1 || vO12.cb === 2) {
+          vO12.cb = 3;
+          var v886 = vO12.db;
           setTimeout(function () {
-            if (options.cb === 3) {
-              options.cb = 0;
+            if (vO12.cb === 3) {
+              vO12.cb = 0;
             }
-            if (tempDb != null && tempDb === options.db) {
-              options.db.close();
-              options.db = null;
+            if (v886 != null && v886 === vO12.db) {
+              vO12.db.close();
+              vO12.db = null;
             }
           }, 5000);
-          options.B();
+          vO12.B();
         }
       };
-      options.ta = function () {
-        return options.cb !== 2 && (options.cb = 1, options.z.Sb(), options.gb = {}, options.hb = {}, options.N.Tb(), options.db != null && (options.db.close(), options.db = null), true);
+      vO12.ta = function () {
+        return vO12.cb !== 2 && (vO12.cb = 1, vO12.z.Sb(), vO12.gb = {}, vO12.hb = {}, vO12.N.Tb(), vO12.db != null && (vO12.db.close(), vO12.db = null), true);
       };
-      options.Ub = function () {
-        options.db = null;
-        options.z.Sb();
-        if (options.cb !== 3) {
-          options.A();
+      vO12.Ub = function () {
+        vO12.db = null;
+        vO12.z.Sb();
+        fHeartbeatStop();
+        if (vO12.cb !== 3) {
+          vO12.A();
         }
-        options.cb = 0;
+        vO12.cb = 0;
       };
-      options.za = function (url, data) {
-        options.Vb(url, function () {
-          var dataLength = Math.min(2048, data.length);
-          var buffer = new ArrayBuffer(6 + dataLength * 2);
-          var dataView = new DataView(buffer);
-          var offset = 0;
-          dataView.setInt8(offset, 129);
-          offset = offset + 1;
-          dataView.setInt16(offset, 2800);
-          offset = offset + 2;
-          dataView.setInt8(offset, 1);
-          offset = offset + 1;
-          dataView.setInt16(offset, dataLength);
-          offset = offset + 2;
-          var i = 0;
-          for (; i < dataLength; i++) {
-            dataView.setInt16(offset, data.charCodeAt(i));
-            offset = offset + 2;
+      vO12.za = function (p794, p795) {
+        vO12.Vb(p794, function () {
+          var v887 = Math.min(2048, p795.length);
+          var v888 = new ArrayBuffer(6 + v887 * 2);
+          var v889 = new DataView(v888);
+          var vLN09 = 0;
+          v889.setInt8(vLN09, 129);
+          vLN09 = vLN09 + 1;
+          v889.setInt16(vLN09, 2800);
+          vLN09 = vLN09 + 2;
+          v889.setInt8(vLN09, 1);
+          vLN09 = vLN09 + 1;
+          v889.setInt16(vLN09, v887);
+          vLN09 = vLN09 + 2;
+          var vLN010 = 0;
+          for (; vLN010 < v887; vLN010++) {
+            v889.setInt16(vLN09, p795.charCodeAt(vLN010));
+            vLN09 = vLN09 + 2;
           }
-          options.Wb(buffer);
+          vO12.Wb(v888);
         });
       };
-      options.Ca = function (url, data, id) {
-        options.Vb(url, function () {
-          var dataLength = Math.min(32, data.length);
-          var buffer = new ArrayBuffer(7 + dataLength * 2);
-          var dataView = new DataView(buffer);
-          var offset = 0;
-          dataView.setInt8(offset, 129);
-          offset = offset + 1;
-          dataView.setInt16(offset, 2800);
-          offset = offset + 2;
-          dataView.setInt8(offset, 0);
-          offset = offset + 1;
-          dataView.setInt16(offset, id);
-          offset = offset + 2;
-          dataView.setInt8(offset, dataLength);
-          offset++;
-          var i = 0;
-          for (; i < dataLength; i++) {
-            dataView.setInt16(offset, data.charCodeAt(i));
-            offset = offset + 2;
+      vO12.Ca = function (p796, p797, p798) {
+        vO12.Vb(p796, function () {
+          var v890 = Math.min(32, p797.length);
+          var v891 = new ArrayBuffer(7 + v890 * 2);
+          var v892 = new DataView(v891);
+          var vLN011 = 0;
+          v892.setInt8(vLN011, 129);
+          vLN011 = vLN011 + 1;
+          v892.setInt16(vLN011, 2800);
+          vLN011 = vLN011 + 2;
+          v892.setInt8(vLN011, 0);
+          vLN011 = vLN011 + 1;
+          v892.setInt16(vLN011, p798);
+          vLN011 = vLN011 + 2;
+          v892.setInt8(vLN011, v890);
+          vLN011++;
+          var vLN012 = 0;
+          for (; vLN012 < v890; vLN012++) {
+            v892.setInt16(vLN011, p797.charCodeAt(vLN012));
+            vLN011 = vLN011 + 2;
           }
-          options.Wb(buffer);
+          vO12.Wb(v891);
         });
       };
-      options.Wb = function (buffer) {
+      vO12.Wb = function (p799) {
         try {
-          if (options.db != null && options.db.readyState === WebSocket.OPEN) {
-            options.db.send(buffer);
+          if (vO12.db != null && vO12.db.readyState === WebSocket.OPEN) {
+            vO12.db.send(p799);
           }
-        } catch (error) {
-          console.log("Socket send error: " + error);
-          options.Ub();
+        } catch (e24) {
+          console.log("Socket send error: " + e24);
+          vO12.Ub();
         }
       };
-      options.xb = function (arg1, arg2) {
-        var flag = arg2 ? 128 : 0;
-        var normalizedValue = normalizeIndex(arg1) / arrayLength * 128 & 127;
-        var combinedValue = (flag | normalizedValue) & 255;
-        if (options.eb !== combinedValue) {
-          var byteArray = new ArrayBuffer(1);
-          new DataView(byteArray).setInt8(0, combinedValue);
-          options.Wb(byteArray);
-          options.eb = combinedValue;
+      vO12.xb = function (p800, p801) {
+        var v893 = p801 ? 128 : 0;
+        var v894 = f132(p800) / v903 * 128 & 127;
+        var v895 = (v893 | v894) & 255;
+        if (vO12.eb !== v895) {
+          var v896 = new ArrayBuffer(1);
+          new DataView(v896).setInt8(0, v895);
+          fHeartbeatStop();
+          vO12.Wb(v896);
+          vO12.eb = v895;
+          fHeartbeatStart(); 
         }
       };
-      options.Vb = function (url, callback) {
-        let joyLoader = loadJoy(!theoKzObjects.mobile);
-        var websocket = options.db = new WebSocket(url);
-        websocket.binaryType = "arraybuffer";
-        window.onOpen = websocket.onopen = function () {
-          updateGameData("open");
-          if (options.db === websocket) {
+      vO12.Vb = function (p802, p803) {
+        let vVF90 = vF90(!vO4.mobile);
+        var v897 = vO12.db = new WebSocket(p802);
+        v897.binaryType = "arraybuffer";
+        window.onOpen = v897.onopen = function () {
+          f225("open");
+          if (vO12.db === v897) {
             console.log("Socket opened");
-            callback();
+            fHeartbeatStart();
+            p803();
           }
-          isPlaying = true;
+          v786 = true;
         };
-        window.onclose = websocket.onclose = function () {
-          updateGameData("closed");
-          _wrmxt.aload = true;
-          if (options.db === websocket) {
+        window.onclose = v897.onclose = function () {
+          f225("closed");
+          vO.aload = false;
+          if (vO12.db === v897) {
             console.log("Socket closed");
-            options.Ub();
+            fHeartbeatStop();
+            vO12.Ub();
           }
-          isPlaying = true;
-          if (joyLoader) {
-            joyLoader.destroy();
+          v786 = false;
+          if (vVF90) {
+            vVF90.destroy();
           }
         };
-        websocket.onerror = function (error) {
-          if (options.db === websocket) {
+        v897.onerror = function (p804) {
+          if (vO12.db === v897) {
             console.log("Socket error");
-            options.Ub();
+            fHeartbeatStop();
+            vO12.Ub();
           }
-          isPlaying = false;
-          if (joyLoader) {
-            joyLoader.destroy();
+          v786 = false;
+          if (vVF90) {
+            vVF90.destroy();
           }
         };
-        websocket.onmessage = function (message) {
-          if (options.db === websocket) {
-            options.z.Xb(message.data);
+        v897.onmessage = function (p805) {
+          if (vO12.db === v897) {
+            vO12.z.Xb(p805.data);
           }
         };
       };
-      return options;
+      return vO12;
     }
-    var logoUrl = "https://wormate.io/images/linelogo-xmas2022.png";
-    var guestAvatarUrl = "/images/guest-avatar-xmas2022.png";
-    var isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    var apiUrl = "https://gateway.wormate.io";
-    var resourcesUrl = "https://resources.wormate.io";
-    var languageKey = window.I18N_LANG;
-languageKey = languageKey || "en"; // تعيين القيمة الافتراضية إذا كانت غير موجودة
-var geoLocation;
-switch (languageKey) {
-    case "uk":
-        geoLocation = "uk_UA";
+    var vLSimageslinelogoxmas20 = "/images/linelogo-xmas2022.png";
+    var vLSimagesguestavatarxma = "/images/guest-avatar-xmas2022.png";
+    var v898 = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    var vLSHttpsgatewaywormatei = "https://gateway.wormate.io";
+    var vLSHttpsresourceswormat = "https://resources.wormate.io";
+    var v899 = window.I18N_LANG;
+    v899 ||= "en";
+    var vUndefined27 = undefined;
+    switch (v899) {
+      case "uk":
+        vUndefined27 = "uk_UA";
         break;
-    case "de":
-        geoLocation = "de_DE";
+      case "de":
+        vUndefined27 = "de_DE";
         break;
-    case "fr":
-        geoLocation = "fr_FR";
+      case "fr":
+        vUndefined27 = "fr_FR";
         break;
-    case "ru":
-        geoLocation = "ru_RU";
+      case "ru":
+        vUndefined27 = "ru_RU";
         break;
-    case "es":
-        geoLocation = "es_ES";
+      case "es":
+        vUndefined27 = "es_ES";
         break;
-    default:
-        geoLocation = "en_US";
-}
-    moment.locale(geoLocation);
-    var isInitialized = false;
-    var appInstance = undefined;
-    var pixiProperties = function () {
-      var pixiLibrary = {
-        Yb: eval("PIXI")
+      default:
+        vUndefined27 = "en_US";
+    }
+    moment.locale(vUndefined27);
+    var v900 = false;
+    var vUndefined28 = undefined;
+    var vF91 = function () {
+      var vO13 = {
+        Yb: eval("PIXI;")
       };
-      var blendModes = pixiLibrary.Yb.BLEND_MODES;
-      var wrapModes = pixiLibrary.Yb.WRAP_MODES;
+      var v901 = vO13.Yb.BLEND_MODES;
+      var v902 = vO13.Yb.WRAP_MODES;
       return {
-        Zb: pixiLibrary.Yb.Container,
-        $b: pixiLibrary.Yb.BaseTexture,
-        _b: pixiLibrary.Yb.Texture,
-        ac: pixiLibrary.Yb.Renderer,
-        bc: pixiLibrary.Yb.Graphics,
-        cc: pixiLibrary.Yb.Shader,
-        dc: pixiLibrary.Yb.Rectangle,
-        ec: pixiLibrary.Yb.Sprite,
-        fc: pixiLibrary.Yb.Text,
-        gc: pixiLibrary.Yb.Geometry,
-        hc: pixiLibrary.Yb.Mesh,
+        Zb: vO13.Yb.Container,
+        $b: vO13.Yb.BaseTexture,
+        _b: vO13.Yb.Texture,
+        ac: vO13.Yb.Renderer,
+        bc: vO13.Yb.Graphics,
+        cc: vO13.Yb.Shader,
+        dc: vO13.Yb.Rectangle,
+        ec: vO13.Yb.Sprite,
+        fc: vO13.Yb.Text,
+        gc: vO13.Yb.Geometry,
+        hc: vO13.Yb.Mesh,
         ic: {
-          jc: blendModes.ADD
+          jc: v901.ADD
         },
         kc: {
-          lc: wrapModes.REPEAT
+          lc: v902.REPEAT
         }
       };
     }();
-    var arrayLength = Math.PI * 2;
+    var v903 = Math.PI * 2;
     (function () {
-      var getString = "Z2V0";
-      var equals = "=";
-      var getInteger = getString + "SW50";
-      var getFloat = getString + "RmxvYXQ";
-      var base64Array = [atob(getInteger + "OA=="), atob(getInteger + "MTY" + equals), atob(getInteger + "MzI" + equals), atob(getFloat + "zMg=="), atob(getFloat + "2NA==")];
-      DataView.prototype.mc = function (index) {
-        return this[base64Array[0]](index);
+      var vLSZ2V0 = "Z2V0";
+      var vLS = "=";
+      var v904 = vLSZ2V0 + "SW50";
+      var v905 = vLSZ2V0 + "RmxvYXQ";
+      var vA7 = [atob(v904 + "OA=="), atob(v904 + "MTY" + vLS), atob(v904 + "MzI" + vLS), atob(v905 + "zMg=="), atob(v905 + "2NA==")];
+      DataView.prototype.mc = function (p806) {
+        return this[vA7[0]](p806);
       };
-      DataView.prototype.nc = function (index) {
-        return this[base64Array[1]](index);
+      DataView.prototype.nc = function (p807) {
+        return this[vA7[1]](p807);
       };
-      DataView.prototype.oc = function (index) {
-        return this[base64Array[2]](index);
+      DataView.prototype.oc = function (p808) {
+        return this[vA7[2]](p808);
       };
-      DataView.prototype.pc = function (index) {
-        return this[base64Array[3]](index);
+      DataView.prototype.pc = function (p809) {
+        return this[vA7[3]](p809);
       };
-      DataView.prototype.qc = function (index) {
-        return this[base64Array[4]](index);
+      DataView.prototype.qc = function (p810) {
+        return this[vA7[4]](p810);
       };
     })();
-    var Velocity = function () {
-      function VelocityConstructor(speed) {
-        this.rc = speed;
+    var vF97 = function () {
+      function f152(p811) {
+        this.rc = p811;
         this.sc = false;
         this.tc = 1;
       }
-      VelocityConstructor.VELOCITY_TYPE = 0;
-      VelocityConstructor.FLEXIBLE_TYPE = 1;
-      VelocityConstructor.MAGNETIC_TYPE = 2;
-      VelocityConstructor.ZOOM_TYPE = 6;
-      VelocityConstructor.X2_TYPE = 3;
-      VelocityConstructor.X5_TYPE = 4;
-      VelocityConstructor.X10_TYPE = 5;
-      return VelocityConstructor;
+      f152.VELOCITY_TYPE = 0;
+      f152.FLEXIBLE_TYPE = 1;
+      f152.MAGNETIC_TYPE = 2;
+      f152.ZOOM_TYPE = 6;
+      f152.X2_TYPE = 3;
+      f152.X5_TYPE = 4;
+      f152.X10_TYPE = 5;
+      return f152;
     }();
-    var Player = function () {
-      function PlayerConstructor() {
+    var vF98 = function () {
+      function f153() {
         this.uc = [];
         this.vc = {};
         this.wc = null;
-        this.xc = ResourceManager.yc();
+        this.xc = vF99.yc();
       }
-      function forEach(obj, callback) {
-        for (var key in obj) {
-          if (obj.hasOwnProperty(key)) {
-            callback(key, obj[key]);
+      function f154(p812, p813) {
+        for (var v906 in p812) {
+          if (p812.hasOwnProperty(v906)) {
+            p813(v906, p812[v906]);
           }
         }
       }
-      PlayerConstructor.prototype.a = function () {
+      f153.prototype.a = function () {
         this.L();
       };
-      PlayerConstructor.prototype.W = function () {
+      f153.prototype.W = function () {
         return this.wc != null;
       };
-      PlayerConstructor.prototype.zc = function () {
+      f153.prototype.zc = function () {
         if (this.wc != null) {
           return this.wc.revision;
         } else {
           return -1;
         }
       };
-      PlayerConstructor.prototype.Ac = function () {
+      f153.prototype.Ac = function () {
         return this.wc;
       };
-      PlayerConstructor.prototype.L = function () {
-        var self = this;
-        $.get(resourcesUrl + "/dynamic/assets/revision.json", function (revision) {
-          if (revision > self.zc()) {
-            self.Bc();
+      f153.prototype.L = function () {
+        var vThis39 = this;
+        $.get(vLSHttpsresourceswormat + "/dynamic/assets/revision.json", function (p814) {
+          if (p814 > vThis39.zc()) {
+            vThis39.Bc();
           }
         });
       };
-      PlayerConstructor.prototype.Bc = function () {
-        var self = this;
-        $.get(resourcesUrl + "/dynamic/assets/registry.json", function (registry) {
-          if (registry.revision > self.zc()) {
-            self.Cc(registry);
+      f153.prototype.Bc = function () {
+        var vThis40 = this;
+        $.get(vLSHttpsresourceswormat + "/dynamic/assets/registry.json", function (p815) {
+          if (p815.revision > vThis40.zc()) {
+            vThis40.Cc(p815);
           }
         });
       };
-      PlayerConstructor.prototype.ca = function (callback) {
-        this.uc.push(callback);
+      f153.prototype.ca = function (p816) {
+        this.uc.push(p816);
       };
-      PlayerConstructor.prototype.Dc = function () {
+      f153.prototype.Dc = function () {
         return this.xc;
       };
-      PlayerConstructor.prototype.Ec = function () {
-        for (var i = 0; i < this.uc.length; i++) {
-          this.uc[i]();
+      f153.prototype.Ec = function () {
+        for (var vLN013 = 0; vLN013 < this.uc.length; vLN013++) {
+          this.uc[vLN013]();
         }
       };
-      PlayerConstructor.prototype.Fc = function (resource, textureDict) {
-        if (!(resource.revision <= this.zc())) {
-          var newTextureDict = textureDict;
-          forEach(this.vc, function (key, texture) {
-            var newTexture = newTextureDict[key];
-            if (newTexture == null || texture.Gc !== newTexture.Gc) {
-              print("disposing prev texture: " + key + " at " + texture.Gc);
-              texture.Hc.destroy();
+      f153.prototype.Fc = function (p817, p818) {
+        if (!(p817.revision <= this.zc())) {
+          var vP818 = p818;
+          f154(this.vc, function (p819, p820) {
+            var v907 = vP818[p819];
+            if (v907 == null || p820.Gc !== v907.Gc) {
+              print("disposing prev texture: " + p819 + " at " + p820.Gc);
+              p820.Hc.destroy();
             }
           });
-          this.vc = newTextureDict;
-          this.wc = resource;
-          this.xc = ResourceManager.Ic(this.wc, this.vc);
+          this.vc = vP818;
+          this.wc = p817;
+          this.xc = vF99.Ic(this.wc, this.vc);
           this.Ec();
         }
       };
-      PlayerConstructor.prototype.Cc = function (resource) {
-        var textureDict = {};
-        (function (textureDict, callback) {
-          for (var key in textureDict) {
-            if (textureDict.hasOwnProperty(key)) {
-              callback(key, textureDict[key]);
+      f153.prototype.Cc = function (p821) {
+        var vO14 = {};
+        var vA8 = [];
+        var vA9 = [];
+        var vLN014 = 0;
+        (function (p822, p823) {
+          for (var v908 in p822) {
+            if (p822.hasOwnProperty(v908)) {
+              var v909 = p822[v908];
+              var v910 = v909.custom ? v909.relativePath : vLSHttpsresourceswormat + v909.relativePath;
+              var v911 = v909.fileSize;
+              var v912 = v909.sha256;
+              var vO15 = {
+                id: v908,
+                path: v910,
+                fileSize: v911,
+                sha256: v912
+              };
+              vA8.push(vO15);
+              vA9.push(vO15);
+              vLN014 += v911;
+              try {
+                vO14[v908] = new vF108(v910, vF91.$b.from(v909.file || v910));
+              } catch (e25) {
+                console.log("Error loading file: " + v910);
+              }
             }
           }
-        })(resource.textureDict, function (key, textureData) {
-          var texturePath = textureData.custom ? textureData.relativePath : resourcesUrl + textureData.relativePath;
-          try {
-            textureDict[key] = new SomeDataClass(texturePath, pixiProperties.$b.from(textureData.file || texturePath));
-          } catch (e) {
-            console.log(texturePath);
-          }
-        });
-        this.Fc(resource, textureDict);
+        })(p821.textureDict, function (p824, p825) {});
+        this.Fc(p821, vO14);
       };
-      return PlayerConstructor;
+      return f153;
     }();
-    var ResourceManager = function () {
-      function ResourceManagerConstructor() {
+    var vF99 = function () {
+      function f155() {
         this.Jc = null;
         this.Kc = null;
         this.Lc = null;
@@ -1676,308 +1751,308 @@ switch (languageKey) {
         this.Xc = null;
         this.Yc = null;
       }
-      function forEach(obj, callback) {
-        for (var key in obj) {
-          if (obj.hasOwnProperty(key)) {
-            callback(key, obj[key]);
+      function f156(p826, p827) {
+        for (var v913 in p826) {
+          if (p826.hasOwnProperty(v913)) {
+            p827(v913, p826[v913]);
           }
         }
       }
-      ResourceManagerConstructor.yc = function () {
-        var instance = new ResourceManager();
-        instance.Jc = {};
-        instance.Kc = {
+      f155.yc = function () {
+        var v914 = new vF99();
+        v914.Jc = {};
+        v914.Kc = {
           Zc: null,
           $c: null
         };
-        instance.Lc = {};
-        instance.Mc = {
+        v914.Lc = {};
+        v914.Mc = {
           Zc: null
         };
-        instance.Nc = {};
-        instance.Oc = {
+        v914.Nc = {};
+        v914.Oc = {
           _c: "#FFFFFF",
           Zc: [],
           $c: []
         };
-        instance.Pc = {};
-        instance.Qc = {
+        v914.Pc = {};
+        v914.Qc = {
           ad: {},
-          bd: instance.Oc,
-          cd: instance.Kc
+          bd: v914.Oc,
+          cd: v914.Kc
         };
-        instance.Rc = {};
-        instance.Sc = {
+        v914.Rc = {};
+        v914.Sc = {
           Zc: []
         };
-        instance.Tc = {};
-        instance.Uc = {
+        v914.Tc = {};
+        v914.Uc = {
           Zc: []
         };
-        instance.Vc = {};
-        instance.Wc = {
+        v914.Vc = {};
+        v914.Wc = {
           Zc: []
         };
-        instance.Xc = {};
-        instance.Yc = {
+        v914.Xc = {};
+        v914.Yc = {
           Zc: []
         };
-        return instance;
+        return v914;
       };
-      ResourceManagerConstructor.Ic = function (resource, textureDict) {
-        var instance = new ResourceManager();
-        var colorDict = {};
-        forEach(resource.colorDict, function (key, value) {
-          colorDict[key] = value;
+      f155.Ic = function (p828, p829) {
+        var v915 = new vF99();
+        var vO16 = {};
+        f156(p828.colorDict, function (p830, p831) {
+          vO16[p830] = p831;
         });
-        var regionDict = {};
-        forEach(resource.regionDict, function (key, value) {
-          regionDict[key] = new SkinProperty(textureDict[value.texture].Hc, value.x, value.y, value.w, value.h, value.px, value.py, value.pw, value.ph);
+        var vO17 = {};
+        f156(p828.regionDict, function (p832, p833) {
+          vO17[p832] = new vF125(p829[p833.texture].Hc, p833.x, p833.y, p833.w, p833.h, p833.px, p833.py, p833.pw, p833.ph);
         });
-        instance.Nc = {};
-        for (var i = 0; i < resource.skinArrayDict.length; i++) {
-          var skinData = resource.skinArrayDict[i];
-          instance.Nc[skinData.id] = new ResourceManager.WormSkinData("#" + colorDict[skinData.prime], skinData.base.map(function (base) {
-            return regionDict[base];
-          }), skinData.glow.map(function (glow) {
-            return regionDict[glow];
+        v915.Nc = {};
+        for (var vLN015 = 0; vLN015 < p828.skinArrayDict.length; vLN015++) {
+          var v916 = p828.skinArrayDict[vLN015];
+          v915.Nc[v916.id] = new vF99.WormSkinData("#" + vO16[v916.prime], v916.base.map(function (p834) {
+            return vO17[p834];
+          }), v916.glow.map(function (p835) {
+            return vO17[p835];
           }));
         }
-        var unknownSkin = resource.skinUnknown;
-        instance.Oc = new ResourceManager.WormSkinData("#" + colorDict[unknownSkin.prime], unknownSkin.base.map(function (base) {
-          return regionDict[base];
-        }), unknownSkin.glow.map(function (glow) {
-          return regionDict[glow];
+        var v917 = p828.skinUnknown;
+        v915.Oc = new vF99.WormSkinData("#" + vO16[v917.prime], v917.base.map(function (p836) {
+          return vO17[p836];
+        }), v917.glow.map(function (p837) {
+          return vO17[p837];
         }));
-        instance.Rc = {};
-        forEach(resource.eyesDict, function (key, value) {
-          key = parseInt(key);
-          instance.Rc[key] = new ResourceManager.WearSkinData(value.base.map(function (base) {
-            return regionDict[base.region];
+        v915.Rc = {};
+        f156(p828.eyesDict, function (p838, p839) {
+          p838 = parseInt(p838);
+          v915.Rc[p838] = new vF99.WearSkinData(p839.base.map(function (p840) {
+            return vO17[p840.region];
           }));
         });
-        instance.Sc = new ResourceManager.WearSkinData(resource.eyesUnknown.base.map(function (base) {
-          return regionDict[base.region];
+        v915.Sc = new vF99.WearSkinData(p828.eyesUnknown.base.map(function (p841) {
+          return vO17[p841.region];
         }));
-        instance.Tc = {};
-        forEach(resource.mouthDict, function (key, value) {
-          key = parseInt(key);
-          instance.Tc[key] = new ResourceManager.WearSkinData(value.base.map(function (base) {
-            return regionDict[base.region];
+        v915.Tc = {};
+        f156(p828.mouthDict, function (p842, p843) {
+          p842 = parseInt(p842);
+          v915.Tc[p842] = new vF99.WearSkinData(p843.base.map(function (p844) {
+            return vO17[p844.region];
           }));
         });
-        instance.Uc = new ResourceManager.WearSkinData(resource.mouthUnknown.base.map(function (base) {
-          return regionDict[base.region];
+        v915.Uc = new vF99.WearSkinData(p828.mouthUnknown.base.map(function (p845) {
+          return vO17[p845.region];
         }));
-        instance.Vc = {};
-        forEach(resource.glassesDict, function (key, value) {
-          key = parseInt(key);
-          instance.Vc[key] = new ResourceManager.WearSkinData(value.base.map(function (base) {
-            return regionDict[base.region];
+        v915.Vc = {};
+        f156(p828.glassesDict, function (p846, p847) {
+          p846 = parseInt(p846);
+          v915.Vc[p846] = new vF99.WearSkinData(p847.base.map(function (p848) {
+            return vO17[p848.region];
           }));
         });
-        instance.Wc = new ResourceManager.WearSkinData(resource.glassesUnknown.base.map(function (base) {
-          return regionDict[base.region];
+        v915.Wc = new vF99.WearSkinData(p828.glassesUnknown.base.map(function (p849) {
+          return vO17[p849.region];
         }));
-        instance.Xc = {};
-        forEach(resource.hatDict, function (key, value) {
-          key = parseInt(key);
-          instance.Xc[key] = new ResourceManager.WearSkinData(value.base.map(function (base) {
-            return regionDict[base.region];
+        v915.Xc = {};
+        f156(p828.hatDict, function (p850, p851) {
+          p850 = parseInt(p850);
+          v915.Xc[p850] = new vF99.WearSkinData(p851.base.map(function (p852) {
+            return vO17[p852.region];
           }));
         });
-        instance.Yc = new ResourceManager.WearSkinData(resource.hatUnknown.base.map(function (base) {
-          return regionDict[base.region];
+        v915.Yc = new vF99.WearSkinData(p828.hatUnknown.base.map(function (p853) {
+          return vO17[p853.region];
         }));
-        instance.Jc = {};
-        forEach(resource.portionDict, function (key, value) {
-          key = parseInt(key);
-          instance.Jc[key] = new ResourceManager.PortionSkinData(regionDict[value.base], regionDict[value.glow]);
+        v915.Jc = {};
+        f156(p828.portionDict, function (p854, p855) {
+          p854 = parseInt(p854);
+          v915.Jc[p854] = new vF99.PortionSkinData(vO17[p855.base], vO17[p855.glow]);
         });
-        var unknownPortion = resource.portionUnknown;
-        instance.Kc = new ResourceManager.PortionSkinData(regionDict[unknownPortion.base], regionDict[unknownPortion.glow]);
-        instance.Lc = {};
-        forEach(resource.abilityDict, function (key, value) {
-          key = parseInt(key);
-          instance.Lc[key] = new ResourceManager.AbilitySkinData(regionDict[value.base]);
+        var v918 = p828.portionUnknown;
+        v915.Kc = new vF99.PortionSkinData(vO17[v918.base], vO17[v918.glow]);
+        v915.Lc = {};
+        f156(p828.abilityDict, function (p856, p857) {
+          p856 = parseInt(p856);
+          v915.Lc[p856] = new vF99.AbilitySkinData(vO17[p857.base]);
         });
-        var unknownAbility = resource.abilityUnknown;
-        instance.Mc = new ResourceManager.AbilitySkinData(regionDict[unknownAbility.base]);
-        instance.Pc = {};
-        forEach(resource.teamDict, function (key, value) {
-          key = parseInt(key);
-          instance.Pc[key] = new ResourceManager.TeamSkinData(value.name, new ResourceManager.WormSkinData("#" + colorDict[value.skin.prime], [], value.skin.glow.map(function (glow) {
-            return regionDict[glow];
-          })), new ResourceManager.PortionSkinData([], regionDict[value.portion.glow]));
+        var v919 = p828.abilityUnknown;
+        v915.Mc = new vF99.AbilitySkinData(vO17[v919.base]);
+        v915.Pc = {};
+        f156(p828.teamDict, function (p858, p859) {
+          p858 = parseInt(p858);
+          v915.Pc[p858] = new vF99.TeamSkinData(p859.name, new vF99.WormSkinData("#" + vO16[p859.skin.prime], [], p859.skin.glow.map(function (p860) {
+            return vO17[p860];
+          })), new vF99.PortionSkinData([], vO17[p859.portion.glow]));
         });
-        instance.Qc = new ResourceManager.TeamSkinData({}, instance.Oc, instance.Kc);
-        return instance;
+        v915.Qc = new vF99.TeamSkinData({}, v915.Oc, v915.Kc);
+        return v915;
       };
-      ResourceManagerConstructor.prototype.dd = function (id) {
-        var wormSkin = this.Nc[id];
-        return wormSkin || this.Oc;
+      f155.prototype.dd = function (p861) {
+        var v920 = this.Nc[p861];
+        return v920 || this.Oc;
       };
-      ResourceManagerConstructor.prototype.ed = function (id) {
-        var team = this.Pc[id];
-        return team || this.Qc;
+      f155.prototype.ed = function (p862) {
+        var v921 = this.Pc[p862];
+        return v921 || this.Qc;
       };
-      ResourceManagerConstructor.prototype.fd = function (id) {
-        var wearSkin = this.Rc[id];
-        return wearSkin || this.Sc;
+      f155.prototype.fd = function (p863) {
+        var v922 = this.Rc[p863];
+        return v922 || this.Sc;
       };
-      ResourceManagerConstructor.prototype.gd = function (id) {
-        var portionSkin = this.Tc[id];
-        return portionSkin || this.Uc;
+      f155.prototype.gd = function (p864) {
+        var v923 = this.Tc[p864];
+        return v923 || this.Uc;
       };
-      ResourceManagerConstructor.prototype.hd = function (id) {
-        var abilitySkin = this.Vc[id];
-        return abilitySkin || this.Wc;
+      f155.prototype.hd = function (p865) {
+        var v924 = this.Vc[p865];
+        return v924 || this.Wc;
       };
-      ResourceManagerConstructor.prototype.jd = function (id) {
-        var hatSkin = this.Xc[id];
-        return hatSkin || this.Yc;
+      f155.prototype.jd = function (p866) {
+        var v925 = this.Xc[p866];
+        return v925 || this.Yc;
       };
-      ResourceManagerConstructor.prototype.kd = function (id) {
-        var wormSkin = this.Jc[id];
-        return wormSkin || this.Kc;
+      f155.prototype.kd = function (p867) {
+        var v926 = this.Jc[p867];
+        return v926 || this.Kc;
       };
-      ResourceManagerConstructor.prototype.ld = function (id) {
-        var instanceData = this.Lc[id];
-        return instanceData || this.Mc;
+      f155.prototype.ld = function (p868) {
+        var v927 = this.Lc[p868];
+        return v927 || this.Mc;
       };
-      ResourceManagerConstructor.TeamSkinData = function () {
-        function TeamSkinData(name, wormSkin, portionSkin) {
-          this.ad = name;
-          this.bd = wormSkin;
-          this.cd = portionSkin;
+      f155.TeamSkinData = function () {
+        function f157(p869, p870, p871) {
+          this.ad = p869;
+          this.bd = p870;
+          this.cd = p871;
         }
-        return TeamSkinData;
+        return f157;
       }();
-      ResourceManagerConstructor.WormSkinData = function () {
-        function WormSkinData(color, baseData, glowData) {
-          this._c = color;
-          this.Zc = baseData;
-          this.$c = glowData;
+      f155.WormSkinData = function () {
+        function f158(p872, p873, p874) {
+          this._c = p872;
+          this.Zc = p873;
+          this.$c = p874;
         }
-        return WormSkinData;
+        return f158;
       }();
-      ResourceManagerConstructor.WearSkinData = function () {
-        function WearSkinData(baseData) {
-          this.Zc = baseData;
+      f155.WearSkinData = function () {
+        function f159(p875) {
+          this.Zc = p875;
         }
-        return WearSkinData;
+        return f159;
       }();
-      ResourceManagerConstructor.PortionSkinData = function () {
-        function PortionSkinData(base, glow) {
-          this.Zc = base;
-          this.$c = glow;
+      f155.PortionSkinData = function () {
+        function f160(p876, p877) {
+          this.Zc = p876;
+          this.$c = p877;
         }
-        return PortionSkinData;
+        return f160;
       }();
-      ResourceManagerConstructor.AbilitySkinData = function () {
-        function AbilitySkinData(base) {
-          this.Zc = base;
+      f155.AbilitySkinData = function () {
+        function f161(p878) {
+          this.Zc = p878;
         }
-        return AbilitySkinData;
+        return f161;
       }();
-      return ResourceManagerConstructor;
+      return f155;
     }();
-    var Renderer = function () {
-      function RendererConstructor() {
-        this.md = Renderer.AudioState.ua;
+    var vF100 = function () {
+      function f162() {
+        this.md = vF100.AudioState.ua;
         this.nd = false;
         this.od = false;
         this.pd = null;
         this.qd = null;
       }
-      RendererConstructor.prototype.a = function () {};
-      RendererConstructor.prototype.rd = function (isMuted) {
-        this.od = isMuted;
+      f162.prototype.a = function () {};
+      f162.prototype.rd = function (p879) {
+        this.od = p879;
       };
-      RendererConstructor.prototype.G = function (audioState) {
-        this.md = audioState;
+      f162.prototype.G = function (p880) {
+        this.md = p880;
         this.sd();
       };
-      RendererConstructor.prototype.td = function (isPlaying) {
-        this.nd = isPlaying;
+      f162.prototype.td = function (p881) {
+        this.nd = p881;
         this.sd();
       };
-      RendererConstructor.prototype.sd = function () {};
-      RendererConstructor.prototype.ud = function (audioList, index) {
-        if (!initializeApp().p.W) {
+      f162.prototype.sd = function () {};
+      f162.prototype.ud = function (p882, p883) {
+        if (!f123().p.W) {
           return null;
         }
-        var audioElement = audioList[index];
-        if (audioElement == null || audioElement.length == 0) {
+        var v928 = p882[p883];
+        if (v928 == null || v928.length == 0) {
           return null;
         } else {
-          return audioElement[Math.floor(Math.random() * audioElement.length)].cloneNode();
+          return v928[Math.floor(Math.random() * v928.length)].cloneNode();
         }
       };
-      RendererConstructor.prototype.vd = function (audioName, volume, duration) {
-        if (this.od && !(duration <= 0)) {
-          var audioElement = this.ud(audioName, volume);
-          if (audioElement != null) {
-            audioElement.volume = Math.min(1, duration);
-            audioElement.play();
+      f162.prototype.vd = function (p884, p885, p886) {
+        if (this.od && !(p886 <= 0)) {
+          var v929 = this.ud(p884, p885);
+          if (v929 != null) {
+            v929.volume = Math.min(1, p886);
+            v929.play();
           }
         }
       };
-      RendererConstructor.prototype.wd = function (audioName, volume) {
+      f162.prototype.wd = function (p887, p888) {
         if (this.md.xd) {
-          this.vd(app.q.yd, audioName, volume);
+          this.vd(v804.q.yd, p887, p888);
         }
       };
-      RendererConstructor.prototype.zd = function (audioName, volume) {
+      f162.prototype.zd = function (p889, p890) {
         if (this.md.Ad) {
-          this.vd(app.q.Bd, audioName, volume);
+          this.vd(v804.q.Bd, p889, p890);
         }
       };
-      RendererConstructor.prototype.Cd = function () {};
-      RendererConstructor.prototype.Dd = function () {};
-      RendererConstructor.prototype.Ed = function () {};
-      RendererConstructor.prototype.Fd = function () {};
-      RendererConstructor.prototype.Gd = function () {};
-      RendererConstructor.prototype.Hd = function () {};
-      RendererConstructor.prototype.Id = function (param1, param2, param3) {};
-      RendererConstructor.prototype.Jd = function (param) {};
-      RendererConstructor.prototype.Kd = function (param) {};
-      RendererConstructor.prototype.Ld = function (param) {};
-      RendererConstructor.prototype.Md = function (param) {};
-      RendererConstructor.prototype.Nd = function (param) {};
-      RendererConstructor.prototype.Od = function (param) {};
-      RendererConstructor.prototype.Pd = function (param) {};
-      RendererConstructor.prototype.Qd = function (param) {};
-      RendererConstructor.prototype.Rd = function (param) {};
-      RendererConstructor.prototype.Sd = function (param) {};
-      RendererConstructor.prototype.Td = function (param) {};
-      RendererConstructor.prototype.Ud = function (param) {};
-      RendererConstructor.prototype.Vd = function (param) {};
-      RendererConstructor.prototype.Wd = function (_0x1e44ff) {};
-      RendererConstructor.prototype.Xd = function (param1, param2) {};
-      RendererConstructor.prototype.Yd = function (param) {};
-      RendererConstructor.prototype.Zd = function (param1, param2, param3) {};
+      f162.prototype.Cd = function () {};
+      f162.prototype.Dd = function () {};
+      f162.prototype.Ed = function () {};
+      f162.prototype.Fd = function () {};
+      f162.prototype.Gd = function () {};
+      f162.prototype.Hd = function () {};
+      f162.prototype.Id = function (p891, p892, p893) {};
+      f162.prototype.Jd = function (p894) {};
+      f162.prototype.Kd = function (p895) {};
+      f162.prototype.Ld = function (p896) {};
+      f162.prototype.Md = function (p897) {};
+      f162.prototype.Nd = function (p898) {};
+      f162.prototype.Od = function (p899) {};
+      f162.prototype.Pd = function (p900) {};
+      f162.prototype.Qd = function (p901) {};
+      f162.prototype.Rd = function (p902) {};
+      f162.prototype.Sd = function (p903) {};
+      f162.prototype.Td = function (p904) {};
+      f162.prototype.Ud = function (p905) {};
+      f162.prototype.Vd = function (p906) {};
+      f162.prototype.Wd = function (p907) {};
+      f162.prototype.Xd = function (p908, p909) {};
+      f162.prototype.Yd = function (p910) {};
+      f162.prototype.Zd = function (p911, p912, p913) {};
       (function () {
-        function AudioController(audioFile) {
-          this.$d = new Audio(audioFile, 0.5);
+        function f163(p914) {
+          this.$d = new vF101(p914, 0.5);
           this.$d._d.loop = true;
           this.ae = false;
         }
-        AudioController.prototype.be = function (shouldPlay) {
-          if (shouldPlay) {
+        f163.prototype.be = function (p915) {
+          if (p915) {
             this.b();
           } else {
             this.ce();
           }
         };
-        AudioController.prototype.b = function () {
+        f163.prototype.b = function () {
           if (!this.ae) {
             this.ae = true;
             this.$d.de = 0;
             this.$d.ee(1500, 100);
           }
         };
-        AudioController.prototype.ce = function () {
+        f163.prototype.ce = function () {
           if (this.ae) {
             this.ae = false;
             this.$d.fe(1500, 100);
@@ -1985,38 +2060,38 @@ switch (languageKey) {
         };
       })();
       (function () {
-        function EffectController(effectsArray) {
-          this.ge = effectsArray.map(function (effect) {
-            return new Audio(effect, 0.4);
+        function f164(p916) {
+          this.ge = p916.map(function (p917) {
+            return new vF101(p917, 0.4);
           });
-          shuffleArray(this.ge, 0, this.ge.length);
+          f165(this.ge, 0, this.ge.length);
           this.he = null;
           this.ie = 0;
           this.ae = false;
           this.je = 10000;
         }
-        function shuffleArray(array, start, end) {
-          for (var i = end - 1; i > start; i--) {
-            var randomIndex = start + Math.floor(Math.random() * (i - start + 1));
-            var temp = array[i];
-            array[i] = array[randomIndex];
-            array[randomIndex] = temp;
+        function f165(p918, p919, p920) {
+          for (var v930 = p920 - 1; v930 > p919; v930--) {
+            var v931 = p919 + Math.floor(Math.random() * (v930 - p919 + 1));
+            var v932 = p918[v930];
+            p918[v930] = p918[v931];
+            p918[v931] = v932;
           }
         }
-        EffectController.prototype.be = function (isActive) {
-          if (isActive) {
+        f164.prototype.be = function (p921) {
+          if (p921) {
             this.b();
           } else {
             this.ce();
           }
         };
-        EffectController.prototype.b = function () {
+        f164.prototype.b = function () {
           if (!this.ae) {
             this.ae = true;
             this.ke(1500);
           }
         };
-        EffectController.prototype.ce = function () {
+        f164.prototype.ce = function () {
           if (this.ae) {
             this.ae = false;
             if (this.he != null) {
@@ -2024,7 +2099,7 @@ switch (languageKey) {
             }
           }
         };
-        EffectController.prototype.ke = function (duration) {
+        f164.prototype.ke = function (p922) {
           if (this.ae) {
             if (this.he == null) {
               this.he = this.le();
@@ -2035,80 +2110,80 @@ switch (languageKey) {
             }
             console.log("Current track '" + this.he._d.src + "', change in (ms) " + ((this.he._d.duration - this.he._d.currentTime) * 1000 - this.je));
             this.he.de = 0;
-            this.he.ee(duration, 100);
-            var remainingTime = (this.he._d.duration - this.he._d.currentTime) * 1000 - this.je;
-            var self = this;
-            var timeoutId = setTimeout(function () {
-              if (self.ae && timeoutId == self.ie) {
-                self.he.fe(self.je, 100);
-                self.he = self.le();
-                self.he._d.currentTime = 0;
-                self.ke(self.je);
+            this.he.ee(p922, 100);
+            var v933 = (this.he._d.duration - this.he._d.currentTime) * 1000 - this.je;
+            var vThis41 = this;
+            var vSetTimeout4 = setTimeout(function () {
+              if (vThis41.ae && vSetTimeout4 == vThis41.ie) {
+                vThis41.he.fe(vThis41.je, 100);
+                vThis41.he = vThis41.le();
+                vThis41.he._d.currentTime = 0;
+                vThis41.ke(vThis41.je);
               }
-            }, remainingTime);
-            this.ie = timeoutId;
+            }, v933);
+            this.ie = vSetTimeout4;
           }
         };
-        EffectController.prototype.le = function () {
-          var nextEffect = this.ge[0];
-          var middleIndex = Math.max(1, this.ge.length / 2);
-          shuffleArray(this.ge, middleIndex, this.ge.length);
+        f164.prototype.le = function () {
+          var v934 = this.ge[0];
+          var v935 = Math.max(1, this.ge.length / 2);
+          f165(this.ge, v935, this.ge.length);
           this.ge.push(this.ge.shift());
-          return nextEffect;
+          return v934;
         };
       })();
-      var Audio = function () {
-        function AudioController(audioElement, volume) {
-          this._d = audioElement;
-          this.me = volume;
+      var vF101 = function () {
+        function f166(p923, p924) {
+          this._d = p923;
+          this.me = p924;
           this.de = 0;
-          audioElement.volume = 0;
+          p923.volume = 0;
           this.ne = 0;
           this.oe = false;
         }
-        AudioController.prototype.ee = function (duration, interval) {
+        f166.prototype.ee = function (p925, p926) {
           console.log("fade IN " + this._d.src);
-          this.pe(true, duration, interval);
+          this.pe(true, p925, p926);
         };
-        AudioController.prototype.fe = function (duration, interval) {
+        f166.prototype.fe = function (p927, p928) {
           console.log("fade OUT " + this._d.src);
-          this.pe(false, duration, interval);
+          this.pe(false, p927, p928);
         };
-        AudioController.prototype.pe = function (fadeIn, duration, interval) {
+        f166.prototype.pe = function (p929, p930, p931) {
           if (this.oe) {
             clearInterval(this.ne);
           }
-          var self = this;
-          var step = 1 / (duration / interval);
-          var fadeInterval = setInterval(function () {
-            if (self.oe && fadeInterval != self.ne) {
-              clearInterval(fadeInterval);
+          var vThis42 = this;
+          var v936 = 1 / (p930 / p931);
+          var vSetInterval2 = setInterval(function () {
+            if (vThis42.oe && vSetInterval2 != vThis42.ne) {
+              clearInterval(vSetInterval2);
               return;
             }
-            if (fadeIn) {
-              self.de = Math.min(1, self.de + step);
-              self._d.volume = self.de * self.me;
-              if (self.de >= 1) {
-                self.oe = false;
-                clearInterval(fadeInterval);
+            if (p929) {
+              vThis42.de = Math.min(1, vThis42.de + v936);
+              vThis42._d.volume = vThis42.de * vThis42.me;
+              if (vThis42.de >= 1) {
+                vThis42.oe = false;
+                clearInterval(vSetInterval2);
               }
             } else {
-              self.de = Math.max(0, self.de - step);
-              self._d.volume = self.de * self.me;
-              if (self.de <= 0) {
-                self._d.pause();
-                self.oe = false;
-                clearInterval(fadeInterval);
+              vThis42.de = Math.max(0, vThis42.de - v936);
+              vThis42._d.volume = vThis42.de * vThis42.me;
+              if (vThis42.de <= 0) {
+                vThis42._d.pause();
+                vThis42.oe = false;
+                clearInterval(vSetInterval2);
               }
             }
-          }, interval);
+          }, p931);
           this.oe = true;
-          this.ne = fadeInterval;
+          this.ne = vSetInterval2;
           this._d.play();
         };
-        return AudioController;
+        return f166;
       }();
-      RendererConstructor.AudioState = {
+      f162.AudioState = {
         ua: {
           qe: false,
           re: false,
@@ -2140,128 +2215,128 @@ switch (languageKey) {
           xd: false
         }
       };
-      return RendererConstructor;
+      return f162;
     }();
-    var RendererInstance = function () {
-      function RendererConstructor(app) {
-        this.se = app;
-        this.te = app.get()[0];
-        this.ue = new pixiProperties.ac({
+    var vF103 = function () {
+      function f167(p932) {
+        this.se = p932;
+        this.te = p932.get()[0];
+        this.ue = new vF91.ac({
           view: this.te,
-          backgroundColor: backgroundColor,
+          backgroundColor: vLN016,
           antialias: true
         });
-        this.ve = new pixiProperties.Zb();
+        this.ve = new vF91.Zb();
         this.ve.sortableChildren = true;
         this.we = [];
         this.xe = [];
         this.ye = [];
         this.a();
       }
-      var backgroundColor = 0;
-      function randomInRange(min, max) {
-        return min + Math.random(max - min);
+      var vLN016 = 0;
+      function f168(p933, p934) {
+        return p933 + Math.random(p934 - p933);
       }
-      function cosineWave(value) {
-        if (value >= 0) {
-          return Math.cos(value % arrayLength);
+      function f169(p935) {
+        if (p935 >= 0) {
+          return Math.cos(p935 % v903);
         } else {
-          return Math.cos(value % arrayLength + arrayLength);
+          return Math.cos(p935 % v903 + v903);
         }
       }
-      function sineWave(value) {
-        if (value >= 0) {
-          return Math.sin(value % arrayLength);
+      function f170(p936) {
+        if (p936 >= 0) {
+          return Math.sin(p936 % v903);
         } else {
-          return Math.sin(value % arrayLength + arrayLength);
+          return Math.sin(p936 % v903 + v903);
         }
       }
-      var shapes = [{
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+      var vA10 = [{
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 1,
         De: 2,
         Ee: 16737962
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 1.5,
         De: 1.5,
         Ee: 16746632
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 2,
         De: 1,
         Ee: 16755302
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 3,
         De: 2,
         Ee: 11206502
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 2.5,
         De: 2.5,
         Ee: 8978312
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 2,
         De: 3,
         Ee: 6750122
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 5,
         De: 4,
         Ee: 6728447
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 4.5,
         De: 4.5,
         Ee: 8947967
       }, {
-        ze: randomInRange(0, arrayLength),
-        Ae: randomInRange(0, arrayLength),
-        Be: randomInRange(0.1, 0.5),
+        ze: f168(0, v903),
+        Ae: f168(0, v903),
+        Be: f168(0.1, 0.5),
         Ce: 4,
         De: 5,
         Ee: 11167487
       }];
-      RendererConstructor.prototype.a = function () {
-        var appInstance = initializeApp();
-        this.ue.backgroundColor = backgroundColor;
-        this.we = new Array(shapes.length);
-        for (var i = 0; i < this.we.length; i++) {
-          this.we[i] = new pixiProperties.ec();
-          this.we[i].texture = appInstance.q.Fe;
-          this.we[i].anchor.set(0.5);
-          this.we[i].zIndex = 1;
-          this.ve.addChild(this.we[i]);
+      f167.prototype.a = function () {
+        var vF123 = f123();
+        this.ue.backgroundColor = vLN016;
+        this.we = new Array(vA10.length);
+        for (var vLN017 = 0; vLN017 < this.we.length; vLN017++) {
+          this.we[vLN017] = new vF91.ec();
+          this.we[vLN017].texture = vF123.q.Fe;
+          this.we[vLN017].anchor.set(0.5);
+          this.we[vLN017].zIndex = 1;
+          this.ve.addChild(this.we[vLN017]);
         }
-        this.xe = new Array(appInstance.q.Ge.length);
-        for (var j = 0; j < this.xe.length; j++) {
-          this.xe[j] = new pixiProperties.ec();
-          this.xe[j].texture = appInstance.q.Ge[j];
-          this.xe[j].anchor.set(0.5);
-          this.xe[j].zIndex = 2;
-          this.ve.addChild(this.xe[j]);
+        this.xe = new Array(vF123.q.Ge.length);
+        for (var vLN018 = 0; vLN018 < this.xe.length; vLN018++) {
+          this.xe[vLN018] = new vF91.ec();
+          this.xe[vLN018].texture = vF123.q.Ge[vLN018];
+          this.xe[vLN018].anchor.set(0.5);
+          this.xe[vLN018].zIndex = 2;
+          this.ve.addChild(this.xe[vLN018]);
         }
         this.ye = new Array(this.xe.length);
-        for (var k = 0; k < this.ye.length; k++) {
-          this.ye[k] = {
+        for (var vLN019 = 0; vLN019 < this.ye.length; vLN019++) {
+          this.ye[vLN019] = {
             He: Math.random(),
             Ie: Math.random(),
             Je: Math.random(),
@@ -2270,259 +2345,288 @@ switch (languageKey) {
         }
         this.Ra();
       };
-      RendererConstructor.sc = false;
-      RendererConstructor.Le = function (state) {
-        RendererConstructor.sc = state;
+      f167.sc = false;
+      f167.Le = function (p937) {
+        f167.sc = p937;
       };
-      RendererConstructor.prototype.Ra = function () {
-        var devicePixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
-        var width = this.se.width();
-        var height = this.se.height();
-        this.ue.resize(width, height);
-        this.ue.resolution = devicePixelRatio;
-        this.te.width = devicePixelRatio * width;
-        this.te.height = devicePixelRatio * height;
-        var maxDimension = Math.max(width, height) * 0.8;
-        for (var i = 0; i < this.we.length; i++) {
-          this.we[i].width = maxDimension;
-          this.we[i].height = maxDimension;
+      f167.prototype.Ra = function () {
+        var v937 = window.devicePixelRatio ? window.devicePixelRatio : 1;
+        var v938 = this.se.width();
+        var v939 = this.se.height();
+        this.ue.resize(v938, v939);
+        this.ue.resolution = v937;
+        this.te.width = v937 * v938;
+        this.te.height = v937 * v939;
+        var v940 = Math.max(v938, v939) * 0.8;
+        for (var vLN020 = 0; vLN020 < this.we.length; vLN020++) {
+          this.we[vLN020].width = v940;
+          this.we[vLN020].height = v940;
         }
       };
-      RendererConstructor.prototype.Pa = function (deltaTime, elapsedTime) {
-        if (RendererConstructor.sc) {
-          var timeFactor = deltaTime / 1000;
-          var elapsedFactor = elapsedTime / 1000;
-          var width = this.se.width();
-          var height = this.se.height();
-          for (var i = 0; i < this.we.length; i++) {
-            var shape = shapes[i % shapes.length];
-            var sprite = this.we[i];
-            var xOffset = cosineWave(shape.Ce * (timeFactor * 0.08) + shape.Ae);
-            var yOffset = sineWave(shape.De * (timeFactor * 0.08));
-            var alphaValue = 0.2 + cosineWave(shape.Ae + shape.Be * timeFactor) * 0.2;
-            sprite.tint = shape.Ee;
-            sprite.alpha = alphaValue;
-            sprite.position.set(width * (0.2 + (xOffset + 1) * 0.5 * 0.6), height * (0.1 + (yOffset + 1) * 0.5 * 0.8));
+      f167.prototype.Pa = function (p938, p939) {
+        if (f167.sc) {
+          var v941 = p938 / 1000;
+          var v942 = p939 / 1000;
+          var v943 = this.se.width();
+          var v944 = this.se.height();
+          for (var vLN021 = 0; vLN021 < this.we.length; vLN021++) {
+            var v945 = vA10[vLN021 % vA10.length];
+            var v946 = this.we[vLN021];
+            var vF169 = f169(v945.Ce * (v941 * 0.08) + v945.Ae);
+            var vF170 = f170(v945.De * (v941 * 0.08));
+            var v947 = 0.2 + f169(v945.Ae + v945.Be * v941) * 0.2;
+            v946.tint = v945.Ee;
+            v946.alpha = v947;
+            v946.position.set(v943 * (0.2 + (vF169 + 1) * 0.5 * 0.6), v944 * (0.1 + (vF170 + 1) * 0.5 * 0.8));
           }
-          var scaleFactor = Math.max(width, height) * 0.05;
-          for (var j = 0; j < this.xe.length; j++) {
-            var particleData = this.ye[j];
-            var particleSprite = this.xe[j];
-            var angle = arrayLength * j / this.xe.length + particleData.He;
-            particleData.Ke += particleData.Ie * elapsedFactor;
-            if (particleData.Ke > 1.3) {
-              particleData.He = Math.random() * arrayLength;
-              particleData.Ie = (0.09 + Math.random() * 0.07) * 0.66;
-              particleData.Je = 0.15 + Math.random() * 0.7;
-              particleData.Ke = -0.3;
+          var v948 = Math.max(v943, v944) * 0.05;
+          for (var vLN022 = 0; vLN022 < this.xe.length; vLN022++) {
+            var v949 = this.ye[vLN022];
+            var v950 = this.xe[vLN022];
+            var v951 = v903 * vLN022 / this.xe.length + v949.He;
+            v949.Ke += v949.Ie * v942;
+            if (v949.Ke > 1.3) {
+              v949.He = Math.random() * v903;
+              v949.Ie = (0.09 + Math.random() * 0.07) * 0.66;
+              v949.Je = 0.15 + Math.random() * 0.7;
+              v949.Ke = -0.3;
             }
-            var sineValue = particleData.Je + Math.sin(Math.sin(angle + timeFactor * 0.48) * 6) * 0.03;
-            var currentHeight = particleData.Ke;
-            var alphaValue = constrain(Math.sin(Math.PI * currentHeight), 0.1, 1);
-            var positionY = (0.4 + (1 + Math.sin(angle + timeFactor * 0.12)) * 0.5 * 1.2) * 0.5;
-            var positionX = angle + particleData.Ie * 2 * timeFactor;
-            particleSprite.alpha = alphaValue;
-            particleSprite.position.set(width * sineValue, height * currentHeight);
-            particleSprite.rotation = positionX;
-            var aspectRatio = particleSprite.texture.width / particleSprite.texture.height;
-            particleSprite.width = positionY * scaleFactor;
-            particleSprite.height = positionY * scaleFactor * aspectRatio;
+            var v952 = v949.Je + Math.sin(Math.sin(v951 + v941 * 0.48) * 6) * 0.03;
+            var v953 = v949.Ke;
+            var vF134 = f134(Math.sin(Math.PI * v953), 0.1, 1);
+            var v954 = (0.4 + (1 + Math.sin(v951 + v941 * 0.12)) * 0.5 * 1.2) * 0.5;
+            var v955 = v951 + v949.Ie * 2 * v941;
+            v950.alpha = vF134;
+            v950.position.set(v943 * v952, v944 * v953);
+            v950.rotation = v955;
+            var v956 = v950.texture.width / v950.texture.height;
+            v950.width = v954 * v948;
+            v950.height = v954 * v948 * v956;
           }
           this.ue.render(this.ve, null, true);
         }
       };
-      return RendererConstructor;
+      return f167;
     }();
-    var cookieData = function () {
-      function CookieData() {}
-      CookieData.Na = "consent_state_2";
-      CookieData.ya = "showPlayerNames";
-      CookieData.Me = "musicEnabled";
-      CookieData.Ne = "sfxEnabled";
-      CookieData.Oe = "account_type";
-      CookieData.va = "gameMode";
-      CookieData.Aa = "nickname";
-      CookieData.Ba = "skin";
-      CookieData.d = "prerollCount";
-      CookieData.La = "shared";
-      return CookieData;
+    var vF104 = function () {
+      function f171() {}
+      f171.Na = "consent_state_2";
+      f171.ya = "showPlayerNames";
+      f171.Me = "musicEnabled";
+      f171.Ne = "sfxEnabled";
+      f171.Oe = "account_type";
+      f171.va = "gameMode";
+      f171.Aa = "nickname";
+      f171.Ba = "skin";
+      f171.d = "prerollCount";
+      f171.La = "shared";
+      return f171;
     }();
-    var DataReader = function () {
-      function DataReader(arg1, arg2, dataArray) {
-        var result = false;
-        for (var length = dataArray.length, startIndex = 0, endIndex = length - 1; startIndex < length; endIndex = startIndex++) {
-          if (dataArray[startIndex][1] > arg2 != dataArray[endIndex][1] > arg2 && arg1 < (dataArray[endIndex][0] - dataArray[startIndex][0]) * (arg2 - dataArray[startIndex][1]) / (dataArray[endIndex][1] - dataArray[startIndex][1]) + dataArray[startIndex][0]) {
-            result = !result;
+    var vF105 = function () {
+      function f172(p940, p941, p942) {
+        var v957 = false;
+        for (var v958 = p942.length, vLN023 = 0, v959 = v958 - 1; vLN023 < v958; v959 = vLN023++) {
+          if (p942[vLN023][1] > p941 != p942[v959][1] > p941 && p940 < (p942[v959][0] - p942[vLN023][0]) * (p941 - p942[vLN023][1]) / (p942[v959][1] - p942[vLN023][1]) + p942[vLN023][0]) {
+            v957 = !v957;
           }
         }
-        return result;
+        return v957;
       }
-      var points = [[-28.06744, 64.95936], [-10.59082, 72.91964], [14.11773, 81.39558], [36.51855, 81.51827], [32.82715, 71.01696], [31.64063, 69.41897], [29.41419, 68.43628], [30.64379, 67.47302], [29.88281, 66.76592], [30.73975, 65.50385], [30.73975, 64.47279], [31.48682, 63.49957], [32.18994, 62.83509], [28.47726, 60.25122], [28.76221, 59.26588], [28.03711, 58.60833], [28.38867, 57.53942], [28.83955, 56.2377], [31.24512, 55.87531], [31.61865, 55.34164], [31.92627, 54.3037], [33.50497, 53.26758], [32.73926, 52.85586], [32.23389, 52.4694], [34.05762, 52.44262], [34.98047, 51.79503], [35.99121, 50.88917], [36.67236, 50.38751], [37.74902, 50.51343], [40.78125, 49.62495], [40.47363, 47.70976], [38.62799, 46.92028], [37.53193, 46.55915], [36.72182, 44.46428], [39.68218, 43.19733], [40.1521, 43.74422], [43.52783, 43.03678], [45.30762, 42.73087], [46.99951, 41.98399], [47.26318, 40.73061], [44.20009, 40.86309], [45.35156, 39.57182], [45.43945, 36.73888], [35.64789, 35.26481], [33.13477, 33.65121], [21.47977, 33.92486], [12.16268, 34.32477], [11.82301, 37.34239], [6.09112, 38.28597], [-1.96037, 35.62069], [-4.82156, 35.60443], [-7.6498, 35.26589], [-16.45237, 37.44851], [-28.06744, 64.95936]];
+      var vA11 = [[-28.06744, 64.95936], [-10.59082, 72.91964], [14.11773, 81.39558], [36.51855, 81.51827], [32.82715, 71.01696], [31.64063, 69.41897], [29.41419, 68.43628], [30.64379, 67.47302], [29.88281, 66.76592], [30.73975, 65.50385], [30.73975, 64.47279], [31.48682, 63.49957], [32.18994, 62.83509], [28.47726, 60.25122], [28.76221, 59.26588], [28.03711, 58.60833], [28.38867, 57.53942], [28.83955, 56.2377], [31.24512, 55.87531], [31.61865, 55.34164], [31.92627, 54.3037], [33.50497, 53.26758], [32.73926, 52.85586], [32.23389, 52.4694], [34.05762, 52.44262], [34.98047, 51.79503], [35.99121, 50.88917], [36.67236, 50.38751], [37.74902, 50.51343], [40.78125, 49.62495], [40.47363, 47.70976], [38.62799, 46.92028], [37.53193, 46.55915], [36.72182, 44.46428], [39.68218, 43.19733], [40.1521, 43.74422], [43.52783, 43.03678], [45.30762, 42.73087], [46.99951, 41.98399], [47.26318, 40.73061], [44.20009, 40.86309], [45.35156, 39.57182], [45.43945, 36.73888], [35.64789, 35.26481], [33.13477, 33.65121], [21.47977, 33.92486], [12.16268, 34.32477], [11.82301, 37.34239], [6.09112, 38.28597], [-1.96037, 35.62069], [-4.82156, 35.60443], [-7.6498, 35.26589], [-16.45237, 37.44851], [-28.06744, 64.95936]];
       return {
-        Oa: function (arg1, arg2) {
-          return DataReader(arg2, arg1, points);
+        Oa: function (p943, p944) {
+          return f172(p944, p943, vA11);
         }
       };
     }();
-    var TransitionHandler = function () {
-      function TransitionHandler(arg1) {
-        var formattedValue = undefined;
-        formattedValue = arg1 > 0 ? "+" + Math.floor(arg1) : arg1 < 0 ? "-" + Math.floor(arg1) : "0";
-        var scaleValue = Math.min(1.5, 0.5 + arg1 / 600);
-        var colorValue = undefined;
-        if (arg1 < 1) {
-          colorValue = "0xFFFFFF";
-        } else if (arg1 < 30) {
-          var ratio = (arg1 - 1) / 29;
-          colorValue = colorConversion((1 - ratio) * 1 + ratio * 0.96, (1 - ratio) * 1 + ratio * 0.82, (1 - ratio) * 1 + ratio * 0);
-        } else if (arg1 < 300) {
-          var ratio2 = (arg1 - 30) / 270;
-          colorValue = colorConversion((1 - ratio2) * 0.96 + ratio2 * 0.93, (1 - ratio2) * 0.82 + ratio2 * 0.34, (1 - ratio2) * 0 + ratio2 * 0.25);
-        } else if (arg1 < 700) {
-          var ratio3 = (arg1 - 300) / 400;
-          colorValue = colorConversion((1 - ratio3) * 0.93 + ratio3 * 0.98, (1 - ratio3) * 0.34 + ratio3 * 0, (1 - ratio3) * 0.25 + ratio3 * 0.98);
+    var vF106 = function () {
+      function f173(p945) {
+        var vUndefined29 = undefined;
+        vUndefined29 = p945 > 0 ? "+" + Math.floor(p945) : p945 < 0 ? "-" + Math.floor(p945) : "0";
+        var v960 = Math.min(1.5, 0.5 + p945 / 600);
+        var vUndefined30 = undefined;
+        if (p945 < 1) {
+          vUndefined30 = "0xFFFFFF";
+        } else if (p945 < 30) {
+          var v961 = (p945 - 1) / 29;
+          vUndefined30 = f175((1 - v961) * 1 + v961 * 0.96, (1 - v961) * 1 + v961 * 0.82, (1 - v961) * 1 + v961 * 0);
+        } else if (p945 < 300) {
+          var v962 = (p945 - 30) / 270;
+          vUndefined30 = f175((1 - v962) * 0.96 + v962 * 0.93, (1 - v962) * 0.82 + v962 * 0.34, (1 - v962) * 0 + v962 * 0.25);
+        } else if (p945 < 700) {
+          var v963 = (p945 - 300) / 400;
+          vUndefined30 = f175((1 - v963) * 0.93 + v963 * 0.98, (1 - v963) * 0.34 + v963 * 0, (1 - v963) * 0.25 + v963 * 0.98);
         } else {
-          colorValue = colorConversion(0.98, 0, 0.98);
+          vUndefined30 = f175(0.98, 0, 0.98);
         }
-        var randomValue = Math.random();
-        var multiplier = 1 + Math.random() * 0.5;
-        return new ParticleEffect(formattedValue, colorValue, true, 0.5, scaleValue, randomValue, multiplier);
+        var v964 = Math.random();
+        var v965 = 1 + Math.random() * 0.5;
+        return new vF107(vUndefined29, vUndefined30, true, 0.5, v960, v964, v965);
       }
-      function createParticleEffect(param1, param2) {
-        var value1 = undefined;
-        var value2 = undefined;
-        if (param2) {
-          value1 = 1.3;
-          value2 = colorConversion(0.93, 0.34, 0.25);
+      function f174(p946, p947) {
+        var vUndefined31 = undefined;
+        var vUndefined32 = undefined;
+        if (p947) {
+          vUndefined31 = 1.3;
+          vUndefined32 = f175(0.93, 0.34, 0.25);
         } else {
-          value1 = 1.1;
-          value2 = colorConversion(0.96, 0.82, 0);
+          vUndefined31 = 1.1;
+          vUndefined32 = f175(0.96, 0.82, 0);
         }
-        return new ParticleEffect(param1, value2, true, 0.5, value1, 0.5, 0.7);
+        return new vF107(p946, vUndefined32, true, 0.5, vUndefined31, 0.5, 0.7);
       }
-      function colorConversion(value1, value2, value3) {
-        return ((value1 * 255 & 255) << 16) + ((value2 * 255 & 255) << 8) + (value3 * 255 & 255);
+      function f175(p948, p949, p950) {
+        return ((p948 * 255 & 255) << 16) + ((p949 * 255 & 255) << 8) + (p950 * 255 & 255);
       }
-      var TransitionClass = inheritPrototype(pixiProperties.Zb, function () {
-        pixiProperties.Zb.call(this);
+      var vF131 = f131(vF91.Zb, function () {
+        vF91.Zb.call(this);
         this.Pe = [];
         this.Qe = 0;
       });
-      TransitionClass.prototype.Re = function (value) {
-        this.Qe += value;
+      vF131.prototype.Re = function (p951) {
+        this.Qe += p951;
         if (this.Qe >= 1) {
-          var integerValue = Math.floor(this.Qe);
-          this.Qe -= integerValue;
-          var particleEffect = TransitionHandler(integerValue);
-          this.addChild(particleEffect);
-          this.Pe.push(particleEffect);
+          var v966 = Math.floor(this.Qe);
+          this.Qe -= v966;
+          var vF173 = f173(v966);
+          this.addChild(vF173);
+          this.Pe.push(vF173);
         }
       };
-      TransitionClass.prototype.Se = function (condition) {
-        updateGameData("count", condition);
-        if (condition) {
-          if (theoKzObjects.ModeStremerheadshot) {} else {
-            var audioElement = document.createElement("audio");
-            audioElement.src = "https://www.baddawi.com/FDZ/sounds/headshot_sound_effect_02.mp3";
-            audioElement.preload = "auto";
-            audioElement.play();
+      let vLN024 = 0;
+      function f176() {
+        vLN024 = 0;
+        console.log("تم تصفير عداد الصوت.");
+      }
+      vF131.prototype.Se = function (p952) {
+        f225("count", p952);
+        if (p952) {
+          if (!vO4.ModeStremerheadshot) {
+            const v967 = new Audio();
+            if (vLN024 % 10 === 9) {
+              v967.src = "https://wormup.in/video/monster-kill-hahaha.MP3";
+            } else {
+              v967.src = localStorage.getItem("selectedSound") || "https://wormateup.live/images/store/hs_2.mp3";
+            }
+            if (localStorage.getItem("isMuted") !== "true") {
+              v967.play().catch(function (p953) {
+                console.error("Error playing sound: ", p953);
+              });
+            }
+            vLN024++;
+            if (vLN024 % 10 === 0) {
+              vLN024 = 0;
+            }
           }
-          
-          var newParticleEffect = createParticleEffect(localizeMessage("index.game.floating.headshot")+ "🦊", true);
-          this.addChild(newParticleEffect);
-          this.Pe.push(newParticleEffect);
-          if (newParticleEffect) {
-            theoKzObjects.emoji_headshot = true;
-            setTimeout(function () {
-              theoKzObjects.emoji_headshot = false;
-            }, 3000);
+          var v968 = localStorage.getItem("headshotMessage") || "ضربة قوية";
+          var vF1742 = f174(v968, true);
+          this.addChild(vF1742);
+          this.Pe.push(vF1742);
+          if (vF1742) {
+            vO4.emoji_headshot = true;
+            setTimeout(() => vO4.emoji_headshot = false, 3000);
           }
         } else {
-          var newParticleEffect = createParticleEffect(localizeMessage("index.game.floating.wellDone")+ "⚡", false);
-          this.addChild(newParticleEffect);
-          this.Pe.push(newParticleEffect);
-          if (newParticleEffect) {
-            theoKzObjects.emoji_kill = true;
-            setTimeout(function () {
-              theoKzObjects.emoji_kill = false;
-            }, 3000);
+          var v969 = localStorage.getItem("killMessage") || "حاول مجددًا";
+          var vF1742 = f174(v969, false);
+          this.addChild(vF1742);
+          this.Pe.push(vF1742);
+          if (vF1742) {
+            vO4.emoji_kill = true;
+            setTimeout(() => vO4.emoji_kill = false, 3000);
           }
         }
       };
-      TransitionClass.prototype.Te = function (param1, param2) {
-        var appInstance = initializeApp().s.H.wb;
-        var width = appInstance.ue.width / appInstance.ue.resolution;
-        var height = appInstance.ue.height / appInstance.ue.resolution;
-        var index = 0;
-        while (index < this.Pe.length) {
-          var particle = this.Pe[index];
-          particle.Ue = particle.Ue + param2 / 2000 * particle.Ve;
-          particle.We = particle.We + param2 / 2000 * particle.Xe;
-          particle.alpha = Math.sin(Math.PI * particle.We) * 0.5;
-          particle.scale.set(particle.Ue);
-          particle.position.x = width * (0.25 + particle.Ye * 0.5);
-          particle.position.y = particle.Ze ? height * (1 - (1 + particle.We) * 0.5) : height * (1 - (0 + particle.We) * 0.5);
-          if (particle.We > 1) {
-            removeFromParent(particle);
-            this.Pe.splice(index, 1);
-            index--;
+      $(document).ready(function () {
+        $(document).on("click", "#final-continue", function () {
+          f176();
+          console.log("Home تم تصفير عداد الصوت عند الضغط على زر .");
+        });
+        $(document).on("click", "#final-replay", function () {
+          f176();
+          console.log("Replay تم تصفير عداد الصوت عند الضغط على زر .");
+        });
+        $(document).on("keydown", function (p954) {
+          if (p954.key === "r" || p954.key === "R") {
+            f176();
+            console.log("تم تصفير عداد الصوت عند الضغط على الحرف R.");
           }
-          index++;
+        });
+      });
+      vF131.prototype.Te = function (p955, p956) {
+        var v970 = f123().s.H.wb;
+        var v971 = v970.ue.width / v970.ue.resolution;
+        var v972 = v970.ue.height / v970.ue.resolution;
+        var vLN025 = 0;
+        while (vLN025 < this.Pe.length) {
+          var v973 = this.Pe[vLN025];
+          v973.Ue = v973.Ue + p956 / 2000 * v973.Ve;
+          v973.We = v973.We + p956 / 2000 * v973.Xe;
+          v973.alpha = Math.sin(Math.PI * v973.We) * 0.5;
+          v973.scale.set(v973.Ue);
+          v973.position.x = v971 * (0.25 + v973.Ye * 0.5);
+          v973.position.y = v973.Ze ? v972 * (1 - (1 + v973.We) * 0.5) : v972 * (1 - (0 + v973.We) * 0.5);
+          if (v973.We > 1) {
+            f140(v973);
+            this.Pe.splice(vLN025, 1);
+            vLN025--;
+          }
+          vLN025++;
         }
       };
-      var ParticleEffect = function () {
-        return inheritPrototype(pixiProperties.fc, function (text, fillColor, isVisible, alpha, fontSize, scaleX, scaleY) {
-          pixiProperties.fc.call(this, text, {
-            fill: fillColor,
-            fontFamily: "HelveticaNeueLT",
-            fontSize: 45
+      var vF107 = function () {
+        return f131(vF91.fc, function (p957, p958, p959, p960, p961, p962, p963) {
+          vF91.fc.call(this, p957, {
+            fill: p958,
+            fontFamily: "wormde",
+            fontSize: 36
           });
           this.anchor.set(0.5);
-          this.Ze = isVisible;
-          this.Ue = alpha;
-          this.Ve = fontSize;
-          this.Ye = scaleX;
+          this.Ze = p959;
+          this.Ue = p960;
+          this.Ve = p961;
+          this.Ye = p962;
           this.We = 0;
-          this.Xe = scaleY;
+          this.Xe = p963;
         });
       }();
-      return TransitionClass;
+      return vF131;
     }();
-    var SomeDataClass = function () {
-      function SomeDataClass(arg1, arg2) {
-        this.Gc = arg1;
-        this.Hc = arg2;
+    var vF108 = function () {
+      function f177(p964, p965) {
+        this.Gc = p964;
+        this.Hc = p965;
       }
-      return SomeDataClass;
+      return f177;
     }();
-    var constants = {
+    var vO18 = {
       $e: 0,
       _e: 16
     };
-    var SomeClass = function () {
-      function SomeClass() {
-        this.af = constants.$e;
+    var vF109 = function () {
+      function f178() {
+        this.af = vO18.$e;
         this.bf = 0;
         this.ub = 500;
         this.cf = 4000;
         this.df = 7000;
       }
-      SomeClass.TEAM_DEFAULT = 0;
-      SomeClass.prototype.ef = function () {
+      f178.TEAM_DEFAULT = 0;
+      f178.prototype.ef = function () {
         return this.ub * 1.02;
       };
-      return SomeClass;
+      return f178;
     }();
-    var TransitionClass = function () {
-      function TransitionClass(arg) {
-        this.se = arg;
-        this.te = arg.get()[0];
-        this.ue = new pixiProperties.ac({
+    var vF110 = function () {
+      function f179(p966) {
+        this.se = p966;
+        this.te = p966.get()[0];
+        this.ue = new vF91.ac({
           view: this.te,
-          backgroundColor: backgroundColor,
+          backgroundColor: vLN026,
           antialias: true
         });
-        this.ve = new pixiProperties.Zb();
+        this.ve = new vF91.Zb();
         this.ve.sortableChildren = true;
         this.ff = Math.floor(Math.random() * 360);
         this.gf = 0;
@@ -2530,29 +2634,29 @@ switch (languageKey) {
         this.if = 15;
         this.jf = 0.5;
         this.kf = 0;
-        this.lf = new _0x2d6362();
-        this.mf = new pixiProperties.bc();
-        this.nf = new pixiProperties.Zb();
-        this.pf = new pixiProperties.Zb();
+        this.lf = new vF132();
+        this.mf = new vF91.bc();
+        this.nf = new vF91.Zb();
+        this.pf = new vF91.Zb();
         this.pf.sortableChildren = true;
-        this.qf = new pixiProperties.Zb();
-        this.rf = new pixiProperties.Zb();
+        this.qf = new vF91.Zb();
+        this.rf = new vF91.Zb();
         this.rf.sortableChildren = true;
-        this.sf = new pixiProperties.Zb();
-        this.tf = new SomeClass();
-        this.uf = new YetAnotherClass();
-        this.vf = new DifferentClass();
-        this.wf = new TransitionHandler();
-        this.xf = new pixiProperties.ec();
+        this.sf = new vF91.Zb();
+        this.tf = new vF111();
+        this.uf = new vF112();
+        this.vf = new vF114();
+        this.wf = new vF106();
+        this.xf = new vF91.ec();
         this.yf = {
           x: 0,
           y: -20
         };
         this.a();
       }
-      var backgroundColor = 0;
-      TransitionClass.prototype.a = function () {
-        this.ue.backgroundColor = backgroundColor;
+      var vLN026 = 0;
+      f179.prototype.a = function () {
+        this.ue.backgroundColor = vLN026;
         this.lf.zf.zIndex = 10;
         this.ve.addChild(this.lf.zf);
         this.mf.zIndex = 20;
@@ -2563,7 +2667,7 @@ switch (languageKey) {
         this.ve.addChild(this.pf);
         this.qf.zIndex = 10000;
         this.ve.addChild(this.qf);
-        this.xf.texture = initializeApp().q.Af;
+        this.xf.texture = f123().q.Af;
         this.xf.anchor.set(0.5);
         this.xf.zIndex = 1;
         this.rf.addChild(this.xf);
@@ -2581,1119 +2685,1103 @@ switch (languageKey) {
         this.rf.addChild(this.vf);
         this.Ra();
       };
-      TransitionClass.prototype.Ra = function () {
-        var devicePixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
-        var width = this.se.width();
-        var height = this.se.height();
-        this.ue.resize(width, height);
-        this.ue.resolution = devicePixelRatio;
-        this.te.width = devicePixelRatio * width;
-        this.te.height = devicePixelRatio * height;
-        this.jf = Math.min(Math.min(width, height), Math.max(width, height) * 0.625);
-        this.xf.position.x = width / 2;
-        this.xf.position.y = height / 2;
-        this.xf.width = width;
-        this.xf.height = height;
-        this.vf.position.x = width - 225;
+      f179.prototype.Ra = function () {
+        var v974 = window.devicePixelRatio ? window.devicePixelRatio : 1;
+        var v975 = this.se.width();
+        var v976 = this.se.height();
+        this.ue.resize(v975, v976);
+        this.ue.resolution = v974;
+        this.te.width = v974 * v975;
+        this.te.height = v974 * v976;
+        this.jf = Math.min(Math.min(v975, v976), Math.max(v975, v976) * 0.625);
+        this.xf.position.x = v975 / 2;
+        this.xf.position.y = v976 / 2;
+        this.xf.width = v975;
+        this.xf.height = v976;
+        this.vf.position.x = v975 - 225;
         this.vf.position.y = 1;
-        window.changedNf = () => this.jf = Math.min(Math.max(width, height), window.multiplier * Math.min(width, height));
-        if (theoKzObjects.ModeStremer) {
-          this.tf.position.x = 790;
-          this.uf.position.x = 615;
-          this.vf.position.x = width - 830;
+        window.changedNf = () => this.jf = Math.min(Math.max(v975, v976), window.multiplier * Math.min(v975, v976));
+        if (vO4.ModeStremer) {
+          this.tf.position.x = v975 / 2 + 150;
+          this.uf.position.x = v975 / 2 + 10;
+          this.vf.position.x = v975 / 2 - 130;
         } else {
           this.tf.position.x = 60;
           this.uf.position.x = 110;
-          this.vf.position.x = width - 200;
+          this.vf.position.x = v975 - 200;
         }
         this.tf.position.y = 60;
         this.uf.position.y = 10;
-        this.vf.position.y = 2;
-        this.tf.addChild(ctx.clock);
-        this.vf.addChild(ctx.value_server);
-        this.vf.addChild(ctx.containerImgS);
-        this.tf.addChild(ctx.borderImg);
+        this.vf.position.y = 3;
+        this.tf.addChild(vO7.hoisinhnhanh);
+        this.tf.addChild(vO7.clock);
+        this.tf.addChild(vO7.quaytron);
+        this.vf.addChild(vO7.value_server);
+        this.vf.addChild(vO7.containerImgS);
+        this.tf.addChild(vO7.borderImg);
         window.retundFlagError = () => {
-          return ctx.containerImgS.texture = PIXI.Texture.fromImage(theoKzObjects.flag);
+          return vO7.containerImgS.texture = PIXI.Texture.fromImage(vO4.flag);
         };
-        this.tf.addChild(ctx.containerCountInfo);
+        this.tf.addChild(vO7.containerCountInfo);
       };
-      TransitionClass.prototype.Te = function (param1, param2) {
-        var appInstance = initializeApp();
+      f179.prototype.Te = function (p967, p968) {
+        var vF1232 = f123();
         this.if = 15;
         this.nf.removeChildren();
         this.pf.removeChildren();
         this.qf.removeChildren();
         this.sf.removeChildren();
-        this.lf.Bf(param1.af == constants.$e ? appInstance.q.Cf : appInstance.q.Df);
-        var tempDrawing = this.mf;
-        tempDrawing.clear();
-        tempDrawing.lineStyle(0.8, 65535);
-        tempDrawing.drawCircle(0, 0, param1.ub);
-        tempDrawing.endFill();
-        this.vf.Ef = param2;
-        this.sf.visible = param2;
+        this.lf.Bf(p967.af == vO18.$e ? vF1232.q.Cf : vF1232.q.Df);
+        var v977 = this.mf;
+        v977.clear();
+        v977.lineStyle(0.8, 16711680);
+        v977.drawCircle(0, 0, p967.ub);
+        v977.endFill();
+        this.vf.Ef = p968;
+        this.sf.visible = p968;
       };
-      TransitionClass.prototype.Pa = function (param1, param2) {
+      f179.prototype.Pa = function (p969, p970) {
         if (!(this.ue.width <= 5)) {
-          var appInstance = initializeApp();
-          var width = appInstance.o.N;
-          var widthRatio = this.ue.width / this.ue.resolution;
-          var heightRatio = this.ue.height / this.ue.resolution;
-          this.if = lerp(this.if, appInstance.o.jb, param2, 0.002);
-          var ratioFactor = this.jf / this.if;
-          var velocityType = appInstance.o.N.Ff[Velocity.ZOOM_TYPE];
-          var isZoomed = velocityType != null && velocityType.sc;
-          this.kf = clamp(0, 1, this.kf + param2 / 1000 * ((isZoomed ? 1 : 0) * 0.1 - this.kf));
+          var vF1233 = f123();
+          var v978 = vF1233.o.N;
+          var v979 = this.ue.width / this.ue.resolution;
+          var v980 = this.ue.height / this.ue.resolution;
+          this.if = f135(this.if, vF1233.o.jb, p970, 0.002);
+          var v981 = this.jf / this.if;
+          var v982 = vF1233.o.N.Ff[vF97.ZOOM_TYPE];
+          var v983 = v982 != null && v982.sc;
+          this.kf = f133(0, 1, this.kf + p970 / 1000 * ((v983 ? 1 : 0) * 0.1 - this.kf));
           this.xf.alpha = this.kf;
-          this.ff = this.ff + param2 * 0.01;
+          this.ff = this.ff + p970 * 0.01;
           if (this.ff > 360) {
             this.ff = this.ff % 360;
           }
-          this.gf = Math.sin(param1 / 1200 * 2 * Math.PI);
-          var _0x36bc7c = width.Gf();
-          this.yf.x = exponentialDecay(this.yf.x, _0x36bc7c.x, param2, theoKzObjects.smoothCamera, 33.333);
-          this.yf.y = exponentialDecay(this.yf.y, _0x36bc7c.y, param2, 0.5, 33.333);
-          var currentVelocity = widthRatio / ratioFactor / 2;
-          var currentHeight = heightRatio / ratioFactor / 2;
-          appInstance.o.yb(this.yf.x - currentVelocity * 1.3, this.yf.x + currentVelocity * 1.3, this.yf.y - currentHeight * 1.3, this.yf.y + currentHeight * 1.3);
-          this.lf.Te(this.yf.x, this.yf.y, currentVelocity * 2, currentHeight * 2);
-          var maxDistance = appInstance.o.fb.ub;
-          this.ve.scale.x = ratioFactor;
-          this.ve.scale.y = ratioFactor;
-          this.ve.position.x = widthRatio / 2 - this.yf.x * ratioFactor;
-          this.ve.position.y = heightRatio / 2 - this.yf.y * ratioFactor;
-          var distance = Math.hypot(_0x36bc7c.x, _0x36bc7c.y);
-          if (distance > maxDistance - 10) {
-            this.hf = clamp(0, 1, 1 + (distance - maxDistance) / 10);
-            var angleX = Math.cos(this.ff * arrayLength / 360) * (1 - this.hf) + this.hf * 1;
-            var angleY = Math.sin(this.ff * arrayLength / 360) * (1 - this.hf);
-            var calculatedAngle = (Math.atan2(angleY, angleX) + arrayLength) % arrayLength * 360 / arrayLength;
-            var alphaValue = this.hf * (0.5 + this.gf * 0.5);
-            var colorValue = hslColor(Math.floor(calculatedAngle), 1, 0.75 - this.hf * 0.25);
-            this.lf.Hf(colorValue[0], colorValue[1], colorValue[2], 0.1 + alphaValue * 0.2);
+          this.gf = Math.sin(p969 / 1200 * 2 * Math.PI);
+          var v984 = v978.Gf();
+          this.yf.x = f136(this.yf.x, v984.x, p970, vO4.smoothCamera, 33.333);
+          this.yf.y = f136(this.yf.y, v984.y, p970, 0.5, 33.333);
+          var v985 = v979 / v981 / 2;
+          var v986 = v980 / v981 / 2;
+          vF1233.o.yb(this.yf.x - v985 * 1.3, this.yf.x + v985 * 1.3, this.yf.y - v986 * 1.3, this.yf.y + v986 * 1.3);
+          this.lf.Te(this.yf.x, this.yf.y, v985 * 2, v986 * 2);
+          var v987 = vF1233.o.fb.ub;
+          this.ve.scale.x = v981;
+          this.ve.scale.y = v981;
+          this.ve.position.x = v979 / 2 - this.yf.x * v981;
+          this.ve.position.y = v980 / 2 - this.yf.y * v981;
+          var v988 = Math.hypot(v984.x, v984.y);
+          if (v988 > v987 - 10) {
+            this.hf = f133(0, 1, 1 + (v988 - v987) / 10);
+            var v989 = Math.cos(this.ff * v903 / 360) * (1 - this.hf) + this.hf * 1;
+            var v990 = Math.sin(this.ff * v903 / 360) * (1 - this.hf);
+            var v991 = (Math.atan2(v990, v989) + v903) % v903 * 360 / v903;
+            var v992 = this.hf * (0.5 + this.gf * 0.5);
+            var vF1432 = f143(Math.floor(v991), 1, 0.85 - this.hf * 0.25);
+            this.lf.Hf(vF1432[0], vF1432[1], vF1432[2], 0.1 + v992 * 0.2);
           } else {
             this.hf = 0;
-            var defaultColor = hslColor(Math.floor(this.ff), 1, 0.75);
-            this.lf.Hf(defaultColor[0], defaultColor[1], defaultColor[2], 0.1);
+            var vF1433 = f143(Math.floor(this.ff), 1, 0.85);
+            this.lf.Hf(vF1433[0], vF1433[1], vF1433[2], 0.1);
           }
-          var i = 0;
-          for (; i < this.sf.children.length; i++) {
-            var child = this.sf.children[i];
-            child.position.x = widthRatio / 2 - (this.yf.x - child.If.x) * ratioFactor;
-            child.position.y = heightRatio / 2 - (this.yf.y - child.If.y) * ratioFactor;
+          var vLN027 = 0;
+          for (; vLN027 < this.sf.children.length; vLN027++) {
+            var v993 = this.sf.children[vLN027];
+            v993.position.x = v979 / 2 - (this.yf.x - v993.If.x) * v981;
+            v993.position.y = v980 / 2 - (this.yf.y - v993.If.y) * v981;
           }
-          this.tf.Jf.position.x = _0x36bc7c.x / maxDistance * this.tf.Kf;
-          this.tf.Jf.position.y = _0x36bc7c.y / maxDistance * this.tf.Kf;
-          this.uf.Qa(param1);
-          this.wf.Te(param1, param2);
+          this.tf.Jf.position.x = v984.x / v987 * this.tf.Kf;
+          this.tf.Jf.position.y = v984.y / v987 * this.tf.Kf;
+          this.uf.Qa(p969);
+          this.wf.Te(p969, p970);
           this.ue.render(this.ve, null, true);
           this.ue.render(this.rf, null, false);
         }
       };
-      TransitionClass.prototype.Lf = function (param1, param2) {
-        param2.Of.Nf.Mf().zIndex = (param1 + 2147483648) / 4294967296 * 5000;
-        this.nf.addChild(param2.Of.Pf.Mf());
-        this.pf.addChild(param2.Of.Nf.Mf());
+      f179.prototype.Lf = function (p971, p972) {
+        p972.Of.Nf.Mf().zIndex = (p971 + 2147483648) / 4294967296 * 5000;
+        this.nf.addChild(p972.Of.Pf.Mf());
+        this.pf.addChild(p972.Of.Nf.Mf());
       };
-      TransitionClass.prototype.Qf = function (param1, param2, param3) {
-        param2.Rf.zIndex = initializeApp().o.fb.bf ? 0 : 10 + (param1 + 32768) / 65536 * 5000;
-        this.qf.addChild(param2.Rf);
-        if (param1 != initializeApp().o.fb.bf) {
-          this.sf.addChild(param3);
+      f179.prototype.Qf = function (p973, p974, p975) {
+        p974.Rf.zIndex = f123().o.fb.bf ? 0 : 10 + (p973 + 32768) / 65536 * 5000;
+        this.qf.addChild(p974.Rf);
+        if (p973 != f123().o.fb.bf) {
+          this.sf.addChild(p975);
         }
       };
-      var SomeClass = function () {
-        return inheritPrototype(pixiProperties.Zb, function () {
-          pixiProperties.Zb.call(this);
+      var vF111 = function () {
+        return f131(vF91.Zb, function () {
+          vF91.Zb.call(this);
           this.Kf = 40;
-          this.Sf = new pixiProperties.ec();
+          this.Sf = new vF91.ec();
           this.Sf.anchor.set(0.5);
-          this.Jf = new pixiProperties.bc();
-          var tempShape = new pixiProperties.bc();
-          tempShape.beginFill("black", 0.4);
-          tempShape.drawCircle(0, 0, this.Kf);
-          tempShape.endFill();
-          tempShape.lineStyle(2, 16777215);
-          tempShape.drawCircle(0, 0, this.Kf);
-          tempShape.moveTo(0, -this.Kf);
-          tempShape.lineTo(0, +this.Kf);
-          tempShape.moveTo(-this.Kf, 0);
-          tempShape.lineTo(+this.Kf, 0);
-          tempShape.endFill();
+          this.Jf = new vF91.bc();
+          var v994 = new vF91.bc();
+          v994.beginFill("black", 0.4);
+          v994.drawCircle(0, 0, this.Kf);
+          v994.endFill();
+          v994.lineStyle(2, 16225317);
+          v994.drawCircle(0, 0, this.Kf);
+          v994.moveTo(0, -this.Kf);
+          v994.lineTo(0, +this.Kf);
+          v994.moveTo(-this.Kf, 0);
+          v994.lineTo(+this.Kf, 0);
+          v994.endFill();
           this.Sf.alpha = 0.55;
           this.Jf.zIndex = 2;
           this.Jf.alpha = 0.9;
-          this.Jf.beginFill(16711680);
-          this.Jf.drawCircle(0, 0, this.Kf * 0.12);
+          this.Jf.beginFill(16225317);
+          this.Jf.drawCircle(0, 0, this.Kf * 0.1);
           this.Jf.endFill();
           this.Jf.lineStyle(1, "black");
-          this.Jf.drawCircle(0, 0, this.Kf * 0.12);
+          this.Jf.drawCircle(0, 0, this.Kf * 0.1);
           this.Jf.endFill();
-          this.addChild(tempShape);
+          this.addChild(v994);
           this.addChild(this.Sf);
           this.addChild(this.Jf);
         });
       }();
-      var YetAnotherClass = function () {
-        var Class = inheritPrototype(pixiProperties.Zb, function () {
-          pixiProperties.Zb.call(this);
+      var vF112 = function () {
+        var vF1312 = f131(vF91.Zb, function () {
+          vF91.Zb.call(this);
           this.Tf = {};
         });
-        Class.prototype.Qa = function (param) {
-          var alpha = 0.5 + Math.cos(arrayLength * (param / 1000 / 1.6)) * 0.5;
-          var key;
-          for (key in this.Tf) {
-            var item = this.Tf[key];
-            var value = item.Uf;
-            item.alpha = 1 - value + value * alpha;
+        vF1312.prototype.Qa = function (p976) {
+          var v995 = 0.5 + Math.cos(v903 * (p976 / 1000 / 1.6)) * 0.5;
+          var v996;
+          for (v996 in this.Tf) {
+            var v997 = this.Tf[v996];
+            var v998 = v997.Uf;
+            v997.alpha = 1 - v998 + v998 * v995;
           }
         };
-        Class.prototype.Te = function (data) {
-          var key;
-          for (key in this.Tf) {
-            if (data[key] == null || !data[key].sc) {
-              removeFromParent(this.Tf[key]);
-              delete this.Tf[key];
+        vF1312.prototype.Te = function (p977) {
+          var v999;
+          for (v999 in this.Tf) {
+            if (p977[v999] == null || !p977[v999].sc) {
+              f140(this.Tf[v999]);
+              delete this.Tf[v999];
             }
           }
-          var index = 0;
-          var key;
-          for (key in data) {
-            var item = data[key];
-            if (item.sc) {
-              var child = this.Tf[key];
-              if (!child) {
-                var texture = initializeApp().p.Dc().ld(item.rc).Zc;
-                child = new ChildClass();
-                child.texture = texture.Hc;
-                child.width = 35;
-                child.height = 35;
-                this.Tf[key] = child;
-                this.addChild(child);
+          var vLN028 = 0;
+          var v1000;
+          for (v1000 in p977) {
+            var v1001 = p977[v1000];
+            if (v1001.sc) {
+              var v1002 = this.Tf[v1000];
+              if (!v1002) {
+                var v1003 = f123().p.Dc().ld(v1001.rc).Zc;
+                v1002 = new vF113();
+                v1002.texture = v1003.Hc;
+                v1002.width = 40;
+                v1002.height = 40;
+                this.Tf[v1000] = v1002;
+                this.addChild(v1002);
               }
-              updatePowerUps(this, key, item.tc);
-              child.Uf = item.tc;
-              if (theoKzObjects.ModeStremer) {
-                child.position.x = index + 225;
+              f122(this, v1000, v1001.tc);
+              v1002.Uf = v1001.tc;
+              if (vO4.ModeStremer) {
+                v1002.position.x = vLN028 + 225;
               } else {
-                child.position.x = index;
+                v1002.position.x = vLN028;
               }
-              index = index + 40;
+              vLN028 = vLN028 + 40;
             }
           }
         };
-        var ChildClass = function () {
-          return inheritPrototype(pixiProperties.ec, function () {
-            pixiProperties.ec.call(this);
+        var vF113 = function () {
+          return f131(vF91.ec, function () {
+            vF91.ec.call(this);
             this.Uf = 0;
           });
         }();
-        return Class;
+        return vF1312;
       }();
-      var DifferentClass = function () {
-        var Class = inheritPrototype(pixiProperties.Zb, function () {
-          pixiProperties.Zb.call(this);
+      var vF114 = function () {
+        var vF1313 = f131(vF91.Zb, function () {
+          vF91.Zb.call(this);
           this.Ef = true;
-          this.Vf = 12;
-          this.Wf = 9;
+          this.Vf = 16;
+          this.Wf = 17;
           this.Pe = [];
-          var i = 0;
-          for (; i < 14; i++) {
+          var vLN029 = 0;
+          for (; vLN029 < 4; vLN029++) {
             this.Xf();
           }
         });
-        Class.prototype.Te = function (data) {
-          var appInstance = initializeApp();
-          var isActive = appInstance.o.fb.af == constants._e;
-          var index = 0;
-          var _0x2f970f = 0;
-          if (_0x2f970f >= this.Pe.length) {
+        vF1313.prototype.Te = function (p978) {
+          var vF1234 = f123();
+          var v1004 = vF1234.o.fb.af == vO18._e;
+          var vLN7 = 7;
+          var vLN030 = 0;
+          if (vLN030 >= this.Pe.length) {
             this.Xf();
           }
-          this.Pe[_0x2f970f].Yf(5, "white");
-          this.Pe[_0x2f970f].Zf("", localizeMessage(""), "( " + appInstance.o.tb + " online )");
-          this.Pe[_0x2f970f].position.y = index;
-          index = index + this.Vf;
-          _0x2f970f = _0x2f970f + 1;
-          if (data.$f.length > 0) {
-            index = index + this.Wf;
+          this.Pe[vLN030].Yf(1, "white");
+          this.Pe[vLN030].Zf("", f126(""), "(" + vF1234.o.tb + " 🔔)");
+          this.Pe[vLN030].position.y = vLN7;
+          vLN7 = vLN7 + this.Vf;
+          vLN030 = vLN030 + 1;
+          if (p978.$f.length > 0) {
+            vLN7 = vLN7 + this.Wf;
           }
-          var i = 0;
-          for (; i < data.$f.length; i++) {
-            var item = data.$f[i];
-            var details = appInstance.p.Dc().ed(item._f);
-            if (_0x2f970f >= this.Pe.length) {
+          var vLN031 = 0;
+          for (; vLN031 < p978.$f.length; vLN031++) {
+            var v1005 = p978.$f[vLN031];
+            var v1006 = vF1234.p.Dc().ed(v1005._f);
+            if (vLN030 >= this.Pe.length) {
               this.Xf();
             }
-            this.Pe[_0x2f970f].Yf(0.8, details.bd._c);
-            this.Pe[_0x2f970f].Zf("" + (i + 1), getLocalizedText(details.ad), "" + Math.floor(item.M));
-            this.Pe[_0x2f970f].position.y = index;
-            index = index + this.Vf;
-            _0x2f970f = _0x2f970f + 1;
+            this.Pe[vLN030].Yf(0.8, v1006.bd._c);
+            this.Pe[vLN030].Zf("" + (vLN031 + 1), f127(v1006.ad), "" + Math.floor(v1005.M));
+            this.Pe[vLN030].position.y = vLN7;
+            vLN7 = vLN7 + this.Vf;
+            vLN030 = vLN030 + 1;
           }
-          if (data.ag.length > 0) {
-            index = index + this.Wf;
+          if (p978.ag.length > 0) {
+            vLN7 = vLN7 + this.Wf;
           }
-          var i = 0;
-          for (; i < data.ag.length; i++) {
-            var item = data.ag[i];
-            var isCurrent = appInstance.o.fb.bf == item.bg;
-            var color = undefined;
-            var text = undefined;
-            if (isCurrent) {
-              color = "yellow";
-              text = appInstance.o.N.Mb.ad;
+          var vLN032 = 0;
+          for (; vLN032 < p978.ag.length; vLN032++) {
+            var v1007 = p978.ag[vLN032];
+            var v1008 = vF1234.o.fb.bf == v1007.bg;
+            var vUndefined33 = undefined;
+            var vUndefined34 = undefined;
+            if (v1008) {
+              vUndefined33 = "yellow";
+              vUndefined34 = vF1234.o.N.Mb.ad;
             } else {
-              var _0x2bb504 = appInstance.o.hb[item.bg];
-              if (_0x2bb504 != null) {
-                color = isActive ? appInstance.p.Dc().ed(_0x2bb504.Mb.cg).bd._c : appInstance.p.Dc().dd(_0x2bb504.Mb.dg)._c;
-                text = this.Ef ? _0x2bb504.Mb.ad : "---";
+              var v1009 = vF1234.o.hb[v1007.bg];
+              if (v1009 != null) {
+                vUndefined33 = v1004 ? vF1234.p.Dc().ed(v1009.Mb.cg).bd._c : vF1234.p.Dc().dd(v1009.Mb.dg)._c;
+                vUndefined34 = this.Ef ? v1009.Mb.ad : "---";
               } else {
-                color = "blue";
-                text = "?";
+                vUndefined33 = "gray";
+                vUndefined34 = "?";
               }
             }
-            if (isCurrent) {
-              index = index + this.Wf;
+            if (v1008) {
+              vLN7 = vLN7 + this.Wf;
             }
-            if (_0x2f970f >= this.Pe.length) {
+            if (vLN030 >= this.Pe.length) {
               this.Xf();
             }
-            this.Pe[_0x2f970f].Yf(isCurrent ? 1 : 0.8, color);
-            var _0x1762c5 = Math.floor(item.M);
-            _0x1762c5.dotFormat();
-            this.Pe[_0x2f970f].Zf("" + (i + 1), text, "" + _0x1762c5.dotFormat());
-            this.Pe[_0x2f970f].position.y = index;
-            index = index + this.Vf;
-            _0x2f970f = _0x2f970f + 1;
-            if (isCurrent) {
-              index = index + this.Wf;
+            this.Pe[vLN030].Yf(v1008 ? 1 : 0.8, vUndefined33);
+            var v1010 = Math.floor(v1007.M);
+            v1010.dotFormat();
+            this.Pe[vLN030].Zf("" + (vLN032 + 1), vUndefined34, "" + v1010.dotFormat());
+            this.Pe[vLN030].position.y = vLN7;
+            vLN7 = vLN7 + this.Vf;
+            vLN030 = vLN030 + 1;
+            if (v1008) {
+              vLN7 = vLN7 + this.Wf;
             }
           }
-          if (appInstance.o.O > data.ag.length) {
-            index = index + this.Wf;
-            if (_0x2f970f >= this.Pe.length) {
+          if (vF1234.o.O > p978.ag.length) {
+            vLN7 = vLN7 + this.Wf;
+            if (vLN030 >= this.Pe.length) {
               this.Xf();
             }
-            this.Pe[_0x2f970f].Yf(2, "white");
-            window.tuNewScore = Math.floor(appInstance.o.N.M);
+            this.Pe[vLN030].Yf(2, "white");
+            window.tuNewScore = Math.floor(vF1234.o.N.M);
             window.tuNewScore.dotFormat();
-            this.Pe[_0x2f970f].Zf("" + appInstance.o.O, appInstance.o.N.Mb.ad, "" + window.tuNewScore.dotFormat());
-            this.Pe[_0x2f970f].position.y = index;
-            index = index + this.Vf;
-            _0x2f970f = _0x2f970f + 1;
-            index = index + this.Wf;
+            this.Pe[vLN030].Zf("" + vF1234.o.O, vF1234.o.N.Mb.ad, "" + window.tuNewScore.dotFormat());
+            this.Pe[vLN030].position.y = vLN7;
+            vLN7 = vLN7 + this.Vf;
+            vLN030 = vLN030 + 1;
+            vLN7 = vLN7 + this.Wf;
           }
-          while (this.Pe.length > _0x2f970f) {
-            removeFromParent(this.Pe.pop());
+          while (this.Pe.length > vLN030) {
+            f140(this.Pe.pop());
           }
         };
-        Class.prototype.Xf = function () {
-          var child = new ChildInstance();
-          child.position.y = 0;
+        vF1313.prototype.Xf = function () {
+          var v1011 = new vF115();
+          v1011.position.y = 0;
           if (this.Pe.length > 0) {
-            child.position.y = this.Pe[this.Pe.length - 1].position.y + this.Vf;
+            v1011.position.y = this.Pe[this.Pe.length - 1].position.y + this.Vf;
           }
-          this.Pe.push(child);
-          this.addChild(child);
+          this.Pe.push(v1011);
+          this.addChild(v1011);
         };
-        var ChildInstance = function () {
-          var Instance = inheritPrototype(pixiProperties.Zb, function () {
-            pixiProperties.Zb.call(this);
-            this.eg = new pixiProperties.fc("", {
-              fontFamily: "HelveticaNeueLT",
+        var vF115 = function () {
+          var vF1314 = f131(vF91.Zb, function () {
+            vF91.Zb.call(this);
+            this.eg = new vF91.fc("", {
+              fontFamily: "wormde",
               fontSize: 11,
               fill: "white",
-              fontWeight: "700"
+              fontWeight: "bold",
+              line: 5
             });
-            this.eg.anchor.x = 1;
-            this.eg.position.x = -5;
+            this.eg.anchor.x = 2;
+            this.eg.position.x = 4;
             this.addChild(this.eg);
-            this.fg = new pixiProperties.fc("", {
-              fontFamily: "HelveticaNeueLT",
+            this.fg = new vF91.fc("", {
+              fontFamily: "wormde",
               fontSize: 11,
               fill: "white",
-              fontWeight: "700"
+              fontWeight: "bold",
+              line: 5
             });
             this.fg.anchor.x = 0;
             this.fg.position.x = 4;
             this.addChild(this.fg);
-            this.gg = new pixiProperties.fc("", {
-              fontFamily: "HelveticaNeueLT",
+            this.gg = new vF91.fc("", {
+              fontFamily: "wormde",
               fontSize: 11,
               fill: "white",
-              fontWeight: "700"
+              fontWeight: "bold",
+              line: 5
             });
             this.gg.anchor.x = 1;
-            this.gg.position.x = 200;
+            this.gg.position.x = 190;
             this.addChild(this.gg);
           });
-          Instance.prototype.Zf = function (param1, param2, param3) {
-            this.eg.text = param1;
-            this.gg.text = param3;
-            var param2 = param2;
-            this.fg.text = param2;
-            const regex = /x.*$/;
-            while (this.fg.width > 110) {
-              param2 = param2.replace(regex, ".");
-              if (this.fg.width > 110) {
-                param2 = param2.substring(0, param2.length - 1);
-              }
-              this.fg.text = param2;
+          vF1314.prototype.Zf = function (p979, p980, p981) {
+            this.eg.text = p979;
+            this.gg.text = p981;
+            var vP980 = p980;
+            this.fg.text = vP980;
+            while (this.fg.width > 120) {
+              vP980 = vP980.substring(0, vP980.length - 1);
+              this.fg.text = vP980 + "..";
             }
           };
-          Instance.prototype.Yf = function (alpha, color) {
-            this.eg.alpha = alpha;
-            this.eg.style.fill = color;
-            this.fg.alpha = alpha;
-            this.fg.style.fill = color;
-            this.gg.alpha = alpha;
-            this.gg.style.fill = color;
+          vF1314.prototype.Yf = function (p982, p983) {
+            this.eg.alpha = p982;
+            this.eg.style.fill = p983;
+            this.fg.alpha = p982;
+            this.fg.style.fill = p983;
+            this.gg.alpha = p982;
+            this.gg.style.fill = p983;
           };
-          return Instance;
+          return vF1314;
         }();
-        return Class;
+        return vF1313;
       }();
-      return TransitionClass;
+      return f179;
     }();
-    var SubOptions = function () {
-      function SubOptions(arg) {
-        this.o = arg;
+    var vF116 = function () {
+      function f180(p984) {
+        this.o = p984;
         this.hg = [];
         this.ig = 0;
       }
-      SubOptions.prototype.Xb = function (data) {
-        this.hg.push(new DataView(data));
+      f180.prototype.Xb = function (p985) {
+        this.hg.push(new DataView(p985));
       };
-      SubOptions.prototype.Sb = function () {
+      f180.prototype.Sb = function () {
         this.hg = [];
         this.ig = 0;
       };
-      SubOptions.prototype.Bb = function () {
-        for (var i = 0; i < 10; i++) {
+      f180.prototype.Bb = function () {
+        for (var vLN033 = 0; vLN033 < 10; vLN033++) {
           if (this.hg.length === 0) {
             return;
           }
-          var view = this.hg.shift();
+          var v1012 = this.hg.shift();
           try {
-            this.jg(view);
-          } catch (error) {
-            console.log("DataReader error: " + error);
-            throw error;
+            this.jg(v1012);
+          } catch (e26) {
+            console.log("DataReader error: " + e26);
+            throw e26;
           }
         }
       };
-      SubOptions.prototype.jg = function (dataView) {
-        switch (dataView.mc(0) & 255) {
+      f180.prototype.jg = function (p986) {
+        switch (p986.mc(0) & 255) {
           case 0:
-            this.kg(dataView, 1);
+            this.kg(p986, 1);
             return;
           case 1:
-            this.lg(dataView, 1);
+            this.lg(p986, 1);
             return;
           case 2:
-            this.mg(dataView, 1);
+            this.mg(p986, 1);
             return;
           case 3:
-            this.ng(dataView, 1);
+            this.ng(p986, 1);
             return;
           case 4:
-            this.og(dataView, 1);
+            this.og(p986, 1);
             return;
           case 5:
-            this.pg(dataView, 1);
+            this.pg(p986, 1);
             return;
         }
       };
-      SubOptions.prototype.kg = function (dataView, index) {
+      f180.prototype.kg = function (p987, p988) {
         console.log("sgp1");
-        this.o.fb.af = dataView.mc(index);
-        index = index + 1;
-        var value = dataView.nc(index);
-        index = index + 2;
-        this.o.fb.bf = value;
-        this.o.N.Mb.Lb = value;
-        this.o.fb.ub = dataView.pc(index);
-        index = index + 4;
-        this.o.fb.cf = dataView.pc(index);
-        index = index + 4;
-        this.o.fb.df = dataView.pc(index);
-        index = index + 4;
-        initializeApp().s.H.wb.Te(this.o.fb, initializeApp().s.xa.wa());
+        this.o.fb.af = p987.mc(p988);
+        p988 = p988 + 1;
+        var v1013 = p987.nc(p988);
+        p988 = p988 + 2;
+        this.o.fb.bf = v1013;
+        this.o.N.Mb.Lb = v1013;
+        this.o.fb.ub = p987.pc(p988);
+        p988 = p988 + 4;
+        this.o.fb.cf = p987.pc(p988);
+        p988 = p988 + 4;
+        this.o.fb.df = p987.pc(p988);
+        p988 = p988 + 4;
+        f123().s.H.wb.Te(this.o.fb, f123().s.xa.wa());
         console.log("sgp2");
-        return index;
+        return p988;
       };
-SubOptions.prototype.lg = function (dataView, index) {
-    var currentIndex = this.ig++;
-    var value = dataView.nc(index);
-    index += 2;
-    var count = undefined;
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.sg(dataView, index);
-    }
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.tg(dataView, index);
-    }
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.ug(dataView, index);
-    }
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.vg(dataView, index);
-    }
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.wg(dataView, index);
-    }
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.xg(dataView, index);
-    }
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.yg(dataView, index);
-    }
-
-    count = this.qg(dataView, index);
-    index += this.rg(count);
-    for (let i = 0; i < count; i++) { // استخدم let هنا
-        index = this.zg(dataView, index);
-    }
-
-    if (currentIndex > 0) {
-        index = this.Ag(dataView, index);
-    }
-    this.o.Qb(currentIndex, value);
-    return index;
-};
-      SubOptions.prototype.vg = function (dataView, index) {
-        var config = new AnotherClass.Config();
-        config.Lb = dataView.nc(index);
-        index = index + 2;
-        config.cg = this.o.fb.af == constants._e ? dataView.mc(index++) : SomeClass.TEAM_DEFAULT;
-        config.dg = dataView.nc(index);
-        let _0x1ef0f5 = index;
-        index = index + 2;
-        config.Bg = dataView.nc(index);
-        let _0x4b94db = index;
-        index = index + 2;
-        config.Cg = dataView.nc(index);
-        let _0x141cd2 = index;
-        index = index + 2;
-        config.Dg = dataView.nc(index);
-        let _0x48f3bb = index;
-        index = index + 2;
-        config.Eg = dataView.nc(index);
-        let _0x4137ce = index;
-        index = index + 2;
-        var length = dataView.mc(index);
-        index = index + 1;
-        var name = "";
-        var i = 0;
-        for (; i < length; i++) {
-          name = name + String.fromCharCode(dataView.nc(index));
-          index = index + 2;
+      f180.prototype.lg = function (p989, p990) {
+        var v1014 = this.ig++;
+        var v1015 = p989.nc(p990);
+        p990 += 2;
+        var vUndefined35 = undefined;
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN034 = 0; vLN034 < vUndefined35; vLN034++) {
+          p990 = this.sg(p989, p990);
         }
-        if (index > 210) {
-          for (let skin in this.o.hb) {
-            var skinValue = this.o.hb[skin].Mb.dg;
-            if ([0, 1, 2, 3, 6, 32, 33, 34, 35, 8].includes(skinValue)) {
-              var randomValue = Math.floor(Math.random() * 401) + 1000;
-              this.o.hb[skin].Mb.dg = randomValue;
-            }
-            if (/^(.+?)[a-zA-Z1-9@]+_+\d+(.+)/.test(this.o.hb[skin].Mb.ad)) {
-              const skinValue = this.o.hb[skin].Mb.dg;
-              if ([0, 1, 2, 3, 6, 32, 33, 34, 35, 8].includes(skinValue)) {
-                const randomValue = Math.floor(Math.random() * 401) + 1000;
-                this.o.hb[skin].Mb.dg = randomValue;
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN035 = 0; vLN035 < vUndefined35; vLN035++) {
+          p990 = this.tg(p989, p990);
+        }
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN036 = 0; vLN036 < vUndefined35; vLN036++) {
+          p990 = this.ug(p989, p990);
+        }
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN037 = 0; vLN037 < vUndefined35; vLN037++) {
+          p990 = this.vg(p989, p990);
+        }
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN038 = 0; vLN038 < vUndefined35; vLN038++) {
+          p990 = this.wg(p989, p990);
+        }
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN039 = 0; vLN039 < vUndefined35; vLN039++) {
+          p990 = this.xg(p989, p990);
+        }
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN040 = 0; vLN040 < vUndefined35; vLN040++) {
+          p990 = this.yg(p989, p990);
+        }
+        vUndefined35 = this.qg(p989, p990);
+        p990 += this.rg(vUndefined35);
+        for (var vLN041 = 0; vLN041 < vUndefined35; vLN041++) {
+          p990 = this.zg(p989, p990);
+        }
+        if (v1014 > 0) {
+          p990 = this.Ag(p989, p990);
+        }
+        this.o.Qb(v1014, v1015);
+        return p990;
+      };
+      f180.prototype.vg = function (p991, p992) {
+        var v1016 = new vF135.Config();
+        v1016.Lb = p991.nc(p992);
+        p992 = p992 + 2;
+        v1016.cg = this.o.fb.af == vO18._e ? p991.mc(p992++) : vF109.TEAM_DEFAULT;
+        v1016.dg = p991.nc(p992);
+        let vP992 = p992;
+        p992 = p992 + 2;
+        v1016.Bg = p991.nc(p992);
+        let vP9922 = p992;
+        p992 = p992 + 2;
+        v1016.Cg = p991.nc(p992);
+        let vP9923 = p992;
+        p992 = p992 + 2;
+        v1016.Dg = p991.nc(p992);
+        let vP9924 = p992;
+        p992 = p992 + 2;
+        v1016.Eg = p991.nc(p992);
+        let vP9925 = p992;
+        p992 = p992 + 2;
+        var v1017 = p991.mc(p992);
+        p992 = p992 + 1;
+        var vLS2 = "";
+        var vLN042 = 0;
+        for (; vLN042 < v1017; vLN042++) {
+          vLS2 = vLS2 + String.fromCharCode(p991.nc(p992));
+          p992 = p992 + 2;
+        }
+        if (p992 > 210) {
+          for (let v1018 in this.o.hb) {
+            if (/^(.{16})(\U_\d{13})$/.test(this.o.hb[v1018].Mb.ad)) {
+              console.log("nombre: " + this.o.hb[v1018].Mb.ad);
+              var v1019 = this.o.hb[v1018].Mb.ad.substr(-13);
+              console.log("elimina spacios: " + v1019);
+              f180 = v1019.substr(0, 4);
+              console.log("primeros digitos: " + f180);
+              let v1020 = v1019.substr(4, 3);
+              console.log("segundos digitos: " + v1020);
+              let v1021 = v1019.substr(7, 3);
+              console.log("tercer digitos: " + v1021);
+              let v1022 = v1019.substr(10, 3);
+              console.log("mouthId_A: " + v1022);
+              if (f180 !== "0000" && vO4.visibleSkin.indexOf(parseInt(f180)) !== -1) {
+                this.o.hb[v1018].Mb.dg = parseInt(f180);
               }
-            }
-            if (/^(.{16})(\x\d{13})$/.test(this.o.hb[skin].Mb.ad)) {
-              console.log("nombre: " + this.o.hb[skin].Mb.ad);
-              var extracted = this.o.hb[skin].Mb.ad.substr(-13);
-              console.log("elimina spacios: " + extracted);
-              SubOptions = extracted.substr(0, 4);
-              console.log("primeros digitos: " + SubOptions);
-              let secondPart = extracted.substr(4, 3);
-              console.log("segundos digitos: " + secondPart);
-              let thirdPart = extracted.substr(7, 3);
-              console.log("tercer digitos: " + thirdPart);
-              let mouthId = extracted.substr(10, 3);
-              console.log("mouthId_A: " + mouthId);
-              if (SubOptions !== "0000" && theoKzObjects.visibleSkin.indexOf(parseInt(SubOptions)) !== -1) {
-                this.o.hb[skin].Mb.dg = parseInt(SubOptions);
+              if (v1020 !== "000") {
+                this.o.hb[v1018].Mb.Eg = parseInt(v1020);
               }
-              if (secondPart !== "000") {
-                this.o.hb[skin].Mb.Eg = parseInt(secondPart);
+              if (v1021 !== "000") {
+                this.o.hb[v1018].Mb.Bg = parseInt(v1021);
               }
-              if (thirdPart !== "000") {
-                this.o.hb[skin].Mb.Bg = parseInt(thirdPart);
-              }
-              if (mouthId !== "000") {
-                this.o.hb[skin].Mb.Cg = parseInt(mouthId);
+              if (v1022 !== "000") {
+                this.o.hb[v1018].Mb.Cg = parseInt(v1022);
               }
             }
           }
         }
-        if (window.anApp.o.N.Mb.Lb === config.Lb) {
-          config.dg = theoKzObjects.PropertyManager.rh;
-          config.Bg = theoKzObjects.PropertyManager.sh;
-          config.Cg = theoKzObjects.PropertyManager.th;
-          config.Dg = theoKzObjects.PropertyManager.uh;
-          config.Eg = theoKzObjects.PropertyManager.vh;
-          dataView.setInt16(_0x1ef0f5, config.dg);
-          dataView.setInt16(_0x4b94db, config.Bg);
-          dataView.setInt16(_0x141cd2, config.Cg);
-          dataView.setInt16(_0x48f3bb, config.Dg);
-          dataView.setInt16(_0x4137ce, config.Eg);
-          _wrmxt.aload = true;
-          _wrmxt.aId = _0x1ef0f5;
+        if (window.anApp.o.N.Mb.Lb === v1016.Lb) {
+          v1016.dg = vO4.PropertyManager.rh;
+          v1016.Bg = vO4.PropertyManager.sh;
+          v1016.Cg = vO4.PropertyManager.th;
+          v1016.Dg = vO4.PropertyManager.uh;
+          v1016.Eg = vO4.PropertyManager.vh;
+          p991.setInt16(vP992, v1016.dg);
+          p991.setInt16(vP9922, v1016.Bg);
+          p991.setInt16(vP9923, v1016.Cg);
+          p991.setInt16(vP9924, v1016.Dg);
+          p991.setInt16(vP9925, v1016.Eg);
+          vO.aload = true;
+          vO.aId = vP992;
         }
-        config.ad = name;
-        if (this.o.fb.bf === config.Lb) {
-          this.o.N.Fg(config);
-          config.Mb = config.Lb;
-          config.bd = config.ad;
+        v1016.ad = vLS2;
+        if (this.o.fb.bf === v1016.Lb) {
+          this.o.N.Fg(v1016);
+          v1016.Mb = v1016.Lb;
+          v1016.bd = v1016.ad;
         } else {
-          var currentSkin = this.o.hb[config.Lb];
-          if (currentSkin != null) {
-            currentSkin.Kb();
+          var v1023 = this.o.hb[v1016.Lb];
+          if (v1023 != null) {
+            v1023.Kb();
           }
-          var newInstance = new AnotherClass(this.o.fb);
-          newInstance.vb(initializeApp().s.H.wb);
-          this.o.hb[config.Lb] = newInstance;
-          newInstance.Fg(config);
+          var v1024 = new vF135(this.o.fb);
+          v1024.vb(f123().s.H.wb);
+          this.o.hb[v1016.Lb] = v1024;
+          v1024.Fg(v1016);
         }
-        return index;
+        return p992;
       };
-      SubOptions.prototype.wg = function (dataView, index) {
-        var id = dataView.nc(index);
-        index += 2;
-        var type = dataView.mc(index);
-        index++;
-        var hasCondition = !!(type & 1);
-        var hasAnotherCondition = !!(type & 2);
-        var specificId = 0;
-        if (hasCondition) {
-          specificId = dataView.nc(index);
-          index += 2;
+      f180.prototype.wg = function (p993, p994) {
+        var v1025 = p993.nc(p994);
+        p994 += 2;
+        var v1026 = p993.mc(p994);
+        p994++;
+        var v1027 = !!(v1026 & 1);
+        var v1028 = !!(v1026 & 2);
+        var vLN043 = 0;
+        if (v1027) {
+          vLN043 = p993.nc(p994);
+          p994 += 2;
         }
-        var target = this.Gg(id);
-        if (target === undefined) {
-          return index;
+        var v1029 = this.Gg(v1025);
+        if (v1029 === undefined) {
+          return p994;
         }
-        target.Ib = false;
-        if (!target.Hb) {
-          return index;
+        v1029.Ib = false;
+        if (!v1029.Hb) {
+          return p994;
         }
-        var targetId = this.Gg(id);
-        if (hasCondition && targetId !== undefined && targetId.Hb) {
-          if (specificId === this.o.fb.bf) {
-            var currentPosition = this.o.N.Gf();
-            var distance = target.Hg(currentPosition.x, currentPosition.y);
-            Math.max(0, 1 - distance.distance / (this.o.jb * 0.5));
-            if (distance.distance < this.o.jb * 0.5) {
-              initializeApp().s.H.wb.wf.Se(hasAnotherCondition);
+        var v1030 = this.Gg(v1025);
+        if (v1027 && v1030 !== undefined && v1030.Hb) {
+          if (vLN043 === this.o.fb.bf) {
+            var v1031 = this.o.N.Gf();
+            var v1032 = v1029.Hg(v1031.x, v1031.y);
+            Math.max(0, 1 - v1032.distance / (this.o.jb * 0.5));
+            if (v1032.distance < this.o.jb * 0.5) {
+              f123().s.H.wb.wf.Se(v1028);
             }
-          } else if (id === this.o.fb.bf) ;else {
-            var currentPosition = this.o.N.Gf();
-            var distance = target.Hg(currentPosition.x, currentPosition.y);
-            Math.max(0, 1 - distance.distance / (this.o.jb * 0.5));
+          } else if (v1025 === this.o.fb.bf) ;else {
+            var v1033 = this.o.N.Gf();
+            var v1034 = v1029.Hg(v1033.x, v1033.y);
+            Math.max(0, 1 - v1034.distance / (this.o.jb * 0.5));
           }
-        } else if (id === this.o.fb.bf) ;else {
-          var currentPosition = this.o.N.Gf();
-          var distance = target.Hg(currentPosition.x, currentPosition.y);
-          Math.max(0, 1 - distance.distance / (this.o.jb * 0.5));
+        } else if (v1025 === this.o.fb.bf) ;else {
+          var v1035 = this.o.N.Gf();
+          var v1036 = v1029.Hg(v1035.x, v1035.y);
+          Math.max(0, 1 - v1036.distance / (this.o.jb * 0.5));
         }
-        return index;
+        return p994;
       };
-      SubOptions.prototype.zg = function (dataView, index) {
-        var id = dataView.nc(index);
-        index += 2;
-        var target = id === this.o.fb.bf ? null : this.o.hb[id];
-        var type = dataView.mc(index);
-        index += 1;
-        var hasFlag = !!(type & 1);
-        if (type & 2) {
-          var specificValue = dataView.pc(index);
-          index += 4;
-          if (target) {
-            target.Ig(specificValue);
+      f180.prototype.zg = function (p995, p996) {
+        var v1037 = p995.nc(p996);
+        p996 += 2;
+        var v1038 = v1037 === this.o.fb.bf ? null : this.o.hb[v1037];
+        var v1039 = p995.mc(p996);
+        p996 += 1;
+        var v1040 = !!(v1039 & 1);
+        if (v1039 & 2) {
+          var v1041 = p995.pc(p996);
+          p996 += 4;
+          if (v1038) {
+            v1038.Ig(v1041);
           }
         }
-        var firstValue = this.Jg(dataView.mc(index++), dataView.mc(index++), dataView.mc(index++));
-        var secondValue = this.Jg(dataView.mc(index++), dataView.mc(index++), dataView.mc(index++));
-        if (target) {
-          target.Kg(firstValue, secondValue, hasFlag);
-          var currentPosition = this.o.N.Gf();
-          var targetPosition = target.Gf();
-          var distance = Math.max(0, 1 - Math.hypot(currentPosition.x - targetPosition.x, currentPosition.y - targetPosition.y) / (this.o.jb * 0.5));
-          initializeApp().r.Zd(distance, id, hasFlag);
+        var v1042 = this.Jg(p995.mc(p996++), p995.mc(p996++), p995.mc(p996++));
+        var v1043 = this.Jg(p995.mc(p996++), p995.mc(p996++), p995.mc(p996++));
+        if (v1038) {
+          v1038.Kg(v1042, v1043, v1040);
+          var v1044 = this.o.N.Gf();
+          var v1045 = v1038.Gf();
+          var v1046 = Math.max(0, 1 - Math.hypot(v1044.x - v1045.x, v1044.y - v1045.y) / (this.o.jb * 0.5));
+          f123().r.Zd(v1046, v1037, v1040);
         }
-        var length = this.qg(dataView, index);
-        index += this.rg(length);
-        if (target) {
-          for (var key in target.Ff) {
-            var item = target.Ff[key];
-            if (item) {
-              item.sc = false;
+        var v1047 = this.qg(p995, p996);
+        p996 += this.rg(v1047);
+        if (v1038) {
+          for (var v1048 in v1038.Ff) {
+            var v1049 = v1038.Ff[v1048];
+            if (v1049) {
+              v1049.sc = false;
             }
           }
         }
-        for (var i = 0; i < length; i++) {
-          var value1 = dataView.mc(index);
-          index++;
-          var value2 = dataView.mc(index);
-          index++;
-          if (target) {
-            var specificTarget = target.Ff[value1];
-            specificTarget ||= target.Ff[value1] = new Velocity(value1);
-            specificTarget.sc = true;
-            specificTarget.tc = Math.min(1, Math.max(0, value2 / 100));
+        for (var vLN044 = 0; vLN044 < v1047; vLN044++) {
+          var v1050 = p995.mc(p996);
+          p996++;
+          var v1051 = p995.mc(p996);
+          p996++;
+          if (v1038) {
+            var v1052 = v1038.Ff[v1050];
+            v1052 ||= v1038.Ff[v1050] = new vF97(v1050);
+            v1052.sc = true;
+            v1052.tc = Math.min(1, Math.max(0, v1051 / 100));
           }
         }
-        return index;
+        return p996;
       };
-      SubOptions.prototype.Ag = function (dataView, index) {
-        var currentData = this.o.N;
-        var id = dataView.mc(index);
-        index += 1;
-        var hasFlag1 = !!(id & 1);
-        var hasFlag2 = !!(id & 2);
-        var hasFlag3 = !!(id & 4);
-        if (hasFlag2) {
-          var change = currentData.M;
-          currentData.Ig(dataView.pc(index));
-          index += 4;
-          change = currentData.M - change;
-          if (change > 0) {
-            initializeApp().s.H.wb.wf.Re(change);
+      f180.prototype.Ag = function (p997, p998) {
+        var v1053 = this.o.N;
+        var v1054 = p997.mc(p998);
+        p998 += 1;
+        var v1055 = !!(v1054 & 1);
+        var v1056 = !!(v1054 & 2);
+        var v1057 = !!(v1054 & 4);
+        if (v1056) {
+          var v1058 = v1053.M;
+          v1053.Ig(p997.pc(p998));
+          p998 += 4;
+          v1058 = v1053.M - v1058;
+          if (v1058 > 0) {
+            f123().s.H.wb.wf.Re(v1058);
           }
         }
-        if (hasFlag3) {
-          this.o.ib = dataView.pc(index);
-          index += 4;
+        if (v1057) {
+          this.o.ib = p997.pc(p998);
+          p998 += 4;
         }
-        var firstValue = this.Jg(dataView.mc(index++), dataView.mc(index++), dataView.mc(index++));
-        var secondValue = this.Jg(dataView.mc(index++), dataView.mc(index++), dataView.mc(index++));
-        currentData.Kg(firstValue, secondValue, hasFlag1);
-        initializeApp().r.Zd(0.5, this.o.fb.bf, hasFlag1);
-        var length = this.qg(dataView, index);
-        index += this.rg(length);
-        for (var key in currentData.Ff) {
-          var item = currentData.Ff[key];
-          if (item) {
-            item.sc = false;
+        var v1059 = this.Jg(p997.mc(p998++), p997.mc(p998++), p997.mc(p998++));
+        var v1060 = this.Jg(p997.mc(p998++), p997.mc(p998++), p997.mc(p998++));
+        v1053.Kg(v1059, v1060, v1055);
+        f123().r.Zd(0.5, this.o.fb.bf, v1055);
+        var v1061 = this.qg(p997, p998);
+        p998 += this.rg(v1061);
+        for (var v1062 in v1053.Ff) {
+          var v1063 = v1053.Ff[v1062];
+          if (v1063) {
+            v1063.sc = false;
           }
         }
-        for (var i = 0; i < length; i++) {
-          var value1 = dataView.mc(index);
-          index++;
-          var value2 = dataView.mc(index);
-          index++;
-          var target = currentData.Ff[value1];
-          if (!target) {
-            target = new Velocity(value1);
-            currentData.Ff[value1] = target;
+        for (var vLN045 = 0; vLN045 < v1061; vLN045++) {
+          var v1064 = p997.mc(p998);
+          p998++;
+          var v1065 = p997.mc(p998);
+          p998++;
+          var v1066 = v1053.Ff[v1064];
+          if (!v1066) {
+            v1066 = new vF97(v1064);
+            v1053.Ff[v1064] = v1066;
           }
-          target.sc = true;
-          target.tc = Math.min(1, Math.max(0, value2 / 100));
+          v1066.sc = true;
+          v1066.tc = Math.min(1, Math.max(0, v1065 / 100));
         }
-        initializeApp().s.H.wb.uf.Te(currentData.Ff);
+        f123().s.H.wb.uf.Te(v1053.Ff);
       };
-      SubOptions.prototype.xg = function (dataView, index) {
-        var instance = this;
-        var dataValue = dataView.nc(index);
-        index += 2;
-        var parsedData = this.Gg(dataValue);
-        var additionalValue = dataView.pc(index);
-        index += 4;
-        var resultsArray = [];
-        for (var i in parsedData.Ff) {
-          if (i == 0) {
-            resultsArray.push("velocidad");
+      f180.prototype.xg = function (p999, p1000) {
+        var vThis43 = this;
+        var v1067 = p999.nc(p1000);
+        p1000 += 2;
+        var v1068 = this.Gg(v1067);
+        var v1069 = p999.pc(p1000);
+        p1000 += 4;
+        var vA12 = [];
+        for (var v1070 in v1068.Ff) {
+          if (v1070 == 0) {
+            vA12.push("velocidad");
             $(".v0").fadeIn();
-          } else if (i == 1) {
-            resultsArray.push("movimiento");
+          } else if (v1070 == 1) {
+            vA12.push("movimiento");
             $(".v1").fadeIn();
-          } else if (i == 2) {
-            resultsArray.push("iman");
+          } else if (v1070 == 2) {
+            vA12.push("iman");
             $(".v2").fadeIn();
-          } else if (i == 3) {
-            resultsArray.push("comidax2");
+          } else if (v1070 == 3) {
+            vA12.push("comidax2");
             $(".v3").fadeIn();
-          } else if (i == 4) {
-            resultsArray.push("comidax5");
+          } else if (v1070 == 4) {
+            vA12.push("comidax5");
             $(".v4").fadeIn();
-          } else if (i == 5) {
-            resultsArray.push("comidax10");
+          } else if (v1070 == 5) {
+            vA12.push("comidax10");
             $(".v5").fadeIn();
-          } else if (i == 6) {
-            resultsArray.push("zoom");
+          } else if (v1070 == 6) {
+            vA12.push("zoom");
             $(".v6").fadeIn();
           } else {
             console.log("comiste otro potenciador");
           }
         }
-        window.nombres2 = resultsArray;
-        $(".Worm_cerca").text(" : " + parsedData.Mb.ad);
-        if (parsedData.Mb.ad) {
+        window.nombres2 = vA12;
+        $(".Worm_cerca").text(" : " + v1068.Mb.ad);
+        if (v1068.Mb.ad) {
           setTimeout(function () {
             $(".pwrups").fadeOut();
           }, 3000);
         } else {}
-        var additionalData = this.qg(dataView, index);
-        index += this.rg(additionalData);
-        if (parsedData) {
-          parsedData.Ig(additionalValue);
-          parsedData.Lg(function () {
-            return instance.Jg(dataView.mc(index++), dataView.mc(index++), dataView.mc(index++));
-          }, additionalData);
-          parsedData.Mg(true);
-          var currentPos = this.o.N.Gf();
-          var targetPos = parsedData.Gf();
-          var distanceFactor = Math.max(0, 1 - Math.hypot(currentPos.x - targetPos.x, currentPos.y - targetPos.y) / (this.o.jb * 0.5));
-          initializeApp().r.Xd(distanceFactor, dataValue);
+        var v1071 = this.qg(p999, p1000);
+        p1000 += this.rg(v1071);
+        if (v1068) {
+          v1068.Ig(v1069);
+          v1068.Lg(function () {
+            return vThis43.Jg(p999.mc(p1000++), p999.mc(p1000++), p999.mc(p1000++));
+          }, v1071);
+          v1068.Mg(true);
+          var v1072 = this.o.N.Gf();
+          var v1073 = v1068.Gf();
+          var v1074 = Math.max(0, 1 - Math.hypot(v1072.x - v1073.x, v1072.y - v1073.y) / (this.o.jb * 0.5));
+          f123().r.Xd(v1074, v1067);
         } else {
-          index += additionalData * 6;
+          p1000 += v1071 * 6;
         }
-        return index;
+        return p1000;
       };
-      SubOptions.prototype.yg = function (dataView, index) {
-        var dataValue = dataView.nc(index);
-        index += 2;
-        var objectData = this.o.hb[dataValue];
-        var resultsArray = [];
-        if (objectData && objectData.Ib) {
-          objectData.Mg(false);
+      f180.prototype.yg = function (p1001, p1002) {
+        var v1075 = p1001.nc(p1002);
+        p1002 += 2;
+        var v1076 = this.o.hb[v1075];
+        var vA13 = [];
+        if (v1076 && v1076.Ib) {
+          v1076.Mg(false);
         }
-        initializeApp().r.Yd(dataValue);
-        return index;
+        f123().r.Yd(v1075);
+        return p1002;
       };
-      SubOptions.prototype.sg = function (dataView, index) {
-        var config = new Config.Config();
-        config.Lb = dataView.oc(index);
-        index += 4;
-        config.cg = this.o.fb.af === constants._e ? dataView.mc(index++) : SomeClass.TEAM_DEFAULT;
-        config.Ng = this.Jg(dataView.mc(index++), dataView.mc(index++), dataView.mc(index++));
-        config.dg = dataView.mc(index++);
-        var existingObject = this.o.gb[config.Lb];
-        if (existingObject != null) {
-          existingObject.Kb();
+      f180.prototype.sg = function (p1003, p1004) {
+        var v1077 = new vF118.Config();
+        v1077.Lb = p1003.oc(p1004);
+        p1004 += 4;
+        v1077.cg = this.o.fb.af === vO18._e ? p1003.mc(p1004++) : vF109.TEAM_DEFAULT;
+        v1077.Ng = this.Jg(p1003.mc(p1004++), p1003.mc(p1004++), p1003.mc(p1004++));
+        v1077.dg = p1003.mc(p1004++);
+        var v1078 = this.o.gb[v1077.Lb];
+        if (v1078 != null) {
+          v1078.Kb();
         }
-        var newInstance = new Config(config, initializeApp().s.H.wb);
-        newInstance.Og(this.Pg(config.Lb), this.Qg(config.Lb), true);
-        this.o.gb[config.Lb] = newInstance;
-        return index;
+        var v1079 = new vF118(v1077, f123().s.H.wb);
+        v1079.Og(this.Pg(v1077.Lb), this.Qg(v1077.Lb), true);
+        this.o.gb[v1077.Lb] = v1079;
+        return p1004;
       };
-      SubOptions.prototype.tg = function (dataView, index) {
-        var indexValue = dataView.oc(index);
-        index += 4;
-        var object = this.o.gb[indexValue];
-        if (object) {
-          object.Rg = 0;
-          object.Sg = object.Sg * 1.5;
-          object.Nb = true;
+      f180.prototype.tg = function (p1005, p1006) {
+        var v1080 = p1005.oc(p1006);
+        p1006 += 4;
+        var v1081 = this.o.gb[v1080];
+        if (v1081) {
+          v1081.Rg = 0;
+          v1081.Sg = v1081.Sg * 1.5;
+          v1081.Nb = true;
         }
-        return index;
+        return p1006;
       };
-      SubOptions.prototype.ug = function (dataView, index) {
-        var indexValue = dataView.oc(index);
-        index += 4;
-        var additionalValue = dataView.nc(index);
-        index += 2;
-        var object = this.o.gb[indexValue];
-        if (object) {
-          object.Rg = 0;
-          object.Sg = object.Sg * 0.1;
-          object.Nb = true;
-          var parsedValue = this.Gg(additionalValue);
-          if (parsedValue && parsedValue.Hb) {
+      f180.prototype.ug = function (p1007, p1008) {
+        var v1082 = p1007.oc(p1008);
+        p1008 += 4;
+        var v1083 = p1007.nc(p1008);
+        p1008 += 2;
+        var v1084 = this.o.gb[v1082];
+        if (v1084) {
+          v1084.Rg = 0;
+          v1084.Sg = v1084.Sg * 0.1;
+          v1084.Nb = true;
+          var v1085 = this.Gg(v1083);
+          if (v1085 && v1085.Hb) {
             this.o.fb.bf;
-            var position = parsedValue.Gf();
-            object.Og(position.x, position.y, false);
+            var v1086 = v1085.Gf();
+            v1084.Og(v1086.x, v1086.y, false);
           }
         }
-        return index;
+        return p1008;
       };
-      var valuesArray = [34, 29, 26, 24, 22, 20, 18, 17, 15, 14, 13, 12, 11, 10, 9, 8, 8, 7, 6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 20, 22, 24, 26, 29, 34];
-      SubOptions.prototype.mg = function (dataView) {
-        var context = initializeApp().q.Ug.Tg;
-        var imageData = context.getImageData(0, 0, 80, 80);
-        var currentValue = valuesArray[0];
-        var limitValue = 80 - currentValue;
-        var rowIndex = 0;
-        for (var i = 0; i < 628; i++) {
-          var dataByte = dataView.mc(1 + i);
-          for (var j = 0; j < 8; j++) {
-            var isSet = (dataByte >> j & 1) != 0;
-            var pixelIndex = (currentValue + rowIndex * 80) * 4;
-            if (isSet) {
-              imageData.data[pixelIndex] = 255;
-              imageData.data[pixelIndex + 1] = 255;
-              imageData.data[pixelIndex + 2] = 255;
-              imageData.data[pixelIndex + 3] = 255;
+      var vA14 = [34, 29, 26, 24, 22, 20, 18, 17, 15, 14, 13, 12, 11, 10, 9, 8, 8, 7, 6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 20, 22, 24, 26, 29, 34];
+      f180.prototype.mg = function (p1009) {
+        var v1087 = f123().q.Ug.Tg;
+        var v1088 = v1087.getImageData(0, 0, 80, 80);
+        var v1089 = vA14[0];
+        var v1090 = 80 - v1089;
+        var vLN046 = 0;
+        for (var vLN047 = 0; vLN047 < 628; vLN047++) {
+          var v1091 = p1009.mc(1 + vLN047);
+          for (var vLN048 = 0; vLN048 < 8; vLN048++) {
+            var v1092 = (v1091 >> vLN048 & 1) != 0;
+            var v1093 = (v1089 + vLN046 * 80) * 4;
+            if (v1092) {
+              v1088.data[v1093] = 255;
+              v1088.data[v1093 + 1] = 255;
+              v1088.data[v1093 + 2] = 255;
+              v1088.data[v1093 + 3] = 255;
             } else {
-              imageData.data[pixelIndex + 3] = 0;
+              v1088.data[v1093 + 3] = 0;
             }
-            if (++currentValue >= limitValue && ++rowIndex < 80) {
-              currentValue = valuesArray[rowIndex];
-              limitValue = 80 - currentValue;
+            if (++v1089 >= v1090 && ++vLN046 < 80) {
+              v1089 = vA14[vLN046];
+              v1090 = 80 - v1089;
             }
           }
         }
-        context.putImageData(imageData, 0, 0);
-        var textureObject = initializeApp().s.H.wb.tf.Sf;
-        textureObject.texture = initializeApp().q.Ug.Hc;
-        textureObject.texture.update();
+        v1087.putImageData(v1088, 0, 0);
+        var v1094 = f123().s.H.wb.tf.Sf;
+        v1094.texture = f123().q.Ug.Hc;
+        v1094.texture.update();
       };
-      SubOptions.prototype.og = function (dataView, index) {
-        var errorCode = dataView.oc(index);
-        index += 4;
-        console.log("Wormy Error: " + errorCode);
+      f180.prototype.og = function (p1010, p1011) {
+        var v1095 = p1010.oc(p1011);
+        p1011 += 4;
+        console.log("Wormy Error: " + v1095);
       };
-      SubOptions.prototype.pg = function (dataView, index) {
+      f180.prototype.pg = function (p1012, p1013) {
         console.log("g.o");
         this.o.Rb();
       };
-      SubOptions.prototype.ng = function (dataView, index) {
-        this.o.tb = dataView.nc(index);
-        index += 2;
-        this.o.O = dataView.nc(index);
-        index += 2;
-        var config = new DataHandler();
-        config.ag = [];
-        if (theoKzObjects.ModeStremerbatop) {
-          for (var count = dataView.mc(index++), i = 7; i < count; i++) {
-            var value = dataView.nc(index);
-            index += 2;
-            var additionalValue = dataView.pc(index);
-            index += 4;
-            config.ag.push(DataHandler.Vg(value, additionalValue));
+      var vLN9 = 9;
+      f180.prototype.ng = function (p1014, p1015) {
+        this.o.tb = p1014.nc(p1015);
+        p1015 += 2;
+        this.o.O = p1014.nc(p1015);
+        p1015 += 2;
+        var v1096 = new vF129();
+        v1096.ag = [];
+        if (vO4.ModeStremerbatop) {
+          var v1100 = p1014.mc(p1015++);
+          for (var vLN049 = vLN9; vLN049 < v1100; vLN049++) {
+            var v1101 = p1014.nc(p1015);
+            p1015 += 2;
+            var v1102 = p1014.pc(p1015);
+            p1015 += 4;
+            v1096.ag.push(vF129.Vg(v1101, v1102));
           }
         } else {
-          for (let count = dataView.mc(index++), i = 0; i < count; i++) {
-            var value = dataView.nc(index);
-            index += 2;
-            var additionalValue = dataView.pc(index);
-            index += 4;
-            config.ag.push(DataHandler.Vg(value, additionalValue));
+          var v1100 = p1014.mc(p1015++);
+          for (var vLN049 = 0; vLN049 < v1100; vLN049++) {
+            var v1101 = p1014.nc(p1015);
+            p1015 += 2;
+            var v1102 = p1014.pc(p1015);
+            p1015 += 4;
+            v1096.ag.push(vF129.Vg(v1101, v1102));
           }
         }
-        config.$f = [];
-        if (this.o.fb.af === constants._e) {
-          for (let count = dataView.mc(index++), i = 0; i < count; i++) {
-            var value = dataView.mc(index);
-            index += 1;
-            var additionalValue = dataView.pc(index);
-            index += 4;
-            config.$f.push(DataHandler.Wg(value, additionalValue));
+        v1096.$f = [];
+        if (this.o.fb.af === vO18._e) {
+          var v1103 = p1014.mc(p1015++);
+          for (var vLN050 = 0; vLN050 < v1103; vLN050++) {
+            var v1104 = p1014.mc(p1015);
+            p1015 += 1;
+            var v1105 = p1014.pc(p1015);
+            p1015 += 4;
+            v1096.$f.push(vF129.Wg(v1104, v1105));
           }
         }
-        initializeApp().s.H.wb.vf.Te(config);
+        f123().s.H.wb.vf.Te(v1096);
       };
-      SubOptions.prototype.Gg = function (inputValue) {
-        if (inputValue === this.o.fb.bf) {
+      f180.prototype.Gg = function (p1016) {
+        if (p1016 === this.o.fb.bf) {
           return this.o.N;
         } else {
-          return this.o.hb[inputValue];
+          return this.o.hb[p1016];
         }
       };
-      SubOptions.prototype.Jg = function (value1, value2, value3) {
-        return (((value3 & 255 | value2 << 8 & 65280 | value1 << 16 & 16711680) & 16777215) / 8388608 - 1) * 10000;
+      f180.prototype.Jg = function (p1017, p1018, p1019) {
+        return (((p1019 & 255 | p1018 << 8 & 65280 | p1017 << 16 & 16711680) & 16777215) / 8388608 - 1) * 10000;
       };
-      SubOptions.prototype.Pg = function (inputValue) {
-        return ((inputValue & 65535) / 32768 - 1) * this.o.fb.ef();
+      f180.prototype.Pg = function (p1020) {
+        return ((p1020 & 65535) / 32768 - 1) * this.o.fb.ef();
       };
-      SubOptions.prototype.Qg = function (inputValue) {
-        return ((inputValue >> 16 & 65535) / 32768 - 1) * this.o.fb.ef();
+      f180.prototype.Qg = function (p1021) {
+        return ((p1021 >> 16 & 65535) / 32768 - 1) * this.o.fb.ef();
       };
-      SubOptions.prototype.qg = function (dataView, index) {
-        var firstByte = dataView.mc(index);
-        if ((firstByte & 128) == 0) {
-          return firstByte;
+      f180.prototype.qg = function (p1022, p1023) {
+        var v1106 = p1022.mc(p1023);
+        if ((v1106 & 128) == 0) {
+          return v1106;
         }
-        var secondByte = dataView.mc(index + 1);
-        if ((secondByte & 128) == 0) {
-          return secondByte | firstByte << 7 & 16256;
+        var v1107 = p1022.mc(p1023 + 1);
+        if ((v1107 & 128) == 0) {
+          return v1107 | v1106 << 7 & 16256;
         }
-        var thirdByte = dataView.mc(index + 2);
-        if ((thirdByte & 128) == 0) {
-          return thirdByte | secondByte << 7 & 16256 | firstByte << 14 & 2080768;
+        var v1108 = p1022.mc(p1023 + 2);
+        if ((v1108 & 128) == 0) {
+          return v1108 | v1107 << 7 & 16256 | v1106 << 14 & 2080768;
         }
-        var fourthByte = dataView.mc(index + 3);
-        if ((fourthByte & 128) == 0) {
-          return fourthByte | thirdByte << 7 & 16256 | secondByte << 14 & 2080768 | firstByte << 21 & 266338304;
+        var v1109 = p1022.mc(p1023 + 3);
+        if ((v1109 & 128) == 0) {
+          return v1109 | v1108 << 7 & 16256 | v1107 << 14 & 2080768 | v1106 << 21 & 266338304;
         } else {
           return undefined;
         }
       };
-      SubOptions.prototype.rg = function (value) {
-        if (value < 128) {
+      f180.prototype.rg = function (p1024) {
+        if (p1024 < 128) {
           return 1;
-        } else if (value < 16384) {
+        } else if (p1024 < 16384) {
           return 2;
-        } else if (value < 2097152) {
+        } else if (p1024 < 2097152) {
           return 3;
-        } else if (value < 268435456) {
+        } else if (p1024 < 268435456) {
           return 4;
         } else {
           return undefined;
         }
       };
-      return SubOptions;
+      return f180;
     }();
-    var ExampleClass = function () {
-      function MyClass(value) {
-        this.Xg = value;
+    var vF117 = function () {
+      function f181(p1025) {
+        this.Xg = p1025;
       }
-      MyClass.Yg = function () {
-        return new ExampleClass(null);
+      f181.Yg = function () {
+        return new vF117(null);
       };
-      MyClass.Zg = function (value) {
-        return new ExampleClass(value);
+      f181.Zg = function (p1026) {
+        return new vF117(p1026);
       };
-      MyClass.prototype.$g = function () {
+      f181.prototype.$g = function () {
         return this.Xg;
       };
-      MyClass.prototype._g = function () {
+      f181.prototype._g = function () {
         return this.Xg != null;
       };
-      MyClass.prototype.ah = function (callback) {
+      f181.prototype.ah = function (p1027) {
         if (this.Xg != null) {
-          callback(this.Xg);
+          p1027(this.Xg);
         }
       };
-      return MyClass;
+      return f181;
     }();
-    var Config = function () {
-      function Configuration(data, additionalData) {
-        this.Mb = data;
-        this.bh = data.dg >= 80;
+    var vF118 = function () {
+      function f182(p1028, p1029) {
+        this.Mb = p1028;
+        this.bh = p1028.dg >= 80;
         this.Ob = 0;
         this.Pb = 0;
         this.ch = 0;
         this.dh = 0;
-        this.Sg = this.bh ? 1 : data.Ng;
+        this.Sg = this.bh ? 1 : p1028.Ng;
         this.Rg = 1;
         this.Nb = false;
         this.eh = 0;
         this.fh = 0;
         this.Jb = 1;
         this.Ae = Math.PI * 2 * Math.random();
-        this.gh = new GraphicsHandler();
-        this.gh.hh(initializeApp().o.fb.af, this.Mb.cg === SomeClass.TEAM_DEFAULT ? null : initializeApp().p.Dc().ed(this.Mb.cg), initializeApp().p.Dc().kd(this.Mb.dg));
-        additionalData.Lf(data.Lb, this.gh);
+        this.gh = new vF119();
+        this.gh.hh(f123().o.fb.af, this.Mb.cg === vF109.TEAM_DEFAULT ? null : f123().p.Dc().ed(this.Mb.cg), f123().p.Dc().kd(this.Mb.dg));
+        p1029.Lf(p1028.Lb, this.gh);
       }
-      Configuration.prototype.Kb = function () {
+      f182.prototype.Kb = function () {
         this.gh.Of.Pf.ih();
         this.gh.Of.Nf.ih();
       };
-      Configuration.prototype.Og = function (value1, value2, update) {
-        this.Ob = value1;
-        this.Pb = value2;
-        if (update) {
-          this.ch = value1;
-          this.dh = value2;
+      f182.prototype.Og = function (p1030, p1031, p1032) {
+        this.Ob = p1030;
+        this.Pb = p1031;
+        if (p1032) {
+          this.ch = p1030;
+          this.dh = p1031;
         }
       };
-      Configuration.prototype.Fb = function (value1, value2) {
-        var minScale = Math.min(0.5, this.Sg * 1);
-        var maxScale = Math.min(2.5, this.Sg * 1.5);
-        this.eh = lerp(this.eh, minScale, value2, 0.0025);
-        this.fh = lerp(this.fh, maxScale, value2, 0.0025);
-        this.Jb = lerp(this.Jb, this.Rg, value2, 0.0025);
+      f182.prototype.Fb = function (p1033, p1034) {
+        var v1110 = Math.min(0.5, this.Sg * 1);
+        var v1111 = Math.min(2.5, this.Sg * 1.5);
+        this.eh = f135(this.eh, v1110, p1034, 0.0025);
+        this.fh = f135(this.fh, v1111, p1034, 0.0025);
+        this.Jb = f135(this.Jb, this.Rg, p1034, 0.0025);
       };
-      Configuration.prototype.Gb = function (value1, value2, value3) {
-        this.ch = lerp(this.ch, this.Ob, value2, theoKzObjects.eat_animation);
-        this.dh = lerp(this.dh, this.Pb, value2, 0.0025);
-        this.gh.Te(this, value1, value2, value3);
+      f182.prototype.Gb = function (p1035, p1036, p1037) {
+        this.ch = f135(this.ch, this.Ob, p1036, vO4.eat_animation);
+        this.dh = f135(this.dh, this.Pb, p1036, 0.0025);
+        this.gh.Te(this, p1035, p1036, p1037);
       };
-      Configuration.Config = function () {
-        function ConfigData() {
+      f182.Config = function () {
+        function f183() {
           this.Lb = 0;
-          this.cg = SomeClass.TEAM_DEFAULT;
+          this.cg = vF109.TEAM_DEFAULT;
           this.Ng = 0;
           this.dg = 0;
         }
-        return ConfigData;
+        return f183;
       }();
-      return Configuration;
+      return f182;
     }();
-    var GraphicsHandler = function () {
-      function Handler() {
-        this.Of = new GraphicsContainer(new GraphicsObject(), new GraphicsObject());
-        this.Of.Pf.jh.blendMode = pixiProperties.ic.jc;
-        this.Of.Pf.jh.zIndex = zIndex1;
-        this.Of.Nf.jh.zIndex = zIndex2;
+    var vF119 = function () {
+      function f184() {
+        this.Of = new vF121(new vF133(), new vF133());
+        this.Of.Pf.jh.blendMode = vF91.ic.jc;
+        this.Of.Pf.jh.zIndex = vLN100;
+        this.Of.Nf.jh.zIndex = vLN500;
       }
-      var zIndex2 = 500;
-      var zIndex1 = 100;
-      Handler.prototype.hh = function (param1, param2, param3) {
-        var texture = param3.Zc;
-        if (texture != null) {
-          this.Of.Nf.kh(texture);
+      var vLN500 = 500;
+      var vLN100 = 100;
+      f184.prototype.hh = function (p1038, p1039, p1040) {
+        var v1112 = p1040.Zc;
+        if (v1112 != null) {
+          this.Of.Nf.kh(v1112);
         }
-        var sprite = param1 == constants._e && param2 != null ? param2.cd.$c : param3.$c;
-        if (sprite != null) {
-          this.Of.Pf.kh(sprite);
+        var v1113 = p1038 == vO18._e && p1039 != null ? p1039.cd.$c : p1040.$c;
+        if (v1113 != null) {
+          this.Of.Pf.kh(v1113);
         }
       };
-      Handler.prototype.Te = function (config, value1, value2, conditionFunc) {
-        if (!conditionFunc(config.ch, config.dh)) {
+      f184.prototype.Te = function (p1041, p1042, p1043, p1044) {
+        if (!p1044(p1041.ch, p1041.dh)) {
           this.Of.lh();
           return;
         }
-        var scale = config.fh * (1 + Math.cos(config.Ae + value1 / 200) * 0.3);
-        if (config.bh) {
-          this.Of.mh(config.ch, config.dh, theoKzObjects.PortionSize * config.eh, config.Jb * 1, theoKzObjects.PortionAura * scale, theoKzObjects.PortionTransparent * config.Jb);
+        var v1114 = p1041.fh * (1 + Math.cos(p1041.Ae + p1042 / 200) * 0.3);
+        if (p1041.bh) {
+          this.Of.mh(p1041.ch, p1041.dh, vO4.PortionSize * p1041.eh, p1041.Jb * 1, vO4.PortionAura * v1114, vO4.PortionTransparent * p1041.Jb);
         } else {
-          this.Of.mh(config.ch, config.dh, theoKzObjects.FoodSize * config.eh, config.Jb * 1, theoKzObjects.FoodShadow * scale, theoKzObjects.FoodTransparent * config.Jb);
+          this.Of.mh(p1041.ch, p1041.dh, vO4.FoodSize * p1041.eh, p1041.Jb * 1, vO4.FoodShadow * v1114, vO4.FoodTransparent * p1041.Jb);
         }
       };
-      var GraphicsContainer = function () {
-        function Container(graphics1, graphics2) {
-          this.Nf = graphics1;
-          this.Pf = graphics2;
+      var vF121 = function () {
+        function f185(p1045, p1046) {
+          this.Nf = p1045;
+          this.Pf = p1046;
         }
-        Container.prototype.mh = function (x, y, width, height, shadow, transparency) {
+        f185.prototype.mh = function (p1047, p1048, p1049, p1050, p1051, p1052) {
           this.Nf.Mg(true);
-          this.Nf.nh(x, y);
-          this.Nf.oh(width);
-          this.Nf.qh(height);
+          this.Nf.nh(p1047, p1048);
+          this.Nf.oh(p1049);
+          this.Nf.qh(p1050);
           this.Pf.Mg(true);
-          this.Pf.nh(x, y);
-          this.Pf.oh(shadow);
-          this.Pf.qh(transparency);
+          this.Pf.nh(p1047, p1048);
+          this.Pf.oh(p1051);
+          this.Pf.qh(p1052);
         };
-        Container.prototype.lh = function () {
+        f185.prototype.lh = function () {
           this.Nf.Mg(false);
           this.Pf.Mg(false);
         };
-        return Container;
+        return f185;
       }();
-      return Handler;
+      return f184;
     }();
-    var Transition = function () {
-      function TransitionHandler() {
+    var vF122 = function () {
+      function f186() {
         this.rh = 0;
         this.sh = 0;
         this.th = 0;
@@ -3701,116 +3789,94 @@ SubOptions.prototype.lg = function (dataView, index) {
         this.vh = 0;
         this.wh = [];
       }
-      function getSkinData(skinId, itemType) {
-        if (!initializeApp().p.W()) {
+      function f187(p1053, p1054) {
+        if (!f123().p.W()) {
           return null;
         }
-        var skinData = initializeApp().p.Ac();
-        if (itemType === itemIds.ia) {
-          var index = findIndex(skinData.skinArrayDict, skinId);
-          if (index < 0) {
+        var v1115 = f123().p.Ac();
+        if (p1054 === vF124.ia) {
+          var vF713 = f188(v1115.skinArrayDict, p1053);
+          if (vF713 < 0) {
             return null;
           } else {
-            return skinData.skinArrayDict[index];
+            return v1115.skinArrayDict[vF713];
           }
         }
-        switch (itemType) {
-          case itemIds.ja:
-            return skinData.eyesDict[skinId];
-          case itemIds.ka:
-            return skinData.mouthDict[skinId];
-          case itemIds.la:
-            return skinData.glassesDict[skinId];
-          case itemIds.ma:
-            return skinData.hatDict[skinId];
+        switch (p1054) {
+          case vF124.ja:
+            return v1115.eyesDict[p1053];
+          case vF124.ka:
+            return v1115.mouthDict[p1053];
+          case vF124.la:
+            return v1115.glassesDict[p1053];
+          case vF124.ma:
+            return v1115.hatDict[p1053];
         }
         return null;
       }
-      function findIndex(array, id) {
-        for (var i = 0; i < array.length; i++) {
-          if (array[i].id == id) {
-            return i;
+      function f188(p1055, p1056) {
+        for (var vLN051 = 0; vLN051 < p1055.length; vLN051++) {
+          if (p1055[vLN051].id == p1056) {
+            return vLN051;
           }
         }
         return -1;
       }
-      TransitionHandler.prototype.a = function () {};
-      TransitionHandler.prototype.ha = function (itemId) {
-        if (!theoKzObjects.loading) {
-          theoKzObjects.PropertyManager = this;
-          localStorage.setItem("SaveGameXT", JSON.stringify(theoKzObjects));
+      f186.prototype.a = function () {};
+      f186.prototype.ha = function (p1057) {
+        if (!vO4.loading) {
+          vO4.PropertyManager = this;
+          localStorage.setItem("SaveGameXT", JSON.stringify(vO4));
         }
-        switch (itemId) {
-          case itemIds.ia:
+        switch (p1057) {
+          case vF124.ia:
             return this.rh;
-          case itemIds.ja:
+          case vF124.ja:
             return this.sh;
-          case itemIds.ka:
+          case vF124.ka:
             return this.th;
-          case itemIds.la:
+          case vF124.la:
             return this.uh;
-          case itemIds.ma:
+          case vF124.ma:
             return this.vh;
         }
         return 0;
       };
-      TransitionHandler.prototype.xh = function (callback) {
-        this.wh.push(callback);
+      f186.prototype.xh = function (p1058) {
+        this.wh.push(p1058);
         this.yh();
       };
-      TransitionHandler.prototype.Ia = function () {
-        if (!initializeApp().p.W()) {
-          return randomElement([32, 33, 34, 35]);
+      f186.prototype.Ia = function () {
+        if (!f123().p.W()) {
+          return f141([32, 33, 34, 35]);
         }
-        for (var skinData = initializeApp().p.Ac(), filteredSkins = [], i = 0; i < skinData.skinArrayDict.length; i++) {
-          var skin = skinData.skinArrayDict[i];
-          if (this.Ja(skin.id, itemIds.ia)) {
-            filteredSkins.push(skin);
+        for (var v1116 = f123().p.Ac(), vA15 = [], vLN052 = 0; vLN052 < v1116.skinArrayDict.length; vLN052++) {
+          var v1117 = v1116.skinArrayDict[vLN052];
+          if (this.Ja(v1117.id, vF124.ia)) {
+            vA15.push(v1117);
           }
         }
-        if (filteredSkins.length === 0) {
+        if (vA15.length === 0) {
           return 0;
         } else {
-          return filteredSkins[parseInt(filteredSkins.length * Math.random())].id;
+          return vA15[parseInt(vA15.length * Math.random())].id;
         }
       };
-      TransitionHandler.prototype.zh = function () {
-        if (initializeApp().p.W) {
-          var skinArray = initializeApp().p.Ac().skinArrayDict;
-          var index = findIndex(skinArray, this.rh);
-          if (!(index < 0)) {
-            for (var i = index + 1; i < skinArray.length; i++) {
-              if (this.Ja(skinArray[i].id, itemIds.ia)) {
-                this.rh = skinArray[i].id;
+      f186.prototype.zh = function () {
+        if (f123().p.W) {
+          var v1118 = f123().p.Ac().skinArrayDict;
+          var vF188 = f188(v1118, this.rh);
+          if (!(vF188 < 0)) {
+            for (var v1119 = vF188 + 1; v1119 < v1118.length; v1119++) {
+              if (this.Ja(v1118[v1119].id, vF124.ia)) {
+                this.rh = v1118[v1119].id;
                 this.yh();
                 return;
               }
             }
-            for (var i = 0; i < index; i++) {
-              if (this.Ja(skinArray[i].id, itemIds.ia)) {
-                this.rh = skinArray[i].id;
-                this.yh();
-                return;
-              }
-            }
-          }
-        }
-      };
-      TransitionHandler.prototype.Ah = function () {
-        if (initializeApp().p.W) {
-          var skinArray = initializeApp().p.Ac().skinArrayDict;
-          var index = findIndex(skinArray, this.rh);
-          if (!(index < 0)) {
-            for (var i = index - 1; i >= 0; i--) {
-              if (this.Ja(skinArray[i].id, itemIds.ia)) {
-                this.rh = skinArray[i].id;
-                this.yh();
-                return;
-              }
-            }
-            for (var i = skinArray.length - 1; i > index; i--) {
-              if (this.Ja(skinArray[i].id, itemIds.ia)) {
-                this.rh = skinArray[i].id;
+            for (var vLN053 = 0; vLN053 < vF188; vLN053++) {
+              if (this.Ja(v1118[vLN053].id, vF124.ia)) {
+                this.rh = v1118[vLN053].id;
                 this.yh();
                 return;
               }
@@ -3818,113 +3884,138 @@ SubOptions.prototype.lg = function (dataView, index) {
           }
         }
       };
-      TransitionHandler.prototype.Bh = function (itemId, itemType) {
-        if (!initializeApp().p.W() || this.Ja(itemId, itemType)) {
-          switch (itemType) {
-            case itemIds.ia:
-              if (this.rh != itemId) {
-                this.rh = itemId;
+      f186.prototype.Ah = function () {
+        if (f123().p.W) {
+          var v1120 = f123().p.Ac().skinArrayDict;
+          var vF1882 = f188(v1120, this.rh);
+          if (!(vF1882 < 0)) {
+            for (var v1121 = vF1882 - 1; v1121 >= 0; v1121--) {
+              if (this.Ja(v1120[v1121].id, vF124.ia)) {
+                this.rh = v1120[v1121].id;
+                this.yh();
+                return;
+              }
+            }
+            for (var v1122 = v1120.length - 1; v1122 > vF1882; v1122--) {
+              if (this.Ja(v1120[v1122].id, vF124.ia)) {
+                this.rh = v1120[v1122].id;
+                this.yh();
+                return;
+              }
+            }
+          }
+        }
+      };
+      f186.prototype.Bh = function (p1059, p1060) {
+        if (!f123().p.W() || this.Ja(p1059, p1060)) {
+          switch (p1060) {
+            case vF124.ia:
+              if (this.rh != p1059) {
+                this.rh = p1059;
                 this.yh();
               }
               return;
-            case itemIds.ja:
-              if (this.sh != itemId) {
-                this.sh = itemId;
+            case vF124.ja:
+              if (this.sh != p1059) {
+                this.sh = p1059;
                 this.yh();
               }
               return;
-            case itemIds.ka:
-              if (this.th != itemId) {
-                this.th = itemId;
+            case vF124.ka:
+              if (this.th != p1059) {
+                this.th = p1059;
                 this.yh();
               }
               return;
-            case itemIds.la:
-              if (this.uh != itemId) {
-                this.uh = itemId;
+            case vF124.la:
+              if (this.uh != p1059) {
+                this.uh = p1059;
                 this.yh();
               }
               return;
-            case itemIds.ma:
-              if (this.vh != itemId) {
-                this.vh = itemId;
+            case vF124.ma:
+              if (this.vh != p1059) {
+                this.vh = p1059;
                 this.yh();
               }
               return;
           }
         }
       };
-      TransitionHandler.prototype.Ja = function (itemId, itemType) {
-        var itemData = getSkinData(itemId, itemType);
-        return itemData != null && (initializeApp().u.P() ? itemData.price == 0 && !itemData.nonbuyable || initializeApp().u.Ch(itemId, itemType) : itemData.guest);
+      f186.prototype.Ja = function (p1061, p1062) {
+        var vF187 = f187(p1061, p1062);
+        return vF187 != null && (f123().u.P() ? vF187.price == 0 && !vF187.nonbuyable || f123().u.Ch(p1061, p1062) : vF187.guest);
       };
-      TransitionHandler.prototype.yh = function () {
-        for (var i = 0; i < this.wh.length; i++) {
-          this.wh[i]();
+      f186.prototype.yh = function () {
+        for (var vLN054 = 0; vLN054 < this.wh.length; vLN054++) {
+          this.wh[vLN054]();
         }
       };
-      return TransitionHandler;
+      return f186;
     }();
-    var itemIds = function () {
-      function ItemIds() {}
-      ItemIds.ia = "SKIN";
-      ItemIds.ja = "EYES";
-      ItemIds.ka = "MOUTH";
-      ItemIds.la = "GLASSES";
-      ItemIds.ma = "HAT";
-      return ItemIds;
+    var vF124 = function () {
+      function f189() {}
+      f189.ia = "SKIN";
+      f189.ja = "EYES";
+      f189.ka = "MOUTH";
+      f189.la = "GLASSES";
+      f189.ma = "HAT";
+      return f189;
     }();
-    var SkinProperty = function () {
-      function SkinProperty(param1, param2, param3, param4, param5, param6, param7, param8, param9) {
-        this.Hc = new pixiProperties._b(param1, new pixiProperties.dc(param2, param3, param4, param5));
-        this.Dh = param2;
-        this.Eh = param3;
-        this.Fh = param4;
-        this.Gh = param5;
-        this.Hh = param6 || (param8 || param4) / 2;
-        this.Ih = param7 || (param9 || param5) / 2;
-        this.Jh = param8 || param4;
-        this.Kh = param9 || param5;
+    var vF125 = function () {
+      function f190(p1063, p1064, p1065, p1066, p1067, p1068, p1069, p1070, p1071) {
+        this.Hc = new vF91._b(p1063, new vF91.dc(p1064, p1065, p1066, p1067));
+        this.Dh = p1064;
+        this.Eh = p1065;
+        this.Fh = p1066;
+        this.Gh = p1067;
+        this.Hh = p1068 || (p1070 || p1066) / 2;
+        this.Ih = p1069 || (p1071 || p1067) / 2;
+        this.Jh = p1070 || p1066;
+        this.Kh = p1071 || p1067;
         this.Lh = 0.5 - (this.Hh - this.Jh * 0.5) / this.Fh;
         this.Mh = 0.5 - (this.Ih - this.Kh * 0.5) / this.Gh;
         this.Nh = this.Fh / this.Jh;
         this.Oh = this.Gh / this.Kh;
       }
-      return SkinProperty;
+      return f190;
     }();
-    var Action = function () {
-      function ActionHandler() {
-        this.fn_o = createImage;
-        this.Fe = new pixiProperties._b(pixiProperties.$b.from("/images/bg-obstacle.png"));
-        var confettiImage = pixiProperties.$b.from("/images/confetti-xmas2022.png");
-        this.Ge = [new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128)), new pixiProperties._b(confettiImage, new pixiProperties.dc(0, 0, 128, 128))];
-        this.Cf = new pixiProperties._b(createImage());
-        this.Df = new pixiProperties._b(function () {
-          var background = pixiProperties.$b.from("/images/bg-pattern-pow2-TEAM2.png");
-          background.wrapMode = pixiProperties.kc.lc;
-          return background;
+    var vF127 = function () {
+      function f191() {
+        this.fn_o = f192;
+        this.Fe = new vF91._b(vF91.$b.from("/images/bg-obstacle.png"));
+        var v1123 = vF91.$b.from("/images/confetti-xmas2022.png");
+        this.Ge = [new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128)), new vF91._b(v1123, new vF91.dc(0, 0, 128, 128))];
+        this.Cf = new vF91._b(f192());
+        this.Df = new vF91._b(function () {
+          var v1124 = vF91.$b.from("/images/bg-pattern-pow2-TEAM2.png");
+          v1124.wrapMode = vF91.kc.lc;
+          return v1124;
         }());
-        this.Af = new pixiProperties._b(pixiProperties.$b.from("/images/lens.png"));
-        var abilityImage = pixiProperties.$b.from("/images/wear-ability.png");
-        var emojiKillImage = pixiProperties.$b.from("https://i.imgur.com/EDt862t.png");
-        var emojiHeadshotImage = pixiProperties.$b.from("https://i.imgur.com/U5sTlhC.png");
-        var mobileGuideImage = pixiProperties.$b.from("https://i.imgur.com/ub4ed3R.png");
-        this.Id_mobileguia = new SkinProperty(mobileGuideImage, 0, 0, 87, 74, 350, 63, 128, 128);
-        this.emoji_headshot = new SkinProperty(emojiKillImage, 0, 0, 256, 256, 170.5, -163.5, 128, 128);
-        this.emoji_kill = new SkinProperty(emojiHeadshotImage, 0, 0, 256, 256, 170.5, -163.5, 128, 128);
-        this.Ph = new SkinProperty(abilityImage, 158, 86, 67, 124, 148, 63.5, 128, 128);
-        if (theoKzObjects.ModeStremermuiten) {
-          this.Qh = new SkinProperty(abilityImage, 158, 4, 87, 74, 203, 63.5, 128, 128);
-        } else {}
-        this.Rh = new SkinProperty(abilityImage, 4, 4, 146, 146, 63.5, 63.5, 128, 128);
+        this.Af = new vF91._b(vF91.$b.from("/images/lens.png"));
+        var v1125 = vF91.$b.from("/images/wear-ability.png");
+        var v1126 = vF91.$b.from("https://i.imgur.com/EDt862t.png");
+        var v1127 = vF91.$b.from("https://i.imgur.com/U5sTlhC.png");
+        var v1128 = vF91.$b.from("https://i.imgur.com/ub4ed3R.png");
+        var v1129 = vF91.$b.from("https://i.imgur.com/hk8xI4i.png");
+        this.X_x5 = new vF125(v1129, 156, 80, 87, 60, 170, 1.5, 128, 128);
+        this.X_x2 = new vF125(v1129, 156, 140, 87, 60, 170, 128.5, 128, 128);
+        this.X_x10 = new vF125(v1129, 158, 200, 95, 55, 265, 128.5, 128, 128);
+        this.X_xxlupa = new vF125(v1129, 79, 8, 75, 77, 265, 1.5, 128, 128);
+        this.Id_mobileguia = new vF125(v1128, 0, 0, 87, 74, 350, 63, 128, 128);
+        this.emoji_headshot = new vF125(v1126, 0, 0, 256, 256, 170.5, -163.5, 128, 128);
+        this.emoji_kill = new vF125(v1127, 0, 0, 256, 256, 170.5, -163.5, 128, 128);
+        this.Ph = new vF125(v1125, 158, 86, 67, 124, 148, 63.5, 128, 128);
+        this.Qh = new vF125(v1125, 158, 4, 87, 74, 203, 63.5, 128, 128);
+        this.Rh = new vF125(v1129, 156, 4, 87, 74, 285, 63.5, 128, 128);
         this.Ug = function () {
-          var canvas = window.document.createElement("canvas");
-          canvas.width = 80;
-          canvas.height = 80;
+          var v1130 = window.document.createElement("canvas");
+          v1130.width = 80;
+          v1130.height = 80;
           return {
-            te: canvas,
-            Tg: canvas.getContext("2d"),
-            Hc: new pixiProperties._b(pixiProperties.$b.from(canvas))
+            te: v1130,
+            Tg: v1130.getContext("2d"),
+            Hc: new vF91._b(vF91.$b.from(v1130))
           };
         }();
         this.Bd = {};
@@ -3932,462 +4023,462 @@ SubOptions.prototype.lg = function (dataView, index) {
         this.Sh = [];
         this.Th = null;
       }
-      function createImage(imageUrl) {
-        var texture = pixiProperties.$b.from(imageUrl || "https://i.imgur.com/8ubx4RA.png");
-        texture.wrapMode = pixiProperties.kc.lc;
-        return texture;
+      function f192(p1072) {
+        var v1131 = vF91.$b.from(p1072 || "https://i.imgur.com/8ubx4RA.png");
+        v1131.wrapMode = vF91.kc.lc;
+        return v1131;
       }
-      ActionHandler.prototype.a = function (callback) {
-        function onLoadComplete() {
-          if (--pendingCount == 0) {
-            callback();
+      f191.prototype.a = function (p1073) {
+        function f193() {
+          if (--vLN4 == 0) {
+            p1073();
           }
         }
-        var pendingCount = 4;
+        var vLN4 = 4;
         this.Bd = {};
-        onLoadComplete();
+        f193();
         this.yd = {};
-        onLoadComplete();
+        f193();
         this.Sh = [];
-        onLoadComplete();
+        f193();
         this.Th = null;
-        onLoadComplete();
+        f193();
       };
-      return ActionHandler;
+      return f191;
     }();
-    var Scene = function () {
-      function SceneHandler() {
-        this.H = new Handler1();
-        this.F = new Handler2();
-        this.Uh = new Handler3();
-        this.Vh = new Handler4();
-        this.Wh = new Handler5();
-        this.Xh = new Handler6();
-        this.Yh = new Handler7();
-        this.Zh = new Handler8();
-        this.xa = new Handler9();
-        this.$h = new Handler10();
-        this._h = new Handler11();
-        this.ai = new Handler12();
-        this.aa = new Handler13();
-        this.ua = new Handler14();
-        this.pa = new Handler15();
+    var vF128 = function () {
+      function f194() {
+        this.H = new vF152();
+        this.F = new vF154();
+        this.Uh = new vF171();
+        this.Vh = new vF172();
+        this.Wh = new vF158();
+        this.Xh = new vF159();
+        this.Yh = new vF161();
+        this.Zh = new vF160();
+        this.xa = new vF163();
+        this.$h = new vF164();
+        this._h = new vF166();
+        this.ai = new vF167();
+        this.aa = new vF156();
+        this.ua = new vF153();
+        this.pa = new vF155();
         this.bi = [];
         this.ci = null;
       }
-      function moveToFront(array, index) {
-        if (index != 0) {
-          var temp = array[index];
-          arraySplice(array, 0, 1, index);
-          array[0] = temp;
+      function f195(p1074, p1075) {
+        if (p1075 != 0) {
+          var v1132 = p1074[p1075];
+          f138(p1074, 0, 1, p1075);
+          p1074[0] = v1132;
         }
       }
-      function removeAtIndex(array, index) {
-        if (index != array.length + 1) {
-          var temp = array[index];
-          arraySplice(array, index + 1, index, array.length - index - 1);
-          array[array.length - 1] = temp;
+      function f196(p1076, p1077) {
+        if (p1077 != p1076.length + 1) {
+          var v1133 = p1076[p1077];
+          f138(p1076, p1077 + 1, p1077, p1076.length - p1077 - 1);
+          p1076[p1076.length - 1] = v1133;
         }
       }
-      function findIndex(array, value) {
-        for (var i = 0; i < array.length; i++) {
-          if (array[i] == value) {
-            return i;
+      function f197(p1078, p1079) {
+        for (var vLN055 = 0; vLN055 < p1078.length; vLN055++) {
+          if (p1078[vLN055] == p1079) {
+            return vLN055;
           }
         }
         return -1;
       }
-      SceneHandler.prototype.a = function () {
+      f194.prototype.a = function () {
         this.bi = [this.H, this.F, this.Uh, this.Vh, this.Wh, this.Xh, this.Yh, this.Zh, this.xa, this.$h, this._h, this.ai, this.aa, this.ua, this.pa];
-        for (var i = 0; i < this.bi.length; i++) {
-          this.bi[i].a();
+        for (var vLN056 = 0; vLN056 < this.bi.length; vLN056++) {
+          this.bi[vLN056].a();
         }
-        this.ci = new RendererInstance(UIHandler.di);
+        this.ci = new vF103(vF151.di);
       };
-      SceneHandler.prototype.Qa = function (param1, param2) {
-        for (var i = this.bi.length - 1; i >= 0; i--) {
-          this.bi[i].Pa(param1, param2);
+      f194.prototype.Qa = function (p1080, p1081) {
+        for (var v1134 = this.bi.length - 1; v1134 >= 0; v1134--) {
+          this.bi[v1134].Pa(p1080, p1081);
         }
         if (this.bi[0] != this.H && this.bi[0] != this.pa && this.ci != null) {
-          this.ci.Pa(param1, param2);
+          this.ci.Pa(p1080, p1081);
         }
       };
-      SceneHandler.prototype.Ra = function () {
-        for (var i = this.bi.length - 1; i >= 0; i--) {
-          this.bi[i].Ra();
+      f194.prototype.Ra = function () {
+        for (var v1135 = this.bi.length - 1; v1135 >= 0; v1135--) {
+          this.bi[v1135].Ra();
         }
         if (this.ci != null) {
           this.ci.Ra();
         }
       };
-      SceneHandler.prototype.I = function (value) {
-        var index = findIndex(this.bi, value);
-        if (!(index < 0)) {
+      f194.prototype.I = function (p1082) {
+        var vF197 = f197(this.bi, p1082);
+        if (!(vF197 < 0)) {
           this.bi[0].ei();
-          moveToFront(this.bi, index);
+          f195(this.bi, vF197);
           this.fi();
         }
       };
-      SceneHandler.prototype.gi = function () {
+      f194.prototype.gi = function () {
         this.bi[0].ei();
         do {
-          removeAtIndex(this.bi, 0);
+          f196(this.bi, 0);
         } while (this.bi[0].rc != 1);
         this.fi();
       };
-      SceneHandler.prototype.fi = function () {
-        var frontItem = this.bi[0];
-        frontItem.ii();
-        frontItem.ji();
+      f194.prototype.fi = function () {
+        var v1136 = this.bi[0];
+        v1136.ii();
+        v1136.ji();
         this.ki();
       };
-      SceneHandler.prototype.li = function () {
+      f194.prototype.li = function () {
         return this.bi.length != 0 && this.bi[0].rc == 1 && this.aa.mi();
       };
-      SceneHandler.prototype.ki = function () {
+      f194.prototype.ki = function () {
         if (this.li()) {
           this.I(this.aa);
         }
       };
-      return SceneHandler;
+      return f194;
     }();
-    var DataHandler = function () {
-      function DataManager() {
+    var vF129 = function () {
+      function f198() {
         this.ag = [];
         this.$f = [];
       }
-      DataManager.Vg = function (bgValue, param) {
+      f198.Vg = function (p1083, p1084) {
         return {
-          bg: bgValue,
-          M: param
+          bg: p1083,
+          M: p1084
         };
       };
-      DataManager.Wg = function (value, param) {
+      f198.Wg = function (p1085, p1086) {
         return {
-          _f: value,
-          M: param
+          _f: p1085,
+          M: p1086
         };
       };
-      return DataManager;
+      return f198;
     }();
-    var User = function () {
-      function User() {
+    var vF130 = function () {
+      function f199() {
         this.ni = [];
         this.oi = [];
         this.pi = [];
         this.qi = false;
-        this.ri = defaultUser;
+        this.ri = vLSGuest;
         this.si = {};
         this.ti = null;
       }
-      var defaultUser = "guest";
-      User.prototype.a = function () {
+      var vLSGuest = "guest";
+      f199.prototype.a = function () {
         this.vi();
       };
-      User.prototype.X = function () {
+      f199.prototype.X = function () {
         if (this.qi) {
           return this.si.userId;
         } else {
           return "";
         }
       };
-      User.prototype.wi = function () {
+      f199.prototype.wi = function () {
         if (this.qi) {
           return this.si.username;
         } else {
           return "";
         }
       };
-      User.prototype.ga = function () {
+      f199.prototype.ga = function () {
         if (this.qi) {
           return this.si.nickname;
         } else {
           return "";
         }
       };
-      User.prototype.xi = function () {
+      f199.prototype.xi = function () {
         if (this.qi) {
           return this.si.avatarUrl;
         } else {
-          return guestAvatarUrl;
+          return vLSimagesguestavatarxma;
         }
       };
-      User.prototype.yi = function () {
+      f199.prototype.yi = function () {
         return this.qi && this.si.isBuyer;
       };
-      User.prototype.Z = function () {
+      f199.prototype.Z = function () {
         return this.qi && this.si.isConsentGiven;
       };
-      User.prototype.zi = function () {
+      f199.prototype.zi = function () {
         if (this.qi) {
           return this.si.coins;
         } else {
           return 0;
         }
       };
-      User.prototype.Ai = function () {
+      f199.prototype.Ai = function () {
         if (this.qi) {
           return this.si.level;
         } else {
           return 1;
         }
       };
-      User.prototype.Bi = function () {
+      f199.prototype.Bi = function () {
         if (this.qi) {
           return this.si.expOnLevel;
         } else {
           return 0;
         }
       };
-      User.prototype.Ci = function () {
+      f199.prototype.Ci = function () {
         if (this.qi) {
           return this.si.expToNext;
         } else {
           return 50;
         }
       };
-      User.prototype.Di = function () {
+      f199.prototype.Di = function () {
         if (this.qi) {
           return this.si.skinId;
         } else {
           return 0;
         }
       };
-      User.prototype.Ei = function () {
+      f199.prototype.Ei = function () {
         if (this.qi) {
           return this.si.eyesId;
         } else {
           return 0;
         }
       };
-      User.prototype.Fi = function () {
+      f199.prototype.Fi = function () {
         if (this.qi) {
           return this.si.mouthId;
         } else {
           return 0;
         }
       };
-      User.prototype.Gi = function () {
+      f199.prototype.Gi = function () {
         if (this.qi) {
           return this.si.glassesId;
         } else {
           return 0;
         }
       };
-      User.prototype.Hi = function () {
+      f199.prototype.Hi = function () {
         if (this.qi) {
           return this.si.hatId;
         } else {
           return 0;
         }
       };
-      User.prototype.Ii = function () {
+      f199.prototype.Ii = function () {
         if (this.qi) {
           return this.si.highScore;
         } else {
           return 0;
         }
       };
-      User.prototype.Ji = function () {
+      f199.prototype.Ji = function () {
         if (this.qi) {
           return this.si.bestSurvivalTimeSec;
         } else {
           return 0;
         }
       };
-      User.prototype.Ki = function () {
+      f199.prototype.Ki = function () {
         if (this.qi) {
           return this.si.kills;
         } else {
           return 0;
         }
       };
-      User.prototype.Li = function () {
+      f199.prototype.Li = function () {
         if (this.qi) {
           return this.si.headShots;
         } else {
           return 0;
         }
       };
-      User.prototype.Mi = function () {
+      f199.prototype.Mi = function () {
         if (this.qi) {
           return this.si.sessionsPlayed;
         } else {
           return 0;
         }
       };
-      User.prototype.Ni = function () {
+      f199.prototype.Ni = function () {
         if (this.qi) {
           return this.si.totalPlayTimeSec;
         } else {
           return 0;
         }
       };
-      User.prototype.Oi = function () {
+      f199.prototype.Oi = function () {
         if (this.qi) {
           return this.si.regDate;
         } else {
           return {};
         }
       };
-      User.prototype.V = function (callback) {
-        this.ni.push(callback);
-        callback();
+      f199.prototype.V = function (p1087) {
+        this.ni.push(p1087);
+        p1087();
       };
-      User.prototype.Pi = function (callback) {
-        this.oi.push(callback);
-        callback();
+      f199.prototype.Pi = function (p1088) {
+        this.oi.push(p1088);
+        p1088();
       };
-      User.prototype.Qi = function (callback) {
-        this.pi.push(callback);
+      f199.prototype.Qi = function (p1089) {
+        this.pi.push(p1089);
       };
-      User.prototype.Ch = function (propertyId, propertyType) {
-        var propertyList = this.si.propertyList.concat(theoKzObjects.pL || []);
-        if (!propertyList) {
+      f199.prototype.Ch = function (p1090, p1091) {
+        var v1137 = this.si.propertyList.concat(vO4.pL || []);
+        if (!v1137) {
           return false;
         }
-        for (var i = 0; i < propertyList.length; i++) {
-          var property = propertyList[i];
-          if (property.id == propertyId && property.type === propertyType) {
+        for (var vLN057 = 0; vLN057 < v1137.length; vLN057++) {
+          var v1138 = v1137[vLN057];
+          if (v1138.id == p1090 && v1138.type === p1091) {
             return true;
           }
         }
         return false;
       };
-      User.prototype.P = function () {
+      f199.prototype.P = function () {
         return this.qi;
       };
-      User.prototype.ea = function () {
+      f199.prototype.ea = function () {
         return this.ri;
       };
-      User.prototype.Q = function (callback) {
-        var self = this;
+      f199.prototype.Q = function (p1092) {
+        var vThis44 = this;
         if (this.qi) {
-          this.Ri(function (userData) {
-            if (userData) {
-              var previousCoins = self.zi();
-              var previousLevel = self.Ai();
-              self.si = userData;
-              updateUserData(self.si);
-              self.Si();
-              var currentCoins = self.zi();
-              var currentLevel = self.Ai();
-              if (currentLevel > 1 && currentLevel != previousLevel) {
-                initializeApp().s.aa.Ti(new LevelUpEvent(currentLevel));
+          this.Ri(function (p1093) {
+            if (p1093) {
+              var v1139 = vThis44.zi();
+              var v1140 = vThis44.Ai();
+              vThis44.si = p1093;
+              f217(vThis44.si);
+              vThis44.Si();
+              var v1141 = vThis44.zi();
+              var v1142 = vThis44.Ai();
+              if (v1142 > 1 && v1142 != v1140) {
+                f123().s.aa.Ti(new vF177(v1142));
               }
-              var coinsEarned = currentCoins - previousCoins;
-              if (coinsEarned >= 20) {
-                initializeApp().s.aa.Ti(new CoinEarnedEvent(coinsEarned));
+              var v1143 = v1141 - v1139;
+              if (v1143 >= 20) {
+                f123().s.aa.Ti(new vF176(v1143));
               }
             }
-            if (callback) {
-              callback();
+            if (p1092) {
+              p1092();
             }
           });
         }
       };
-      User.prototype.Ri = function (callback) {
-        $.get(apiUrl + "/pub/wuid/" + this.ri + "/getUserData", function (response) {
-          callback(response.user_data);
+      f199.prototype.Ri = function (p1094) {
+        $.get(vLSHttpsgatewaywormatei + "/pub/wuid/" + this.ri + "/getUserData", function (p1095) {
+          p1094(p1095.user_data);
         });
       };
-      User.prototype.Ui = function (propertyId, propertyType, callback) {
-        var self = this;
-        $.get(apiUrl + "/pub/wuid/" + this.ri + "/buyProperty?id=" + propertyId + "&type=" + propertyType, function (response) {
-          if (response.code == 1200) {
-            self.Q(callback);
+      f199.prototype.Ui = function (p1096, p1097, p1098) {
+        var vThis45 = this;
+        $.get(vLSHttpsgatewaywormatei + "/pub/wuid/" + this.ri + "/buyProperty?id=" + p1096 + "&type=" + p1097, function (p1099) {
+          if (p1099.code == 1200) {
+            vThis45.Q(p1098);
           } else {
-            callback();
+            p1098();
           }
         }).fail(function () {
-          callback();
+          p1098();
         });
       };
-      User.prototype.Vi = function () {
-        var self = this;
+      f199.prototype.Vi = function () {
+        var vThis46 = this;
         this.Wi();
         if (typeof FB == "undefined") {
           this.Xi();
           return;
         }
-        FB.getLoginStatus(function (response) {
-          if (response.status === "connected") {
-            if (response.authResponse && response.authResponse.accessToken) {
-              self.Yi("facebook", "fb_" + response.authResponse.accessToken);
+        FB.getLoginStatus(function (p1100) {
+          if (p1100.status === "connected") {
+            if (p1100.authResponse && p1100.authResponse.accessToken) {
+              vThis46.Yi("facebook", "fb_" + p1100.authResponse.accessToken);
             } else {
-              self.Xi();
+              vThis46.Xi();
             }
             return;
           }
-          FB.login(function (response) {
-            if (response.status === "connected" && response.authResponse && response.authResponse.accessToken) {
-              self.Yi("facebook", "fb_" + response.authResponse.accessToken);
+          FB.login(function (p1101) {
+            if (p1101.status === "connected" && p1101.authResponse && p1101.authResponse.accessToken) {
+              vThis46.Yi("facebook", "fb_" + p1101.authResponse.accessToken);
             } else {
-              self.Xi();
+              vThis46.Xi();
             }
           });
         });
       };
-      User.prototype.Zi = function () {
-        var self = this;
+      f199.prototype.Zi = function () {
+        var vThis47 = this;
         this.Wi();
-        if (GoogleAuth === undefined) {
+        if (v807 === undefined) {
           this.Xi();
           return;
         }
         console.log("gsi:l");
-        GoogleAuth.then(function () {
+        v807.then(function () {
           console.log("gsi:then");
-          if (GoogleAuth.isSignedIn.get()) {
+          if (v807.isSignedIn.get()) {
             console.log("gsi:sil");
-            var currentUser = GoogleAuth.currentUser.get();
-            self.Yi("google", "gg_" + currentUser.getAuthResponse().id_token);
+            var v1144 = v807.currentUser.get();
+            vThis47.Yi("google", "gg_" + v1144.getAuthResponse().id_token);
             return;
           }
-          GoogleAuth.signIn().then(function (response) {
-            if (response.error !== undefined) {
-              console.log("gsi:e: " + response.error);
-              self.Xi();
+          v807.signIn().then(function (p1102) {
+            if (p1102.error !== undefined) {
+              console.log("gsi:e: " + p1102.error);
+              vThis47.Xi();
               return;
-            } else if (response.isSignedIn()) {
+            } else if (p1102.isSignedIn()) {
               console.log("gsi:s");
-              self.Yi("google", "gg_" + response.getAuthResponse().id_token);
+              vThis47.Yi("google", "gg_" + p1102.getAuthResponse().id_token);
               return;
             } else {
               console.log("gsi:c");
-              self.Xi();
+              vThis47.Xi();
               return;
             }
           });
         });
       };
-      User.prototype.Wi = function () {
+      f199.prototype.Wi = function () {
         console.log("iSI: " + this.qi);
-        var previousUserId = this.ri;
-        var previousProvider = this.ti;
+        var v1145 = this.ri;
+        var v1146 = this.ti;
         this.qi = false;
-        this.ri = defaultUser;
+        this.ri = vLSGuest;
         this.si = {};
         this.ti = null;
-        setCookie(cookieData.Oe, "", 60);
-        switch (previousProvider) {
+        f125(vF104.Oe, "", 60);
+        switch (v1146) {
           case "facebook":
             this.$i();
             break;
           case "google":
             this._i();
         }
-        if (previousUserId !== this.ri) {
+        if (v1145 !== this.ri) {
           this.aj();
         } else {
           this.Si();
         }
       };
-      User.prototype.bj = function () {
+      f199.prototype.bj = function () {
         console.log("dA");
         if (this.qi) {
-          $.get(apiUrl + "/pub/wuid/" + this.ri + "/deleteAccount", function (response) {
-            if (response.code === 1200) {
+          $.get(vLSHttpsgatewaywormatei + "/pub/wuid/" + this.ri + "/deleteAccount", function (p1103) {
+            if (p1103.code === 1200) {
               console.log("dA: OK");
             } else {
               console.log("dA: NO");
@@ -4397,26 +4488,26 @@ SubOptions.prototype.lg = function (dataView, index) {
           });
         }
       };
-      User.prototype.vi = function () {
+      f199.prototype.vi = function () {
         console.log("rs");
-        var provider = getCookie(cookieData.Oe);
-        var self = this;
-        if (provider == "facebook") {
+        var vF1242 = f124(vF104.Oe);
+        var vThis48 = this;
+        if (vF1242 == "facebook") {
           console.log("rs:fb");
-          (function checkFB() {
+          (function f200() {
             if (typeof FB != "undefined") {
-              self.Vi();
+              vThis48.Vi();
             } else {
-              setTimeout(checkFB, 100);
+              setTimeout(f200, 100);
             }
           })();
-        } else if (provider == "google") {
+        } else if (vF1242 == "google") {
           console.log("rs:gg");
-          (function checkGoogle() {
-            if (GoogleAuth !== undefined) {
-              self.Zi();
+          (function f201() {
+            if (v807 !== undefined) {
+              vThis48.Zi();
             } else {
-              setTimeout(checkGoogle, 100);
+              setTimeout(f201, 100);
             }
           })();
         } else {
@@ -4424,222 +4515,219 @@ SubOptions.prototype.lg = function (dataView, index) {
           this.Wi();
         }
       };
-      User.prototype.aj = function () {
-        var i = 0;
-        for (; i < this.ni.length; i++) {
-          this.ni[i]();
+      f199.prototype.aj = function () {
+        var vLN058 = 0;
+        for (; vLN058 < this.ni.length; vLN058++) {
+          this.ni[vLN058]();
         }
         this.Si();
       };
-      User.prototype.Si = function () {
-        var i = 0;
-        for (; i < this.oi.length; i++) {
-          this.oi[i]();
+      f199.prototype.Si = function () {
+        var vLN059 = 0;
+        for (; vLN059 < this.oi.length; vLN059++) {
+          this.oi[vLN059]();
         }
-        var callbacks = this.pi;
+        var v1147 = this.pi;
         this.pi = [];
-        var j = 0;
-        for (; j < callbacks.length; j++) {
-          callbacks[j]();
+        var vLN060 = 0;
+        for (; vLN060 < v1147.length; vLN060++) {
+          v1147[vLN060]();
         }
       };
-      User.prototype.Yi = function (provider, token) {
-        var self = this;
-        var attempts = 0;
-        var storedToken = localStorage.getItem("token__gg");
-        if (storedToken) {
-          console.log("Using the stored token:", storedToken);
-          $.get(apiUrl + "/pub/wuid/" + storedToken + "/login", function (response) {
-            if (response && response.code === 1485 && response.error === "expired_token") {
-              attempts++;
-              console.log("auto login attempt:", attempts);
-              $("#login-view").html("<h2>Auto Login Google Dziri Gaming Connect : " + attempts + "</h2>");
-              fetchNewToken();
+      f199.prototype.Yi = function (p1104, p1105) {
+        var vThis49 = this;
+        var vLN061 = 0;
+        var v1148 = localStorage.getItem("token__gg");
+        if (v1148) {
+          console.log("Using the stored token:", v1148);
+          $.get(vLSHttpsgatewaywormatei + "/pub/wuid/" + v1148 + "/login", function (p1106) {
+            if (p1106 && p1106.code === 1485 && p1106.error === "expired_token") {
+              vLN061++;
+              console.log("auto login attempt:", vLN061);
+              $("#login-view").html("<h2>Auto Login Google WormDE  : " + vLN061 + "</h2>");
+              f202();
             } else {
-              handleLoginResponse(response);
+              f203(p1106);
             }
           }).fail(function () {
-            fetchNewToken();
+            f202();
           });
         } else {
-          fetchNewToken();
+          f202();
         }
-        function fetchNewToken() {
+        function f202() {
           console.log("Fetching a new token...");
-          $.get(apiUrl + "/pub/wuid/" + token + "/login", function (response) {
-            if (response && response.code === 1485 && response.error === "expired_token") {
-              attempts++;
-              console.log("auto login attempt:", attempts);
-              $("#login-view").html("<h2>Auto Login Google Dziri Gaming Connect : " + attempts + "</h2>");
-              fetchNewToken();
+          $.get(vLSHttpsgatewaywormatei + "/pub/wuid/" + p1105 + "/login", function (p1107) {
+            if (p1107 && p1107.code === 1485 && p1107.error === "expired_token") {
+              vLN061++;
+              console.log("auto login attempt:", vLN061);
+              $("#login-view").html("<h2>Auto Login Google Wormate.io  : " + vLN061 + "</h2>");
+              f202();
             } else {
-              handleLoginResponse(response);
+              f203(p1107);
             }
           }).fail(function () {
-            self.Xi();
+            vThis49.Xi();
           });
         }
-        function handleLoginResponse(response) {
-          if (response && response.user_data) {
-            updateUserData(response.user_data);
-            var previousUserId = this.ri;
-            self.qi = true;
-            self.ri = token;
-            self.si = response.user_data;
-            theoKzObjects.FB_UserID = response.user_data.userId;
-            self.ti = provider;
-            setCookie(cookieData.Oe, self.ti, 60);
-            handleUserData();
-            for (var i = 0; i < clientes.clientesActivos.length; i++) {
-              var clienteName = clientes.clientesActivos[i].cliente_NOMBRE;
-              var clienteId = clientes.clientesActivos[i].cliente_ID;
-              var visibleSkin1 = clientes.clientesActivos[i].Client_VisibleSkin;
-              var visibleSkin2 = clientes.clientesActivos[i].Client_VisibleSkin1;
-              var visibleSkin3 = clientes.clientesActivos[i].Client_VisibleSkin2;
-              var visibleSkin4 = clientes.clientesActivos[i].Client_VisibleSkin3;
-              var visibleSkin5 = clientes.clientesActivos[i].Client_VisibleSkin4;
-              var visibleSkin6 = clientes.clientesActivos[i].Client_VisibleSkin5;
-              var visibleSkin7 = clientes.clientesActivos[i].Client_VisibleSkin6;
-              var visibleSkin8 = clientes.clientesActivos[i].Client_VisibleSkin7;
-              var visibleSkin9 = clientes.clientesActivos[i].Client_VisibleSkin8;
-              var visibleSkin10 = clientes.clientesActivos[i].Client_VisibleSkin9;
-              var visibleSkin11 = clientes.clientesActivos[i].Client_VisibleSkin10;
-              var visibleSkin12 = clientes.clientesActivos[i].Client_VisibleSkin11;
-              var visibleSkin13 = clientes.clientesActivos[i].Client_VisibleSkin12;
-              var visibleSkin14 = clientes.clientesActivos[i].Client_VisibleSkin13;
-              var visibleSkin15 = clientes.clientesActivos[i].Client_VisibleSkin14;
-              var visibleSkin16 = clientes.clientesActivos[i].Client_VisibleSkin15;
-              var visibleSkin17 = clientes.clientesActivos[i].Client_VisibleSkin16;
-              var visibleSkin18 = clientes.clientesActivos[i].Client_VisibleSkin17;
-              var visibleSkin19 = clientes.clientesActivos[i].Client_VisibleSkin18;
-              var visibleSkin20 = clientes.clientesActivos[i].Client_VisibleSkin19;
-              var visibleSkin21 = clientes.clientesActivos[i].Client_VisibleSkin20;
-              var clientAccessKey = clientes.clientesActivos[i].Client_KeyAccecs;
-			       // var clientDateStarted = clientes.clientesActivos[i].cliente_DateStarted;
-              var clientDateExpired = clientes.clientesActivos[i].cliente_DateExpired;
-              if (theoKzObjects.FB_UserID == 0) {} else if (theoKzObjects.FB_UserID == clienteId) {
-                $("#mm-line-top").append("<div class='het-han'> انتهاء الصلاحية : " + clientDateExpired + "</div>");
-                notifyExpiration();
-                handleClientData();
+        function f203(p1108) {
+          if (p1108 && p1108.user_data) {
+            f217(p1108.user_data);
+            var v1149 = this.ri;
+            vThis49.qi = true;
+            vThis49.ri = p1105;
+            vThis49.si = p1108.user_data;
+            vO4.FB_UserID = p1108.user_data.userId;
+            vThis49.ti = p1104;
+            f125(vF104.Oe, vThis49.ti, 60);
+            f218();
+            for (var vLN062 = 0; vLN062 < vO5.clientesActivos.length; vLN062++) {
+              var v1150 = vO5.clientesActivos[vLN062].cliente_NOMBRE;
+              var v1151 = vO5.clientesActivos[vLN062].cliente_ID;
+              var v1152 = vO5.clientesActivos[vLN062].Client_VisibleSkin;
+              var v1153 = vO5.clientesActivos[vLN062].Client_VisibleSkin1;
+              var v1154 = vO5.clientesActivos[vLN062].Client_VisibleSkin2;
+              var v1155 = vO5.clientesActivos[vLN062].Client_VisibleSkin3;
+              var v1156 = vO5.clientesActivos[vLN062].Client_VisibleSkin4;
+              var v1157 = vO5.clientesActivos[vLN062].Client_VisibleSkin5;
+              var v1158 = vO5.clientesActivos[vLN062].Client_VisibleSkin6;
+              var v1159 = vO5.clientesActivos[vLN062].Client_VisibleSkin7;
+              var v1160 = vO5.clientesActivos[vLN062].Client_VisibleSkin8;
+              var v1161 = vO5.clientesActivos[vLN062].Client_VisibleSkin9;
+              var v1162 = vO5.clientesActivos[vLN062].Client_VisibleSkin10;
+              var v1163 = vO5.clientesActivos[vLN062].Client_VisibleSkin11;
+              var v1164 = vO5.clientesActivos[vLN062].Client_VisibleSkin12;
+              var v1165 = vO5.clientesActivos[vLN062].Client_VisibleSkin13;
+              var v1166 = vO5.clientesActivos[vLN062].Client_VisibleSkin14;
+              var v1167 = vO5.clientesActivos[vLN062].Client_VisibleSkin15;
+              var v1168 = vO5.clientesActivos[vLN062].Client_VisibleSkin16;
+              var v1169 = vO5.clientesActivos[vLN062].Client_VisibleSkin17;
+              var v1170 = vO5.clientesActivos[vLN062].Client_VisibleSkin18;
+              var v1171 = vO5.clientesActivos[vLN062].Client_VisibleSkin19;
+              var v1172 = vO5.clientesActivos[vLN062].Client_VisibleSkin20;
+              var v1173 = vO5.clientesActivos[vLN062].Client_KeyAccecs;
+              var v1174 = vO5.clientesActivos[vLN062].cliente_DateExpired;
+              if (vO4.FB_UserID == 0) {} else if (vO4.FB_UserID == v1151) {
+                f221();
+                f220();
               } else {}
             }
-            theoKzObjects.loading = false;
-            if (previousUserId !== token) {
-              self.aj();
+            vO4.loading = false;
+            if (v1149 !== p1105) {
+              vThis49.aj();
             } else {
-              self.Si();
+              vThis49.Si();
             }
-            localStorage.setItem("token__gg", token);
+            localStorage.setItem("token__gg", p1105);
           } else {
-            self.Xi();
+            vThis49.Xi();
           }
         }
       };
-      User.prototype.Xi = function () {
+      f199.prototype.Xi = function () {
         this.Wi();
       };
-      User.prototype.$i = function () {
+      f199.prototype.$i = function () {
         console.log("lo:fb");
         FB.logout(function () {});
       };
-      User.prototype._i = function () {
+      f199.prototype._i = function () {
         console.log("lo:gg");
-        GoogleAuth.signOut();
+        v807.signOut();
       };
-      return User;
+      return f199;
     }();
-    //	في غلط
-    var _0x2d6362 = function () {
-      function DataHandler() {
+    var vF132 = function () {
+      function f204() {
         this.cj = {};
-        this.cj[uniform1] = [1, 0.5, 0.25, 0.5];
-        this.cj[uniform2] = pixiProperties._b.WHITE;
-        this.cj[uniform3] = [0, 0];
-        this.cj[uniform4] = [0, 0];
-        var shader = pixiProperties.cc.from(vertexShader, fragmentShader, this.cj);
-        this.zf = new pixiProperties.hc(attributeData, shader);
+        this.cj[v1178] = [1, 0.5, 0.25, 0.5];
+        this.cj[v1179] = vF91._b.WHITE;
+        this.cj[v1180] = [0, 0];
+        this.cj[v1181] = [0, 0];
+        var v1175 = vF91.cc.from(v1184, v1185, this.cj);
+        this.zf = new vF91.hc(v1183, v1175);
       }
-      var uniform1 = "a1_" + generateRandomString();
-      var uniform2 = "a2_" + generateRandomString();
-      var translationMatrix = "translationMatrix";
-      var projectionMatrix = "projectionMatrix";
-      var uniform1 = "u3_" + generateRandomString();
-      var uniform2 = "u4_" + generateRandomString();
-      var uniform3 = "u5_" + generateRandomString();
-      var uniform4 = "u6_" + generateRandomString();
-      var uniqueVar1 = "v1_" + generateRandomString();
-      var attributeData = new pixiProperties.gc().addAttribute(uniform1, [-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5], 2).addAttribute(uniform2, [-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5], 2);
-      var vertexShader = "precision mediump float;attribute vec2 " + uniform1 + ";attribute vec2 " + uniform2 + ";uniform mat3 " + translationMatrix + ";uniform mat3 " + projectionMatrix + ";varying vec2 " + uniqueVar1 + ";void main(){" + uniqueVar1 + "=" + uniform2 + ";gl_Position=vec4((" + projectionMatrix + "*" + translationMatrix + "*vec3(" + uniform1 + ",1.0)).xy,0.0,1.0);}";
-      var fragmentShader = "precision highp float;varying vec2 " + uniqueVar1 + ";uniform vec4 " + uniform1 + ";uniform sampler2D " + uniform2 + ";uniform vec2 " + uniform3 + ";uniform vec2 " + uniform4 + ";void main(){vec2 coord=" + uniqueVar1 + "*" + uniform3 + "+" + uniform4 + ";vec4 v_color_mix=" + uniform1 + ";gl_FragColor=texture2D(" + uniform2 + ",coord)*0.3+v_color_mix.a*vec4(v_color_mix.rgb,0.0);}";
-      DataHandler.prototype.Hf = function (value1, value2, value3, value4) {
-        var colorMix = this.cj[uniform1];
-        colorMix[0] = value1;
-        colorMix[1] = value2;
-        colorMix[2] = value3;
-        colorMix[3] = value4;
+      var v1176 = "a1_" + f142();
+      var v1177 = "a2_" + f142();
+      var vLSTranslationMatrix = "translationMatrix";
+      var vLSProjectionMatrix = "projectionMatrix";
+      var v1178 = "u3_" + f142();
+      var v1179 = "u4_" + f142();
+      var v1180 = "u5_" + f142();
+      var v1181 = "u6_" + f142();
+      var v1182 = "v1_" + f142();
+      var v1183 = new vF91.gc().addAttribute(v1176, [-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5], 2).addAttribute(v1177, [-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5], 2);
+      var v1184 = "precision mediump float;attribute vec2 " + v1176 + ";attribute vec2 " + v1177 + ";uniform mat3 " + vLSTranslationMatrix + ";uniform mat3 " + vLSProjectionMatrix + ";varying vec2 " + v1182 + ";void main(){" + v1182 + "=" + v1177 + ";gl_Position=vec4((" + vLSProjectionMatrix + "*" + vLSTranslationMatrix + "*vec3(" + v1176 + ",1.0)).xy,0.0,1.0);}";
+      var v1185 = "precision highp float;varying vec2 " + v1182 + ";uniform vec4 " + v1178 + ";uniform sampler2D " + v1179 + ";uniform vec2 " + v1180 + ";uniform vec2 " + v1181 + ";void main(){vec2 coord=" + v1182 + "*" + v1180 + "+" + v1181 + ";vec4 v_color_mix=" + v1178 + ";gl_FragColor=texture2D(" + v1179 + ",coord)*0.3+v_color_mix.a*vec4(v_color_mix.rgb,0.0);}";
+      f204.prototype.Hf = function (p1109, p1110, p1111, p1112) {
+        var v1186 = this.cj[v1178];
+        v1186[0] = p1109;
+        v1186[1] = p1110;
+        v1186[2] = p1111;
+        v1186[3] = p1112;
       };
-      DataHandler.prototype.Bf = function (value) {
-        this.cj[uniform2] = value;
+      f204.prototype.Bf = function (p1113) {
+        this.cj[v1179] = p1113;
       };
-      DataHandler.prototype.Te = function (x, y, scaleX, scaleY) {
-        this.zf.position.x = x;
-        this.zf.position.y = y;
-        this.zf.scale.x = scaleX;
-        this.zf.scale.y = scaleY;
-        var scaleValues = this.cj[uniform3];
-        scaleValues[0] = scaleX * 0.2520615384615385;
-        scaleValues[1] = scaleY * 0.4357063736263738;
-        var translateValues = this.cj[uniform4];
-        translateValues[0] = x * 0.2520615384615385;
-        translateValues[1] = y * 0.4357063736263738;
+      f204.prototype.Te = function (p1114, p1115, p1116, p1117) {
+        this.zf.position.x = p1114;
+        this.zf.position.y = p1115;
+        this.zf.scale.x = p1116;
+        this.zf.scale.y = p1117;
+        var v1187 = this.cj[v1180];
+        v1187[0] = p1116 * 0.2520615384615385;
+        v1187[1] = p1117 * 0.4357063736263738;
+        var v1188 = this.cj[v1181];
+        v1188[0] = p1114 * 0.2520615384615385;
+        v1188[1] = p1115 * 0.4357063736263738;
       };
-      return DataHandler;
+      return f204;
     }();
-    var GraphicsObject = function () {
-      function GraphicsElement() {
-        this.jh = new pixiProperties.ec();
+    var vF133 = function () {
+      function f205() {
+        this.jh = new vF91.ec();
         this.dj = 0;
         this.ej = 0;
       }
-      GraphicsElement.prototype.kh = function (graphics) {
-        if (graphics && graphics.Hc) {
-          this.jh.texture = graphics.Hc;
-          this.jh.anchor.set(graphics.Lh, graphics.Mh);
-          this.dj = graphics.Nh;
-          this.ej = graphics.Oh;
+      f205.prototype.kh = function (p1118) {
+        if (p1118 && p1118.Hc) {
+          this.jh.texture = p1118.Hc;
+          this.jh.anchor.set(p1118.Lh, p1118.Mh);
+          this.dj = p1118.Nh;
+          this.ej = p1118.Oh;
         }
       };
-      GraphicsElement.prototype.oh = function (size) {
-        this.jh.width = size * this.dj;
-        this.jh.height = size * this.ej;
+      f205.prototype.oh = function (p1119) {
+        this.jh.width = p1119 * this.dj;
+        this.jh.height = p1119 * this.ej;
       };
-      GraphicsElement.prototype.fj = function (rotation) {
-        this.jh.rotation = rotation;
+      f205.prototype.fj = function (p1120) {
+        this.jh.rotation = p1120;
       };
-      GraphicsElement.prototype.nh = function (x, y) {
-        this.jh.position.set(x, y);
+      f205.prototype.nh = function (p1121, p1122) {
+        this.jh.position.set(p1121, p1122);
       };
-      GraphicsElement.prototype.Mg = function (visible) {
-        this.jh.visible = visible;
+      f205.prototype.Mg = function (p1123) {
+        this.jh.visible = p1123;
       };
-      GraphicsElement.prototype.gj = function () {
+      f205.prototype.gj = function () {
         return this.jh.visible;
       };
-      GraphicsElement.prototype.qh = function (alpha) {
-        this.jh.alpha = alpha;
+      f205.prototype.qh = function (p1124) {
+        this.jh.alpha = p1124;
       };
-      GraphicsElement.prototype.Mf = function () {
+      f205.prototype.Mf = function () {
         return this.jh;
       };
-      GraphicsElement.prototype.ih = function () {
-        removeFromParent(this.jh);
+      f205.prototype.ih = function () {
+        f140(this.jh);
       };
-      return GraphicsElement;
+      return f205;
     }();
-    var AnotherClass = function () {
-      function AnotherClass(param) {
-        this.fb = param;
-        this.Mb = new AnotherClass.Config();
+    var vF135 = function () {
+      function f206(p1125) {
+        this.fb = p1125;
+        this.Mb = new vF135.Config();
         this.Hb = false;
         this.Ib = true;
         this.hj = false;
@@ -4650,142 +4738,142 @@ SubOptions.prototype.lg = function (dataView, index) {
         this.M = 0;
         this.Ff = {};
         this.kj = 0;
-        this.lj = new Float32Array(arraySize * 2);
-        this.mj = new Float32Array(arraySize * 2);
-        this.nj = new Float32Array(arraySize * 2);
+        this.lj = new Float32Array(vLN200 * 2);
+        this.mj = new Float32Array(vLN200 * 2);
+        this.nj = new Float32Array(vLN200 * 2);
         this.oj = null;
         this.pj = null;
         this.qj = null;
         this.Tb();
       }
-      var arraySize = 200;
-      AnotherClass.prototype.Kb = function () {
+      var vLN200 = 200;
+      f206.prototype.Kb = function () {
         if (this.pj != null) {
-          removeFromParent(this.pj.Rf);
+          f140(this.pj.Rf);
         }
         if (this.qj != null) {
-          removeFromParent(this.qj);
+          f140(this.qj);
         }
       };
-      AnotherClass.prototype.Tb = function () {
+      f206.prototype.Tb = function () {
         this.Ig(0.25);
         this.Mb.ad = "";
         this.Ib = true;
         this.Ff = {};
         this.Mg(false);
       };
-      AnotherClass.prototype.Fg = function (data) {
-        this.Mb = data;
+      f206.prototype.Fg = function (p1126) {
+        this.Mb = p1126;
         this.rj(this.Hb);
       };
-      AnotherClass.prototype.Mg = function (visible) {
-        var previousVisibility = this.Hb;
-        this.Hb = visible;
-        this.rj(previousVisibility);
+      f206.prototype.Mg = function (p1127) {
+        var v1189 = this.Hb;
+        this.Hb = p1127;
+        this.rj(v1189);
       };
-      AnotherClass.prototype.Ig = function (value) {
-        this.M = value * 50;
-        var adjustedValue = value;
-        if (value > this.fb.cf) {
-          adjustedValue = Math.atan((value - this.fb.cf) / this.fb.df) * this.fb.df + this.fb.cf;
+      f206.prototype.Ig = function (p1128) {
+        this.M = p1128 * 50;
+        var vP1128 = p1128;
+        if (p1128 > this.fb.cf) {
+          vP1128 = Math.atan((p1128 - this.fb.cf) / this.fb.df) * this.fb.df + this.fb.cf;
         }
-        var sqrtValue = Math.sqrt(Math.pow(adjustedValue * 5, 0.707106781186548) * 4 + 25);
-        var clampedValue = Math.min(arraySize, Math.max(3, (sqrtValue - 5) * 5 + 1));
-        var previousCount = this.kj;
-        this.Db = (5 + sqrtValue * 0.9) * 0.025;
-        this.kj = Math.floor(clampedValue);
-        this.ij = clampedValue - this.kj;
-        if (previousCount > 0 && previousCount < this.kj) {
-          var previousX = this.lj[previousCount * 2 - 2];
-          var previousY = this.lj[previousCount * 2 - 1];
-          var currentX = this.mj[previousCount * 2 - 2];
-          var currentY = this.mj[previousCount * 2 - 1];
-          var nextX = this.nj[previousCount * 2 - 2];
-          var nextY = this.nj[previousCount * 2 - 1];
-          for (var i = previousCount; i < this.kj; i++) {
-            this.lj[i * 2] = previousX;
-            this.lj[i * 2 + 1] = previousY;
-            this.mj[i * 2] = currentX;
-            this.mj[i * 2 + 1] = currentY;
-            this.nj[i * 2] = nextX;
-            this.nj[i * 2 + 1] = nextY;
+        var v1190 = Math.sqrt(Math.pow(vP1128 * 5, 0.707106781186548) * 4 + 25);
+        var v1191 = Math.min(vLN200, Math.max(3, (v1190 - 5) * 5 + 1));
+        var v1192 = this.kj;
+        this.Db = (5 + v1190 * 0.9) * 0.025;
+        this.kj = Math.floor(v1191);
+        this.ij = v1191 - this.kj;
+        if (v1192 > 0 && v1192 < this.kj) {
+          var v1193 = this.lj[v1192 * 2 - 2];
+          var v1194 = this.lj[v1192 * 2 - 1];
+          var v1195 = this.mj[v1192 * 2 - 2];
+          var v1196 = this.mj[v1192 * 2 - 1];
+          var v1197 = this.nj[v1192 * 2 - 2];
+          var v1198 = this.nj[v1192 * 2 - 1];
+          for (var vV1192 = v1192; vV1192 < this.kj; vV1192++) {
+            this.lj[vV1192 * 2] = v1193;
+            this.lj[vV1192 * 2 + 1] = v1194;
+            this.mj[vV1192 * 2] = v1195;
+            this.mj[vV1192 * 2 + 1] = v1196;
+            this.nj[vV1192 * 2] = v1197;
+            this.nj[vV1192 * 2 + 1] = v1198;
           }
         }
       };
-      AnotherClass.prototype.Lg = function (randomFunc, count) {
-        this.kj = count;
-        for (var i = 0; i < this.kj; i++) {
-          this.lj[i * 2] = this.mj[i * 2] = this.nj[i * 2] = randomFunc();
-          this.lj[i * 2 + 1] = this.mj[i * 2 + 1] = this.nj[i * 2 + 1] = randomFunc();
+      f206.prototype.Lg = function (p1129, p1130) {
+        this.kj = p1130;
+        for (var vLN063 = 0; vLN063 < this.kj; vLN063++) {
+          this.lj[vLN063 * 2] = this.mj[vLN063 * 2] = this.nj[vLN063 * 2] = p1129();
+          this.lj[vLN063 * 2 + 1] = this.mj[vLN063 * 2 + 1] = this.nj[vLN063 * 2 + 1] = p1129();
         }
       };
-      AnotherClass.prototype.Kg = function (xCoord, yCoord, zValue) {
-        this.hj = zValue;
-        for (var i = 0; i < this.kj; i++) {
-          this.lj[i * 2] = this.mj[i * 2];
-          this.lj[i * 2 + 1] = this.mj[i * 2 + 1];
+      f206.prototype.Kg = function (p1131, p1132, p1133) {
+        this.hj = p1133;
+        for (var vLN064 = 0; vLN064 < this.kj; vLN064++) {
+          this.lj[vLN064 * 2] = this.mj[vLN064 * 2];
+          this.lj[vLN064 * 2 + 1] = this.mj[vLN064 * 2 + 1];
         }
-        var deltaX = xCoord - this.mj[0];
-        var deltaY = yCoord - this.mj[1];
-        this.sj(deltaX, deltaY, this.kj, this.mj);
+        var v1199 = p1131 - this.mj[0];
+        var v1200 = p1132 - this.mj[1];
+        this.sj(v1199, v1200, this.kj, this.mj);
       };
-      AnotherClass.prototype.sj = function (deltaX, deltaY, length, data) {
-        var distance = Math.hypot(deltaX, deltaY);
-        if (!(distance <= 0)) {
-          var previousX = data[0];
-          var previousY = undefined;
-          data[0] += deltaX;
-          var currentY = data[1];
-          var previousY2 = undefined;
-          data[1] += deltaY;
-          var factor = this.Db / (this.Db + distance);
-          var adjustment = 1 - factor * 2;
-          for (var i = 1, _0x22c13c = length - 1; i < _0x22c13c; i++) {
-            previousY = data[i * 2];
-            data[i * 2] = data[i * 2 - 2] * adjustment + (previousY + previousX) * factor;
-            previousX = previousY;
-            previousY2 = data[i * 2 + 1];
-            data[i * 2 + 1] = data[i * 2 - 1] * adjustment + (previousY2 + currentY) * factor;
-            currentY = previousY2;
+      f206.prototype.sj = function (p1134, p1135, p1136, p1137) {
+        var v1201 = Math.hypot(p1134, p1135);
+        if (!(v1201 <= 0)) {
+          var v1202 = p1137[0];
+          var vUndefined36 = undefined;
+          p1137[0] += p1134;
+          var v1203 = p1137[1];
+          var vUndefined37 = undefined;
+          p1137[1] += p1135;
+          var v1204 = this.Db / (this.Db + v1201);
+          var v1205 = 1 - v1204 * 2;
+          for (var vLN13 = 1, v1206 = p1136 - 1; vLN13 < v1206; vLN13++) {
+            vUndefined36 = p1137[vLN13 * 2];
+            p1137[vLN13 * 2] = p1137[vLN13 * 2 - 2] * v1205 + (vUndefined36 + v1202) * v1204;
+            v1202 = vUndefined36;
+            vUndefined37 = p1137[vLN13 * 2 + 1];
+            p1137[vLN13 * 2 + 1] = p1137[vLN13 * 2 - 1] * v1205 + (vUndefined37 + v1203) * v1204;
+            v1203 = vUndefined37;
           }
-          factor = this.ij * this.Db / (this.ij * this.Db + distance);
-          adjustment = 1 - factor * 2;
-          data[length * 2 - 2] = data[length * 2 - 4] * adjustment + (data[length * 2 - 2] + previousX) * factor;
-          data[length * 2 - 1] = data[length * 2 - 3] * adjustment + (data[length * 2 - 1] + currentY) * factor;
+          v1204 = this.ij * this.Db / (this.ij * this.Db + v1201);
+          v1205 = 1 - v1204 * 2;
+          p1137[p1136 * 2 - 2] = p1137[p1136 * 2 - 4] * v1205 + (p1137[p1136 * 2 - 2] + v1202) * v1204;
+          p1137[p1136 * 2 - 1] = p1137[p1136 * 2 - 3] * v1205 + (p1137[p1136 * 2 - 1] + v1203) * v1204;
         }
       };
-      AnotherClass.prototype.Gf = function () {
+      f206.prototype.Gf = function () {
         return {
           x: this.nj[0],
           y: this.nj[1]
         };
       };
-      AnotherClass.prototype.Hg = function (x, y) {
-        var closestDistance = 1000000;
-        var closestX = x;
-        var closestY = y;
-        for (var i = 0; i < this.kj; i++) {
-          var pointX = this.nj[i * 2];
-          var pointY = this.nj[i * 2 + 1];
-          var distance = Math.hypot(x - pointX, y - pointY);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestX = pointX;
-            closestY = pointY;
+      f206.prototype.Hg = function (p1138, p1139) {
+        var vLN1000000 = 1000000;
+        var vP1138 = p1138;
+        var vP1139 = p1139;
+        for (var vLN065 = 0; vLN065 < this.kj; vLN065++) {
+          var v1207 = this.nj[vLN065 * 2];
+          var v1208 = this.nj[vLN065 * 2 + 1];
+          var v1209 = Math.hypot(p1138 - v1207, p1139 - v1208);
+          if (v1209 < vLN1000000) {
+            vLN1000000 = v1209;
+            vP1138 = v1207;
+            vP1139 = v1208;
           }
         }
         return {
-          x: closestX,
-          y: closestY,
-          distance: closestDistance
+          x: vP1138,
+          y: vP1139,
+          distance: vLN1000000
         };
       };
-      AnotherClass.prototype.vb = function (value) {
-        this.oj = value;
+      f206.prototype.vb = function (p1140) {
+        this.oj = p1140;
       };
-      AnotherClass.prototype.Fb = function (time, delta) {
-        this.Jb = lerp(this.Jb, this.Ib ? this.hj ? 0.9 + Math.cos(time / 400 * Math.PI) * 0.1 : 1 : 0, delta, 1 / 800);
-        this.jj = lerp(this.jj, this.Ib ? this.hj ? 1 : 0 : 1, delta, 0.0025);
+      f206.prototype.Fb = function (p1141, p1142) {
+        this.Jb = f135(this.Jb, this.Ib ? this.hj ? 0.9 + Math.cos(p1141 / 400 * Math.PI) * 0.1 : 1 : 0, p1142, 1 / 800);
+        this.jj = f135(this.jj, this.Ib ? this.hj ? 1 : 0 : 1, p1142, 0.0025);
         if (this.pj != null) {
           this.pj.Rf.alpha = this.Jb;
         }
@@ -4793,62 +4881,62 @@ SubOptions.prototype.lg = function (dataView, index) {
           this.qj.alpha = this.Jb;
         }
       };
-      AnotherClass.prototype.Gb = function (param1, param2, param3, param4) {
+      f206.prototype.Gb = function (p1143, p1144, p1145, p1146) {
         if (this.Hb && this.Ib) {
-          var factor = Math.pow(0.11112, param2 / 95);
-          for (var i = 0; i < this.kj; i++) {
-            var mixedX = mix(this.lj[i * 2], this.mj[i * 2], param3);
-            var mixedY = mix(this.lj[i * 2 + 1], this.mj[i * 2 + 1], param3);
-            this.nj[i * 2] = mix(mixedX, this.nj[i * 2], factor);
-            this.nj[i * 2 + 1] = mix(mixedY, this.nj[i * 2 + 1], factor);
+          var v1210 = Math.pow(0.11112, p1144 / 95);
+          for (var vLN066 = 0; vLN066 < this.kj; vLN066++) {
+            var vF137 = f137(this.lj[vLN066 * 2], this.mj[vLN066 * 2], p1145);
+            var vF1372 = f137(this.lj[vLN066 * 2 + 1], this.mj[vLN066 * 2 + 1], p1145);
+            this.nj[vLN066 * 2] = f137(vF137, this.nj[vLN066 * 2], v1210);
+            this.nj[vLN066 * 2 + 1] = f137(vF1372, this.nj[vLN066 * 2 + 1], v1210);
           }
         }
         if (this.pj != null && this.Hb) {
-          this.pj.tj(this, param1, param2, param4);
+          this.pj.tj(this, p1143, p1144, p1146);
         }
         if (this.qj != null) {
           this.qj.If.x = this.nj[0];
           this.qj.If.y = this.nj[1] - this.Db * 3;
         }
       };
-      AnotherClass.prototype.rj = function (flag) {
+      f206.prototype.rj = function (p1147) {
         if (this.Hb) {
-          if (!flag) {
+          if (!p1147) {
             this.uj();
           }
         } else {
           if (this.pj != null) {
-            removeFromParent(this.pj.Rf);
+            f140(this.pj.Rf);
           }
           if (this.qj != null) {
-            removeFromParent(this.qj);
+            f140(this.qj);
           }
         }
       };
-      AnotherClass.prototype.uj = function () {
-        var app = initializeApp();
+      f206.prototype.uj = function () {
+        var vF1235 = f123();
         if (this.pj == null) {
-          this.pj = new _0x50b0ee();
+          this.pj = new vF138();
         } else {
-          removeFromParent(this.pj.Rf);
+          f140(this.pj.Rf);
         }
-        this.pj.hh(app.o.fb.af, app.p.Dc().ed(this.Mb.cg), app.p.Dc().dd(this.Mb.dg), app.p.Dc().fd(this.Mb.Bg), app.p.Dc().gd(this.Mb.Cg), app.p.Dc().hd(this.Mb.Dg), app.p.Dc().jd(this.Mb.Eg));
+        this.pj.hh(vF1235.o.fb.af, vF1235.p.Dc().ed(this.Mb.cg), vF1235.p.Dc().dd(this.Mb.dg), vF1235.p.Dc().fd(this.Mb.Bg), vF1235.p.Dc().gd(this.Mb.Cg), vF1235.p.Dc().hd(this.Mb.Dg), vF1235.p.Dc().jd(this.Mb.Eg));
         if (this.qj == null) {
-          this.qj = new _0x49a102("");
-          this.qj.style.fontFamily = "HelveticaNeueLT";
+          this.qj = new vF136("");
+          this.qj.style.fontFamily = "wormde";
           this.qj.anchor.set(0.5);
         } else {
-          removeFromParent(this.qj);
+          f140(this.qj);
         }
         this.qj.style.fontSize = 15;
-        this.qj.style.fill = app.p.Dc().dd(this.Mb.dg)._c;
+        this.qj.style.fill = vF1235.p.Dc().dd(this.Mb.dg)._c;
         this.qj.text = this.Mb.ad;
         this.oj.Qf(this.Mb.Lb, this.pj, this.qj);
       };
-      AnotherClass.Config = function () {
-        function _0x19942b() {
+      f206.Config = function () {
+        function f207() {
           this.Lb = 0;
-          this.cg = SomeClass.TEAM_DEFAULT;
+          this.cg = vF109.TEAM_DEFAULT;
           this.dg = 0;
           this.Bg = 0;
           this.Cg = 0;
@@ -4856,227 +4944,291 @@ SubOptions.prototype.lg = function (dataView, index) {
           this.Eg = 0;
           this.ad = "";
         }
-        return _0x19942b;
+        return f207;
       }();
-      return AnotherClass;
+      return f206;
     }();
-    var _0x49a102 = function () {
-      return inheritPrototype(pixiProperties.fc, function (_0x469e82, _0x9145ee, _0x3b791b) {
-        pixiProperties.fc.call(this, _0x469e82, _0x9145ee, _0x3b791b);
+    var vF136 = function () {
+      return f131(vF91.fc, function (p1148, p1149, p1150) {
+        vF91.fc.call(this, p1148, p1149, p1150);
         this.If = {
           x: 0,
           y: 0
         };
       });
     }();
-    // في غلط
-    var _0x50b0ee = function () {
-      function MainClass() {
-        this.Rf = new pixiProperties.Zb();
+    var vF138 = function () {
+      function f208() {
+        this.Rf = new vF91.Zb();
         this.Rf.sortableChildren = true;
-        this.vj = new InternalClass();
-        this.vj.zIndex = smallValue * ((largeValue + 1) * 2 + 1 + 3);
+        this.vj = new vF139();
+        this.vj.zIndex = vLN0001 * ((vLN797 + 1) * 2 + 1 + 3);
         this.wj = 0;
-        this.xj = new Array(largeValue);
-        this.xj[0] = this.yj(0, new GraphicsObject(), new GraphicsObject());
-        for (var i = 1; i < largeValue; i++) {
-          this.xj[i] = this.yj(i, new GraphicsObject(), new GraphicsObject());
+        this.xj = new Array(vLN797);
+        this.xj[0] = this.yj(0, new vF133(), new vF133());
+        for (var vLN14 = 1; vLN14 < vLN797; vLN14++) {
+          this.xj[vLN14] = this.yj(vLN14, new vF133(), new vF133());
         }
         this.zj = 0;
         this.Aj = 0;
         this.Bj = 0;
       }
-      var smallValue = 0.001;
-      var largeValue = 797;
-      var angleAdjustment = Math.PI * 0.1;
-      var negativeAdjustment = -0.06640625;
-      var positiveAdjustment = 0.84375;
-      var anotherAdjustment = 0.2578125;
-      var thirdAdjustment = -0.03515625;
-      var fourthAdjustment = -0.0625;
-      var fifthAdjustment = 0.5625;
-      var combinedAdjustment1 = negativeAdjustment * 3 + positiveAdjustment;
-      var combinedAdjustment2 = anotherAdjustment - negativeAdjustment * 3;
-      var combinedAdjustment3 = negativeAdjustment + thirdAdjustment;
-      var constantValue1 = 0.375;
-      var constantValue2 = 0.75;
-      var combinedAdjustment4 = fourthAdjustment + fourthAdjustment;
-      var combinedAdjustment5 = thirdAdjustment * 3 + anotherAdjustment;
-      var combinedAdjustment6 = positiveAdjustment - thirdAdjustment * 3;
-      var combinedAdjustment7 = thirdAdjustment + negativeAdjustment;
-      MainClass.prototype.yj = function (index, obj1, obj2) {
-        var instance = new InstanceClass(obj1, obj2);
-        obj1.jh.zIndex = smallValue * ((largeValue - index) * 2 + 1 + 3);
-        obj2.jh.zIndex = smallValue * ((largeValue - index) * 2 - 2 + 3);
-        return instance;
+      var vLN0001 = 0.001;
+      var vLN797 = 797;
+      var v1211 = Math.PI * 0.1;
+      var v1212 = -0.06640625;
+      var vLN084375 = 0.84375;
+      var vLN02578125 = 0.2578125;
+      var v1213 = -0.03515625;
+      var v1214 = -0.0625;
+      var vLN05625 = 0.5625;
+      var v1215 = v1212 * 3 + vLN084375;
+      var v1216 = vLN02578125 - v1212 * 3;
+      var v1217 = v1212 + v1213;
+      var vLN0375 = 0.375;
+      var vLN075 = 0.75;
+      var v1218 = v1214 + v1214;
+      var v1219 = v1213 * 3 + vLN02578125;
+      var v1220 = vLN084375 - v1213 * 3;
+      var v1221 = v1213 + v1212;
+      f208.prototype.yj = function (p1151, p1152, p1153) {
+        var v1222 = new vF140(p1152, p1153);
+        p1152.jh.zIndex = vLN0001 * ((vLN797 - p1151) * 2 + 1 + 3);
+        p1153.jh.zIndex = vLN0001 * ((vLN797 - p1151) * 2 - 2 + 3);
+        return v1222;
       };
-      MainClass.prototype.hh = function (param1, param2, param3, param4, param5, param6, param7) {
-        var arrayValue = param3.Zc;
-        var referenceValue = param1 == constants._e ? param2.bd.$c : param3.$c;
-        if (arrayValue.length > 0 && referenceValue.length > 0) {
-          for (var i = 0; i < this.xj.length; i++) {
-            this.xj[i].Nf.kh(arrayValue[i % arrayValue.length]);
-            this.xj[i].Pf.kh(referenceValue[i % referenceValue.length]);
+      f208.prototype.hh = function (p1154, p1155, p1156, p1157, p1158, p1159, p1160) {
+        var v1223 = p1156.Zc;
+        var v1224 = p1154 == vO18._e ? p1155.bd.$c : p1156.$c;
+        if (v1223.length > 0 && v1224.length > 0) {
+          for (var vLN067 = 0; vLN067 < this.xj.length; vLN067++) {
+            this.xj[vLN067].Nf.kh(v1223[vLN067 % v1223.length]);
+            this.xj[vLN067].Pf.kh(v1224[vLN067 % v1224.length]);
           }
         }
-        this.vj.hh(param4, param5, param6, param7);
+        this.vj.hh(p1157, p1158, p1159, p1160);
       };
-      var InternalClass = function () {
-        var InnerClass = inheritPrototype(pixiProperties.Zb, function () {
-          pixiProperties.Zb.call(this);
+      var vF139 = function () {
+        var vF1315 = f131(vF91.Zb, function () {
+          vF91.Zb.call(this);
           this.sortableChildren = true;
           this.Cj = [];
           this.Dj = [];
           this.Ej = [];
           this.Fj = [];
-          this.Gj = new pixiProperties.Zb();
+          this.Gj = new vF91.Zb();
           this.Hj = [];
-          for (var i = 0; i < 4; i++) {
-            var graphic = new GraphicsObject();
-            graphic.kh(initializeApp().q.Ph);
-            this.Gj.addChild(graphic.jh);
-            this.Hj.push(graphic);
+          for (var vLN068 = 0; vLN068 < 4; vLN068++) {
+            var v1225 = new vF133();
+            v1225.kh(f123().q.Ph);
+            this.Gj.addChild(v1225.jh);
+            this.Hj.push(v1225);
           }
           this.Gj.zIndex = 0.0011;
           this.addChild(this.Gj);
           this.Ij();
-          this.Jj = new GraphicsObject();
-          this.Jj.kh(initializeApp().q.Qh);
+          this.Jj = new vF133();
+          this.Jj.kh(f123().q.Qh);
           this.Jj.jh.zIndex = 0.001;
           this.addChild(this.Jj.jh);
           this.Kj();
-          this.xEmojiType_headshot = new GraphicsObject();
-          this.xEmojiType_headshot.kh(initializeApp().q.emoji_headshot);
+          this.xEmojiType_headshot = new vF133();
+          this.xEmojiType_headshot.kh(f123().q.emoji_headshot);
           this.xEmojiType_headshot.jh.zIndex = 0.001;
           this.addChild(this.xEmojiType_headshot.jh);
           this.xzs();
-          this.xEmojiType_kill = new GraphicsObject();
-          this.xEmojiType_kill.kh(initializeApp().q.emoji_kill);
+          this.xEmojiType_kill = new vF133();
+          this.xEmojiType_kill.kh(f123().q.emoji_kill);
           this.xEmojiType_kill.jh.zIndex = 0.001;
           this.addChild(this.xEmojiType_kill.jh);
           this.zas();
-          this.guia_mobile = new GraphicsObject();
-          this.guia_mobile.kh(initializeApp().q.Id_mobileguia);
+          this.guia_mobile = new vF133();
+          this.guia_mobile.kh(f123().q.Id_mobileguia);
           this.guia_mobile.jh.zIndex = 0.001;
           this.addChild(this.guia_mobile.jh);
+          this.flx = new vF133();
+          this.flx.kh(f123().q.Rh);
+          this.flx.jh.zIndex = 0.001;
+          this.addChild(this.flx.jh);
+          this.flexx();
+          this.xxx5 = new vF133();
+          this.xxx5.kh(f123().q.X_x5);
+          this.xxx5.jh.zIndex = 0.001;
+          this.addChild(this.xxx5.jh);
+          this.xXx5();
+          this.xxx2 = new vF133();
+          this.xxx2.kh(f123().q.X_x2);
+          this.xxx2.jh.zIndex = 0.001;
+          this.addChild(this.xxx2.jh);
+          this.xXx2();
+          this.xxx10 = new vF133();
+          this.xxx10.kh(f123().q.X_x10);
+          this.xxx10.jh.zIndex = 0.001;
+          this.addChild(this.xxx10.jh);
+          this.xXx10();
+          this.xxxLupatype = new vF133();
+          this.xxxLupatype.kh(f123().q.X_xxlupa);
+          this.xxxLupatype.jh.zIndex = 0.001;
+          this.addChild(this.xxxLupatype.jh);
+          this.xXxLupaZ();
         });
-        InnerClass.prototype.hh = function (param1, param2, param3, param4) {
-          this.Lj(0.002, this.Cj, param1.Zc);
-          this.Lj(0.003, this.Dj, param2.Zc);
-          this.Lj(0.004, this.Fj, param4.Zc);
-          this.Lj(0.005, this.Ej, param3.Zc);
+        vF1315.prototype.hh = function (p1161, p1162, p1163, p1164) {
+          this.Lj(0.002, this.Cj, p1161.Zc);
+          this.Lj(0.003, this.Dj, p1162.Zc);
+          this.Lj(0.004, this.Fj, p1164.Zc);
+          this.Lj(0.005, this.Ej, p1163.Zc);
         };
-        InnerClass.prototype.Lj = function (value, targetArray, sourceArray) {
-          while (sourceArray.length > targetArray.length) {
-            var graphic = new GraphicsObject();
-            targetArray.push(graphic);
-            this.addChild(graphic.Mf());
+        vF1315.prototype.Lj = function (p1165, p1166, p1167) {
+          while (p1167.length > p1166.length) {
+            var v1226 = new vF133();
+            p1166.push(v1226);
+            this.addChild(v1226.Mf());
           }
-          while (sourceArray.length < targetArray.length) {
-            targetArray.pop().ih();
+          while (p1167.length < p1166.length) {
+            p1166.pop().ih();
           }
-          var adjustment = value;
-          for (var i = 0; i < sourceArray.length; i++) {
-            adjustment += 0.0001;
-            var item = targetArray[i];
-            item.kh(sourceArray[i]);
-            item.jh.zIndex = adjustment;
+          var vP1165 = p1165;
+          for (var vLN069 = 0; vLN069 < p1167.length; vLN069++) {
+            vP1165 += 0.0001;
+            var v1227 = p1166[vLN069];
+            v1227.kh(p1167[vLN069]);
+            v1227.jh.zIndex = vP1165;
           }
         };
-        InnerClass.prototype.mh = function (x, y, rotation, angle) {
+        vF1315.prototype.mh = function (p1168, p1169, p1170, p1171) {
           this.visible = true;
-          this.position.set(x, y);
-          this.rotation = angle;
-          for (var i = 0; i < this.Cj.length; i++) {
-            this.Cj[i].oh(rotation);
+          this.position.set(p1168, p1169);
+          this.rotation = p1171;
+          for (var vLN070 = 0; vLN070 < this.Cj.length; vLN070++) {
+            this.Cj[vLN070].oh(p1170);
           }
-          for (var i = 0; i < this.Dj.length; i++) {
-            this.Dj[i].oh(rotation);
+          for (var vLN071 = 0; vLN071 < this.Dj.length; vLN071++) {
+            this.Dj[vLN071].oh(p1170);
           }
-          for (var i = 0; i < this.Ej.length; i++) {
-            this.Ej[i].oh(rotation);
+          for (var vLN072 = 0; vLN072 < this.Ej.length; vLN072++) {
+            this.Ej[vLN072].oh(p1170);
           }
-          for (var i = 0; i < this.Fj.length; i++) {
-            this.Fj[i].oh(rotation);
+          for (var vLN073 = 0; vLN073 < this.Fj.length; vLN073++) {
+            this.Fj[vLN073].oh(p1170);
           }
         };
-        InnerClass.prototype.lh = function () {
+        vF1315.prototype.lh = function () {
           this.visible = false;
         };
-        InnerClass.prototype.Mj = function (param1, param2, param3, param4) {
+        vF1315.prototype.Mj = function (p1172, p1173, p1174, p1175) {
           this.Gj.visible = true;
-          var adjustedValue = param3 / 1000;
-          var factor = 1 / this.Hj.length;
-          for (var i = 0; i < this.Hj.length; i++) {
-            var opacity = 1 - (adjustedValue + factor * i) % 1;
-            this.Hj[i].jh.alpha = 1 - opacity;
-            this.Hj[i].oh(param2 * (0.5 + opacity * 4.5));
+          var v1228 = p1174 / 1000;
+          var v1229 = 1 / this.Hj.length;
+          for (var vLN074 = 0; vLN074 < this.Hj.length; vLN074++) {
+            var v1230 = 1 - (v1228 + v1229 * vLN074) % 1;
+            this.Hj[vLN074].jh.alpha = 1 - v1230;
+            this.Hj[vLN074].oh(p1173 * (0.5 + v1230 * 4.5));
           }
         };
-        InnerClass.prototype.Ij = function () {
+        vF1315.prototype.Ij = function () {
           this.Gj.visible = false;
         };
-        InnerClass.prototype.Nj = function (param1, param2, param3, param4) {
+        vF1315.prototype.Nj = function (p1176, p1177, p1178, p1179) {
           this.Jj.jh.visible = true;
-          this.Jj.jh.alpha = lerp(this.Jj.jh.alpha, param1.hj ? 0.9 : 0.2, param4, 0.0025);
-          this.Jj.oh(param2);
+          this.Jj.jh.alpha = f135(this.Jj.jh.alpha, p1176.hj ? 0.9 : 0.2, p1179, 0.0025);
+          this.Jj.oh(p1177);
         };
-        InnerClass.prototype.Kj = function () {
+        vF1315.prototype.Kj = function () {
           this.Jj.jh.visible = false;
         };
-        InnerClass.prototype.xzs = function () {
+        vF1315.prototype.Nflex = function (p1180, p1181, p1182, p1183) {
+          this.flx.jh.visible = true;
+          this.flx.jh.alpha = f135(this.Jj.jh.alpha, p1180.hj ? 0.9 : 0.2, p1183, 0.0025);
+          this.flx.oh(p1181);
+        };
+        vF1315.prototype.flexx = function () {
+          this.flx.jh.visible = false;
+        };
+        vF1315.prototype.ActiveX5 = function (p1184, p1185, p1186, p1187) {
+          this.xxx5.jh.visible = true;
+          this.xxx5.jh.alpha = f135(this.Jj.jh.alpha, p1184.hj ? 0.9 : 0.2, p1187, 0.0025);
+          this.xxx5.oh(p1185);
+        };
+        vF1315.prototype.xXx5 = function () {
+          this.xxx5.jh.visible = false;
+        };
+        vF1315.prototype.ActiveX2 = function (p1188, p1189, p1190, p1191) {
+          this.xxx2.jh.visible = true;
+          this.xxx2.jh.alpha = f135(this.Jj.jh.alpha, p1188.hj ? 0.9 : 0.2, p1191, 0.0025);
+          this.xxx2.oh(p1189);
+        };
+        vF1315.prototype.xXx2 = function () {
+          this.xxx2.jh.visible = false;
+        };
+        vF1315.prototype.ActiveX10 = function (p1192, p1193, p1194, p1195) {
+          this.xxx10.jh.visible = true;
+          this.xxx10.jh.alpha = f135(this.Jj.jh.alpha, p1192.hj ? 0.9 : 0.2, p1195, 0.0025);
+          this.xxx10.oh(p1193);
+        };
+        vF1315.prototype.xXx10 = function () {
+          this.xxx10.jh.visible = false;
+        };
+        vF1315.prototype.ActiveZlupa = function (p1196, p1197, p1198, p1199) {
+          this.xxxLupatype.jh.visible = true;
+          this.xxxLupatype.jh.alpha = f135(this.Jj.jh.alpha, p1196.hj ? 0.9 : 0.2, p1199, 0.0025);
+          this.xxxLupatype.oh(p1197);
+        };
+        vF1315.prototype.xXxLupaZ = function () {
+          this.xxxLupatype.jh.visible = false;
+        };
+        vF1315.prototype.xzs = function () {
           this.xEmojiType_headshot.jh.visible = false;
         };
-        InnerClass.prototype.zas = function () {
+        vF1315.prototype.zas = function () {
           this.xEmojiType_kill.jh.visible = false;
         };
-        InnerClass.prototype.Rx = function (param1, param2, param3, param4) {
+        vF1315.prototype.Rx = function (p1200, p1201, p1202, p1203) {
           this.guia_mobile.jh.visible = true;
-          this.guia_mobile.oh(param2);
+          this.guia_mobile.oh(p1201);
         };
-        InnerClass.prototype.Njh = function (param1, param2, param3, param4) {
+        vF1315.prototype.Njh = function (p1204, p1205, p1206, p1207) {
           this.xEmojiType_headshot.jh.visible = true;
-          this.xEmojiType_headshot.oh(param2);
+          this.xEmojiType_headshot.oh(p1205);
         };
-        InnerClass.prototype.Njk = function (param1, param2, param3, param4) {
+        vF1315.prototype.Njk = function (p1208, p1209, p1210, p1211) {
           this.xEmojiType_kill.jh.visible = true;
-          this.xEmojiType_kill.oh(param2);
+          this.xEmojiType_kill.oh(p1209);
         };
-        return InnerClass;
+        return vF1315;
       }();
-      MainClass.prototype.Oj = function (value) {
-        return this.Aj + this.Bj * Math.sin(value * angleAdjustment - this.zj);
+      f208.prototype.Oj = function (p1212) {
+        return this.Aj + this.Bj * Math.sin(p1212 * v1211 - this.zj);
       };
-      MainClass.prototype.tj = function (object, value1, value2, func) {
-        var adjustedValue = object.Db * 2;
-        var coordinates = object.nj;
-        var length = object.kj;
-        var calculatedValue = length * 4 - 3;
-        var tempValue = calculatedValue;
-        this.zj = value1 / 400 * Math.PI;
-        this.Aj = adjustedValue * 1.5;
-        this.Bj = adjustedValue * 0.15 * object.jj;
-        var currentCoordX = undefined;
-        var coordX = undefined;
-        var nextCoordX = undefined;
-        var prevCoordX = undefined;
-        var currentCoordY = undefined;
-        var coordY = undefined;
-        var nextCoordY = undefined;
-        var prevCoordY = undefined;
-        coordX = coordinates[0];
-        coordY = coordinates[1];
-        if (func(coordX, coordY)) {
-          nextCoordX = coordinates[2];
-          nextCoordY = coordinates[3];
-          prevCoordX = coordinates[4];
-          prevCoordY = coordinates[5];
-          var angle = Math.atan2(prevCoordY + coordY * 2 - nextCoordY * 3, prevCoordX + coordX * 2 - nextCoordX * 3);
-          this.vj.mh(coordX, coordY, adjustedValue, angle);
-          this.xj[0].mh(coordX, coordY, adjustedValue, this.Oj(0), angle);
-          this.xj[1].mh(combinedAdjustment1 * coordX + combinedAdjustment2 * nextCoordX + combinedAdjustment3 * prevCoordX, combinedAdjustment1 * coordY + combinedAdjustment2 * nextCoordY + combinedAdjustment3 * prevCoordY, adjustedValue, this.Oj(1), InstanceClass.angleBetween(this.xj[0], this.xj[2]));
-          this.xj[2].mh(constantValue1 * coordX + constantValue2 * nextCoordX + combinedAdjustment4 * prevCoordX, constantValue1 * coordY + constantValue2 * nextCoordY + combinedAdjustment4 * prevCoordY, adjustedValue, this.Oj(2), InstanceClass.angleBetween(this.xj[1], this.xj[3]));
-          this.xj[3].mh(combinedAdjustment5 * coordX + combinedAdjustment6 * nextCoordX + combinedAdjustment7 * prevCoordX, combinedAdjustment5 * coordY + combinedAdjustment6 * nextCoordY + combinedAdjustment7 * prevCoordY, adjustedValue, this.Oj(3), InstanceClass.angleBetween(this.xj[2], this.xj[4]));
+      f208.prototype.tj = function (p1213, p1214, p1215, p1216) {
+        var v1231 = p1213.Db * 2;
+        var v1232 = p1213.nj;
+        var v1233 = p1213.kj;
+        var v1234 = v1233 * 4 - 3;
+        var vV1234 = v1234;
+        this.zj = p1214 / 400 * Math.PI;
+        this.Aj = v1231 * 1.5;
+        this.Bj = v1231 * 0.15 * p1213.jj;
+        var vUndefined38 = undefined;
+        var vUndefined39 = undefined;
+        var vUndefined40 = undefined;
+        var vUndefined41 = undefined;
+        var vUndefined42 = undefined;
+        var vUndefined43 = undefined;
+        var vUndefined44 = undefined;
+        var vUndefined45 = undefined;
+        vUndefined39 = v1232[0];
+        vUndefined43 = v1232[1];
+        if (p1216(vUndefined39, vUndefined43)) {
+          vUndefined40 = v1232[2];
+          vUndefined44 = v1232[3];
+          vUndefined41 = v1232[4];
+          vUndefined45 = v1232[5];
+          var v1235 = Math.atan2(vUndefined45 + vUndefined43 * 2 - vUndefined44 * 3, vUndefined41 + vUndefined39 * 2 - vUndefined40 * 3);
+          this.vj.mh(vUndefined39, vUndefined43, v1231, v1235);
+          this.xj[0].mh(vUndefined39, vUndefined43, v1231, this.Oj(0), v1235);
+          this.xj[1].mh(v1215 * vUndefined39 + v1216 * vUndefined40 + v1217 * vUndefined41, v1215 * vUndefined43 + v1216 * vUndefined44 + v1217 * vUndefined45, v1231, this.Oj(1), vF140.angleBetween(this.xj[0], this.xj[2]));
+          this.xj[2].mh(vLN0375 * vUndefined39 + vLN075 * vUndefined40 + v1218 * vUndefined41, vLN0375 * vUndefined43 + vLN075 * vUndefined44 + v1218 * vUndefined45, v1231, this.Oj(2), vF140.angleBetween(this.xj[1], this.xj[3]));
+          this.xj[3].mh(v1219 * vUndefined39 + v1220 * vUndefined40 + v1221 * vUndefined41, v1219 * vUndefined43 + v1220 * vUndefined44 + v1221 * vUndefined45, v1231, this.Oj(3), vF140.angleBetween(this.xj[2], this.xj[4]));
         } else {
           this.vj.lh();
           this.xj[0].lh();
@@ -5084,140 +5236,170 @@ SubOptions.prototype.lg = function (dataView, index) {
           this.xj[2].lh();
           this.xj[3].lh();
         }
-        var tempCounter = 4;
-        for (var i = 2, end = length * 2 - 4; i < end; i += 2) {
-          coordX = coordinates[i];
-          coordY = coordinates[i + 1];
-          if (func(coordX, coordY)) {
-            currentCoordX = coordinates[i - 2];
-            currentCoordY = coordinates[i - 1];
-            nextCoordX = coordinates[i + 2];
-            nextCoordY = coordinates[i + 3];
-            prevCoordX = coordinates[i + 4];
-            prevCoordY = coordinates[i + 5];
-            this.xj[tempCounter].mh(coordX, coordY, adjustedValue, this.Oj(tempCounter), InstanceClass.angleBetween(this.xj[tempCounter - 1], this.xj[tempCounter + 1]));
-            tempCounter++;
-            this.xj[tempCounter].mh(negativeAdjustment * currentCoordX + positiveAdjustment * coordX + anotherAdjustment * nextCoordX + thirdAdjustment * prevCoordX, negativeAdjustment * currentCoordY + positiveAdjustment * coordY + anotherAdjustment * nextCoordY + thirdAdjustment * prevCoordY, adjustedValue, this.Oj(tempCounter), InstanceClass.angleBetween(this.xj[tempCounter - 1], this.xj[tempCounter + 1]));
-            tempCounter++;
-            this.xj[tempCounter].mh(fourthAdjustment * currentCoordX + fifthAdjustment * coordX + fifthAdjustment * nextCoordX + fourthAdjustment * prevCoordX, fourthAdjustment * currentCoordY + fifthAdjustment * coordY + fifthAdjustment * nextCoordY + fourthAdjustment * prevCoordY, adjustedValue, this.Oj(tempCounter), InstanceClass.angleBetween(this.xj[tempCounter - 1], this.xj[tempCounter + 1]));
-            tempCounter++;
-            this.xj[tempCounter].mh(thirdAdjustment * currentCoordX + anotherAdjustment * coordX + positiveAdjustment * nextCoordX + negativeAdjustment * prevCoordX, thirdAdjustment * currentCoordY + anotherAdjustment * coordY + positiveAdjustment * nextCoordY + negativeAdjustment * prevCoordY, adjustedValue, this.Oj(tempCounter), InstanceClass.angleBetween(this.xj[tempCounter - 1], this.xj[tempCounter + 1]));
-            tempCounter++;
+        var vLN42 = 4;
+        for (var vLN2 = 2, v1236 = v1233 * 2 - 4; vLN2 < v1236; vLN2 += 2) {
+          vUndefined39 = v1232[vLN2];
+          vUndefined43 = v1232[vLN2 + 1];
+          if (p1216(vUndefined39, vUndefined43)) {
+            vUndefined38 = v1232[vLN2 - 2];
+            vUndefined42 = v1232[vLN2 - 1];
+            vUndefined40 = v1232[vLN2 + 2];
+            vUndefined44 = v1232[vLN2 + 3];
+            vUndefined41 = v1232[vLN2 + 4];
+            vUndefined45 = v1232[vLN2 + 5];
+            this.xj[vLN42].mh(vUndefined39, vUndefined43, v1231, this.Oj(vLN42), vF140.angleBetween(this.xj[vLN42 - 1], this.xj[vLN42 + 1]));
+            vLN42++;
+            this.xj[vLN42].mh(v1212 * vUndefined38 + vLN084375 * vUndefined39 + vLN02578125 * vUndefined40 + v1213 * vUndefined41, v1212 * vUndefined42 + vLN084375 * vUndefined43 + vLN02578125 * vUndefined44 + v1213 * vUndefined45, v1231, this.Oj(vLN42), vF140.angleBetween(this.xj[vLN42 - 1], this.xj[vLN42 + 1]));
+            vLN42++;
+            this.xj[vLN42].mh(v1214 * vUndefined38 + vLN05625 * vUndefined39 + vLN05625 * vUndefined40 + v1214 * vUndefined41, v1214 * vUndefined42 + vLN05625 * vUndefined43 + vLN05625 * vUndefined44 + v1214 * vUndefined45, v1231, this.Oj(vLN42), vF140.angleBetween(this.xj[vLN42 - 1], this.xj[vLN42 + 1]));
+            vLN42++;
+            this.xj[vLN42].mh(v1213 * vUndefined38 + vLN02578125 * vUndefined39 + vLN084375 * vUndefined40 + v1212 * vUndefined41, v1213 * vUndefined42 + vLN02578125 * vUndefined43 + vLN084375 * vUndefined44 + v1212 * vUndefined45, v1231, this.Oj(vLN42), vF140.angleBetween(this.xj[vLN42 - 1], this.xj[vLN42 + 1]));
+            vLN42++;
           } else {
-            this.xj[tempCounter].lh();
-            tempCounter++;
-            this.xj[tempCounter].lh();
-            tempCounter++;
-            this.xj[tempCounter].lh();
-            tempCounter++;
-            this.xj[tempCounter].lh();
-            tempCounter++;
+            this.xj[vLN42].lh();
+            vLN42++;
+            this.xj[vLN42].lh();
+            vLN42++;
+            this.xj[vLN42].lh();
+            vLN42++;
+            this.xj[vLN42].lh();
+            vLN42++;
           }
         }
-        coordX = coordinates[length * 2 - 4];
-        coordY = coordinates[length * 2 - 3];
-        if (func(coordX, coordY)) {
-          currentCoordX = coordinates[length * 2 - 6];
-          currentCoordY = coordinates[length * 2 - 5];
-          nextCoordX = coordinates[length * 2 - 2];
-          nextCoordY = coordinates[length * 2 - 1];
-          this.xj[calculatedValue - 5].mh(coordX, coordY, adjustedValue, this.Oj(calculatedValue - 5), InstanceClass.angleBetween(this.xj[calculatedValue - 6], this.xj[calculatedValue - 4]));
-          this.xj[calculatedValue - 4].mh(combinedAdjustment7 * currentCoordX + combinedAdjustment6 * coordX + combinedAdjustment5 * nextCoordX, combinedAdjustment7 * currentCoordY + combinedAdjustment6 * coordY + combinedAdjustment5 * nextCoordY, adjustedValue, this.Oj(calculatedValue - 4), InstanceClass.angleBetween(this.xj[calculatedValue - 5], this.xj[calculatedValue - 3]));
-          this.xj[calculatedValue - 3].mh(combinedAdjustment4 * currentCoordX + constantValue2 * coordX + constantValue1 * nextCoordX, combinedAdjustment4 * currentCoordY + constantValue2 * coordY + constantValue1 * nextCoordY, adjustedValue, this.Oj(calculatedValue - 3), InstanceClass.angleBetween(this.xj[calculatedValue - 4], this.xj[calculatedValue - 2]));
-          this.xj[calculatedValue - 2].mh(combinedAdjustment3 * currentCoordX + combinedAdjustment2 * coordX + combinedAdjustment1 * nextCoordX, combinedAdjustment3 * currentCoordY + combinedAdjustment2 * coordY + combinedAdjustment1 * nextCoordY, adjustedValue, this.Oj(calculatedValue - 2), InstanceClass.angleBetween(this.xj[calculatedValue - 3], this.xj[calculatedValue - 1]));
-          this.xj[calculatedValue - 1].mh(nextCoordX, nextCoordY, adjustedValue, this.Oj(calculatedValue - 1), InstanceClass.angleBetween(this.xj[calculatedValue - 2], this.xj[calculatedValue - 1]));
+        vUndefined39 = v1232[v1233 * 2 - 4];
+        vUndefined43 = v1232[v1233 * 2 - 3];
+        if (p1216(vUndefined39, vUndefined43)) {
+          vUndefined38 = v1232[v1233 * 2 - 6];
+          vUndefined42 = v1232[v1233 * 2 - 5];
+          vUndefined40 = v1232[v1233 * 2 - 2];
+          vUndefined44 = v1232[v1233 * 2 - 1];
+          this.xj[v1234 - 5].mh(vUndefined39, vUndefined43, v1231, this.Oj(v1234 - 5), vF140.angleBetween(this.xj[v1234 - 6], this.xj[v1234 - 4]));
+          this.xj[v1234 - 4].mh(v1221 * vUndefined38 + v1220 * vUndefined39 + v1219 * vUndefined40, v1221 * vUndefined42 + v1220 * vUndefined43 + v1219 * vUndefined44, v1231, this.Oj(v1234 - 4), vF140.angleBetween(this.xj[v1234 - 5], this.xj[v1234 - 3]));
+          this.xj[v1234 - 3].mh(v1218 * vUndefined38 + vLN075 * vUndefined39 + vLN0375 * vUndefined40, v1218 * vUndefined42 + vLN075 * vUndefined43 + vLN0375 * vUndefined44, v1231, this.Oj(v1234 - 3), vF140.angleBetween(this.xj[v1234 - 4], this.xj[v1234 - 2]));
+          this.xj[v1234 - 2].mh(v1217 * vUndefined38 + v1216 * vUndefined39 + v1215 * vUndefined40, v1217 * vUndefined42 + v1216 * vUndefined43 + v1215 * vUndefined44, v1231, this.Oj(v1234 - 2), vF140.angleBetween(this.xj[v1234 - 3], this.xj[v1234 - 1]));
+          this.xj[v1234 - 1].mh(vUndefined40, vUndefined44, v1231, this.Oj(v1234 - 1), vF140.angleBetween(this.xj[v1234 - 2], this.xj[v1234 - 1]));
         } else {
-          this.xj[calculatedValue - 5].lh();
-          this.xj[calculatedValue - 4].lh();
-          this.xj[calculatedValue - 3].lh();
-          this.xj[calculatedValue - 2].lh();
-          this.xj[calculatedValue - 1].lh();
+          this.xj[v1234 - 5].lh();
+          this.xj[v1234 - 4].lh();
+          this.xj[v1234 - 3].lh();
+          this.xj[v1234 - 2].lh();
+          this.xj[v1234 - 1].lh();
         }
-        if (this.wj == 0 && tempValue > 0) {
+        if (this.wj == 0 && vV1234 > 0) {
           this.Rf.addChild(this.vj);
         }
-        if (this.wj > 0 && tempValue == 0) {
-          removeFromParent(this.vj);
+        if (this.wj > 0 && vV1234 == 0) {
+          f140(this.vj);
         }
-        while (this.wj < tempValue) {
+        while (this.wj < vV1234) {
           this.Rf.addChild(this.xj[this.wj].Nf.Mf());
           this.Rf.addChild(this.xj[this.wj].Pf.Mf());
           this.wj += 1;
         }
-        while (this.wj > tempValue) {
+        while (this.wj > vV1234) {
           this.wj -= 1;
           this.xj[this.wj].Pf.ih();
           this.xj[this.wj].Nf.ih();
         }
-        var velocityMagnetic = object.Ff[Velocity.MAGNETIC_TYPE];
-        if (this.xj[0].gj() && velocityMagnetic != null && velocityMagnetic.sc) {
-          this.vj.Mj(object, adjustedValue, value1, value2);
+        var v1237 = p1213.Ff[vF97.MAGNETIC_TYPE];
+        if (this.xj[0].gj() && v1237 != null && v1237.sc) {
+          this.vj.Mj(p1213, v1231, p1214, p1215);
         } else {
           this.vj.Ij();
         }
-        var velocityType = object.Ff[Velocity.VELOCITY_TYPE];
-        if (this.xj[0].gj() && velocityType != null && velocityType.sc) {
-          this.vj.Nj(object, adjustedValue, value1, value2);
+        var v1238 = p1213.Ff[vF97.VELOCITY_TYPE];
+        if (this.xj[0].gj() && v1238 != null && v1238.sc) {
+          this.vj.Nj(p1213, v1231, p1214, p1215);
         } else {
           this.vj.Kj();
         }
-        if (theoKzObjects.ModeStremeremoj) {} else {
-          if (theoKzObjects.emoji_headshot && object && object.Mb && object.Mb.Mb) {
-            this.vj.Njh(object, adjustedValue, value1, value2);
+        if (vO4.ModeStremeremoj) {} else {
+          if (vO4.emoji_headshot && p1213 && p1213.Mb && p1213.Mb.Mb) {
+            this.vj.Njh(p1213, v1231, p1214, p1215);
           } else {
             this.vj.xzs();
           }
-          if (theoKzObjects.emoji_kill && object && object.Mb && object.Mb.Mb) {
-            this.vj.Njk(object, adjustedValue, value1, value2);
+          if (vO4.emoji_kill && p1213 && p1213.Mb && p1213.Mb.Mb) {
+            this.vj.Njk(p1213, v1231, p1214, p1215);
           } else {
             this.vj.zas();
           }
         }
-        if (theoKzObjects.mobile && theoKzObjects.arrow && object && object.Mb && object.Mb.Mb) {
-          this.vj.Rx(object, adjustedValue, value1, value2);
+        if (vO4.mobile && vO4.arrow && p1213 && p1213.Mb && p1213.Mb.Mb) {
+          this.vj.Rx(p1213, v1231, p1214, p1215);
+        }
+        var v1239 = p1213.Ff[vF97.FLEXIBLE_TYPE];
+        if (this.xj[0].gj() && v1239 != null && v1239.sc) {
+          this.vj.Nflex(p1213, v1231, p1214, p1215);
+        } else {
+          this.vj.flexx();
+        }
+        var v1240 = p1213.Ff[vF97.X5_TYPE];
+        if (this.xj[0].gj() && v1240 != null && v1240.sc) {
+          this.vj.ActiveX5(p1213, v1231, p1214, p1215);
+        } else {
+          this.vj.xXx5();
+        }
+        var v1241 = p1213.Ff[vF97.X2_TYPE];
+        if (this.xj[0].gj() && v1241 != null && v1241.sc) {
+          this.vj.ActiveX2(p1213, v1231, p1214, p1215);
+        } else {
+          this.vj.xXx2();
+        }
+        var v1242 = p1213.Ff[vF97.X10_TYPE];
+        if (this.xj[0].gj() && v1242 != null && v1242.sc) {
+          this.vj.ActiveX10(p1213, v1231, p1214, p1215);
+        } else {
+          this.vj.xXx10();
+        }
+        var v1243 = p1213.Ff[vF97.ZOOM_TYPE];
+        if (this.xj[0].gj() && v1243 != null && v1243.sc) {
+          this.vj.ActiveZlupa(p1213, v1231, p1214, p1215);
+        } else {
+          this.vj.xXxLupaZ();
         }
       };
-      var InstanceClass = function () {
-        function InternalInstance(obj1, obj2) {
-          this.Nf = obj1;
+      var vF140 = function () {
+        function f209(p1217, p1218) {
+          this.Nf = p1217;
           this.Nf.Mg(false);
-          this.Pf = obj2;
+          this.Pf = p1218;
           this.Pf.Mg(false);
         }
-        InternalInstance.prototype.mh = function (x, y, rotation, angle1, angle2) {
+        f209.prototype.mh = function (p1219, p1220, p1221, p1222, p1223) {
           this.Nf.Mg(true);
-          this.Nf.nh(x, y);
-          this.Nf.oh(rotation);
-          this.Nf.fj(angle2);
+          this.Nf.nh(p1219, p1220);
+          this.Nf.oh(p1221);
+          this.Nf.fj(p1223);
           this.Pf.Mg(true);
-          this.Pf.nh(x, y);
-          this.Pf.oh(angle1);
-          this.Pf.fj(angle2);
+          this.Pf.nh(p1219, p1220);
+          this.Pf.oh(p1222);
+          this.Pf.fj(p1223);
         };
-        InternalInstance.prototype.lh = function () {
+        f209.prototype.lh = function () {
           this.Nf.Mg(false);
           this.Pf.Mg(false);
         };
-        InternalInstance.prototype.gj = function () {
+        f209.prototype.gj = function () {
           return this.Nf.gj();
         };
-        InternalInstance.angleBetween = function (instance1, instance2) {
-          return Math.atan2(instance1.Nf.jh.position.y - instance2.Nf.jh.position.y, instance1.Nf.jh.position.x - instance2.Nf.jh.position.x);
+        f209.angleBetween = function (p1224, p1225) {
+          return Math.atan2(p1224.Nf.jh.position.y - p1225.Nf.jh.position.y, p1224.Nf.jh.position.x - p1225.Nf.jh.position.x);
         };
-        return InternalInstance;
+        return f209;
       }();
-      return MainClass;
+      return f208;
     }();
-    var ViewHandler = function () {
-      function ViewHandler(mainView) {
-        this.se = mainView;
-        this.te = mainView.get()[0];
-        this.ue = new pixiProperties.ac({
+    var vF141 = function () {
+      function f210(p1226) {
+        this.se = p1226;
+        this.te = p1226.get()[0];
+        this.ue = new vF91.ac({
           view: this.te,
           transparent: true
         });
         this.sc = false;
-        this.Pj = new _0x50b0ee();
+        this.Pj = new vF138();
         this.Pj.Rf.addChild(this.Pj.vj);
         this.Qj = 0;
         this.Rj = 0;
@@ -5239,1353 +5421,1381 @@ SubOptions.prototype.lg = function (dataView, index) {
         this._j = false;
         this.Ra();
         this.Fb();
-        var handlerInstance = this;
-        initializeApp().p.ca(function () {
-          if (initializeApp().p.W()) {
-            handlerInstance.Fb();
+        var vThis50 = this;
+        f123().p.ca(function () {
+          if (f123().p.W()) {
+            vThis50.Fb();
           }
         });
       }
-      ViewHandler.prototype.Fb = function () {
-        var appInstance = initializeApp();
-        this.Pj.hh(constants.$e, null, appInstance.p.Dc().dd(this.rh), appInstance.p.Dc().fd(this.sh), appInstance.p.Dc().gd(this.th), appInstance.p.Dc().hd(this.uh), appInstance.p.Dc().jd(this.vh));
+      f210.prototype.Fb = function () {
+        var vF1236 = f123();
+        this.Pj.hh(vO18.$e, null, vF1236.p.Dc().dd(this.rh), vF1236.p.Dc().fd(this.sh), vF1236.p.Dc().gd(this.th), vF1236.p.Dc().hd(this.uh), vF1236.p.Dc().jd(this.vh));
       };
-      ViewHandler.prototype.Le = function (value) {
-        this.sc = value;
+      f210.prototype.Le = function (p1227) {
+        this.sc = p1227;
       };
-      ViewHandler.prototype.ak = function (param1, param2, param3) {
-        this.rh = param1;
-        this.Sj = param2;
-        this.Xj = param3;
+      f210.prototype.ak = function (p1228, p1229, p1230) {
+        this.rh = p1228;
+        this.Sj = p1229;
+        this.Xj = p1230;
         this.Fb();
       };
-      ViewHandler.prototype.bk = function (param1, param2, param3) {
-        this.sh = param1;
-        this.Tj = param2;
-        this.Yj = param3;
+      f210.prototype.bk = function (p1231, p1232, p1233) {
+        this.sh = p1231;
+        this.Tj = p1232;
+        this.Yj = p1233;
         this.Fb();
       };
-      ViewHandler.prototype.ck = function (param1, param2, param3) {
-        this.th = param1;
-        this.Uj = param2;
-        this.Zj = param3;
+      f210.prototype.ck = function (p1234, p1235, p1236) {
+        this.th = p1234;
+        this.Uj = p1235;
+        this.Zj = p1236;
         this.Fb();
       };
-      ViewHandler.prototype.dk = function (param1, param2, param3) {
-        this.uh = param1;
-        this.Vj = param2;
-        this.$j = param3;
+      f210.prototype.dk = function (p1237, p1238, p1239) {
+        this.uh = p1237;
+        this.Vj = p1238;
+        this.$j = p1239;
         this.Fb();
       };
-      ViewHandler.prototype.ek = function (param1, param2, param3) {
-        this.vh = param1;
-        this.Wj = param2;
-        this._j = param3;
+      f210.prototype.ek = function (p1240, p1241, p1242) {
+        this.vh = p1240;
+        this.Wj = p1241;
+        this._j = p1242;
         this.Fb();
       };
-      ViewHandler.prototype.Ra = function () {
-        var pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
+      f210.prototype.Ra = function () {
+        var v1244 = window.devicePixelRatio ? window.devicePixelRatio : 1;
         this.Qj = this.se.width();
         this.Rj = this.se.height();
         this.ue.resize(this.Qj, this.Rj);
-        this.ue.resolution = pixelRatio;
-        this.te.width = pixelRatio * this.Qj;
-        this.te.height = pixelRatio * this.Rj;
+        this.ue.resolution = v1244;
+        this.te.width = v1244 * this.Qj;
+        this.te.height = v1244 * this.Rj;
         this.Ng = this.Rj / 4;
-        var calculatedValue = clamp(1, this.Pj.xj.length, Math.floor(this.Qj / this.Ng) * 2 - 5);
-        if (this.Pj.wj != calculatedValue) {
-          for (var i = calculatedValue; i < this.Pj.xj.length; i++) {
-            this.Pj.xj[i].lh();
+        var vF1332 = f133(1, this.Pj.xj.length, Math.floor(this.Qj / this.Ng) * 2 - 5);
+        if (this.Pj.wj != vF1332) {
+          for (var vVF1332 = vF1332; vVF1332 < this.Pj.xj.length; vVF1332++) {
+            this.Pj.xj[vVF1332].lh();
           }
-          while (this.Pj.wj < calculatedValue) {
+          while (this.Pj.wj < vF1332) {
             this.Pj.Rf.addChild(this.Pj.xj[this.Pj.wj].Nf.Mf());
             this.Pj.Rf.addChild(this.Pj.xj[this.Pj.wj].Pf.Mf());
             this.Pj.wj += 1;
           }
-          while (this.Pj.wj > calculatedValue) {
+          while (this.Pj.wj > vF1332) {
             this.Pj.wj -= 1;
             this.Pj.xj[this.Pj.wj].Pf.ih();
             this.Pj.xj[this.Pj.wj].Nf.ih();
           }
         }
       };
-      ViewHandler.prototype.Pa = function () {
+      f210.prototype.Pa = function () {
         if (this.sc) {
-          if (initializeApp().p.W) {
-            var currentTime = Date.now();
-            var timeFactor = currentTime / 200;
-            var sineValue = Math.sin(timeFactor);
-            var calculatedHeight = this.Ng;
-            var adjustedHeight = this.Ng * 1.5;
-            var calculatedWidth = this.Qj - (this.Qj - calculatedHeight * 0.5 * (this.Pj.wj - 1)) * 0.5;
-            var halfHeight = this.Rj * 0.5;
-            var previousX = 0;
-            var previousY = 0;
-            for (var i = -1; i < this.Pj.wj; i++) {
-              var index = i;
-              var cosineValue = Math.cos(index * 1 / 12 * Math.PI - timeFactor) * (1 - Math.pow(16, index * -1 / 12));
-              if (i >= 0) {
-                var positionX = calculatedWidth + calculatedHeight * -0.5 * index;
-                var positionY = halfHeight + calculatedHeight * 0.5 * cosineValue;
-                var fullWidth = calculatedHeight * 2;
-                var _0x2ea81f = adjustedHeight * 2;
-                var _0x4d183b = Math.atan2(previousY - cosineValue, index - previousX);
-                if (i == 0) {
-                  this.Pj.vj.mh(positionX, positionY, fullWidth, _0x4d183b);
+          if (f123().p.W) {
+            var v1245 = Date.now();
+            var v1246 = v1245 / 200;
+            var v1247 = Math.sin(v1246);
+            var v1248 = this.Ng;
+            var v1249 = this.Ng * 1.5;
+            var v1250 = this.Qj - (this.Qj - v1248 * 0.5 * (this.Pj.wj - 1)) * 0.5;
+            var v1251 = this.Rj * 0.5;
+            var vLN076 = 0;
+            var vLN077 = 0;
+            for (var v1252 = -1; v1252 < this.Pj.wj; v1252++) {
+              var vV1252 = v1252;
+              var v1253 = Math.cos(vV1252 * 1 / 12 * Math.PI - v1246) * (1 - Math.pow(16, vV1252 * -1 / 12));
+              if (v1252 >= 0) {
+                var v1254 = v1250 + v1248 * -0.5 * vV1252;
+                var v1255 = v1251 + v1248 * 0.5 * v1253;
+                var v1256 = v1248 * 2;
+                var v1257 = v1249 * 2;
+                var v1258 = Math.atan2(vLN077 - v1253, vV1252 - vLN076);
+                if (v1252 == 0) {
+                  this.Pj.vj.mh(v1254, v1255, v1256, v1258);
                 }
-                this.Pj.xj[i].mh(positionX, positionY, fullWidth, _0x2ea81f, _0x4d183b);
-                var _0x30a7a2 = this.Sj ? this.Xj ? 0.4 + sineValue * 0.2 : 0.9 + sineValue * 0.1 : this.Xj ? 0.4 : 1;
-                this.Pj.xj[i].Nf.qh(_0x30a7a2);
-                this.Pj.xj[i].Pf.qh(_0x30a7a2);
+                this.Pj.xj[v1252].mh(v1254, v1255, v1256, v1257, v1258);
+                var v1259 = this.Sj ? this.Xj ? 0.4 + v1247 * 0.2 : 0.9 + v1247 * 0.1 : this.Xj ? 0.4 : 1;
+                this.Pj.xj[v1252].Nf.qh(v1259);
+                this.Pj.xj[v1252].Pf.qh(v1259);
               }
-              previousX = index;
-              previousY = cosineValue;
+              vLN076 = vV1252;
+              vLN077 = v1253;
             }
-            for (var i = 0; i < this.Pj.vj.Cj.length; i++) {
-              var opacityValue = this.Tj ? this.Yj ? 0.4 + sineValue * 0.2 : 0.9 + sineValue * 0.1 : this.Yj ? 0.4 : 1;
-              this.Pj.vj.Cj[i].qh(opacityValue);
+            for (var vLN078 = 0; vLN078 < this.Pj.vj.Cj.length; vLN078++) {
+              var v1260 = this.Tj ? this.Yj ? 0.4 + v1247 * 0.2 : 0.9 + v1247 * 0.1 : this.Yj ? 0.4 : 1;
+              this.Pj.vj.Cj[vLN078].qh(v1260);
             }
-            for (var i = 0; i < this.Pj.vj.Dj.length; i++) {
-              var opacityValue = this.Uj ? this.Zj ? 0.4 + sineValue * 0.2 : 0.9 + sineValue * 0.1 : this.Zj ? 0.4 : 1;
-              this.Pj.vj.Dj[i].qh(opacityValue);
+            for (var vLN079 = 0; vLN079 < this.Pj.vj.Dj.length; vLN079++) {
+              var v1261 = this.Uj ? this.Zj ? 0.4 + v1247 * 0.2 : 0.9 + v1247 * 0.1 : this.Zj ? 0.4 : 1;
+              this.Pj.vj.Dj[vLN079].qh(v1261);
             }
-            for (var i = 0; i < this.Pj.vj.Ej.length; i++) {
-              var opacityValue = this.Vj ? this.$j ? 0.4 + sineValue * 0.2 : 0.9 + sineValue * 0.1 : this.$j ? 0.4 : 1;
-              this.Pj.vj.Ej[i].qh(opacityValue);
+            for (var vLN080 = 0; vLN080 < this.Pj.vj.Ej.length; vLN080++) {
+              var v1262 = this.Vj ? this.$j ? 0.4 + v1247 * 0.2 : 0.9 + v1247 * 0.1 : this.$j ? 0.4 : 1;
+              this.Pj.vj.Ej[vLN080].qh(v1262);
             }
-            for (var i = 0; i < this.Pj.vj.Fj.length; i++) {
-              var opacityValue = this.Wj ? this._j ? 0.4 + sineValue * 0.2 : 0.9 + sineValue * 0.1 : this._j ? 0.4 : 1;
-              this.Pj.vj.Fj[i].qh(opacityValue);
+            for (var vLN081 = 0; vLN081 < this.Pj.vj.Fj.length; vLN081++) {
+              var v1263 = this.Wj ? this._j ? 0.4 + v1247 * 0.2 : 0.9 + v1247 * 0.1 : this._j ? 0.4 : 1;
+              this.Pj.vj.Fj[vLN081].qh(v1263);
             }
             this.ue.render(this.Pj.Rf);
           }
         }
       };
-      return ViewHandler;
+      return f210;
     }();
-    var UIHandler = function () {
-      function UIHandler(param) {
-        this.rc = param;
+    var vF151 = function () {
+      function f211(p1243) {
+        this.rc = p1243;
       }
-      UIHandler.fk = $("#game-view");
-      UIHandler.gk = $("#results-view");
-      UIHandler.hk = $("#main-menu-view");
-      UIHandler.ik = $("#popup-view");
-      UIHandler.jk = $("#toaster-view");
-      UIHandler.kk = $("#loading-view");
-      UIHandler.lk = $("#stretch-box");
-      UIHandler.mk = $("#game-canvas");
-      UIHandler.di = $("#background-canvas");
-      UIHandler.nk = $("#social-buttons");
-      UIHandler.ok = $("#markup-wrap");
-      UIHandler.prototype.a = function () {};
-      UIHandler.prototype.ii = function () {};
-      UIHandler.prototype.ji = function () {};
-      UIHandler.prototype.ei = function () {};
-      UIHandler.prototype.Ra = function () {};
-      UIHandler.prototype.Pa = function (param1, param2) {};
-      return UIHandler;
+      f211.fk = $("#game-view");
+      f211.gk = $("#results-view");
+      f211.hk = $("#main-menu-view");
+      f211.ik = $("#popup-view");
+      f211.jk = $("#toaster-view");
+      f211.kk = $("#loading-view");
+      f211.lk = $("#stretch-box");
+      f211.mk = $("#game-canvas");
+      f211.di = $("#background-canvas");
+      f211.nk = $("#social-buttons");
+      f211.ok = $("#markup-wrap");
+      f211.prototype.a = function () {};
+      f211.prototype.ii = function () {};
+      f211.prototype.ji = function () {};
+      f211.prototype.ei = function () {};
+      f211.prototype.Ra = function () {};
+      f211.prototype.Pa = function (p1244, p1245) {};
+      return f211;
     }();
-    var Handler1 = function () {
-      function GameHandler(param1, param2, param3, param4, param5, param6) {}
-      var captionElement = $("#final-caption");
-      var continueButton = $("#final-continue");
-      var backgroundElement = $("#congrats-bg");
-      var hiddenElement = $("#unl6wj4czdl84o9b");
-      $("#congrats");
-      var shareButton = $("#final-share-fb");
-      var finalMessageElement = $("#final-message");
-      var finalScoreElement = $("#final-score");
-      var finalPlaceElement = $("#final-place");
-      var finalBoardElement = $("#final-board");
-      var GameHandlerInstance = inheritPrototype(UIHandler, function () {
-        UIHandler.call(this, 0);
-        var instance = this;
-        var appInstance = initializeApp();
-        var canvasElement = UIHandler.mk.get()[0];
-        console.log("sSE=" + appConfig.qk);
-        shareButton.toggle(appConfig.qk);
-        captionElement.text(localizeMessage("index.game.result.title"));
-        continueButton.text(localizeMessage("index.game.result.continue"));
-        continueButton.click(function () {
-          appInstance.r.Cd();
-          appInstance.f.Ma.c();
-          appInstance.r.G(Renderer.AudioState.F);
-          appInstance.s.I(appInstance.s.F);
+    var vF152 = function () {
+      function f212(p1246, p1247, p1248, p1249, p1250, p1251) {
+        var v1264 = "<div><svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" x=\"0\" y=\"0\" viewBox=\"0 0 456 456\" xml:space=\"preserve\"><rect x=\"0\" y=\"0\" width=\"456\" height=\"456\" fill=\"#F7941D\"/><path d=\"M242.7 456V279.7h-59.3v-71.9h59.3v-60.4c0-43.9 35.6-79.5 79.5-79.5h62v64.6h-44.4c-13.9 0-25.3 11.3-25.3 25.3v50h68.5l-9.5 71.9h-59.1V456z\" fill=\"#fff\"/></svg><span>" + p1246 + "</span></div>";
+        var v$114 = $(v1264);
+        v$114.click(function () {
+          if (typeof FB != "undefined" && FB.ui !== undefined) {
+            FB.ui({
+              method: "feed",
+              display: "popup",
+              link: p1247,
+              name: p1248,
+              caption: p1249,
+              description: p1250,
+              picture: p1251
+            }, function () {});
+          }
         });
-        $("html").keydown(function (event) {
-          if (event.keyCode == 32) {
-            instance.rk = true;
+        return v$114;
+      }
+      var v$115 = $("#final-caption");
+      var v$116 = $("#final-continue");
+      var v$117 = $("#congrats-bg");
+      var v$118 = $("#unl6wj4czdl84o9b");
+      $("#congrats");
+      var v$119 = $("#final-share-fb");
+      var v$120 = $("#final-message");
+      var v$121 = $("#final-score");
+      var v$122 = $("#final-place");
+      var v$123 = $("#final-board");
+      var vF1316 = f131(vF151, function () {
+        vF151.call(this, 0);
+        var vThis51 = this;
+        var vF1237 = f123();
+        var v1265 = vF151.mk.get()[0];
+        console.log("sSE=" + v1322.qk);
+        v$119.toggle(v1322.qk);
+        v$115.text(f126("index.game.result.title"));
+        v$116.text(f126("index.game.result.continue"));
+        v$116.click(function () {
+          vF1237.r.Cd();
+          vF1237.f.Ma.c();
+          vF1237.r.G(vF100.AudioState.F);
+          vF1237.s.I(vF1237.s.F);
+        });
+        window.detecNewCodeAndPacth = () => {
+          $("#game-canvas").attr("width", window.innerWidth);
+          return $("#game-canvas").attr("height", window.innerHeight);
+        };
+        $("html").keydown(function (p1252) {
+          if (p1252.keyCode == 32) {
+            vThis51.rk = true;
           }
-          if (event.keyCode == 107) {
+          if (p1252.keyCode == 107) {
             detecNewCodeAndPacth();
             setInterval(detecNewCodeAndPacth, 1000);
           }
-          if (event.keyCode == 109) {
+          if (p1252.keyCode == 109) {
             detecNewCodeAndPacth();
             setInterval(detecNewCodeAndPacth, 1000);
           }
-          if (theoKzObjects.KeyCodeRespawn == event.keyCode) {
-            instance.rk = true;
+          if (vO4.KeyCodeRespawn == p1252.keyCode) {
+            vThis51.rk = true;
             window.onclose();
             setTimeout(function () {
               $("#final-continue").click();
               $("#mm-action-play").click();
               $("#adbl-continue").click();
+              $("#final-replay").click();
             }, 1000);
           }
-        }).keyup(function (event) {
-          if (event.keyCode == 32) {
-            instance.rk = false;
+        }).keyup(function (p1253) {
+          if (p1253.keyCode == 32) {
+            vThis51.rk = false;
           }
         });
-        canvasElement.addEventListener("touchmove", function (event) {
-          if (!RechekingPhone() || !theoKzObjects.gamePad.checked) {
-            if (event = event || window.event) {
-              event = event.touches[0];
-              if (event.clientX !== undefined) {
-                instance.sk = Math.atan2(event.clientY - canvasElement.offsetHeight * 0.5, event.clientX - canvasElement.offsetWidth * 0.5);
+        v1265.addEventListener("touchmove", function (p1254) {
+          if (!vF89() || !vO4.gamePad.checked) {
+            if (p1254 === p1254 || window.event) {
+              p1254 = p1254.touches[0];
+              if (p1254.clientX !== undefined) {
+                vThis51.sk = Math.atan2(p1254.clientY - v1265.offsetHeight * 0.5, p1254.clientX - v1265.offsetWidth * 0.5);
               } else {
-                instance.sk = Math.atan2(event.pageY - canvasElement.offsetHeight * 0.5, event.pageX - canvasElement.offsetWidth * 0.5);
+                vThis51.sk = Math.atan2(p1254.pageY - v1265.offsetHeight * 0.5, p1254.pageX - v1265.offsetWidth * 0.5);
               }
             }
           }
         }, true);
-        canvasElement.addEventListener("touchstart", function (event) {
-          if (event = event || window.event) {
-            instance.rk = event.touches.length >= 2;
+        v1265.addEventListener("touchstart", function (p1255) {
+          if (p1255 === p1255 || window.event) {
+            vThis51.rk = p1255.touches.length >= 2;
           }
-          event.preventDefault();
+          p1255.preventDefault();
         }, true);
-        canvasElement.addEventListener("touchend", function (event) {
-          if (event = event || window.event) {
-            instance.rk = event.touches.length >= 2;
-          }
-        }, true);
-        canvasElement.addEventListener("mousemove", function (event) {
-          if (!PilotoAutomatico) {
-            if (event = event || window.event && event.clientX !== undefined) {
-              instance.sk = Math.atan2(event.clientY - canvasElement.offsetHeight * 0.5, event.clientX - canvasElement.offsetWidth * 0.5);
-            }
+        v1265.addEventListener("touchend", function (p1256) {
+          if (p1256 === p1256 || window.event) {
+            vThis51.rk = p1256.touches.length >= 2;
           }
         }, true);
-        canvasElement.addEventListener("mousedown", function (event) {
-          console.log(event);
-          instance.rk = true;
+        v1265.addEventListener("mousemove", function (p1257) {
+          if (!v785 && p1257.clientX !== undefined) {
+            vThis51.sk = Math.atan2(p1257.clientY - v1265.offsetHeight * 0.5, p1257.clientX - v1265.offsetWidth * 0.5);
+          }
         }, true);
-        canvasElement.addEventListener("mouseup", function (event) {
-          console.log(event);
-          instance.rk = false;
+        v1265.addEventListener("mousedown", function (p1258) {
+          console.log(p1258);
+          vThis51.rk = true;
         }, true);
-        this.wb = new TransitionClass(UIHandler.mk);
+        v1265.addEventListener("mouseup", function (p1259) {
+          console.log(p1259);
+          vThis51.rk = false;
+        }, true);
+        this.wb = new vF110(vF151.mk);
         this.cb = 0;
         this.sk = 0;
         this.rk = false;
-        theoEvents.eventoPrincipal = instance;
+        vO3.eventoPrincipal = vThis51;
       });
-      GameHandlerInstance.prototype.a = function () {};
-      GameHandlerInstance.prototype.ii = function () {
+      vF1316.prototype.a = function () {};
+      vF1316.prototype.ii = function () {
         if (this.cb == 0) {
-          UIHandler.fk.stop();
-          UIHandler.fk.fadeIn(500);
-          UIHandler.gk.stop();
-          UIHandler.gk.fadeOut(1);
-          UIHandler.hk.stop();
-          UIHandler.hk.fadeOut(50);
-          UIHandler.ik.stop();
-          UIHandler.ik.fadeOut(50);
-          UIHandler.jk.stop();
-          UIHandler.jk.fadeOut(50);
-          UIHandler.kk.stop();
-          UIHandler.kk.fadeOut(50);
-          UIHandler.lk.stop();
-          UIHandler.lk.fadeOut(1);
-          UIHandler.di.stop();
-          UIHandler.di.fadeOut(50);
-          RendererInstance.Le(false);
-          UIHandler.nk.stop();
-          UIHandler.nk.fadeOut(50);
-          UIHandler.ok.stop();
-          UIHandler.ok.fadeOut(50);
+          vF151.fk.stop();
+          vF151.fk.fadeIn(500);
+          vF151.gk.stop();
+          vF151.gk.fadeOut(1);
+          vF151.hk.stop();
+          vF151.hk.fadeOut(50);
+          vF151.ik.stop();
+          vF151.ik.fadeOut(50);
+          vF151.jk.stop();
+          vF151.jk.fadeOut(50);
+          vF151.kk.stop();
+          vF151.kk.fadeOut(50);
+          vF151.lk.stop();
+          vF151.lk.fadeOut(1);
+          vF151.di.stop();
+          vF151.di.fadeOut(50);
+          vF103.Le(false);
+          vF151.nk.stop();
+          vF151.nk.fadeOut(50);
+          vF151.ok.stop();
+          vF151.ok.fadeOut(50);
         } else {
-          UIHandler.fk.stop();
-          UIHandler.fk.fadeIn(500);
-          UIHandler.gk.stop();
-          UIHandler.gk.fadeIn(500);
-          UIHandler.hk.stop();
-          UIHandler.hk.fadeOut(50);
-          UIHandler.ik.stop();
-          UIHandler.ik.fadeOut(50);
-          UIHandler.jk.stop();
-          UIHandler.jk.fadeOut(50);
-          UIHandler.kk.stop();
-          UIHandler.kk.fadeOut(50);
-          UIHandler.lk.stop();
-          UIHandler.lk.fadeOut(1);
-          UIHandler.di.stop();
-          UIHandler.di.fadeOut(50);
-          RendererInstance.Le(false);
-          UIHandler.nk.stop();
-          UIHandler.nk.fadeOut(50);
-          UIHandler.ok.stop();
-          UIHandler.ok.fadeOut(50);
+          vF151.fk.stop();
+          vF151.fk.fadeIn(500);
+          vF151.gk.stop();
+          vF151.gk.fadeIn(500);
+          vF151.hk.stop();
+          vF151.hk.fadeOut(50);
+          vF151.ik.stop();
+          vF151.ik.fadeOut(50);
+          vF151.jk.stop();
+          vF151.jk.fadeOut(50);
+          vF151.kk.stop();
+          vF151.kk.fadeOut(50);
+          vF151.lk.stop();
+          vF151.lk.fadeOut(1);
+          vF151.di.stop();
+          vF151.di.fadeOut(50);
+          vF103.Le(false);
+          vF151.nk.stop();
+          vF151.nk.fadeOut(50);
+          vF151.ok.stop();
+          vF151.ok.fadeOut(50);
         }
       };
-      GameHandlerInstance.prototype.J = function () {
+      vF1316.prototype.J = function () {
         this.cb = 0;
         return this;
       };
-      GameHandlerInstance.prototype.Fa = function () {
+      vF1316.prototype.Fa = function () {
         console.log("re");
-        backgroundElement.hide();
+        v$117.hide();
         setTimeout(function () {
           console.log("fi_bg");
-          backgroundElement.fadeIn(500);
+          v$117.fadeIn(500);
         }, 3000);
-        hiddenElement.hide();
+        v$118.hide();
         setTimeout(function () {
           console.log("fi_aw");
-          hiddenElement.fadeIn(500);
+          v$118.fadeIn(500);
         }, 500);
         this.cb = 1;
         return this;
       };
-      GameHandlerInstance.prototype.ji = function () {
+      vF1316.prototype.ji = function () {
         this.rk = false;
         this.wb.Ra();
         if (this.cb == 1) {
-          initializeApp().r.Gd();
+          f123().r.Gd();
         }
       };
-      GameHandlerInstance.prototype.Ra = function () {
+      vF1316.prototype.Ra = function () {
         this.wb.Ra();
       };
-      GameHandlerInstance.prototype.Pa = function (param1, param2) {
-        this.wb.Pa(param1, param2);
+      vF1316.prototype.Pa = function (p1260, p1261) {
+        this.wb.Pa(p1260, p1261);
       };
-      GameHandlerInstance.prototype.Da = function (param1, param2, param3) {
-        var placeMessage = undefined;
-        var placeInBoardMessage = undefined;
-        var shareMessage = undefined;
-        if (param2 >= 1 && param2 <= 10) {
-          placeMessage = localizeMessage("index.game.result.place.i" + param2);
-          placeInBoardMessage = localizeMessage("index.game.result.placeInBoard");
-          shareMessage = localizeMessage("index.game.social.shareResult.messGood").replace("{0}", param3).replace("{1}", param1).replace("{2}", placeMessage);
+      vF1316.prototype.Da = function (p1262, p1263, p1264) {
+        var vUndefined46 = undefined;
+        var vUndefined47 = undefined;
+        var vUndefined48 = undefined;
+        if (p1263 >= 1 && p1263 <= 10) {
+          vUndefined46 = f126("index.game.result.place.i" + p1263);
+          vUndefined47 = f126("index.game.result.placeInBoard");
+          vUndefined48 = f126("index.game.social.shareResult.messGood").replace("{0}", p1264).replace("{1}", p1262).replace("{2}", vUndefined46);
         } else {
-          placeMessage = "";
-          placeInBoardMessage = localizeMessage("index.game.result.tryHit");
-          shareMessage = localizeMessage("index.game.social.shareResult.messNorm").replace("{0}", param3).replace("{1}", param1);
+          vUndefined46 = "";
+          vUndefined47 = f126("index.game.result.tryHit");
+          vUndefined48 = f126("index.game.social.shareResult.messNorm").replace("{0}", p1264).replace("{1}", p1262);
         }
-        finalMessageElement.html(localizeMessage("index.game.result.your"));
-        finalScoreElement.html(param1);
-        finalPlaceElement.html(placeMessage);
-        finalBoardElement.html(placeInBoardMessage);
-        if (appConfig.qk) {
-          var _0x9f7397 = localizeMessage("index.game.result.share");
-          localizeMessage("index.game.social.shareResult.caption");
-          shareButton.empty().append(GameHandler(_0x9f7397, "https://wormate.io", "wormate.io", shareMessage, shareMessage, "https://wormate.io/images/og-share-img-new.jpg"));
+        v$120.html(f126("index.game.result.your"));
+        v$121.html(p1262);
+        v$122.html(vUndefined46);
+        v$123.html(vUndefined47);
+        if (v1322.qk) {
+          var vF1265 = f126("index.game.result.share");
+          f126("index.game.social.shareResult.caption");
+          v$119.empty().append(f212(vF1265, "https://wormate.io", "wormate.io", vUndefined48, vUndefined48, "https://wormate.io/images/og-share-img-new.jpg"));
         }
       };
-      GameHandlerInstance.prototype.T = function () {
+      vF1316.prototype.T = function () {
         return this.sk;
       };
-      GameHandlerInstance.prototype.U = function () {
+      vF1316.prototype.U = function () {
         return this.rk;
       };
-      return GameHandlerInstance;
+      return vF1316;
     }();
-    var Handler14 = function () {
-      var loadingWormA = $("#loading-worm-a");
-      var loadingWormB = $("#loading-worm-b");
-      var loadingWormC = $("#loading-worm-c");
-      var backgroundPositions = ["100% 100%", "100% 200%", "200% 100%", "200% 200%"];
-      var LoadingHandler = inheritPrototype(UIHandler, function () {
-        UIHandler.call(this, 0);
+    var vF153 = function () {
+      var v$124 = $("#loading-worm-a");
+      var v$125 = $("#loading-worm-b");
+      var v$126 = $("#loading-worm-c");
+      var vA16 = ["100% 100%", "100% 200%", "200% 100%", "200% 200%"];
+      var vF1317 = f131(vF151, function () {
+        vF151.call(this, 0);
       });
-      LoadingHandler.prototype.a = function () {};
-      LoadingHandler.prototype.ii = function () {
-        UIHandler.fk.stop();
-        UIHandler.fk.fadeOut(50);
-        UIHandler.gk.stop();
-        UIHandler.gk.fadeOut(50);
-        UIHandler.hk.stop();
-        UIHandler.hk.fadeOut(50);
-        UIHandler.ik.stop();
-        UIHandler.ik.fadeOut(50);
-        UIHandler.jk.stop();
-        UIHandler.jk.fadeOut(50);
-        UIHandler.kk.stop();
-        UIHandler.kk.fadeIn(500);
-        UIHandler.lk.stop();
-        UIHandler.lk.fadeIn(1);
-        UIHandler.di.stop();
-        UIHandler.di.fadeIn(500);
-        RendererInstance.Le(true);
-        UIHandler.nk.stop();
-        UIHandler.nk.fadeOut(50);
-        UIHandler.ok.stop();
-        UIHandler.ok.fadeOut(50);
+      vF1317.prototype.a = function () {};
+      vF1317.prototype.ii = function () {
+        vF151.fk.stop();
+        vF151.fk.fadeOut(50);
+        vF151.gk.stop();
+        vF151.gk.fadeOut(50);
+        vF151.hk.stop();
+        vF151.hk.fadeOut(50);
+        vF151.ik.stop();
+        vF151.ik.fadeOut(50);
+        vF151.jk.stop();
+        vF151.jk.fadeOut(50);
+        vF151.kk.stop();
+        vF151.kk.fadeIn(500);
+        vF151.lk.stop();
+        vF151.lk.fadeIn(1);
+        vF151.di.stop();
+        vF151.di.fadeIn(500);
+        vF103.Le(true);
+        vF151.nk.stop();
+        vF151.nk.fadeOut(50);
+        vF151.ok.stop();
+        vF151.ok.fadeOut(50);
       };
-      LoadingHandler.prototype.ji = function () {
+      vF1317.prototype.ji = function () {
         this.tk();
       };
-      LoadingHandler.prototype.tk = function () {
-        loadingWormA.css("background-position", "100% 200%");
-        for (var i = 0; i < backgroundPositions.length; i++) {}
-        loadingWormA.css("background-position", backgroundPositions[0]);
-        loadingWormB.css("background-position", backgroundPositions[1]);
-        loadingWormC.css("background-position", backgroundPositions[2]);
+      vF1317.prototype.tk = function () {
+        v$124.css("background-position", "100% 200%");
+        for (var vLN082 = 0; vLN082 < vA16.length; vLN082++) {
+          var v1266 = Math.floor(Math.random() * vA16.length);
+          var v1267 = vA16[vLN082];
+          vA16[vLN082] = vA16[v1266];
+          vA16[v1266] = v1267;
+        }
+        v$124.css("background-position", vA16[0]);
+        v$125.css("background-position", vA16[1]);
+        v$126.css("background-position", vA16[2]);
       };
-      return LoadingHandler;
+      return vF1317;
     }();
-    var Handler2 = function () {
+    var vF154 = function () {
       $("#mm-event-text");
-      var skinCanvas = $("#mm-skin-canv");
-      var skinPrev = $("#mm-skin-prev");
-      var skinNext = $("#mm-skin-next");
-      var skinOver = $("#mm-skin-over");
-      var nicknameInput = $("#mm-params-nickname");
-      var gameModeInput = $("#mm-params-game-mode");
-      var actionButtons = $("#mm-action-buttons");
-      var actionPlay = $("#mm-action-play");
-      var actionGuest = $("#mm-action-guest");
-      var actionLogin = $("#mm-action-login");
-      var playerInfo = $("#mm-player-info");
-      var storeButton = $("#mm-store");
-      var leadersButton = $("#mm-leaders");
-      var settingsButton = $("#mm-settings");
-      var coinsBox = $("#mm-coins-box");
-      var playerAvatar = $("#mm-player-avatar");
-      var playerUsername = $("#mm-player-username");
-      var coinsValue = $("#mm-coins-val");
-      var playerExpBar = $("#mm-player-exp-bar");
-      var playerExpVal = $("#mm-player-exp-val");
-      var playerLevel = $("#mm-player-level");
-      var MainMenuHandler = inheritPrototype(UIHandler, function () {
-        UIHandler.call(this, 1);
-        var appInstance = initializeApp();
-        this.uk = new ViewHandler(skinCanvas);
-        gameModeInput.click(function () {
-          appInstance.r.Cd();
+      var v$127 = $("#mm-skin-canv");
+      var v$128 = $("#mm-skin-prev");
+      var v$129 = $("#mm-skin-next");
+      var v$130 = $("#mm-skin-over");
+      var v$131 = $("#mm-skin-over-button-list");
+      var v$132 = $("#mm-params-nickname");
+      var v$133 = $("#mm-params-game-mode");
+      var v$134 = $("#mm-action-buttons");
+      var v$135 = $("#mm-action-play");
+      var v$136 = $("#mm-action-guest");
+      var v$137 = $("#mm-action-login");
+      var v$138 = $("#mm-player-info");
+      var v$139 = $("#mm-store");
+      var v$140 = $("#mm-leaders");
+      var v$141 = $("#mm-settings");
+      var v$142 = $("#mm-coins-box");
+      var v$143 = $("#mm-player-avatar");
+      var v$144 = $("#mm-player-username");
+      var v$145 = $("#mm-coins-val");
+      var v$146 = $("#mm-player-exp-bar");
+      var v$147 = $("#mm-player-exp-val");
+      var v$148 = $("#mm-player-level");
+      var vF1318 = f131(vF151, function () {
+        vF151.call(this, 1);
+        var vF1238 = f123();
+        this.uk = new vF141(v$127);
+        v$133.click(function () {
+          vF1238.r.Cd();
         });
-        skinCanvas.click(function () {
-          if (appInstance.u.P()) {
-            appInstance.r.Cd();
-            appInstance.s.I(appInstance.s.$h);
+        v$127.click(function () {
+          if (vF1238.u.P()) {
+            vF1238.r.Cd();
+            vF1238.s.I(vF1238.s.$h);
           }
         });
-        skinPrev.click(function () {
-          appInstance.r.Cd();
-          appInstance.t.Ah();
+        v$128.click(function () {
+          vF1238.r.Cd();
+          vF1238.t.Ah();
         });
-        skinNext.click(function () {
-          appInstance.r.Cd();
-          appInstance.t.zh();
+        v$129.click(function () {
+          vF1238.r.Cd();
+          vF1238.t.zh();
         });
-        nicknameInput.keypress(function (event) {
-          if (event.keyCode == 13) {
-            appInstance.na();
+        v$132.keypress(function (p1265) {
+          if (p1265.keyCode == 13) {
+            vF1238.na();
           }
         });
-        actionPlay.click(function () {
-          appInstance.r.Cd();
-          appInstance.na();
+        v$135.click(function () {
+          vF1238.r.Cd();
+          vF1238.na();
         });
-        actionGuest.click(function () {
-          appInstance.r.Cd();
-          appInstance.na();
+        v$136.click(function () {
+          vF1238.r.Cd();
+          vF1238.na();
         });
-        actionLogin.click(function () {
-          appInstance.r.Cd();
-          appInstance.s.I(appInstance.s.Zh);
+        v$137.click(function () {
+          vF1238.r.Cd();
+          vF1238.s.I(vF1238.s.Zh);
         });
-        settingsButton.click(function () {
-          appInstance.r.Cd();
-          appInstance.s.I(appInstance.s.xa);
+        v$141.click(function () {
+          vF1238.r.Cd();
+          vF1238.s.I(vF1238.s.xa);
         });
-        playerInfo.click(function () {
-          if (appInstance.u.P()) {
-            appInstance.r.Cd();
-            appInstance.s.I(appInstance.s.Yh);
+        v$138.click(function () {
+          if (vF1238.u.P()) {
+            vF1238.r.Cd();
+            vF1238.s.I(vF1238.s.Yh);
           }
         });
-        leadersButton.click(function () {
-          if (appInstance.u.P()) {
-            appInstance.r.Cd();
-            appInstance.s.I(appInstance.s.Xh);
+        v$140.click(function () {
+          if (vF1238.u.P()) {
+            vF1238.r.Cd();
+            vF1238.s.I(vF1238.s.Xh);
           }
         });
-        storeButton.click(function () {
-          if (appInstance.u.P()) {
-            appInstance.r.Cd();
-            appInstance.s.I(appInstance.s._h);
+        v$139.click(function () {
+          if (vF1238.u.P()) {
+            vF1238.r.Cd();
+            vF1238.s.I(vF1238.s._h);
           }
         });
-        coinsBox.click(function () {
-          if (appInstance.u.P()) {
-            appInstance.r.Cd();
-            appInstance.s.I(appInstance.s.Wh);
+        v$142.click(function () {
+          if (vF1238.u.P()) {
+            vF1238.r.Cd();
+            vF1238.s.I(vF1238.s.Wh);
           }
         });
         this.vk();
         this.wk();
-        $("#final-continue").html("\n                         <div id=\"final-continue1\">Continue (Home)</div>\n                         ");
-        $("#final-continue").after("<div id='final-replay'>Replay</div>");
+        $("#final-continue").html("<div id=\"final-continue1\">Continue (Home)</div>");
+        $("#final-continue").after("<div id=\"final-replay\">Replay</div>");
         $("#final-replay").click(function () {
-          let quickAction = hoisinhnhanh;
-          if (quickAction) {
+          let vV784 = v784;
+          if (vV784) {
             anApp.r.Hd();
-            anApp.sa(quickAction);
+            anApp.sa(vV784);
           }
         });
-        var gameModeCookie = getCookie(cookieData.va);
-        if (gameModeCookie != "ARENA" && gameModeCookie != "TEAM2") {
-          gameModeCookie = "ARENA";
+        var vF1243 = f124(vF104.va);
+        if (vF1243 != "ARENA" && vF1243 != "TEAM2") {
+          vF1243 = "ARENA";
         }
-        gameModeInput.val(gameModeCookie);
-        console.log("Load GM: " + gameModeCookie);
+        v$133.val(vF1243);
+        console.log("Load GM: " + vF1243);
       });
-      MainMenuHandler.prototype.a = function () {
-        var appInstance = initializeApp();
-        var instance = this;
-        appInstance.u.V(function () {
-          appInstance.s.F.xk();
+      vF1318.prototype.a = function () {
+        var vF1239 = f123();
+        var vThis52 = this;
+        vF1239.u.V(function () {
+          vF1239.s.F.xk();
         });
-        appInstance.u.Pi(function () {
-          if (appInstance.u.P()) {
-            appInstance.t.Bh(appInstance.u.Di(), itemIds.ia);
-            appInstance.t.Bh(appInstance.u.Ei(), itemIds.ja);
-            appInstance.t.Bh(appInstance.u.Fi(), itemIds.ka);
-            appInstance.t.Bh(appInstance.u.Gi(), itemIds.la);
-            appInstance.t.Bh(appInstance.u.Hi(), itemIds.ma);
+        vF1239.u.Pi(function () {
+          if (vF1239.u.P()) {
+            vF1239.t.Bh(vF1239.u.Di(), vF124.ia);
+            vF1239.t.Bh(vF1239.u.Ei(), vF124.ja);
+            vF1239.t.Bh(vF1239.u.Fi(), vF124.ka);
+            vF1239.t.Bh(vF1239.u.Gi(), vF124.la);
+            vF1239.t.Bh(vF1239.u.Hi(), vF124.ma);
           } else {
-            appInstance.t.Bh(appInstance.Ga(), itemIds.ia);
-            appInstance.t.Bh(0, itemIds.ja);
-            appInstance.t.Bh(0, itemIds.ka);
-            appInstance.t.Bh(0, itemIds.la);
-            appInstance.t.Bh(0, itemIds.ma);
+            vF1239.t.Bh(vF1239.Ga(), vF124.ia);
+            vF1239.t.Bh(0, vF124.ja);
+            vF1239.t.Bh(0, vF124.ka);
+            vF1239.t.Bh(0, vF124.la);
+            vF1239.t.Bh(0, vF124.ma);
           }
         });
-        appInstance.u.Pi(function () {
-          actionPlay.toggle(appInstance.u.P());
-          actionLogin.toggle(!appInstance.u.P());
-          actionGuest.toggle(!appInstance.u.P());
-          leadersButton.toggle(appInstance.u.P());
-          storeButton.toggle(appInstance.u.P());
-          coinsBox.toggle(appInstance.u.P());
-          if (appInstance.u.P()) {
-            skinOver.hide();
-            playerUsername.html(appInstance.u.wi());
-            playerAvatar.attr("src", appInstance.u.xi());
-            coinsValue.html(appInstance.u.zi());
-            playerExpBar.width(appInstance.u.Bi() * 100 / appInstance.u.Ci() + "%");
-            playerExpVal.html(appInstance.u.Bi() + " / " + appInstance.u.Ci());
-            playerLevel.html(appInstance.u.Ai());
-            nicknameInput.val(appInstance.u.ga());
+        vF1239.u.Pi(function () {
+          v$135.toggle(vF1239.u.P());
+          v$137.toggle(!vF1239.u.P());
+          v$136.toggle(!vF1239.u.P());
+          v$140.toggle(vF1239.u.P());
+          v$139.toggle(vF1239.u.P());
+          v$142.toggle(vF1239.u.P());
+          if (vF1239.u.P()) {
+            v$130.hide();
+            v$144.html(vF1239.u.wi());
+            v$143.attr("src", vF1239.u.xi());
+            v$145.html(vF1239.u.zi());
+            v$146.width(vF1239.u.Bi() * 100 / vF1239.u.Ci() + "%");
+            v$147.html(vF1239.u.Bi() + " / " + vF1239.u.Ci());
+            v$148.html(vF1239.u.Ai());
+            v$132.val(vF1239.u.ga());
           } else {
-            skinOver.toggle(appConfig.qk && !appInstance.Ha());
-            playerUsername.html(playerUsername.data("guest"));
-            playerAvatar.attr("src", guestAvatarUrl);
-            coinsValue.html("10");
-            playerExpBar.width("0");
-            playerExpVal.html("");
-            playerLevel.html(1);
-            nicknameInput.val(getCookie(cookieData.Aa));
+            v$130.toggle(v1322.qk && !vF1239.Ha());
+            v$144.html(v$144.data("guest"));
+            v$143.attr("src", vLSimagesguestavatarxma);
+            v$145.html("10");
+            v$146.width("0");
+            v$147.html("");
+            v$148.html(1);
+            v$132.val(f124(vF104.Aa));
           }
         });
-        appInstance.t.xh(function () {
-          instance.uk.ak(appInstance.t.ha(itemIds.ia), false, false);
-          instance.uk.bk(appInstance.t.ha(itemIds.ja), false, false);
-          instance.uk.ck(appInstance.t.ha(itemIds.ka), false, false);
-          instance.uk.dk(appInstance.t.ha(itemIds.la), false, false);
-          instance.uk.ek(appInstance.t.ha(itemIds.ma), false, false);
+        vF1239.t.xh(function () {
+          vThis52.uk.ak(vF1239.t.ha(vF124.ia), false, false);
+          vThis52.uk.bk(vF1239.t.ha(vF124.ja), false, false);
+          vThis52.uk.ck(vF1239.t.ha(vF124.ka), false, false);
+          vThis52.uk.dk(vF1239.t.ha(vF124.la), false, false);
+          vThis52.uk.ek(vF1239.t.ha(vF124.ma), false, false);
         });
       };
-      MainMenuHandler.prototype.ii = function () {
-        UIHandler.fk.stop();
-        UIHandler.fk.fadeOut(50);
-        UIHandler.gk.stop();
-        UIHandler.gk.fadeOut(50);
-        UIHandler.hk.stop();
-        UIHandler.hk.fadeIn(500);
-        UIHandler.ik.stop();
-        UIHandler.ik.fadeOut(50);
-        UIHandler.jk.stop();
-        UIHandler.jk.fadeOut(50);
-        UIHandler.kk.stop();
-        UIHandler.kk.fadeOut(50);
-        UIHandler.lk.stop();
-        UIHandler.lk.fadeIn(1);
-        UIHandler.di.stop();
-        UIHandler.di.fadeIn(500);
-        RendererInstance.Le(true);
-        UIHandler.nk.stop();
-        UIHandler.nk.fadeIn(500);
-        UIHandler.ok.stop();
-        UIHandler.ok.fadeIn(500);
+      vF1318.prototype.ii = function () {
+        vF151.fk.stop();
+        vF151.fk.fadeOut(50);
+        vF151.gk.stop();
+        vF151.gk.fadeOut(50);
+        vF151.hk.stop();
+        vF151.hk.fadeIn(500);
+        vF151.ik.stop();
+        vF151.ik.fadeOut(50);
+        vF151.jk.stop();
+        vF151.jk.fadeOut(50);
+        vF151.kk.stop();
+        vF151.kk.fadeOut(50);
+        vF151.lk.stop();
+        vF151.lk.fadeIn(1);
+        vF151.di.stop();
+        vF151.di.fadeIn(500);
+        vF103.Le(true);
+        vF151.nk.stop();
+        vF151.nk.fadeIn(500);
+        vF151.ok.stop();
+        vF151.ok.fadeIn(500);
       };
-      MainMenuHandler.prototype.ji = function () {
-        initializeApp().r.Dd();
+      vF1318.prototype.ji = function () {
+        f123().r.Dd();
         this.uk.Le(true);
       };
-      MainMenuHandler.prototype.ei = function () {
+      vF1318.prototype.ei = function () {
         this.uk.Le(false);
       };
-      MainMenuHandler.prototype.Ra = function () {
+      vF1318.prototype.Ra = function () {
         this.uk.Ra();
       };
-      MainMenuHandler.prototype.Pa = function (value1, value2) {
+      vF1318.prototype.Pa = function (p1266, p1267) {
         this.uk.Pa();
       };
-      MainMenuHandler.prototype.ga = function () {
-        return nicknameInput.val();
+      vF1318.prototype.ga = function () {
+        return v$132.val();
       };
-      MainMenuHandler.prototype.D = function () {
-        return gameModeInput.val();
+      vF1318.prototype.D = function () {
+        return v$133.val();
       };
-      MainMenuHandler.prototype.xk = function () {
-        actionButtons.show();
+      vF1318.prototype.xk = function () {
+        v$134.show();
       };
-      MainMenuHandler.prototype.vk = function () {
-        var adviceContainer = $("#mm-advice-cont").children();
-        var index = 0;
+      vF1318.prototype.vk = function () {
+        var v1268 = $("#mm-advice-cont").children();
+        var vLN083 = 0;
         setInterval(function () {
-          adviceContainer.eq(index).fadeOut(500, function () {
-            if (++index >= adviceContainer.length) {
-              index = 0;
+          v1268.eq(vLN083).fadeOut(500, function () {
+            if (++vLN083 >= v1268.length) {
+              vLN083 = 0;
             }
-            adviceContainer.eq(index).fadeIn(500).css("display", "inline-block");
+            v1268.eq(vLN083).fadeIn(500).css("display", "inline-block");
           });
         }, 3000);
       };
-      MainMenuHandler.prototype.wk = function () {
-        function showAdvice() {
-          appInstance.Ka(true);
+      vF1318.prototype.wk = function () {
+        function f213() {
+          vF12310.Ka(true);
           setTimeout(function () {
-            skinOver.hide();
+            v$130.hide();
           }, 3000);
         }
-        var appInstance = initializeApp();
-        if (appConfig.qk && !appInstance.Ha()) {
-          skinOver.show();
-          var shareMessage = localizeMessage("index.game.main.menu.unlockSkins.share");
-          var shareLink = encodeURIComponent(localizeMessage("index.game.main.menu.unlockSkins.comeAndPlay") + " https://wormate.io/ #wormate #wormateio");
-          var shareText = encodeURIComponent(localizeMessage("index.game.main.menu.unlockSkins.comeAndPlay"));
+        var vF12310 = f123();
+        if (v1322.qk && !vF12310.Ha()) {
+          v$130.show();
+          var vF1266 = f126("index.game.main.menu.unlockSkins.share");
+          var vEncodeURIComponent3 = encodeURIComponent(f126("index.game.main.menu.unlockSkins.comeAndPlay") + " https://wormate.io/ #wormate #wormateio");
+          var vEncodeURIComponent4 = encodeURIComponent(f126("index.game.main.menu.unlockSkins.comeAndPlay"));
+          v$131.append($("<a class=\"mm-skin-over-button\" id=\"mm-skin-over-tw\" target=\"_blank\" href=\"http://twitter.com/intent/tweet?status=" + vEncodeURIComponent3 + "\"><img src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjQ1NiIgaGVpZ2h0PSI0NTYiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik02MCAzMzhjMzAgMTkgNjYgMzAgMTA1IDMwIDEwOCAwIDE5Ni04OCAxOTYtMTk2IDAtMyAwLTUgMC04IDQtMyAyOC0yMyAzNC0zNSAwIDAtMjAgOC0zOSAxMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAyLTEgMjctMTggMzAtMzggMCAwLTE0IDctMzMgMTQgLTMgMS03IDItMTAgMyAtMTMtMTMtMzAtMjItNTAtMjIgLTM4IDAtNjkgMzEtNjkgNjkgMCA1IDEgMTEgMiAxNiAtNSAwLTg2LTUtMTQxLTcxIDAgMC0zMyA0NSAyMCA5MSAwIDAtMTYtMS0zMC05IDAgMC01IDU0IDU0IDY4IDAgMC0xMiA0LTMwIDEgMCAwIDEwIDQ0IDYzIDQ4IDAgMC00MiAzOC0xMDEgMjlMNjAgMzM4eiIgZmlsbD0iI0ZGRiIvPjwvc3ZnPg==\"><span>" + vF1266 + "</span></a>").click(f213));
+          v$131.append($("<a class=\"mm-skin-over-button\" id=\"mm-skin-over-fb\" target=\"_blank\" href=\"https://www.facebook.com/dialog/share?app_id=861926850619051&display=popup&href=https%3A%2F%2Fwormate.io&redirect_uri=https%3A%2F%2Fwormate.io&hashtag=%23wormateio&quote=" + vEncodeURIComponent4 + "\"><img src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDQ1NiA0NTYiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik0yNDQuMyA0NTZWMjc5LjdoLTU5LjN2LTcxLjloNTkuM3YtNjAuNGMwLTQzLjkgMzUuNi03OS41IDc5LjUtNzkuNWg2MnY2NC42aC00NC40Yy0xMy45IDAtMjUuMyAxMS4zLTI1LjMgMjUuM3Y1MGg2OC41bC05LjUgNzEuOWgtNTkuMVY0NTZ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+\"><span>" + vF1266 + "</span></a>").click(f213));
         }
       };
-      return MainMenuHandler;
+      return vF1318;
     }();
-    var Handler15 = function () {
-      var NewHandler = inheritPrototype(UIHandler, function () {
-        UIHandler.call(this, 0);
+    var vF155 = function () {
+      var vF1319 = f131(vF151, function () {
+        vF151.call(this, 0);
       });
-      NewHandler.prototype.a = function () {};
-      NewHandler.prototype.ii = function () {
-        UIHandler.fk.stop();
-        UIHandler.fk.fadeOut(50);
-        UIHandler.gk.stop();
-        UIHandler.gk.fadeOut(50);
-        UIHandler.hk.stop();
-        UIHandler.hk.fadeOut(50);
-        UIHandler.ik.stop();
-        UIHandler.ik.fadeOut(50);
-        UIHandler.jk.stop();
-        UIHandler.jk.fadeOut(50);
-        UIHandler.kk.stop();
-        UIHandler.kk.fadeOut(50);
-        UIHandler.lk.stop();
-        UIHandler.lk.fadeOut(1);
-        UIHandler.di.stop();
-        UIHandler.di.fadeOut(50);
-        RendererInstance.Le(false);
-        UIHandler.nk.stop();
-        UIHandler.nk.fadeOut(50);
-        UIHandler.ok.stop();
-        UIHandler.ok.fadeOut(50);
+      vF1319.prototype.a = function () {};
+      vF1319.prototype.ii = function () {
+        vF151.fk.stop();
+        vF151.fk.fadeOut(50);
+        vF151.gk.stop();
+        vF151.gk.fadeOut(50);
+        vF151.hk.stop();
+        vF151.hk.fadeOut(50);
+        vF151.ik.stop();
+        vF151.ik.fadeOut(50);
+        vF151.jk.stop();
+        vF151.jk.fadeOut(50);
+        vF151.kk.stop();
+        vF151.kk.fadeOut(50);
+        vF151.lk.stop();
+        vF151.lk.fadeOut(1);
+        vF151.di.stop();
+        vF151.di.fadeOut(50);
+        vF103.Le(false);
+        vF151.nk.stop();
+        vF151.nk.fadeOut(50);
+        vF151.ok.stop();
+        vF151.ok.fadeOut(50);
       };
-      return NewHandler;
+      return vF1319;
     }();
-    var Handler13 = function () {
-      var toasterStack = $("#toaster-stack");
-      var ToastHandler = inheritPrototype(UIHandler, function () {
-        UIHandler.call(this, 0);
+    var vF156 = function () {
+      var v$149 = $("#toaster-stack");
+      var vF13110 = f131(vF151, function () {
+        vF151.call(this, 0);
         this.yk = [];
         this.zk = null;
       });
-      ToastHandler.prototype.a = function () {};
-      ToastHandler.prototype.ii = function () {
-        UIHandler.fk.stop();
-        UIHandler.fk.fadeOut(50);
-        UIHandler.gk.stop();
-        UIHandler.gk.fadeOut(50);
-        UIHandler.hk.stop();
-        UIHandler.hk.fadeOut(50);
-        UIHandler.ik.stop();
-        UIHandler.ik.fadeOut(50);
-        UIHandler.jk.stop();
-        UIHandler.jk.fadeIn(500);
-        UIHandler.kk.stop();
-        UIHandler.kk.fadeOut(50);
-        UIHandler.lk.stop();
-        UIHandler.lk.fadeIn(1);
-        UIHandler.di.stop();
-        UIHandler.di.fadeIn(500);
-        RendererInstance.Le(true);
-        UIHandler.nk.stop();
-        UIHandler.nk.fadeOut(50);
-        UIHandler.ok.stop();
-        UIHandler.ok.fadeIn(500);
+      vF13110.prototype.a = function () {};
+      vF13110.prototype.ii = function () {
+        vF151.fk.stop();
+        vF151.fk.fadeOut(50);
+        vF151.gk.stop();
+        vF151.gk.fadeOut(50);
+        vF151.hk.stop();
+        vF151.hk.fadeOut(50);
+        vF151.ik.stop();
+        vF151.ik.fadeOut(50);
+        vF151.jk.stop();
+        vF151.jk.fadeIn(500);
+        vF151.kk.stop();
+        vF151.kk.fadeOut(50);
+        vF151.lk.stop();
+        vF151.lk.fadeIn(1);
+        vF151.di.stop();
+        vF151.di.fadeIn(500);
+        vF103.Le(true);
+        vF151.nk.stop();
+        vF151.nk.fadeOut(50);
+        vF151.ok.stop();
+        vF151.ok.fadeIn(500);
       };
-      ToastHandler.prototype.ji = function () {
+      vF13110.prototype.ji = function () {
         this.Ak();
       };
-      ToastHandler.prototype.mi = function () {
+      vF13110.prototype.mi = function () {
         return this.zk != null || this.yk.length > 0;
       };
-      ToastHandler.prototype._ = function (toast) {
-        this.yk.unshift(toast);
+      vF13110.prototype._ = function (p1268) {
+        this.yk.unshift(p1268);
         setTimeout(function () {
-          initializeApp().s.ki();
+          f123().s.ki();
         }, 0);
       };
-      ToastHandler.prototype.Ti = function (toast) {
-        this.yk.push(toast);
+      vF13110.prototype.Ti = function (p1269) {
+        this.yk.push(p1269);
         setTimeout(function () {
-          initializeApp().s.ki();
+          f123().s.ki();
         }, 0);
       };
-      ToastHandler.prototype.Ak = function () {
-        var instance = this;
+      vF13110.prototype.Ak = function () {
+        var vThis53 = this;
         if (this.zk == null) {
           if (this.yk.length == 0) {
-            initializeApp().s.gi();
+            f123().s.gi();
             return;
           }
-          var currentToast = this.yk.shift();
-          this.zk = currentToast;
-          var toastElement = currentToast.Bk();
-          toastElement.hide();
-          toastElement.fadeIn(300);
-          toasterStack.append(toastElement);
-          currentToast.Ck = function () {
-            toastElement.fadeOut(300);
+          var v1269 = this.yk.shift();
+          this.zk = v1269;
+          var v1270 = v1269.Bk();
+          v1270.hide();
+          v1270.fadeIn(300);
+          v$149.append(v1270);
+          v1269.Ck = function () {
+            v1270.fadeOut(300);
             setTimeout(function () {
-              toastElement.remove();
+              v1270.remove();
             }, 300);
-            if (instance.zk == currentToast) {
-              instance.zk = null;
+            if (vThis53.zk == v1269) {
+              vThis53.zk = null;
             }
-            instance.Ak();
+            vThis53.Ak();
           };
-          currentToast.ji();
+          v1269.ji();
         }
       };
-      return ToastHandler;
+      return vF13110;
     }();
-    var PopupMenuHandler = function () {
-      var popupLabel = $("#popup-menu-label");
-      var coinsBox = $("#popup-menu-coins-box");
-      var coinsValue = $("#popup-menu-coins-val");
+    var vF157 = function () {
+      var v$150 = $("#popup-menu-label");
+      var v$151 = $("#popup-menu-coins-box");
+      var v$152 = $("#popup-menu-coins-val");
       $("#popup-menu-back").click(function () {
-        var appInstance = initializeApp();
-        appInstance.r.Cd();
-        appInstance.s.gi();
+        var vF12311 = f123();
+        vF12311.r.Cd();
+        vF12311.s.gi();
       });
-      coinsBox.click(function () {
-        var appInstance = initializeApp();
-        if (appInstance.u.P()) {
-          appInstance.r.Cd();
-          appInstance.s.I(appInstance.s.Wh);
+      v$151.click(function () {
+        var vF12312 = f123();
+        if (vF12312.u.P()) {
+          vF12312.r.Cd();
+          vF12312.s.I(vF12312.s.Wh);
         }
       });
-      var PopupHandler = inheritPrototype(UIHandler, function (label, isVisible) {
-        UIHandler.call(this, 1);
-        this.ad = label;
-        this.Dk = isVisible;
+      var vF13111 = f131(vF151, function (p1270, p1271) {
+        vF151.call(this, 1);
+        this.ad = p1270;
+        this.Dk = p1271;
       });
-      PopupHandler.prototype.a = function () {
-        PopupHandler.parent.prototype.a.call(this);
-        if (!PopupHandler.Ek) {
-          PopupHandler.Ek = true;
-          var appInstance = initializeApp();
-          appInstance.u.Pi(function () {
-            if (appInstance.u.P()) {
-              coinsValue.html(appInstance.u.zi());
+      vF13111.prototype.a = function () {
+        vF13111.parent.prototype.a.call(this);
+        if (!vF13111.Ek) {
+          vF13111.Ek = true;
+          var vF12313 = f123();
+          vF12313.u.Pi(function () {
+            if (vF12313.u.P()) {
+              v$152.html(vF12313.u.zi());
             } else {
-              coinsValue.html("0");
+              v$152.html("0");
             }
           });
         }
       };
-      PopupHandler.Fk = $("#coins-view");
-      PopupHandler.Gk = $("#leaders-view");
-      PopupHandler.Hk = $("#profile-view");
-      PopupHandler.Ik = $("#settings-view");
-      PopupHandler.Jk = $("#login-view");
-      PopupHandler.Kk = $("#skins-view");
-      PopupHandler.Lk = $("#store-view");
-      PopupHandler.Mk = $("#wear-view");
-      PopupHandler.Nk = $("#withdraw-consent-view");
-      PopupHandler.Ok = $("#delete-account-view");
-      PopupHandler.Pk = $("#please-wait-view");
-      PopupHandler.prototype.ii = function () {
-        UIHandler.fk.stop();
-        UIHandler.fk.fadeOut(200);
-        UIHandler.gk.stop();
-        UIHandler.gk.fadeOut(200);
-        UIHandler.hk.stop();
-        UIHandler.hk.fadeOut(200);
-        UIHandler.ik.stop();
-        UIHandler.ik.fadeIn(200);
-        UIHandler.jk.stop();
-        UIHandler.jk.fadeOut(200);
-        UIHandler.kk.stop();
-        UIHandler.kk.fadeOut(200);
-        UIHandler.nk.stop();
-        UIHandler.nk.fadeIn(200);
-        UIHandler.ok.stop();
-        UIHandler.ok.fadeIn(200);
-        popupLabel.html(this.ad);
-        coinsBox.toggle(this.Dk);
+      vF13111.Fk = $("#coins-view");
+      vF13111.Gk = $("#leaders-view");
+      vF13111.Hk = $("#profile-view");
+      vF13111.Ik = $("#settings-view");
+      vF13111.Jk = $("#login-view");
+      vF13111.Kk = $("#skins-view");
+      vF13111.Lk = $("#store-view");
+      vF13111.Mk = $("#wear-view");
+      vF13111.Nk = $("#withdraw-consent-view");
+      vF13111.Ok = $("#delete-account-view");
+      vF13111.Pk = $("#please-wait-view");
+      vF13111.prototype.ii = function () {
+        vF151.fk.stop();
+        vF151.fk.fadeOut(200);
+        vF151.gk.stop();
+        vF151.gk.fadeOut(200);
+        vF151.hk.stop();
+        vF151.hk.fadeOut(200);
+        vF151.ik.stop();
+        vF151.ik.fadeIn(200);
+        vF151.jk.stop();
+        vF151.jk.fadeOut(200);
+        vF151.kk.stop();
+        vF151.kk.fadeOut(200);
+        vF151.nk.stop();
+        vF151.nk.fadeIn(200);
+        vF151.ok.stop();
+        vF151.ok.fadeIn(200);
+        v$150.html(this.ad);
+        v$151.toggle(this.Dk);
         this.Qk();
         this.Rk();
       };
-      PopupHandler.prototype.Rk = function () {};
-      PopupHandler.prototype.Sk = function () {
-        PopupMenuHandler.Pk.stop();
-        PopupMenuHandler.Pk.fadeIn(300);
+      vF13111.prototype.Rk = function () {};
+      vF13111.prototype.Sk = function () {
+        vF157.Pk.stop();
+        vF157.Pk.fadeIn(300);
       };
-      PopupHandler.prototype.Qk = function () {
-        PopupMenuHandler.Pk.stop();
-        PopupMenuHandler.Pk.fadeOut(300);
+      vF13111.prototype.Qk = function () {
+        vF157.Pk.stop();
+        vF157.Pk.fadeOut(300);
       };
-      return PopupHandler;
+      return vF13111;
     }();
-    var Handler5 = function () {
-      var buyCoins125000 = $("#store-buy-coins_125000");
-      var buyCoins50000 = $("#store-buy-coins_50000");
-      var buyCoins16000 = $("#store-buy-coins_16000");
-      var buyCoins7000 = $("#store-buy-coins_7000");
-      var buyCoins3250 = $("#store-buy-coins_3250");
-      var buyCoins1250 = $("#store-buy-coins_1250");
-      var CoinsStoreHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.coins.tab"), false);
-        var appInstance = initializeApp();
-        var instance = this;
-        buyCoins125000.click(function () {
-          appInstance.r.Cd();
-          instance.Tk("coins_125000");
+    var vF158 = function () {
+      var v$153 = $("#store-buy-coins_125000");
+      var v$154 = $("#store-buy-coins_50000");
+      var v$155 = $("#store-buy-coins_16000");
+      var v$156 = $("#store-buy-coins_7000");
+      var v$157 = $("#store-buy-coins_3250");
+      var v$158 = $("#store-buy-coins_1250");
+      var vF13112 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.coins.tab"), false);
+        var vF12314 = f123();
+        var vThis54 = this;
+        v$153.click(function () {
+          vF12314.r.Cd();
+          vThis54.Tk("coins_125000");
         });
-        buyCoins50000.click(function () {
-          appInstance.r.Cd();
-          instance.Tk("coins_50000");
+        v$154.click(function () {
+          vF12314.r.Cd();
+          vThis54.Tk("coins_50000");
         });
-        buyCoins16000.click(function () {
-          appInstance.r.Cd();
-          instance.Tk("coins_16000");
+        v$155.click(function () {
+          vF12314.r.Cd();
+          vThis54.Tk("coins_16000");
         });
-        buyCoins7000.click(function () {
-          appInstance.r.Cd();
-          instance.Tk("coins_7000");
+        v$156.click(function () {
+          vF12314.r.Cd();
+          vThis54.Tk("coins_7000");
         });
-        buyCoins3250.click(function () {
-          appInstance.r.Cd();
-          instance.Tk("coins_3250");
+        v$157.click(function () {
+          vF12314.r.Cd();
+          vThis54.Tk("coins_3250");
         });
-        buyCoins1250.click(function () {
-          appInstance.r.Cd();
-          instance.Tk("coins_1250");
+        v$158.click(function () {
+          vF12314.r.Cd();
+          vThis54.Tk("coins_1250");
         });
       });
-      CoinsStoreHandler.prototype.a = function () {
-        CoinsStoreHandler.parent.prototype.a.call(this);
+      vF13112.prototype.a = function () {
+        vF13112.parent.prototype.a.call(this);
       };
-      CoinsStoreHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeIn(200);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13112.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeIn(200);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      CoinsStoreHandler.prototype.ji = function () {
-        initializeApp().r.Dd();
+      vF13112.prototype.ji = function () {
+        f123().r.Dd();
       };
-      CoinsStoreHandler.prototype.Tk = function (coinsType) {};
-      return CoinsStoreHandler;
+      vF13112.prototype.Tk = function (p1272) {};
+      return vF13112;
     }();
-    var Handler6 = function () {
-      var highscoreTable = $("#highscore-table");
-      var buttonByLevel = $("#leaders-button-level");
-      var buttonByHighscore = $("#leaders-button-highscore");
-      var buttonByKills = $("#leaders-button-kills");
-      var LeadersHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.leaders.tab"), true);
-        var appInstance = initializeApp();
-        var instance = this;
+    var vF159 = function () {
+      var v$159 = $("#highscore-table");
+      var v$160 = $("#leaders-button-level");
+      var v$161 = $("#leaders-button-highscore");
+      var v$162 = $("#leaders-button-kills");
+      var vF13113 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.leaders.tab"), true);
+        var vF12315 = f123();
+        var vThis55 = this;
         this.Uk = {};
         this.Vk = {
           Wk: {
-            Xk: buttonByLevel,
+            Xk: v$160,
             Yk: "byLevel"
           },
           Zk: {
-            Xk: buttonByHighscore,
+            Xk: v$161,
             Yk: "byHighScore"
           },
           $k: {
-            Xk: buttonByKills,
+            Xk: v$162,
             Yk: "byKillsAndHeadShots"
           }
         };
-        buttonByLevel.click(function () {
-          appInstance.r.Cd();
-          instance._k(instance.Vk.Wk);
+        v$160.click(function () {
+          vF12315.r.Cd();
+          vThis55._k(vThis55.Vk.Wk);
         });
-        buttonByHighscore.click(function () {
-          appInstance.r.Cd();
-          instance._k(instance.Vk.Zk);
+        v$161.click(function () {
+          vF12315.r.Cd();
+          vThis55._k(vThis55.Vk.Zk);
         });
-        buttonByKills.click(function () {
-          appInstance.r.Cd();
-          instance._k(instance.Vk.$k);
+        v$162.click(function () {
+          vF12315.r.Cd();
+          vThis55._k(vThis55.Vk.$k);
         });
       });
-      LeadersHandler.prototype.a = function () {
-        LeadersHandler.parent.prototype.a.call(this);
+      vF13113.prototype.a = function () {
+        vF13113.parent.prototype.a.call(this);
       };
-      LeadersHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeIn(200);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13113.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeIn(200);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      LeadersHandler.prototype.ji = function () {
-        initializeApp().r.Dd();
-        var instance = this;
+      vF13113.prototype.ji = function () {
+        f123().r.Dd();
+        var vThis56 = this;
         this.Sk();
-        $.get(apiUrl + "/pub/leaders", function (data) {
-          instance.Uk = data;
-          instance._k(instance.al ?? instance.Vk.Wk);
-          instance.Qk();
+        $.get(vLSHttpsgatewaywormatei + "/pub/leaders", function (p1273) {
+          vThis56.Uk = p1273;
+          vThis56._k(vThis56.al ?? vThis56.Vk.Wk);
+          vThis56.Qk();
         }).done(function () {
-          instance.Qk();
+          vThis56.Qk();
         });
       };
-      LeadersHandler.prototype._k = function (selected) {
-        this.al = selected;
-        for (var key in this.Vk) {
-          if (this.Vk.hasOwnProperty(key)) {
-            var button = this.Vk[key];
-            button.Xk.removeClass("pressed");
+      vF13113.prototype._k = function (p1274) {
+        this.al = p1274;
+        for (var v1271 in this.Vk) {
+          if (this.Vk.hasOwnProperty(v1271)) {
+            var v1272 = this.Vk[v1271];
+            v1272.Xk.removeClass("pressed");
           }
         }
         this.al.Xk.addClass("pressed");
-        for (var leaderboardData = this.Uk[this.al.Yk], htmlContent = "", i = 0; i < leaderboardData.length; i++) {
-          var entry = leaderboardData[i];
-          htmlContent += "<div class=\"table-row\"><span>" + (i + 1) + "</span><span><img src=\"" + entry.avatarUrl + "\"/></span><span>" + entry.username + "</span><span>" + entry.level + "</span><span>" + entry.highScore + "</span><span>" + entry.headShots + " / " + entry.kills + "</span></div>";
+        for (var v1273 = this.Uk[this.al.Yk], vLS3 = "", vLN084 = 0; vLN084 < v1273.length; vLN084++) {
+          var v1274 = v1273[vLN084];
+          vLS3 += "<div class=\"table-row\"><span>" + (vLN084 + 1) + "</span><span><img src=\"" + v1274.avatarUrl + "\"/></span><span>" + v1274.username + "</span><span>" + v1274.level + "</span><span>" + v1274.highScore + "</span><span>" + v1274.headShots + " / " + v1274.kills + "</span></div>";
         }
-        highscoreTable.empty();
-        highscoreTable.append(htmlContent);
+        v$159.empty();
+        v$159.append(vLS3);
       };
-      return LeadersHandler;
+      return vF13113;
     }();
-    var Handler8 = function () {
-      var loginWithGG = $("#popup-login-gg");
-      var loginWithFB = $("#popup-login-fb");
-      var LoginHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.login.tab"), false);
-        var appInstance = initializeApp();
-        var instance = this;
-        loginWithGG.click(function () {
-          appInstance.r.Cd();
-          instance.Sk();
-          appInstance.u.Qi(function () {
-            instance.Qk();
+    var vF160 = function () {
+      var v$163 = $("#popup-login-gg");
+      var v$164 = $("#popup-login-fb");
+      var vF13114 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.login.tab"), false);
+        var vF12316 = f123();
+        var vThis57 = this;
+        v$163.click(function () {
+          vF12316.r.Cd();
+          vThis57.Sk();
+          vF12316.u.Qi(function () {
+            vThis57.Qk();
           });
           setTimeout(function () {
-            instance.Qk();
+            vThis57.Qk();
           }, 10000);
-          appInstance.u.Zi();
+          vF12316.u.Zi();
         });
-        loginWithFB.click(function () {
-          appInstance.r.Cd();
-          instance.Sk();
-          appInstance.u.Qi(function () {
-            instance.Qk();
+        v$164.click(function () {
+          vF12316.r.Cd();
+          vThis57.Sk();
+          vF12316.u.Qi(function () {
+            vThis57.Qk();
           });
           setTimeout(function () {
-            instance.Qk();
+            vThis57.Qk();
           }, 10000);
-          appInstance.u.Vi();
+          vF12316.u.Vi();
         });
       });
-      LoginHandler.prototype.a = function () {
-        LoginHandler.parent.prototype.a.call(this);
+      vF13114.prototype.a = function () {
+        vF13114.parent.prototype.a.call(this);
       };
-      LoginHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeIn(200);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13114.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeIn(200);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      LoginHandler.prototype.ji = function () {
-        initializeApp().r.Dd();
+      vF13114.prototype.ji = function () {
+        f123().r.Dd();
       };
-      return LoginHandler;
+      return vF13114;
     }();
-    var Handler7 = function () {
-      var profileAvatar = $("#profile-avatar");
-      var profileUsername = $("#profile-username");
-      var profileExperienceBar = $("#profile-experience-bar");
-      var profileExperienceVal = $("#profile-experience-val");
-      var profileLevel = $("#profile-level");
-      var profileStatHighScore = $("#profile-stat-highScore");
-      var profileStatBestSurvivalTime = $("#profile-stat-bestSurvivalTime");
-      var profileStatKills = $("#profile-stat-kills");
-      var profileStatHeadshots = $("#profile-stat-headshots");
-      var profileStatGamesPlayed = $("#profile-stat-gamesPlayed");
-      var profileStatTotalTimeSpent = $("#profile-stat-totalTimeSpent");
-      var profileStatRegistrationDate = $("#profile-stat-registrationDate");
-      var ProfileHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.profile.tab"), true);
+    var vF161 = function () {
+      var v$165 = $("#profile-avatar");
+      var v$166 = $("#profile-username");
+      var v$167 = $("#profile-experience-bar");
+      var v$168 = $("#profile-experience-val");
+      var v$169 = $("#profile-level");
+      var v$170 = $("#profile-stat-highScore");
+      var v$171 = $("#profile-stat-bestSurvivalTime");
+      var v$172 = $("#profile-stat-kills");
+      var v$173 = $("#profile-stat-headshots");
+      var v$174 = $("#profile-stat-gamesPlayed");
+      var v$175 = $("#profile-stat-totalTimeSpent");
+      var v$176 = $("#profile-stat-registrationDate");
+      var vF13115 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.profile.tab"), true);
       });
-      ProfileHandler.prototype.a = function () {
-        ProfileHandler.parent.prototype.a.call(this);
+      vF13115.prototype.a = function () {
+        vF13115.parent.prototype.a.call(this);
       };
-      ProfileHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeIn(200);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13115.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeIn(200);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      ProfileHandler.prototype.ji = function () {
-        var appInstance = initializeApp();
-        appInstance.r.Dd();
-        var registrationDate = appInstance.u.Oi();
-        var formattedDate = moment([registrationDate.year, registrationDate.month - 1, registrationDate.day]).format("LL");
-        profileUsername.html(appInstance.u.wi());
-        profileAvatar.attr("src", appInstance.u.xi());
-        profileExperienceBar.width(appInstance.u.Bi() * 100 / appInstance.u.Ci() + "%");
-        profileExperienceVal.html(appInstance.u.Bi() + " / " + appInstance.u.Ci());
-        profileLevel.html(appInstance.u.Ai());
-        profileStatHighScore.html(appInstance.u.Ii());
-        profileStatBestSurvivalTime.html(formatTime(appInstance.u.Ji()));
-        profileStatKills.html(appInstance.u.Ki());
-        profileStatHeadshots.html(appInstance.u.Li());
-        profileStatGamesPlayed.html(appInstance.u.Mi());
-        profileStatTotalTimeSpent.html(formatTime(appInstance.u.Ni()));
-        profileStatRegistrationDate.html(formattedDate);
+      vF13115.prototype.ji = function () {
+        var vF12317 = f123();
+        vF12317.r.Dd();
+        var v1275 = vF12317.u.Oi();
+        var v1276 = moment([v1275.year, v1275.month - 1, v1275.day]).format("LL");
+        v$166.html(vF12317.u.wi());
+        v$165.attr("src", vF12317.u.xi());
+        v$167.width(vF12317.u.Bi() * 100 / vF12317.u.Ci() + "%");
+        v$168.html(vF12317.u.Bi() + " / " + vF12317.u.Ci());
+        v$169.html(vF12317.u.Ai());
+        v$170.html(vF12317.u.Ii());
+        v$171.html(f128(vF12317.u.Ji()));
+        v$172.html(vF12317.u.Ki());
+        v$173.html(vF12317.u.Li());
+        v$174.html(vF12317.u.Mi());
+        v$175.html(f128(vF12317.u.Ni()));
+        v$176.html(v1276);
       };
-      return ProfileHandler;
+      return vF13115;
     }();
-    var Handler9 = function () {
-      var musicEnabledSwitch = $("#settings-music-enabled-switch");
-      var sfxEnabledSwitch = $("#settings-sfx-enabled-switch");
-      var showNamesSwitch = $("#settings-show-names-switch");
-      var popupLogout = $("#popup-logout");
-      var popupLogoutContainer = $("#popup-logout-container");
-      var popupDeleteAccount = $("#popup-delete-account");
-      var popupDeleteAccountContainer = $("#popup-delete-account-container");
-      var popupWithdrawConsent = $("#popup-withdraw-consent");
-      var SettingsHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.settings.tab"), false);
-        var instance = this;
-        var appInstance = initializeApp();
-        musicEnabledSwitch.click(function () {
-          var isMusicEnabled = !!musicEnabledSwitch.prop("checked");
-          setCookie(cookieData.Me, isMusicEnabled, 30);
-          appInstance.r.td(isMusicEnabled);
-          appInstance.r.Cd();
+    var vF163 = function () {
+      var v$177 = $("#settings-music-enabled-switch");
+      var v$178 = $("#settings-sfx-enabled-switch");
+      var v$179 = $("#settings-show-names-switch");
+      var v$180 = $("#popup-logout");
+      var v$181 = $("#popup-logout-container");
+      var v$182 = $("#popup-delete-account");
+      var v$183 = $("#popup-delete-account-container");
+      var v$184 = $("#popup-withdraw-consent");
+      var vF13116 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.settings.tab"), false);
+        var vThis58 = this;
+        var vF12318 = f123();
+        v$177.click(function () {
+          var v1277 = !!v$177.prop("checked");
+          f125(vF104.Me, v1277, 30);
+          vF12318.r.td(v1277);
+          vF12318.r.Cd();
         });
-        sfxEnabledSwitch.click(function () {
-          var isSfxEnabled = !!sfxEnabledSwitch.prop("checked");
-          setCookie(cookieData.Ne, isSfxEnabled, 30);
-          appInstance.r.rd(isSfxEnabled);
-          appInstance.r.Cd();
+        v$178.click(function () {
+          var v1278 = !!v$178.prop("checked");
+          f125(vF104.Ne, v1278, 30);
+          vF12318.r.rd(v1278);
+          vF12318.r.Cd();
         });
-        showNamesSwitch.click(function () {
-          appInstance.r.Cd();
+        v$179.click(function () {
+          vF12318.r.Cd();
         });
-        popupLogout.click(function () {
-          appInstance.r.Cd();
-          instance.Sk();
+        v$180.click(function () {
+          vF12318.r.Cd();
+          vThis58.Sk();
           setTimeout(function () {
-            instance.Qk();
+            vThis58.Qk();
           }, 2000);
-          appInstance.u.Wi();
+          vF12318.u.Wi();
         });
-        popupDeleteAccount.click(function () {
-          if (appInstance.u.P()) {
-            appInstance.r.Cd();
-            appInstance.s.I(appInstance.s.Vh);
+        v$182.click(function () {
+          if (vF12318.u.P()) {
+            vF12318.r.Cd();
+            vF12318.s.I(vF12318.s.Vh);
           } else {
-            appInstance.r.Hd();
+            vF12318.r.Hd();
           }
         });
-        popupWithdrawConsent.click(function () {
-          if (appInstance.Y()) {
-            appInstance.r.Cd();
-            appInstance.s.I(appInstance.s.Uh);
+        v$184.click(function () {
+          if (vF12318.Y()) {
+            vF12318.r.Cd();
+            vF12318.s.I(vF12318.s.Uh);
           } else {
-            appInstance.r.Hd();
+            vF12318.r.Hd();
           }
         });
       });
-      SettingsHandler.prototype.a = function () {
-        SettingsHandler.parent.prototype.a.call(this);
-        var appInstance = initializeApp();
-        var isMusicEnabled = undefined;
-        switch (getCookie(cookieData.Me)) {
+      vF13116.prototype.a = function () {
+        vF13116.parent.prototype.a.call(this);
+        var vF12319 = f123();
+        var vUndefined49 = undefined;
+        switch (f124(vF104.Me)) {
           case "false":
-            isMusicEnabled = false;
+            vUndefined49 = false;
             break;
           default:
-            isMusicEnabled = true;
+            vUndefined49 = true;
         }
-        musicEnabledSwitch.prop("checked", isMusicEnabled);
-        appInstance.r.td(isMusicEnabled);
-        var isSfxEnabled = undefined;
-        switch (getCookie(cookieData.Ne)) {
+        v$177.prop("checked", vUndefined49);
+        vF12319.r.td(vUndefined49);
+        var vUndefined50 = undefined;
+        switch (f124(vF104.Ne)) {
           case "false":
-            isSfxEnabled = false;
+            vUndefined50 = false;
             break;
           default:
-            isSfxEnabled = true;
+            vUndefined50 = true;
         }
-        sfxEnabledSwitch.prop("checked", isSfxEnabled);
-        appInstance.r.rd(isSfxEnabled);
-        var showNames = undefined;
-        switch (getCookie(cookieData.ya)) {
+        v$178.prop("checked", vUndefined50);
+        vF12319.r.rd(vUndefined50);
+        var vUndefined51 = undefined;
+        switch (f124(vF104.ya)) {
           case "false":
-            showNames = false;
+            vUndefined51 = false;
             break;
           default:
-            showNames = true;
+            vUndefined51 = true;
         }
-        console.log("Load sPN: " + showNames);
-        showNamesSwitch.prop("checked", showNames);
-        appInstance.u.V(function () {
-          popupLogoutContainer.toggle(appInstance.u.P());
-          popupDeleteAccountContainer.toggle(appInstance.u.P());
+        console.log("Load sPN: " + vUndefined51);
+        v$179.prop("checked", vUndefined51);
+        vF12319.u.V(function () {
+          v$181.toggle(vF12319.u.P());
+          v$183.toggle(vF12319.u.P());
         });
       };
-      SettingsHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeIn(200);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13116.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeIn(200);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      SettingsHandler.prototype.ji = function () {
-        var appInstance = initializeApp();
-        appInstance.r.Dd();
-        if (appInstance.Y()) {
-          popupWithdrawConsent.show();
+      vF13116.prototype.ji = function () {
+        var vF12320 = f123();
+        vF12320.r.Dd();
+        if (vF12320.Y()) {
+          v$184.show();
         } else {
-          popupWithdrawConsent.hide();
+          v$184.hide();
         }
       };
-      SettingsHandler.prototype.wa = function () {
-        return showNamesSwitch.prop("checked");
+      vF13116.prototype.wa = function () {
+        return v$179.prop("checked");
       };
-      return SettingsHandler;
+      return vF13116;
     }();
-    var Handler10 = function () {
-      var storeViewCanvas = $("#store-view-canv");
-      var skinDescriptionText = $("#skin-description-text");
-      var skinGroupDescriptionText = $("#skin-group-description-text");
-      var storeLockedBar = $("#store-locked-bar");
-      var storeLockedBarText = $("#store-locked-bar-text");
-      var storeBuyButton = $("#store-buy-button");
-      var storeItemPrice = $("#store-item-price");
-      var storeGroups = $("#store-groups");
-      var storeViewPrev = $("#store-view-prev");
-      var storeViewNext = $("#store-view-next");
-      var StoreHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.skins.tab"), true);
-        var instance = this;
-        var appInstance = initializeApp();
+    var vF164 = function () {
+      var v$185 = $("#store-view-canv");
+      var v$186 = $("#skin-description-text");
+      var v$187 = $("#skin-group-description-text");
+      var v$188 = $("#store-locked-bar");
+      var v$189 = $("#store-locked-bar-text");
+      var v$190 = $("#store-buy-button");
+      var v$191 = $("#store-item-price");
+      var v$192 = $("#store-groups");
+      var v$193 = $("#store-view-prev");
+      var v$194 = $("#store-view-next");
+      var vF13117 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.skins.tab"), true);
+        var vThis59 = this;
+        var vF12321 = f123();
         this.bl = null;
         this.cl = [];
         this.dl = {};
-        this.el = new ViewHandler(storeViewCanvas);
-        storeBuyButton.click(function () {
-          appInstance.r.Cd();
-          instance.fl();
+        this.el = new vF141(v$185);
+        v$190.click(function () {
+          vF12321.r.Cd();
+          vThis59.fl();
         });
-        storeViewPrev.click(function () {
-          appInstance.r.Cd();
-          instance.bl.gl();
+        v$193.click(function () {
+          vF12321.r.Cd();
+          vThis59.bl.gl();
         });
-        storeViewNext.click(function () {
-          appInstance.r.Cd();
-          instance.bl.hl();
+        v$194.click(function () {
+          vF12321.r.Cd();
+          vThis59.bl.hl();
         });
       });
-      StoreHandler.prototype.a = function () {
-        StoreHandler.parent.prototype.a.call(this);
-        var instance = this;
-        var appInstance = initializeApp();
-        appInstance.p.ca(function () {
-          var skinGroups = appInstance.p.Ac();
-          if (skinGroups != null) {
-            instance.cl = [];
-            for (var i = 0; i < skinGroups.skinGroupArrayDict.length; i++) {
-              instance.cl.push(new SkinGroup(instance, skinGroups.skinGroupArrayDict[i]));
+      vF13117.prototype.a = function () {
+        vF13117.parent.prototype.a.call(this);
+        var vThis60 = this;
+        var vF12322 = f123();
+        vF12322.p.ca(function () {
+          var v1279 = vF12322.p.Ac();
+          if (v1279 != null) {
+            vThis60.cl = [];
+            for (var vLN085 = 0; vLN085 < v1279.skinGroupArrayDict.length; vLN085++) {
+              vThis60.cl.push(new vF165(vThis60, v1279.skinGroupArrayDict[vLN085]));
             }
-            instance.dl = {};
-            for (var i = 0; i < skinGroups.skinArrayDict.length; i++) {
-              var skin = skinGroups.skinArrayDict[i];
-              instance.dl[skin.id] = skin;
+            vThis60.dl = {};
+            for (var vLN086 = 0; vLN086 < v1279.skinArrayDict.length; vLN086++) {
+              var v1280 = v1279.skinArrayDict[vLN086];
+              vThis60.dl[v1280.id] = v1280;
             }
           }
         });
         this.il(false);
-        appInstance.t.xh(function () {
-          instance.il(false);
+        vF12322.t.xh(function () {
+          vThis60.il(false);
         });
       };
-      StoreHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeIn(200);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13117.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeIn(200);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      StoreHandler.prototype.ji = function () {
-        initializeApp().r.Dd();
+      vF13117.prototype.ji = function () {
+        f123().r.Dd();
         this.jl();
         this.el.Le(true);
       };
-      StoreHandler.prototype.ei = function () {
+      vF13117.prototype.ei = function () {
         this.el.Le(false);
       };
-      StoreHandler.prototype.Ra = function () {
+      vF13117.prototype.Ra = function () {
         this.el.Ra();
       };
-      StoreHandler.prototype.Pa = function (value1, value2) {
+      vF13117.prototype.Pa = function (p1275, p1276) {
         this.el.Pa();
       };
-      StoreHandler.prototype.jl = function () {
-        var instance = this;
-        var instance = this;
-        var appInstance = initializeApp();
-        storeGroups.empty();
-        for (var i = 0; i < this.cl.length; i++) {
-          (function (index) {
-            var skinGroup = instance.cl[index];
-            var liElement = document.createElement("li");
-            storeGroups.append(liElement);
-            var listItem = $(liElement);
-            listItem.html(skinGroup.kl());
-            listItem.click(function () {
-              appInstance.r.Cd();
-              instance.ll(skinGroup);
+      vF13117.prototype.jl = function () {
+        var vThis61 = this;
+        var vThis62 = this;
+        var vF12323 = f123();
+        v$192.empty();
+        for (var vLN088 = 0; vLN088 < this.cl.length; vLN088++) {
+          (function (p1277) {
+            var v1281 = vThis61.cl[p1277];
+            var v1282 = document.createElement("li");
+            v$192.append(v1282);
+            var v$195 = $(v1282);
+            v$195.html(v1281.kl());
+            v$195.click(function () {
+              vF12323.r.Cd();
+              vThis62.ll(v1281);
             });
-            skinGroup.ml = listItem;
-          })(i);
+            v1281.ml = v$195;
+          })(vLN088);
         }
         if (this.cl.length > 0) {
-          var selectedSkinId = appInstance.t.ha(itemIds.ia);
-          for (var i = 0; i < this.cl.length; i++) {
-            var skinGroup = this.cl[i];
-            for (var skinList = skinGroup.nl.list, j = 0; j < skinList.length; j++) {
-              if (skinList[j] == selectedSkinId) {
-                skinGroup.ol = j;
-                this.ll(skinGroup);
+          var v1283 = vF12323.t.ha(vF124.ia);
+          for (var vLN088 = 0; vLN088 < this.cl.length; vLN088++) {
+            var v1284 = this.cl[vLN088];
+            for (var v1285 = v1284.nl.list, vLN089 = 0; vLN089 < v1285.length; vLN089++) {
+              if (v1285[vLN089] == v1283) {
+                v1284.ol = vLN089;
+                this.ll(v1284);
                 return;
               }
             }
@@ -6593,477 +6803,477 @@ SubOptions.prototype.lg = function (dataView, index) {
           this.ll(this.cl[0]);
         }
       };
-      StoreHandler.prototype.ll = function (skinGroup) {
-        if (this.bl != skinGroup) {
-          var appInstance = initializeApp();
-          this.bl = skinGroup;
-          storeGroups.children().removeClass("pressed");
+      vF13117.prototype.ll = function (p1278) {
+        if (this.bl != p1278) {
+          var vF12324 = f123();
+          this.bl = p1278;
+          v$192.children().removeClass("pressed");
           if (this.bl.ml) {
             this.bl.ml.addClass("pressed");
           }
-          skinGroupDescriptionText.html("");
-          if (skinGroup.nl != null) {
-            var descriptionText = appInstance.p.Ac().textDict[skinGroup.nl.description];
-            if (descriptionText != null) {
-              skinGroupDescriptionText.html(replaceHrefWithTarget(getLocalizedText(descriptionText)));
+          v$187.html("");
+          if (p1278.nl != null) {
+            var v1286 = vF12324.p.Ac().textDict[p1278.nl.description];
+            if (v1286 != null) {
+              v$187.html(f129(f127(v1286)));
             }
           }
           this.il(true);
         }
       };
-      StoreHandler.prototype.pl = function () {
+      vF13117.prototype.pl = function () {
         if (this.bl == null) {
-          return ExampleClass.Yg();
+          return vF117.Yg();
         } else {
           return this.bl.ql();
         }
       };
-      StoreHandler.prototype.fl = function () {
-        var instance = this;
-        this.pl().ah(function (result) {
-          instance.rl(result);
+      vF13117.prototype.fl = function () {
+        var vThis63 = this;
+        this.pl().ah(function (p1279) {
+          vThis63.rl(p1279);
         });
       };
-      StoreHandler.prototype.rl = function (itemId) {
-        var instance = this;
-        var appInstance = initializeApp();
-        var price = this.dl[itemId].price;
-        if (!(appInstance.u.zi() < price)) {
+      vF13117.prototype.rl = function (p1280) {
+        var vThis64 = this;
+        var vF12325 = f123();
+        var v1287 = this.dl[p1280].price;
+        if (!(vF12325.u.zi() < v1287)) {
           this.Sk();
-          var item1 = appInstance.t.ha(itemIds.ia);
-          var item2 = appInstance.t.ha(itemIds.ja);
-          var item3 = appInstance.t.ha(itemIds.ka);
-          var item4 = appInstance.t.ha(itemIds.la);
-          var item5 = appInstance.t.ha(itemIds.ma);
-          appInstance.u.Ui(itemId, itemIds.ia, function () {
-            appInstance.t.Bh(item1, itemIds.ia);
-            appInstance.t.Bh(item2, itemIds.ja);
-            appInstance.t.Bh(item3, itemIds.ka);
-            appInstance.t.Bh(item4, itemIds.la);
-            appInstance.t.Bh(item5, itemIds.ma);
-            if (appInstance.u.Ch(itemId, itemIds.ia)) {
-              appInstance.t.Bh(itemId, itemIds.ia);
+          var v1288 = vF12325.t.ha(vF124.ia);
+          var v1289 = vF12325.t.ha(vF124.ja);
+          var v1290 = vF12325.t.ha(vF124.ka);
+          var v1291 = vF12325.t.ha(vF124.la);
+          var v1292 = vF12325.t.ha(vF124.ma);
+          vF12325.u.Ui(p1280, vF124.ia, function () {
+            vF12325.t.Bh(v1288, vF124.ia);
+            vF12325.t.Bh(v1289, vF124.ja);
+            vF12325.t.Bh(v1290, vF124.ka);
+            vF12325.t.Bh(v1291, vF124.la);
+            vF12325.t.Bh(v1292, vF124.ma);
+            if (vF12325.u.Ch(p1280, vF124.ia)) {
+              vF12325.t.Bh(p1280, vF124.ia);
             }
-            instance.Qk();
+            vThis64.Qk();
           });
         }
       };
-      StoreHandler.prototype.il = function (isVisible) {
-        var appInstance = initializeApp();
-        this.el.bk(appInstance.t.ha(itemIds.ja), false, false);
-        this.el.ck(appInstance.t.ha(itemIds.ka), false, false);
-        this.el.dk(appInstance.t.ha(itemIds.la), false, false);
-        this.el.ek(appInstance.t.ha(itemIds.ma), false, false);
-        var selectedItem = this.pl();
-        if (selectedItem._g()) {
-          var itemId = selectedItem.$g();
-          var itemData = this.dl[itemId];
-          var isLocked = false;
-          if (appInstance.t.Ja(itemId, itemIds.ia)) {
-            storeLockedBar.hide();
-            storeBuyButton.hide();
-          } else if (itemData == null || itemData.nonbuyable == 1) {
-            isLocked = true;
-            storeLockedBar.show();
-            storeBuyButton.hide();
-            storeLockedBarText.text(localizeMessage("index.game.popup.menu.store.locked"));
-            if (itemData != null && itemData.nonbuyable && itemData.nonbuyableCause != null) {
-              var causeText = appInstance.p.Ac().textDict[itemData.nonbuyableCause];
-              if (causeText != null) {
-                storeLockedBarText.text(getLocalizedText(causeText));
+      vF13117.prototype.il = function (p1281) {
+        var vF12326 = f123();
+        this.el.bk(vF12326.t.ha(vF124.ja), false, false);
+        this.el.ck(vF12326.t.ha(vF124.ka), false, false);
+        this.el.dk(vF12326.t.ha(vF124.la), false, false);
+        this.el.ek(vF12326.t.ha(vF124.ma), false, false);
+        var v1293 = this.pl();
+        if (v1293._g()) {
+          var v1294 = v1293.$g();
+          var v1295 = this.dl[v1294];
+          var v1296 = false;
+          if (vF12326.t.Ja(v1294, vF124.ia)) {
+            v$188.hide();
+            v$190.hide();
+          } else if (v1295 == null || v1295.nonbuyable == 1) {
+            v1296 = true;
+            v$188.show();
+            v$190.hide();
+            v$189.text(f126("index.game.popup.menu.store.locked"));
+            if (v1295 != null && v1295.nonbuyable && v1295.nonbuyableCause != null) {
+              var v1297 = vF12326.p.Ac().textDict[v1295.nonbuyableCause];
+              if (v1297 != null) {
+                v$189.text(f127(v1297));
               }
             }
           } else {
-            storeLockedBar.hide();
-            storeBuyButton.show();
-            storeItemPrice.html(itemData.price);
+            v$188.hide();
+            v$190.show();
+            v$191.html(v1295.price);
           }
-          skinDescriptionText.html("");
-          if (itemData != null && itemData.description != null) {
-            var descText = appInstance.p.Ac().textDict[itemData.description];
-            if (descText != null) {
-              skinDescriptionText.html(replaceHrefWithTarget(getLocalizedText(descText)));
+          v$186.html("");
+          if (v1295 != null && v1295.description != null) {
+            var v1298 = vF12326.p.Ac().textDict[v1295.description];
+            if (v1298 != null) {
+              v$186.html(f129(f127(v1298)));
             }
           }
-          StoreSkinID.html(itemData.id);
-          this.el.ak(itemId, true, isLocked);
-          if (isVisible) {
-            appInstance.t.Bh(itemId, itemIds.ia);
+          v$112.html(v1295.id);
+          this.el.ak(v1294, true, v1296);
+          if (p1281) {
+            vF12326.t.Bh(v1294, vF124.ia);
           }
         }
       };
-      var SkinGroup = function () {
-        function SkinGroup(instance, data) {
-          this.sl = instance;
+      var vF165 = function () {
+        function f214(p1282, p1283) {
+          this.sl = p1282;
           this.ol = 0;
-          this.nl = data;
+          this.nl = p1283;
         }
-        SkinGroup.prototype.gl = function () {
+        f214.prototype.gl = function () {
           if (--this.ol < 0) {
             this.ol = this.nl.list.length - 1;
           }
           this.sl.il(true);
         };
-        SkinGroup.prototype.hl = function () {
+        f214.prototype.hl = function () {
           if (++this.ol >= this.nl.list.length) {
             this.ol = 0;
           }
           this.sl.il(true);
         };
-        SkinGroup.prototype.kl = function () {
-          let localizedName = getLocalizedText(this.nl.name);
+        f214.prototype.kl = function () {
+          let vF1272 = f127(this.nl.name);
           if (this.nl.img) {
-            var imgTag = "<img src=\"";
-            imgTag = imgTag + SITE_XTHOST + "/images/paths/" + this.nl.img;
-            localizedName = imgTag = imgTag + "\" height=\"43\" width=\"220\" />";
+            var vLSimgSrc = "<img src=\"";
+            vLSimgSrc = vLSimgSrc + vLSHttps25yt551githubio + "/images/paths/" + this.nl.img;
+            vF1272 = vLSimgSrc = vLSimgSrc + "\" height=\"43\" width=\"220\" />";
           }
-          return localizedName;
+          return vF1272;
         };
-        SkinGroup.prototype.ql = function () {
+        f214.prototype.ql = function () {
           if (this.ol >= this.nl.list.length) {
-            return ExampleClass.Yg();
+            return vF117.Yg();
           } else {
-            return ExampleClass.Zg(this.nl.list[this.ol]);
+            return vF117.Zg(this.nl.list[this.ol]);
           }
         };
-        return SkinGroup;
+        return f214;
       }();
-      return StoreHandler;
+      return vF13117;
     }();
-    var Handler11 = function () {
-      var storeCoinsButton = $("#store-go-coins-button");
-      var storeSkinsButton = $("#store-go-skins-button");
-      var storeWearButton = $("#store-go-wear-button");
-      var PopupMenuHandlerInstance = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.store.tab"), true);
-        var appInstance = initializeApp();
-        storeCoinsButton.click(function () {
-          appInstance.r.Cd();
-          appInstance.s.I(appInstance.s.Wh);
+    var vF166 = function () {
+      var v$196 = $("#store-go-coins-button");
+      var v$197 = $("#store-go-skins-button");
+      var v$198 = $("#store-go-wear-button");
+      var vF13118 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.store.tab"), true);
+        var vF12327 = f123();
+        v$196.click(function () {
+          vF12327.r.Cd();
+          vF12327.s.I(vF12327.s.Wh);
         });
-        storeSkinsButton.click(function () {
-          appInstance.r.Cd();
-          appInstance.s.I(appInstance.s.$h);
+        v$197.click(function () {
+          vF12327.r.Cd();
+          vF12327.s.I(vF12327.s.$h);
         });
-        storeWearButton.click(function () {
-          appInstance.r.Cd();
-          appInstance.s.I(appInstance.s.ai);
+        v$198.click(function () {
+          vF12327.r.Cd();
+          vF12327.s.I(vF12327.s.ai);
         });
       });
-      PopupMenuHandlerInstance.prototype.a = function () {
-        PopupMenuHandlerInstance.parent.prototype.a.call(this);
+      vF13118.prototype.a = function () {
+        vF13118.parent.prototype.a.call(this);
       };
-      PopupMenuHandlerInstance.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeIn(200);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13118.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeIn(200);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      PopupMenuHandlerInstance.prototype.ji = function () {
-        initializeApp().r.Dd();
+      vF13118.prototype.ji = function () {
+        f123().r.Dd();
       };
-      return PopupMenuHandlerInstance;
+      return vF13118;
     }();
-    var Handler12 = function () {
-      var wearViewCanvas = $("#wear-view-canv");
-      var wearDescriptionText = $("#wear-description-text");
-      var wearLockedBar = $("#wear-locked-bar");
-      var wearLockedBarText = $("#wear-locked-bar-text");
-      var wearBuyButton = $("#wear-buy-button");
-      var wearItemPrice = $("#wear-item-price");
-      var wearEyesButton = $("#wear-eyes-button");
-      var wearMouthsButton = $("#wear-mouths-button");
-      var wearGlassesButton = $("#wear-glasses-button");
-      var wearHatsButton = $("#wear-hats-button");
-      var wearTintChooser = $("#wear-tint-chooser");
-      var wearViewPrev = $("#wear-view-prev");
-      var wearViewNext = $("#wear-view-next");
-      var PopupMenuHandlerInstance = inheritPrototype(PopupMenuHandler, function () {
-        var self = this;
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.wear.tab"), true);
-        var appInstance = initializeApp();
-        var currentInstance = this;
+    var vF167 = function () {
+      var v$199 = $("#wear-view-canv");
+      var v$200 = $("#wear-description-text");
+      var v$201 = $("#wear-locked-bar");
+      var v$202 = $("#wear-locked-bar-text");
+      var v$203 = $("#wear-buy-button");
+      var v$204 = $("#wear-item-price");
+      var v$205 = $("#wear-eyes-button");
+      var v$206 = $("#wear-mouths-button");
+      var v$207 = $("#wear-glasses-button");
+      var v$208 = $("#wear-hats-button");
+      var v$209 = $("#wear-tint-chooser");
+      var v$210 = $("#wear-view-prev");
+      var v$211 = $("#wear-view-next");
+      var vF13119 = f131(vF157, function () {
+        var vThis65 = this;
+        vF157.call(this, f126("index.game.popup.menu.wear.tab"), true);
+        var vF12328 = f123();
+        var vThis66 = this;
         this.tl = [];
-        this.ja = new ItemHandler(this, itemIds.ja, wearEyesButton);
-        this.ka = new ItemHandler(this, itemIds.ka, wearMouthsButton);
-        this.la = new ItemHandler(this, itemIds.la, wearGlassesButton);
-        this.ma = new ItemHandler(this, itemIds.ma, wearHatsButton);
+        this.ja = new vF168(this, vF124.ja, v$205);
+        this.ka = new vF168(this, vF124.ka, v$206);
+        this.la = new vF168(this, vF124.la, v$207);
+        this.ma = new vF168(this, vF124.ma, v$208);
         this.ul = null;
         this.vl = null;
         this.wl = null;
         this.xl = null;
         this.yl = null;
         this.zl = null;
-        this.Al = new ViewHandler(wearViewCanvas);
-        wearBuyButton.click(function () {
-          appInstance.r.Cd();
-          currentInstance.Bl();
+        this.Al = new vF141(v$199);
+        v$203.click(function () {
+          vF12328.r.Cd();
+          vThis66.Bl();
         });
-        wearViewPrev.click(function () {
-          appInstance.r.Cd();
-          currentInstance.ul.Cl();
+        v$210.click(function () {
+          vF12328.r.Cd();
+          vThis66.ul.Cl();
         });
-        wearViewNext.click(function () {
-          appInstance.r.Cd();
-          currentInstance.ul.Dl();
+        v$211.click(function () {
+          vF12328.r.Cd();
+          vThis66.ul.Dl();
         });
-        wearEyesButton.click(function () {
-          appInstance.r.Cd();
-          currentInstance.El(self.ja);
+        v$205.click(function () {
+          vF12328.r.Cd();
+          vThis66.El(vThis65.ja);
         });
-        wearMouthsButton.click(function () {
-          appInstance.r.Cd();
-          currentInstance.El(self.ka);
+        v$206.click(function () {
+          vF12328.r.Cd();
+          vThis66.El(vThis65.ka);
         });
-        wearGlassesButton.click(function () {
-          appInstance.r.Cd();
-          currentInstance.El(self.la);
+        v$207.click(function () {
+          vF12328.r.Cd();
+          vThis66.El(vThis65.la);
         });
-        wearHatsButton.click(function () {
-          appInstance.r.Cd();
-          currentInstance.El(self.ma);
+        v$208.click(function () {
+          vF12328.r.Cd();
+          vThis66.El(vThis65.ma);
         });
         this.tl.push(this.ja);
         this.tl.push(this.ka);
         this.tl.push(this.la);
         this.tl.push(this.ma);
       });
-      PopupMenuHandlerInstance.prototype.a = function () {
-        PopupMenuHandlerInstance.parent.prototype.a.call(this);
-        var appInstance = initializeApp();
-        var currentInstance = this;
-        appInstance.p.ca(function () {
-          var data = appInstance.p.Ac();
-          if (data != null) {
-            currentInstance.vl = data.eyesDict;
-            currentInstance.wl = data.mouthDict;
-            currentInstance.xl = data.glassesDict;
-            currentInstance.yl = data.hatDict;
-            currentInstance.zl = data.colorDict;
-            currentInstance.ja.Fl(data.eyesVariantArray);
-            currentInstance.ja.Gl(currentInstance.vl);
-            currentInstance.ka.Fl(data.mouthVariantArray);
-            currentInstance.ka.Gl(currentInstance.wl);
-            currentInstance.la.Fl(data.glassesVariantArray);
-            currentInstance.la.Gl(currentInstance.xl);
-            currentInstance.ma.Fl(data.hatVariantArray);
-            currentInstance.ma.Gl(currentInstance.yl);
+      vF13119.prototype.a = function () {
+        vF13119.parent.prototype.a.call(this);
+        var vF12329 = f123();
+        var vThis67 = this;
+        vF12329.p.ca(function () {
+          var v1299 = vF12329.p.Ac();
+          if (v1299 != null) {
+            vThis67.vl = v1299.eyesDict;
+            vThis67.wl = v1299.mouthDict;
+            vThis67.xl = v1299.glassesDict;
+            vThis67.yl = v1299.hatDict;
+            vThis67.zl = v1299.colorDict;
+            vThis67.ja.Fl(v1299.eyesVariantArray);
+            vThis67.ja.Gl(vThis67.vl);
+            vThis67.ka.Fl(v1299.mouthVariantArray);
+            vThis67.ka.Gl(vThis67.wl);
+            vThis67.la.Fl(v1299.glassesVariantArray);
+            vThis67.la.Gl(vThis67.xl);
+            vThis67.ma.Fl(v1299.hatVariantArray);
+            vThis67.ma.Gl(vThis67.yl);
           }
         });
         this.il(false);
-        appInstance.t.xh(function () {
-          currentInstance.il(false);
+        vF12329.t.xh(function () {
+          vThis67.il(false);
         });
       };
-      PopupMenuHandlerInstance.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeIn(200);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13119.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeIn(200);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      PopupMenuHandlerInstance.prototype.ji = function () {
-        initializeApp().r.Dd();
+      vF13119.prototype.ji = function () {
+        f123().r.Dd();
         this.El(this.ul ?? this.ja);
         this.Al.Le(true);
       };
-      PopupMenuHandlerInstance.prototype.ei = function () {
+      vF13119.prototype.ei = function () {
         this.Al.Le(false);
       };
-      PopupMenuHandlerInstance.prototype.Ra = function () {
+      vF13119.prototype.Ra = function () {
         this.Al.Ra();
       };
-      PopupMenuHandlerInstance.prototype.Pa = function (param1, param2) {
+      vF13119.prototype.Pa = function (p1284, p1285) {
         this.Al.Pa();
       };
-      PopupMenuHandlerInstance.prototype.El = function (item) {
-        this.ul = item;
-        for (var i = 0; i < this.tl.length; i++) {
-          this.tl[i].Xk.removeClass("pressed");
+      vF13119.prototype.El = function (p1286) {
+        this.ul = p1286;
+        for (var vLN090 = 0; vLN090 < this.tl.length; vLN090++) {
+          this.tl[vLN090].Xk.removeClass("pressed");
         }
         this.ul.Xk.addClass("pressed");
         this.ul.ii();
       };
-      PopupMenuHandlerInstance.prototype.Hl = function () {
+      vF13119.prototype.Hl = function () {
         if (this.ul == null) {
-          return ExampleClass.Yg();
+          return vF117.Yg();
         } else {
-          return ExampleClass.Zg({
+          return vF117.Zg({
             Lb: this.ul.ql(),
             rc: this.ul.rc
           });
         }
       };
-      PopupMenuHandlerInstance.prototype.Bl = function () {
-        var currentInstance = this;
-        this.Hl().ah(function (data) {
-          currentInstance.Ui(data.Lb, data.rc);
+      vF13119.prototype.Bl = function () {
+        var vThis68 = this;
+        this.Hl().ah(function (p1287) {
+          vThis68.Ui(p1287.Lb, p1287.rc);
         });
       };
-PopupMenuHandlerInstance.prototype.Ui = function (itemIndex, itemType) {
-    var currentInstance = this;
-    var appInstance = initializeApp();
-    var price; // إزالة التعريف إلى undefined
-    switch (itemType) {
-        case itemIds.ja:
-            price = this.vl[itemIndex].price;
+      vF13119.prototype.Ui = function (p1288, p1289) {
+        var vThis69 = this;
+        var vF12330 = f123();
+        var vUndefined52 = undefined;
+        switch (p1289) {
+          case vF124.ja:
+            vUndefined52 = this.vl[p1288].price;
             break;
-        case itemIds.ka:
-            price = this.wl[itemIndex].price;
+          case vF124.ka:
+            vUndefined52 = this.wl[p1288].price;
             break;
-        case itemIds.la:
-            price = this.xl[itemIndex].price;
+          case vF124.la:
+            vUndefined52 = this.xl[p1288].price;
             break;
-        case itemIds.ma:
-            price = this.yl[itemIndex].price;
+          case vF124.ma:
+            vUndefined52 = this.yl[p1288].price;
             break;
-        default:
+          default:
             return;
-    }
-    if (!(appInstance.u.zi() < price)) {
-        this.Sk();
-        var itemData1 = appInstance.t.ha(itemIds.ia);
-        var itemData2 = appInstance.t.ha(itemIds.ja);
-        var itemData3 = appInstance.t.ha(itemIds.ka);
-        var itemData4 = appInstance.t.ha(itemIds.la);
-        var itemData5 = appInstance.t.ha(itemIds.ma);
-        appInstance.u.Ui(itemIndex, itemType, function () {
-            appInstance.t.Bh(itemData1, itemIds.ia);
-            appInstance.t.Bh(itemData2, itemIds.ja);
-            appInstance.t.Bh(itemData3, itemIds.ka);
-            appInstance.t.Bh(itemData4, itemIds.la);
-            appInstance.t.Bh(itemData5, itemIds.ma);
-            if (appInstance.u.Ch(itemIndex, itemType)) {
-                appInstance.t.Bh(itemIndex, itemType);
+        }
+        if (!(vF12330.u.zi() < vUndefined52)) {
+          this.Sk();
+          var v1300 = vF12330.t.ha(vF124.ia);
+          var v1301 = vF12330.t.ha(vF124.ja);
+          var v1302 = vF12330.t.ha(vF124.ka);
+          var v1303 = vF12330.t.ha(vF124.la);
+          var v1304 = vF12330.t.ha(vF124.ma);
+          vF12330.u.Ui(p1288, p1289, function () {
+            vF12330.t.Bh(v1300, vF124.ia);
+            vF12330.t.Bh(v1301, vF124.ja);
+            vF12330.t.Bh(v1302, vF124.ka);
+            vF12330.t.Bh(v1303, vF124.la);
+            vF12330.t.Bh(v1304, vF124.ma);
+            if (vF12330.u.Ch(p1288, p1289)) {
+              vF12330.t.Bh(p1288, p1289);
             }
-            currentInstance.Qk();
-        });
-    }
-};
-      PopupMenuHandlerInstance.prototype.Il = function (index, itemType) {
-        switch (itemType) {
-          case itemIds.ja:
-            return this.vl[index];
-          case itemIds.ka:
-            return this.wl[index];
-          case itemIds.la:
-            return this.xl[index];
-          case itemIds.ma:
-            return this.yl[index];
+            vThis69.Qk();
+          });
+        }
+      };
+      vF13119.prototype.Il = function (p1290, p1291) {
+        switch (p1291) {
+          case vF124.ja:
+            return this.vl[p1290];
+          case vF124.ka:
+            return this.wl[p1290];
+          case vF124.la:
+            return this.xl[p1290];
+          case vF124.ma:
+            return this.yl[p1290];
         }
         return null;
       };
-      PopupMenuHandlerInstance.prototype.il = function (flag) {
-        var appInstance = initializeApp();
-        this.Al.ak(appInstance.t.ha(itemIds.ia), false, false);
-        this.Al.bk(appInstance.t.ha(itemIds.ja), false, false);
-        this.Al.ck(appInstance.t.ha(itemIds.ka), false, false);
-        this.Al.dk(appInstance.t.ha(itemIds.la), false, false);
-        this.Al.ek(appInstance.t.ha(itemIds.ma), false, false);
-        var itemDetails = this.Hl();
-        if (itemDetails._g()) {
-          var itemInfo = itemDetails.$g();
-          var itemAttributes = this.Il(itemInfo.Lb, itemInfo.rc);
-          var nonBuyable = false;
-          if (appInstance.t.Ja(itemInfo.Lb, itemInfo.rc)) {
-            wearLockedBar.hide();
-            wearBuyButton.hide();
-          } else if (itemAttributes == null || itemAttributes.nonbuyable == 1) {
-            nonBuyable = true;
-            wearLockedBar.show();
-            wearBuyButton.hide();
-            wearLockedBarText.text(localizeMessage("index.game.popup.menu.store.locked"));
-            if (itemAttributes != null && itemAttributes.nonbuyable && itemAttributes.nonbuyableCause != null) {
-              var lockMessage = appInstance.p.Ac().textDict[itemAttributes.nonbuyableCause];
-              if (lockMessage != null) {
-                wearLockedBarText.text(getLocalizedText(lockMessage));
+      vF13119.prototype.il = function (p1292) {
+        var vF12331 = f123();
+        this.Al.ak(vF12331.t.ha(vF124.ia), false, false);
+        this.Al.bk(vF12331.t.ha(vF124.ja), false, false);
+        this.Al.ck(vF12331.t.ha(vF124.ka), false, false);
+        this.Al.dk(vF12331.t.ha(vF124.la), false, false);
+        this.Al.ek(vF12331.t.ha(vF124.ma), false, false);
+        var v1305 = this.Hl();
+        if (v1305._g()) {
+          var v1306 = v1305.$g();
+          var v1307 = this.Il(v1306.Lb, v1306.rc);
+          var v1308 = false;
+          if (vF12331.t.Ja(v1306.Lb, v1306.rc)) {
+            v$201.hide();
+            v$203.hide();
+          } else if (v1307 == null || v1307.nonbuyable == 1) {
+            v1308 = true;
+            v$201.show();
+            v$203.hide();
+            v$202.text(f126("index.game.popup.menu.store.locked"));
+            if (v1307 != null && v1307.nonbuyable && v1307.nonbuyableCause != null) {
+              var v1309 = vF12331.p.Ac().textDict[v1307.nonbuyableCause];
+              if (v1309 != null) {
+                v$202.text(f127(v1309));
               }
             }
           } else {
-            wearLockedBar.hide();
-            wearBuyButton.show();
-            wearItemPrice.html(itemAttributes.price);
+            v$201.hide();
+            v$203.show();
+            v$204.html(v1307.price);
           }
-          wearDescriptionText.html("");
-          if (itemAttributes != null && itemAttributes.description != null) {
-            var descriptionText = appInstance.p.Ac().textDict[itemAttributes.description];
-            if (descriptionText != null) {
-              wearDescriptionText.html(replaceHrefWithTarget(getLocalizedText(descriptionText)));
+          v$200.html("");
+          if (v1307 != null && v1307.description != null) {
+            var v1310 = vF12331.p.Ac().textDict[v1307.description];
+            if (v1310 != null) {
+              v$200.html(f129(f127(v1310)));
             }
           }
-          switch (itemInfo.rc) {
-            case itemIds.ja:
-              this.Al.bk(itemInfo.Lb, true, nonBuyable);
+          switch (v1306.rc) {
+            case vF124.ja:
+              this.Al.bk(v1306.Lb, true, v1308);
               break;
-            case itemIds.ka:
-              this.Al.ck(itemInfo.Lb, true, nonBuyable);
+            case vF124.ka:
+              this.Al.ck(v1306.Lb, true, v1308);
               break;
-            case itemIds.la:
-              this.Al.dk(itemInfo.Lb, true, nonBuyable);
+            case vF124.la:
+              this.Al.dk(v1306.Lb, true, v1308);
               break;
-            case itemIds.ma:
-              this.Al.ek(itemInfo.Lb, true, nonBuyable);
+            case vF124.ma:
+              this.Al.ek(v1306.Lb, true, v1308);
           }
-          if (flag) {
-            appInstance.t.Bh(itemInfo.Lb, itemInfo.rc);
+          if (p1292) {
+            vF12331.t.Bh(v1306.Lb, v1306.rc);
           }
         }
       };
-      var ItemHandler = function () {
-        function ItemHandler(instance, itemType, itemElement) {
-          this.sl = instance;
-          this.rc = itemType;
-          this.Xk = itemElement;
+      var vF168 = function () {
+        function f215(p1293, p1294, p1295) {
+          this.sl = p1293;
+          this.rc = p1294;
+          this.Xk = p1295;
           this.Jl = {};
           this.Kl = [[]];
           this.Ll = -10;
           this.Ml = -10;
         }
-        ItemHandler.prototype.Fl = function (array) {
-          this.Kl = array;
+        f215.prototype.Fl = function (p1296) {
+          this.Kl = p1296;
         };
-        ItemHandler.prototype.Gl = function (data) {
-          this.Jl = data;
+        f215.prototype.Gl = function (p1297) {
+          this.Jl = p1297;
         };
-        ItemHandler.prototype.ii = function () {
-          var appInstance = initializeApp();
-          var itemData = appInstance.t.ha(this.rc);
-          for (var i = 0; i < this.Kl.length; i++) {
-            for (var j = 0; j < this.Kl[i].length; j++) {
-              if (this.Kl[i][j] == itemData) {
-                this.Nl(i);
-                this.Ol(j);
+        f215.prototype.ii = function () {
+          var vF12332 = f123();
+          var v1311 = vF12332.t.ha(this.rc);
+          for (var vLN091 = 0; vLN091 < this.Kl.length; vLN091++) {
+            for (var vLN092 = 0; vLN092 < this.Kl[vLN091].length; vLN092++) {
+              if (this.Kl[vLN091][vLN092] == v1311) {
+                this.Nl(vLN091);
+                this.Ol(vLN092);
                 return;
               }
             }
@@ -7071,339 +7281,321 @@ PopupMenuHandlerInstance.prototype.Ui = function (itemIndex, itemType) {
           this.Nl(0);
           this.Ol(0);
         };
-        ItemHandler.prototype.Cl = function () {
-          var newIndex = this.Ll - 1;
-          if (newIndex < 0) {
-            newIndex = this.Kl.length - 1;
+        f215.prototype.Cl = function () {
+          var v1312 = this.Ll - 1;
+          if (v1312 < 0) {
+            v1312 = this.Kl.length - 1;
           }
-          this.Nl(newIndex);
-          this.Ol(this.Ml % this.Kl[newIndex].length);
+          this.Nl(v1312);
+          this.Ol(this.Ml % this.Kl[v1312].length);
         };
-        ItemHandler.prototype.Dl = function () {
-          var newIndex = this.Ll + 1;
-          if (newIndex >= this.Kl.length) {
-            newIndex = 0;
+        f215.prototype.Dl = function () {
+          var v1313 = this.Ll + 1;
+          if (v1313 >= this.Kl.length) {
+            v1313 = 0;
           }
-          this.Nl(newIndex);
-          this.Ol(this.Ml % this.Kl[newIndex].length);
+          this.Nl(v1313);
+          this.Ol(this.Ml % this.Kl[v1313].length);
         };
-        ItemHandler.prototype.Nl = function (index) {
-          var self = this;
-          if (!(index < 0) && !(index >= this.Kl.length)) {
-            this.Ll = index;
-            wearTintChooser.empty();
-            var items = this.Kl[this.Ll];
-            if (items.length > 1) {
-              for (var i = 0; i < items.length; i++) {
-                (function (itemIndex) {
-                  var itemID = items[itemIndex];
-                  var itemProperties = self.Jl[itemID];
-                  var itemColor = "#" + self.sl.zl[itemProperties.prime];
-                  var itemDiv = $("<div style=\"border-color:" + itemColor + "\"></div>");
-                  itemDiv.click(function () {
-                    initializeApp().r.Cd();
-                    self.Ol(itemIndex);
+        f215.prototype.Nl = function (p1298) {
+          var vThis70 = this;
+          if (!(p1298 < 0) && !(p1298 >= this.Kl.length)) {
+            this.Ll = p1298;
+            v$209.empty();
+            var v1314 = this.Kl[this.Ll];
+            if (v1314.length > 1) {
+              for (var vLN093 = 0; vLN093 < v1314.length; vLN093++) {
+                (function (p1299) {
+                  var v1315 = v1314[p1299];
+                  var v1316 = vThis70.Jl[v1315];
+                  var v1317 = "#" + vThis70.sl.zl[v1316.prime];
+                  var v$212 = $("<div style=\"border-color:" + v1317 + "\"></div>");
+                  v$212.click(function () {
+                    f123().r.Cd();
+                    vThis70.Ol(p1299);
                   });
-                  wearTintChooser.append(itemDiv);
-                })(i);
+                  v$209.append(v$212);
+                })(vLN093);
               }
             }
           }
         };
-ItemHandler.prototype.Ol = function (_0x3c8376) {
-    if (_0x3c8376 >= 0 && _0x3c8376 < this.Kl[this.Ll].length) {
-        this.Ml = _0x3c8376;
-        wearTintChooser.children().css("background-color", "transparent");
-        var _0x443d91 = wearTintChooser.children(":nth-child(" + (1 + _0x3c8376) + ")");
-        _0x443d91.css("background-color", _0x443d91.css("border-color"));
-        this.sl.il(true);
-    }
-};
-        ItemHandler.prototype.ql = function () {
+        f215.prototype.Ol = function (p1300) {
+          if (!(p1300 < 0) && !(p1300 >= this.Kl[this.Ll].length)) {
+            this.Ml = p1300;
+            v$209.children().css("background-color", "transparent");
+            var v1318 = v$209.children(":nth-child(" + (1 + p1300) + ")");
+            v1318.css("background-color", v1318.css("border-color"));
+            this.sl.il(true);
+          }
+        };
+        f215.prototype.ql = function () {
           return this.Kl[this.Ll][this.Ml];
         };
-        return ItemHandler;
+        return f215;
       }();
-      return PopupMenuHandlerInstance;
+      return vF13119;
     }();
-    var Handler3 = function () {
-      var withdrawConsentYesButton = $("#withdraw-consent-yes");
-      var withdrawConsentNoButton = $("#withdraw-consent-no");
-      var WithdrawConsentHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.consent.tab"), false);
-        var appInstance = initializeApp();
-        withdrawConsentYesButton.click(function () {
-          appInstance.r.Cd();
-          if (appInstance.Y()) {
-            appInstance.s.I(appInstance.s.F);
-            appInstance.$(false, true);
-            appInstance.s.aa._(new CustomSkin());
+    var vF171 = function () {
+      var v$213 = $("#withdraw-consent-yes");
+      var v$214 = $("#withdraw-consent-no");
+      var vF13120 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.consent.tab"), false);
+        var vF12333 = f123();
+        v$213.click(function () {
+          vF12333.r.Cd();
+          if (vF12333.Y()) {
+            vF12333.s.I(vF12333.s.F);
+            vF12333.$(false, true);
+            vF12333.s.aa._(new vF178());
           } else {
-            appInstance.s.gi();
+            vF12333.s.gi();
           }
         });
-        withdrawConsentNoButton.click(function () {
-          appInstance.r.Cd();
-          appInstance.s.gi();
+        v$214.click(function () {
+          vF12333.r.Cd();
+          vF12333.s.gi();
         });
       });
-      WithdrawConsentHandler.prototype.a = function () {
-        WithdrawConsentHandler.parent.prototype.a.call(this);
+      vF13120.prototype.a = function () {
+        vF13120.parent.prototype.a.call(this);
       };
-      WithdrawConsentHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeIn(200);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeOut(50);
+      vF13120.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeIn(200);
+        vF157.Ok.stop();
+        vF157.Ok.fadeOut(50);
       };
-      WithdrawConsentHandler.prototype.ji = function () {
-        initializeApp().r.Dd();
+      vF13120.prototype.ji = function () {
+        f123().r.Dd();
       };
-      return WithdrawConsentHandler;
+      return vF13120;
     }();
-    var Handler4 = function () {
-      var deleteAccountTimer = $("#delete-account-timer");
-      var deleteAccountYesButton = $("#delete-account-yes");
-      var deleteAccountNoButton = $("#delete-account-no");
-      var DeleteAccountHandler = inheritPrototype(PopupMenuHandler, function () {
-        PopupMenuHandler.call(this, localizeMessage("index.game.popup.menu.delete.tab"), false);
-        var appInstance = initializeApp();
-        deleteAccountYesButton.click(function () {
-          appInstance.r.Cd();
-          if (appInstance.u.P()) {
-            appInstance.u.bj();
-            appInstance.u.Wi();
+    var vF172 = function () {
+      var v$215 = $("#delete-account-timer");
+      var v$216 = $("#delete-account-yes");
+      var v$217 = $("#delete-account-no");
+      var vF13121 = f131(vF157, function () {
+        vF157.call(this, f126("index.game.popup.menu.delete.tab"), false);
+        var vF12334 = f123();
+        v$216.click(function () {
+          vF12334.r.Cd();
+          if (vF12334.u.P()) {
+            vF12334.u.bj();
+            vF12334.u.Wi();
           } else {
-            appInstance.s.gi();
+            vF12334.s.gi();
           }
         });
-        deleteAccountNoButton.click(function () {
-          appInstance.r.Cd();
-          appInstance.s.gi();
+        v$217.click(function () {
+          vF12334.r.Cd();
+          vF12334.s.gi();
         });
         this.Pl = [];
       });
-      DeleteAccountHandler.prototype.a = function () {
-        DeleteAccountHandler.parent.prototype.a.call(this);
+      vF13121.prototype.a = function () {
+        vF13121.parent.prototype.a.call(this);
       };
-      DeleteAccountHandler.prototype.Rk = function () {
-        PopupMenuHandler.Fk.stop();
-        PopupMenuHandler.Fk.fadeOut(50);
-        PopupMenuHandler.Gk.stop();
-        PopupMenuHandler.Gk.fadeOut(50);
-        PopupMenuHandler.Hk.stop();
-        PopupMenuHandler.Hk.fadeOut(50);
-        PopupMenuHandler.Jk.stop();
-        PopupMenuHandler.Jk.fadeOut(50);
-        PopupMenuHandler.Ik.stop();
-        PopupMenuHandler.Ik.fadeOut(50);
-        PopupMenuHandler.Kk.stop();
-        PopupMenuHandler.Kk.fadeOut(50);
-        PopupMenuHandler.Lk.stop();
-        PopupMenuHandler.Lk.fadeOut(50);
-        PopupMenuHandler.Mk.stop();
-        PopupMenuHandler.Mk.fadeOut(50);
-        PopupMenuHandler.Nk.stop();
-        PopupMenuHandler.Nk.fadeOut(50);
-        PopupMenuHandler.Ok.stop();
-        PopupMenuHandler.Ok.fadeIn(200);
+      vF13121.prototype.Rk = function () {
+        vF157.Fk.stop();
+        vF157.Fk.fadeOut(50);
+        vF157.Gk.stop();
+        vF157.Gk.fadeOut(50);
+        vF157.Hk.stop();
+        vF157.Hk.fadeOut(50);
+        vF157.Jk.stop();
+        vF157.Jk.fadeOut(50);
+        vF157.Ik.stop();
+        vF157.Ik.fadeOut(50);
+        vF157.Kk.stop();
+        vF157.Kk.fadeOut(50);
+        vF157.Lk.stop();
+        vF157.Lk.fadeOut(50);
+        vF157.Mk.stop();
+        vF157.Mk.fadeOut(50);
+        vF157.Nk.stop();
+        vF157.Nk.fadeOut(50);
+        vF157.Ok.stop();
+        vF157.Ok.fadeIn(200);
       };
-      DeleteAccountHandler.prototype.ji = function () {
-        initializeApp().r.Hd();
-        deleteAccountYesButton.stop();
-        deleteAccountYesButton.hide();
-        deleteAccountTimer.stop();
-        deleteAccountTimer.show();
-        deleteAccountTimer.text(".. 10 ..");
+      vF13121.prototype.ji = function () {
+        f123().r.Hd();
+        v$216.stop();
+        v$216.hide();
+        v$215.stop();
+        v$215.show();
+        v$215.text(".. 10 ..");
         this.Ql();
         this.Rl(function () {
-          deleteAccountTimer.text(".. 9 ..");
+          v$215.text(".. 9 ..");
         }, 1000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 8 ..");
+          v$215.text(".. 8 ..");
         }, 2000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 7 ..");
+          v$215.text(".. 7 ..");
         }, 3000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 6 ..");
+          v$215.text(".. 6 ..");
         }, 4000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 5 ..");
+          v$215.text(".. 5 ..");
         }, 5000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 4 ..");
+          v$215.text(".. 4 ..");
         }, 6000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 3 ..");
+          v$215.text(".. 3 ..");
         }, 7000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 2 ..");
+          v$215.text(".. 2 ..");
         }, 8000);
         this.Rl(function () {
-          deleteAccountTimer.text(".. 1 ..");
+          v$215.text(".. 1 ..");
         }, 9000);
         this.Rl(function () {
-          deleteAccountTimer.hide();
-          deleteAccountYesButton.fadeIn(300);
+          v$215.hide();
+          v$216.fadeIn(300);
         }, 10000);
       };
-      DeleteAccountHandler.prototype.Rl = function (callback, delay) {
-        var timeoutId = setTimeout(callback, delay);
-        this.Pl.push(timeoutId);
+      vF13121.prototype.Rl = function (p1301, p1302) {
+        var vSetTimeout5 = setTimeout(p1301, p1302);
+        this.Pl.push(vSetTimeout5);
       };
-      DeleteAccountHandler.prototype.Ql = function () {
-        for (var i = 0; i < this.Pl.length; i++) {
-          clearTimeout(this.Pl[i]);
+      vF13121.prototype.Ql = function () {
+        for (var vLN094 = 0; vLN094 < this.Pl.length; vLN094++) {
+          clearTimeout(this.Pl[vLN094]);
         }
         this.Pl = [];
       };
-      return DeleteAccountHandler;
+      return vF13121;
     }();
-    var BaseHandler = function () {
-      function BaseClass() {
+    var vF175 = function () {
+      function f216() {
         this.Ck = function () {};
       }
-      BaseClass.prototype.Bk = function () {};
-      BaseClass.prototype.ji = function () {};
-      return BaseClass;
+      f216.prototype.Bk = function () {};
+      f216.prototype.ji = function () {};
+      return f216;
     }();
-    var CoinEarnedEvent = function () {
-      var CoinEarnedHandler = inheritPrototype(BaseHandler, function (amount) {
-        BaseHandler.call(this);
-        var uniqueId = Date.now() + "_" + Math.floor(1000 + Math.random() * 8999);
-        this.Sl = $("<div id=\"" + uniqueId + "\" class=\"toaster toaster-coins\">    <img class=\"toaster-coins-img\" alt=\"Wormate Coin\" src=\"/images/coin_320.png\" />    <div class=\"toaster-coins-val\">+" + amount + "</div>    <div class=\"toaster-coins-close\">" + localizeMessage("index.game.toaster.continue") + "</div></div>");
-        var self = this;
+    var vF176 = function () {
+      var vF13122 = f131(vF175, function (p1303) {
+        vF175.call(this);
+        var v1319 = Date.now() + "_" + Math.floor(1000 + Math.random() * 8999);
+        this.Sl = $("<div id=\"" + v1319 + "\" class=\"toaster toaster-coins\">    <img class=\"toaster-coins-img\" alt=\"Wormate Coin\" src=\"/images/coin_320.png\" />    <div class=\"toaster-coins-val\">+" + p1303 + "</div>    <div class=\"toaster-coins-close\">" + f126("index.game.toaster.continue") + "</div></div>");
+        var vThis71 = this;
         this.Sl.find(".toaster-coins-close").click(function () {
-          initializeApp().r.Cd();
-          self.Ck();
+          f123().r.Cd();
+          vThis71.Ck();
         });
       });
-      CoinEarnedHandler.prototype.Bk = function () {
+      vF13122.prototype.Bk = function () {
         return this.Sl;
       };
-      CoinEarnedHandler.prototype.ji = function () {
-        initializeApp().r.Fd();
+      vF13122.prototype.ji = function () {
+        f123().r.Fd();
       };
-      return CoinEarnedHandler;
+      return vF13122;
     }();
-    var LevelUpEvent = function () {
-      var LevelUpHandler = inheritPrototype(BaseHandler, function (level) {
-        BaseHandler.call(this);
-        var uniqueId = Date.now() + "_" + Math.floor(1000 + Math.random() * 8999);
-        this.Sl = $("<div id=\"" + uniqueId + "\" class=\"toaster toaster-levelup\">    <img class=\"toaster-levelup-img\" alt=\"Wormate Level Up Star\" src=\"/images/level-star.svg\" />    <div class=\"toaster-levelup-val\">" + level + "</div>    <div class=\"toaster-levelup-text\">" + localizeMessage("index.game.toaster.levelup") + "</div>    <div class=\"toaster-levelup-close\">" + localizeMessage("index.game.toaster.continue") + "</div></div>");
-        var self = this;
+    var vF177 = function () {
+      var vF13123 = f131(vF175, function (p1304) {
+        vF175.call(this);
+        var v1320 = Date.now() + "_" + Math.floor(1000 + Math.random() * 8999);
+        this.Sl = $("<div id=\"" + v1320 + "\" class=\"toaster toaster-levelup\">    <img class=\"toaster-levelup-img\" alt=\"Wormate Level Up Star\" src=\"/images/level-star.svg\" />    <div class=\"toaster-levelup-val\">" + p1304 + "</div>    <div class=\"toaster-levelup-text\">" + f126("index.game.toaster.levelup") + "</div>    <div class=\"toaster-levelup-close\">" + f126("index.game.toaster.continue") + "</div></div>");
+        var vThis72 = this;
         this.Sl.find(".toaster-levelup-close").click(function () {
-          initializeApp().r.Cd();
-          self.Ck();
+          f123().r.Cd();
+          vThis72.Ck();
         });
       });
-      LevelUpHandler.prototype.Bk = function () {
+      vF13123.prototype.Bk = function () {
         return this.Sl;
       };
-      LevelUpHandler.prototype.ji = function () {
-        initializeApp().r.Ed();
+      vF13123.prototype.ji = function () {
+        f123().r.Ed();
       };
-      return LevelUpHandler;
+      return vF13123;
     }();
-    var CustomSkin = function () {
-      var CustomSkinHandler = inheritPrototype(BaseHandler, function () {
-        BaseHandler.call(this);
-        var self = this;
-        var appInstance = initializeApp();
-        var uniqueId = Date.now() + "_" + Math.floor(1000 + Math.random() * 8999);
-        this.Sl = $(`
-    <div id="${uniqueId}" class="toaster toaster-consent-accepted">
-        <img class="toaster-consent-accepted-logo" src="${logoUrl}" alt="Wormate.io logo"/>
-        <div class="toaster-consent-accepted-container">
-            <span class="toaster-consent-accepted-text">
-                ${localizeMessage("index.game.toaster.consent.text").replaceAll(" ", "&nbsp;").replaceAll("\n", "<br/>")}
-            </span>
-            <a class="toaster-consent-accepted-link" href="/privacy-policy">
-                ${localizeMessage("index.game.toaster.consent.link")}
-            </a>
-        </div>
-        <div class="toaster-consent-close">
-            ${localizeMessage("index.game.toaster.consent.iAccept")}
-        </div>
-    </div>
-`);
+    var vF178 = function () {
+      var vF13124 = f131(vF175, function () {
+        vF175.call(this);
+        var vThis73 = this;
+        var vF12335 = f123();
+        var v1321 = Date.now() + "_" + Math.floor(1000 + Math.random() * 8999);
+        this.Sl = $("<div id=\"" + v1321 + "\" class=\"toaster toaster-consent-accepted\">    <img class=\"toaster-consent-accepted-logo\" src=\"" + vLSimageslinelogoxmas20 + "\" alt=\"Wormate.io logo\"/>    <div class=\"toaster-consent-accepted-container\">        <span class=\"toaster-consent-accepted-text\">" + f126("index.game.toaster.consent.text").replaceAll(" ", "&nbsp;").replaceAll("\n", "<br/>") + "</span>        <a class=\"toaster-consent-accepted-link\" href=\"/privacy-policy\">" + f126("index.game.toaster.consent.link") + "</a>    </div>    <div class=\"toaster-consent-close\">" + f126("index.game.toaster.consent.iAccept") + "</div></div>");
         this.Tl = this.Sl.find(".toaster-consent-close");
         this.Tl.hide();
         this.Tl.click(function () {
-          appInstance.r.Cd();
-          if (appInstance.Y()) {
-            appInstance.$(true, true);
+          vF12335.r.Cd();
+          if (vF12335.Y()) {
+            vF12335.$(true, true);
           }
-          self.Ck();
+          vThis73.Ck();
         });
       });
-      CustomSkinHandler.prototype.Bk = function () {
+      vF13124.prototype.Bk = function () {
         return this.Sl;
       };
-      CustomSkinHandler.prototype.ji = function () {
-        var self = this;
-        var appInstance = initializeApp();
-        if (appInstance.Y() && !appInstance.Z()) {
-          appInstance.r.Hd();
+      vF13124.prototype.ji = function () {
+        var vThis74 = this;
+        var vF12336 = f123();
+        if (vF12336.Y() && !vF12336.Z()) {
+          vF12336.r.Hd();
           setTimeout(function () {
-            self.Tl.fadeIn(300);
+            vThis74.Tl.fadeIn(300);
           }, 2000);
         } else {
           setTimeout(function () {
-            self.Ck();
+            vThis74.Ck();
           }, 0);
         }
       };
-      return CustomSkinHandler;
+      return vF13124;
     }();
-    var appConfigData = {};
-    appConfigData.main = {
-      Ma: createBannerManager("aqnvgcpz05orkobh", "WRM_wormate-io_300x250"),
-      K: createBannerManager("ltmolilci1iurq1i", "wormate-io_970x250"),
-      ra: initializeAdBlocker(),
+    var vO19 = {};
+    vO19.main = {
+      Ma: f147("aqnvgcpz05orkobh", "WRM_wormate-io_300x250"),
+      K: f147("ltmolilci1iurq1i", "wormate-io_970x250"),
+      ra: f144(),
       e: 4,
       oa: false,
       qk: true
     };
-    appConfigData.miniclip = {
-      Ma: createBannerManager("aqnvgcpz05orkobh", "WRM_wormate-io_300x250"),
-      K: createBannerManager("ltmolilci1iurq1i", "wormate-io_970x250"),
-      ra: initializeAdBlocker(),
+    vO19.miniclip = {
+      Ma: f147("aqnvgcpz05orkobh", "WRM_wormate-io_300x250"),
+      K: f147("ltmolilci1iurq1i", "wormate-io_970x250"),
+      ra: f144(),
       e: 4,
       oa: false,
       qk: false
     };
-appConfig = appConfig || appConfigData.main; // استبدل ||= بـ = || 
-
-var appConfig = appConfigData[window.ENV];
-appConfig = appConfig || appConfigData.main; // استبدل ||= بـ = || 
-
-$(function () {
-    FastClick.attach(document.body);
-});
-    addEventListener("contextmenu", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
+    var v1322 = vO19[window.ENV];
+    v1322 ||= vO19.main;
+    $(function () {
+      FastClick.attach(document.body);
+    });
+    addEventListener("contextmenu", function (p1305) {
+      p1305.preventDefault();
+      p1305.stopPropagation();
       return false;
     });
-    loadScript("//connect.facebook.net/" + geoLocation + "/sdk.js", "facebook-jssdk", function () {
+    f130("//connect.facebook.net/" + vUndefined27 + "/sdk.js", "facebook-jssdk", function () {
       FB.init({
         appId: "861926850619051",
         cookie: true,
@@ -7412,364 +7604,338 @@ $(function () {
         version: "v8.0"
       });
     });
-    loadScript("//apis.google.com/js/api:client.js", null, function () {
+    f130("//apis.google.com/js/api:client.js", null, function () {
       gapi.load("auth2", function () {
-        GoogleAuth = gapi.auth2.init({
+        v807 = gapi.auth2.init({
           client_id: "959425192138-qjq23l9e0oh8lgd2icnblrbfblar4a2f.apps.googleusercontent.com"
         });
       });
     });
-    appInstance = _0x4f9dac();
-    appInstance.v();
-    if (PhoneChecked()) {
-      loadScript("https://www.baddawi.com/FDZ/js/custom-game.js", "mobileconfig", function () {
-        setupJoyConfig();
+    vUndefined28 = f148();
+    vUndefined28.v();
+    if (vF88()) {
+      f130("https://foghunter06.github.io/exetnsion/js/joy.min.js", "mobileconfig", function () {
+        vF179();
       });
     }
-    let setupJoyConfig = function () {
-              $("#game-canvas").after(`
-            <div id='zoom-container'>
-                <div id='zoom-out'>
-                    <i class="fas fa-search-minus"></i> -  <!-- أيقونة الزوم للخلف -->
-                </div>
-                <div id='zoom-in'>
-                    <i class="fas fa-search-plus"></i> +  <!-- أيقونة الزوم للأمام -->
-                </div>
-            </div>
-        `);
+    let vF179 = function () {
+      $("#game-canvas").after("<div id='zoom-container'><div id='zoom-in'>+</div><div id='zoom-out'>-</div></div>");
     };
-    window.addEventListener("keydown", function (event) {
-      console.log("event.keyCode " + event.keyCode);
-      event = event.which || event.keyCode || 0;
-      if (event !== 113 && window.keyMove !== event || !isPlaying || PilotoAutomatico) {
-        clearInterval(PilotoAutomatico);
-        PilotoAutomatico = null;
+    window.keyMove = "q";
+    window.addEventListener("keydown", function (p1306) {
+      console.log("event.key: " + p1306.key);
+      if (p1306.key.toLowerCase() !== "q" || !v786 || v785 !== null) {
+        if (v785 !== null) {
+          clearInterval(v785);
+          v785 = null;
+        }
       } else {
-        let primaryEventIndex = theoEvents.eventoPrincipal.sk = 0;
-        event = window.tuNewScore;
-        PilotoAutomatico = setInterval(function () {
-          let skValue = parseFloat(theoEvents.eventoPrincipal.sk);
-          theoEvents.eventoPrincipal.sk = (skValue >= Math.PI ? -skValue : skValue) + (primaryEventIndex === 20 ? 0 : Math.PI / 20);
-          primaryEventIndex++;
-        }, 120 + (event >= 100000 ? 5 : event >= 10000 ? 10 : 0));
+        let vLN095 = 0;
+        const v1323 = window.tuNewScore;
+        if (v785 !== null) {
+          clearInterval(v785);
+        }
+        v785 = setInterval(function () {
+          let v1324 = Math.PI / 4;
+          let v1325 = 165 + (v1323 >= 100000 ? 5 : v1323 >= 10000 ? 10 : 0);
+          vO3.eventoPrincipal.sk += v1324;
+          if (vO3.eventoPrincipal.sk >= Math.PI * 2) {
+            vO3.eventoPrincipal.sk -= Math.PI * 2;
+          } else if (vO3.eventoPrincipal.sk <= Math.PI * -2) {
+            vO3.eventoPrincipal.sk += Math.PI * 2;
+          }
+          let v1326 = document.getElementById("elementId");
+          if (v1326) {
+            v1326.style.transform = "rotate(" + vO3.eventoPrincipal.sk + "rad)";
+          }
+        }, 165 + (v1323 >= 100000 ? 5 : v1323 >= 10000 ? 10 : 0));
       }
-      localStorage.setItem("SaveGameXT", JSON.stringify(theoKzObjects));
+      localStorage.setItem("SaveGameXT", JSON.stringify(vO4));
     }, false);
-    let cursorOptions = [{
-      nombre: "chuot 1",
-      url: "https://i.imgur.com/SjFtyqp.png"
-    }, {
-      nombre: "chuot 2",
-      url: "https://i.imgur.com/4QC2Exd.png"
-    }, {
-      nombre: "chuot 3",
-      url: "https://i.imgur.com/PfdBkc2.png"
-    }, {
-      nombre: "chuot 4",
-      url: "https://i.imgur.com/vD4zoMk.png"
-    }, {
-      nombre: "chuot 5",
-      url: "https://i.imgur.com/n4N79UI.png"
-    }, {
-      nombre: "arrow",
-      url: "https://cdn.custom-cursor.com/db/234/32/arrow2291.png"
-    }, {
-      nombre: "Superman",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/Superman_Cursor.png"
-    }, {
-      nombre: "Kratos",
-      url: "https://cdn.custom-cursor.com/128/assets/pointers/32/GOW_Kratos_Pointer.png"
-    }, {
-      nombre: "Pusheen_Ca",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/Pusheen_Cat_Cursor.png"
-    }, {
-      nombre: "lipstick",
-      url: "https://cdn.custom-cursor.com/db/15214/32/sailor-moon-fish-eye-and-lipstick-cursor.png"
-    }, {
-      nombre: "AKM",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/PUBG_AKM_Cursor.png"
-    }, {
-      nombre: "Cherries_Pointer",
-      url: "https://cdn.custom-cursor.com/db/pointer/32/Cherries_Pointer.png"
-    }, {
-      nombre: "Tom_and_JerryCurso",
-      url: "https://cdn.custom-cursor.com/db/cursor/32/Tom_and_JerryCursor.png"
-    }, {
-      nombre: "JerryPointer",
-      url: "https://cdn.custom-cursor.com/db/pointer/32/Tom_and_JerryPointer.png"
-    }];
-    let backgroundOptions = [{
-      nombre: "Default",
-      url: "https://i.imgur.com/8ubx4RA.png"
-    }, {
-      nombre: "Schwarze Background",
-      url: "https://i.imgur.com/3cxXwZ6.png"
-    }, {
-      nombre: "light blue",
-      url: "https://i.imgur.com/dWtJFIx.png"
-    }, {
-      nombre: "woman",
-      url: "https://i.imgur.com/19YALRi.png"
-    }, {
-      nombre: "Navidad",
-      url: "https://i.imgur.com/qAO9LgC.png"
-    }, {
-      nombre: "Mal3ab",
-      url: "https://i.imgur.com/MlCgOma.png"
-    }, {
-      nombre: "Galaxy_Star",
-      url: "https://i.imgur.com/yayb9Ru.png"
-    }, {
-      nombre: "Desert",
-      url: "https://asserts.wormworld.io/backgrounds/bkgnd7.png"
-    }];
-	
-    theoKzObjects.loading = true;
-    var htmlContent = "";
-    htmlContent += "</div>";
-    htmlContent += "</div>";
-    htmlContent += "</div>";
-    htmlContent += "<div id=\"wormcerca\">";
-    htmlContent += "<img class=\"pwrups v0\" style=\"display: none;\" src=\"https://i.imgur.com/M1LFPpp.png\">";
-    htmlContent += "<img class=\"pwrups v1\" style=\"display: none;\" src=\"https://i.imgur.com/z162iYa.png\">";
-    htmlContent += "<img class=\"pwrups v2\" style=\"display: none;\" src=\"https://i.imgur.com/kXlF32q.png\">";
-    htmlContent += "<img class=\"pwrups v3\" style=\"display: none;\" src=\"https://i.imgur.com/kJ6oz7e.png\">";
-    htmlContent += "<img class=\"pwrups v4\" style=\"display: none;\" src=\"https://i.imgur.com/l3ds43O.png\">";
-    htmlContent += "<img class=\"pwrups v5\" style=\"display: none;\" src=\"https://i.imgur.com/FqA56k6.png\">";
-    htmlContent += "<img class=\"pwrups v6\" style=\"display: none;\" src=\"https://i.imgur.com/mSCZeEp.png\">";
-    htmlContent += "</div>";
-    htmlContent += "<img class=\"worm_1\" src=\"https://i.imgur.com/iekrYYm.png\"><span class=\"Worm_cerca\"></span>";
-    htmlContent += "\n      \n         <div style=\"display:none\" id=\"zoom-container\">\n            <div id=\"zoom-out\">-</div>\n            <div id=\"zoom-in\">+</div>\n         </div>\n         <div class=\"worm_3\">x.<span id=\"zoom-percentage\"></span></div>\n         <div class=\"worm_2\">\n            <button id=\"settingBtn\"><i class=\"fa fa-solid fa-gear\"></i></button>\n            <div id=\"settingContent\">\n                \n                <div class=\"container1\">\n                    <span class=\"settings_span\">تدور بسرعة: </span>\n                    <input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"" + theoKzObjects.smoothCamera + "\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" />\n                </div>\n                \n                <div class=\"container1\">\n                    <span class=\"settings_span\">تعزيزات القوة - الحجم: </span>\n                    <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"" + theoKzObjects.PortionSize + "\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n                </div>\n                \n                <div class=\"container1\">\n                    <span class=\"settings_span\">تعزيزات القوة - الهالة: </span>\n                    <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"" + theoKzObjects.PortionAura + "\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n                </div>\n                \n                <div class=\"container1\">\n                    <span class=\"settings_span\">حجم الطعام: </span>\n                    <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"" + theoKzObjects.FoodSize + "\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n                </div>\n                <div class=\"container1\">\n                    <span class=\"settings_span\">ظل الطعام: </span>\n                    <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"" + theoKzObjects.FoodShadow + "\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n                </div>\n            </div>\n         </div>\n";
-    $("#game-view").append(htmlContent);
-    function updateUserData(userData) {
-      if (theoKzObjects.PropertyManager) {
-        userData.skinId = theoKzObjects.PropertyManager.rh;
-        userData.eyesId = theoKzObjects.PropertyManager.sh;
-        userData.mouthId = theoKzObjects.PropertyManager.th;
-        userData.glassesId = theoKzObjects.PropertyManager.uh;
-        userData.hatId = theoKzObjects.PropertyManager.vh;
+let vA17 = [{ nombre: "chuot 1", url: "https://i.imgur.com/SjFtyqp.png" }, { nombre: "chuot 2", url: "https://i.imgur.com/4QC2Exd.png" }, { nombre: "chuot 3", url: "https://i.imgur.com/PfdBkc2.png" }, { nombre: "chuot 4", url: "https://i.imgur.com/vD4zoMk.png" }, { nombre: "chuot 5", url: "https://i.imgur.com/n4N79UI.png" }, { nombre: "arrow", url: "https://cdn.custom-cursor.com/db/234/32/arrow2291.png" }, { nombre: "Superman", url: "https://cdn.custom-cursor.com/db/cursor/32/Superman_Cursor.png" }, { nombre: "Kratos", url: "https://cdn.custom-cursor.com/128/assets/pointers/32/GOW_Kratos_Pointer.png" }, { nombre: "Pusheen_Ca", url: "https://cdn.custom-cursor.com/db/cursor/32/Pusheen_Cat_Cursor.png" }, { nombre: "lipstick", url: "https://i.imgur.com/zNlNdlx.png" }, { nombre: "AKM", url: "https://cdn.custom-cursor.com/db/cursor/32/PUBG_AKM_Cursor.png" }, { nombre: "Cherries_Pointer", url: "https://cdn.custom-cursor.com/db/pointer/32/Cherries_Pointer.png" }, { nombre: "Tom_and_JerryCurso", url: "https://cdn.custom-cursor.com/db/cursor/32/Tom_and_JerryCursor.png" }, { nombre: "JerryPointer", url: "https://cdn.custom-cursor.com/db/pointer/32/Tom_and_JerryPointer.png" }]; let vA18 = [{ nombre: "Default", url: "https://i.imgur.com/8ubx4RA.png" }, { nombre: "Schwarze Background", url: "https://i.imgur.com/3cxXwZ6.png" }, { nombre: "light blue", url: "https://i.imgur.com/dWtJFIx.png" }, { nombre: "woman", url: "https://i.imgur.com/19YALRi.png" }, { nombre: "Navidad", url: "https://i.imgur.com/PSRIvVM.png" }, { nombre: "Mal3ab", url: "https://i.imgur.com/MlCgOma.png" }, { nombre: "Galaxy_Star", url: "https://i.imgur.com/yayb9Ru.png" }, { nombre: "Desert", url: "https://asserts.wormworld.io/backgrounds/bkgnd7.png" }]; vO4.loading = true; var vLS4 = ""; vLS4 += "</div>"; vLS4 += "</div>"; vLS4 += "</div>"; vLS4 += "<div id=\"wormcerca\">"; vLS4 += "<img class=\"pwrups v0\" style=\"display: none;\" src=\"https://i.imgur.com/M1LFPpp.png\">"; vLS4 += "<img class=\"pwrups v1\" style=\"display: none;\" src=\"https://i.imgur.com/z162iYa.png\">"; vLS4 += "<img class=\"pwrups v2\" style=\"display: none;\" src=\"https://i.imgur.com/kXlF32q.png\">"; vLS4 += "<img class=\"pwrups v3\" style=\"display: none;\" src=\"https://i.imgur.com/kJ6oz7e.png\">"; vLS4 += "<img class=\"pwrups v4\" style=\"display: none;\" src=\"https://i.imgur.com/l3ds43O.png\">"; vLS4 += "<img class=\"pwrups v5\" style=\"display: none;\" src=\"https://i.imgur.com/FqA56k6.png\">"; vLS4 += "<img class=\"pwrups v6\" style=\"display: none;\" src=\"https://i.imgur.com/mSCZeEp.png\">"; vLS4 += "</div>"; vLS4 += "<img class=\"worm_1\" src=\"https://i.imgur.com/iekrYYm.png\"><span class=\"Worm_cerca\"></span>"; vLS4 += "</div><div class=\"worm_4\"><button id=\"settingBtn\"><img src=\"https://i.imgur.com/bKAe6W9.png\"/></button><div id=\"settingContent\"><div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n <span class=\"settings_span\">Power-ups-Size: </span>\n <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n </div>\n \n <div class=\"container1\">\n <span class=\"settings_span\">Power-ups-Aura: </span>\n <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n </div>\n \n <div class=\"container1\">\n <span class=\"settings_span\">Food-Size: </span>\n <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n </div>\n <div class=\"container1\">\n <span class=\"settings_span\">Food-Shadow: </span>\n <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n </div>\n </div>\n </div><div style=\"display:none\" id=\"zoom-container\"><div id=\"zoom-out\">-</div><div id=\"zoom-in\">+</div><div class=\"worm_3\">x.<span id=\"zoom-percentage\"></span>"; $("#game-view").append(vLS4); function f217(p1307) { if (vO4.PropertyManager) { p1307.skinId = vO4.PropertyManager.rh; p1307.eyesId = vO4.PropertyManager.sh; p1307.mouthId = vO4.PropertyManager.th; p1307.glassesId = vO4.PropertyManager.uh; p1307.hatId = vO4.PropertyManager.vh; } } function f218() { // ======================= // تحديث واجهة الإعدادات // ======================= $("#mm-event-text").replaceWith( '<div class="text-vnxx"><a href="https://www.wormateup.live">privat</a></div>' ); $("#mm-store").after( <div id="mm-settings" style="float:right;position:relative;margin-right:10px;min-width:140px;"> <div id="settings-wrapper"> <div id="openSettings" style="cursor:pointer;"> <i class="fa fa-cog fa-spin" style="color:yellow;font-size:25px;"></i> Settings </div> <div id="popup" class="popup" style="display:none;"> <div class="phdr1" style="display:flex;align-items:center;justify-content:center;"> <i class="fa fa-cog fa-spin" style="color:yellow;font-size:22px;margin-right:5px;"></i> <span>Game Settings</span> </div> <button id="closePopup">Close</button> <div class="tab-buttons" style="display:flex;gap:5px;margin:10px 0;"> <button data-tab="game" class="active">Game</button> <button data-tab="messages">Messages</button> </div> <div class="tab-content active" id="tab-game"> <div style="margin-bottom:5px;"> ID: <input type="text" value="${vO4.FB_UserID}" readonly style="width:100px;"> <button id="copyID">COPY</button> </div> <label> Eat Fast: <input type="checkbox" id="eatFast"> </label> <label> Headshot Sound: <input type="checkbox" id="hsSound"> </label> <select id="soundSelect"> <option value="">None</option> <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option> <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option> </select> </div> <div class="tab-content" id="tab-messages"> <div style="margin-bottom:5px;"> Kill Message: <select id="killSelect"> <option value="Well Done!">حاول مجددا بوت !</option> <option value="Nice Try">حريكااا الحيط</option> </select> </div> <div style="margin-bottom:5px;"> Headshot Message: <select id="headshotSelect"> <option value="HEADSHOT">اديلو ادي</option> <option value="BOOM">علوبي بوت</option> </select> </div> <button id="saveMessages">Save</button> </div> </div> </div> </div> ); // ======================= // عناصر التحكم // ======================= const popup = $("#popup"); const audio = new Audio(); // فتح وغلق البوب اب $("#openSettings").on("click", () => popup.show()); $("#closePopup").on("click", () => popup.hide()); // نسخ الـ ID $("#copyID").on("click", () => navigator.clipboard.writeText(vO4.FB_UserID)); // التبويبات $(".tab-buttons button").on("click", function () { $(".tab-buttons button").removeClass("active"); $(this).addClass("active"); $(".tab-content").removeClass("active"); $("#tab-" + $(this).data("tab")).addClass("active"); }); // التحكم بالصوت $("#soundSelect").on("change", function () { const src = this.value; localStorage.setItem("hsSoundSrc", src); if ($("#hsSound").prop("checked")) { audio.src = src; audio.play(); } }); $("#hsSound").on("change", function () { localStorage.setItem("hsSoundEnabled", this.checked); if (!this.checked) audio.pause(); }); // حفظ الرسائل $("#saveMessages").on("click", () => { localStorage.setItem("killMsg", $("#killSelect").val()); localStorage.setItem("hsMsg", $("#headshotSelect").val()); alert("Messages saved!"); }); // ======================= // تحميل الإعدادات المخزنة // ======================= (function loadSettings() { $("#killSelect").val(localStorage.getItem("killMsg")); $("#headshotSelect").val(localStorage.getItem("hsMsg")); $("#hsSound").prop("checked", localStorage.getItem("hsSoundEnabled") === "true"); $("#soundSelect").val(localStorage.getItem("hsSoundSrc")); })(); $("#PortionSize").on("input", function () { vO4.PortionSize = $(this).val(); localStorage.PotenciadorSize = vO4.PortionSize; }); $("#PortionAura").on("input", function () { vO4.PortionAura = $(this).val(); localStorage.PotenciadorAura = vO4.PortionAura; }); $("#smoothCamera").on("input", function () { vO4.smoothCamera = $(this).val(); localStorage.smoothCamera = vO4.smoothCamera; }); $("#FoodSize").on("input", function () { vO4.FoodSize = $(this).val(); localStorage.ComidaSize = vO4.FoodSize; }); $("#FoodShadow").on("input", function () { vO4.FoodShadow = $(this).val(); localStorage.ComidaShadow = vO4.FoodShadow; });
+      // تحديث محتوى النصائح
+$("#mm-advice-cont").html(`
+  <div class="vietnam-buttons">
+    <input type="button" value="FULL SCREEN" class="btn btn-fullscreen fullscreen_button">
+    <input type="button" value="RESPAWN" id="hoisinh" class="btn btn-respawn">
+  </div>
+`);
+
+// تحديث المحتوى التجاري
+$(".mm-merchant-cont").html(`
+  <div class="merchant-links">
+    <a href="https://www.youtube.com/wormde" target="_blank">
+      <img src="https://wormateup.live/images/hiep_img/" alt="" width="155">
+    </a>
+    <a href="https://wormateup.live.com" target="_blank">
+      <img src="https://i.imgur.com/V.png" alt="" width="155">
+    </a>
+  </div>
+`);
+
+// CSS خفيف جدًا
+$("<style>").prop("type", "text/css").html(`
+  .vietnam-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+    align-items: center;
+  }
+
+  .btn {
+    width: 160px;
+    padding: 8px 0;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .btn-fullscreen {
+    background: #5f5f5f; /* رصاصي */
+  }
+
+  .btn-fullscreen:hover {
+    background: #4a4a4a;
+  }
+
+  .btn-respawn {
+    background: #c62828; /* أحمر */
+  }
+
+  .btn-respawn:hover {
+    background: #a61f1f;
+  }
+
+  .merchant-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+`).appendTo("head");
+
+// وظيفة FULL SCREEN
+$(document).ready(function () {
+
+  $(".fullscreen_button").on("click", function () {
+    if (!document.fullscreenElement) {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
       }
     }
-    function handleUserData() {
-      $("#mm-event-text").replaceWith("<div class=\"text-FDZ\">جيش الأفناك قوة الروح لا تنتهي</div>");
-      var settingButton = document.getElementById("settingBtn");
-      var settingContent = document.getElementById("settingContent");
-      settingButton.addEventListener("click", function () {
-        var computedStyle = window.getComputedStyle(settingContent);
-        var displayValue = computedStyle.getPropertyValue("display");
-        if (displayValue === "none") {
-          settingContent.style.display = "block";
-        } else {
-          settingContent.style.display = "none";
-        }
-      });
-      $("#PortionSize").on("input", function () {
-        theoKzObjects.PortionSize = $(this).val();
-        localStorage.PotenciadorSize = theoKzObjects.PortionSize;
-      });
-      $("#PortionAura").on("input", function () {
-        theoKzObjects.PortionAura = $(this).val();
-        localStorage.PotenciadorAura = theoKzObjects.PortionAura;
-      });
-      $("#smoothCamera").on("input", function () {
-        theoKzObjects.smoothCamera = $(this).val();
-        localStorage.smoothCamera = theoKzObjects.smoothCamera;
-      });
-      $("#FoodSize").on("input", function () {
-        theoKzObjects.FoodSize = $(this).val();
-        localStorage.ComidaSize = theoKzObjects.FoodSize;
-      });
-      $("#FoodShadow").on("input", function () {
-        theoKzObjects.FoodShadow = $(this).val();
-        localStorage.ComidaShadow = theoKzObjects.FoodShadow;
-      });
-      $("#mm-advice-cont").html(`
-    <div style="display: grid !important; grid-template-columns: 1fr 1fr; gap: 8.5px;">
-        <input type="button" value="F.SCREEN" class="fullscreen_button">
-        <input type="button" value="RESPAWN" id="hoisinh" class="fullscreen_respawn">
-    </div>
-`);
-$(".mm-merchant-cont").html(`
-    <div style="display: flex; justify-content: center; align-items: center; margin-top: 8px">
-        <a href="https://www.tiktok.com/@dzirigaming2" target="_blank" style="margin-right: 10px;">
-            <img class="merchant-logo" src="https://www.baddawi.com/FDZ/images/FDZ-logo.png" alt="FDZ" width="155">
-        </a>
-        <a href="https://www.tiktok.com/@dzirigaming1" target="_blank">
-            <img class="merchant-logo" src="https://www.baddawi.com/FDZ/images/FDZ-logo.png" alt="FDZ" width="155">
-        </a>
-    </div>
-`);
-      $(document).ready(function () {
-        $(".fullscreen_button").on("click", function () {
-          if (document.fullScreenElement && document.fullScreenElement !== null || !document.mozFullScreen && !document.webkitIsFullScreen) {
-            if (document.documentElement.requestFullScreen) {
-              document.documentElement.requestFullScreen();
-            } else if (document.documentElement.mozRequestFullScreen) {
-              document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullScreen) {
-              document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-            }
-          } else if (document.cancelFullScreen) {
-            document.cancelFullScreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-          }
-        });
-      });
+  });
+
+  // زر RESPAWN (مكان ربط الوظيفة الحقيقية)
+  $("#hoisinh").on("click", function () {
+    alert("RESPAWN");
+  });
+
+});
       $("#hoisinh").click(function () {
-        let hoisinhnhanhValue = hoisinhnhanh;
-        if (hoisinhnhanhValue) {
+        let vV_0x2b5e54 = vV_0x2b5e54;
+        if (vV_0x2b5e54) {
           anApp.r.Hd();
-          anApp.sa(hoisinhnhanhValue);
+          anApp.sa(vV_0x2b5e54);
         }
       });
       $(".mm-merchant").replaceWith("");
-	  
-	  
+      async function f219(p1308) {
+        return new Promise(p1309 => {
+          const vSetTimeout6 = setTimeout(() => {
+            p1309({
+              id: p1308.id,
+              online: false,
+              serverName: p1308.serverName,
+              isFull: false,
+              trafficLevel: "unknown"
+            });
+          }, 5000);
+          try {
+            const v1329 = new WebSocket(p1308.serverUrl);
+            v1329.onopen = () => {
+              clearTimeout(vSetTimeout6);
+              let vLSLow = "low";
+              if (p1308.currentPlayers >= p1308.maxPlayers * 0.7) {
+                vLSLow = "high";
+              } else if (p1308.currentPlayers >= p1308.maxPlayers * 0.4) {
+                vLSLow = "medium";
+              }
+              const v1330 = p1308.currentPlayers >= p1308.maxPlayers;
+              p1309({
+                id: p1308.id,
+                online: true,
+                serverName: p1308.serverName,
+                isFull: v1330,
+                trafficLevel: vLSLow,
+                currentPlayers: p1308.currentPlayers,
+                maxPlayers: p1308.maxPlayers
+              });
+              v1329.close();
+            };
+            v1329.onerror = () => {
+              clearTimeout(vSetTimeout6);
+              p1309({
+                id: p1308.id,
+                online: false,
+                serverName: p1308.serverName,
+                isFull: false,
+                trafficLevel: "offline"
+              });
+            };
+            v1329.onclose = () => {
+              clearTimeout(vSetTimeout6);
+            };
+          } catch (e27) {
+            clearTimeout(vSetTimeout6);
+            p1309({
+              id: p1308.id,
+              online: false,
+              serverName: p1308.serverName,
+              isFull: false,
+              trafficLevel: "error"
+            });
+          }
+        });
+      }
+      $(".mm-merchant").replaceWith("");
 
-    $(".description-text").replaceWith(`
-<div class="description-text">
-    <div class="Dziri-Gaming-Connect">
-        <img src="https://i.imgur.com/aSBRjrv.png" width="20" align="center" alt=""> Dziri Gaming Connect
+$(".description-text").replaceWith(`
+  <div class="description-text">
+    <div class="title-wormate-foghunter-flag" style="position:absolute;top:0;z-index:1;width:92%;margin-left:-2px;">
+      <img src="" width="20" align="center" alt="">
     </div>
-    <div class="description-text-hiep">
 
-        <ul style="margin-top: 5px;" class="ui-tabs-nav">
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active">
-                <a><span class="flag br" value="https://i.imgur.com/DL1EzGm.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive1">
-                <a><span class="flag mx" value="https://i.imgur.com/zh80c5B.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive2">
-                <a><span class="flag us" value="https://i.imgur.com/NC4wYiE.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive3">
-                <a><span class="flag ca" value="https://i.imgur.com/0RkQwnf.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive4">
-                <a><span class="flag de" value="https://i.imgur.com/98gEM58.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive5">
-                <a><span class="flag fr" value="https://i.imgur.com/us0CCyv.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive6">
-                <a><span class="flag sg" value="https://i.imgur.com/3GBrDqp.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive7">
-                <a><span class="flag jp" value="https://i.imgur.com/QGGi2S0.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive8">
-                <a><span class="flag au" value="https://i.imgur.com/FtjKIF8.png"></span></a>
-            </li>
-            <li class="ui-tabs-tab ui-tab ui-tab-inactive9">
-                <a><span class="flag gb" value="https://i.imgur.com/dfJnlGL.png"></span></a>
-            </li>
-        </ul>
-		
-        <div class="gachngang"></div>
+    <div class="description-text-test">
+      <ul style="margin-top:5px;" class="ui-tabs-nav">
+
+        <li class="ui-tabs-tab ui-tab ui-tab-active" style="margin:-5px">
+          <a><span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span></a>
+        </li>
+
+        <li class="ui-tabs-tab ui-tab" style="margin:-5px">
+          <a><span class="flag fr" value="https://i.imgur.com/QuEjBr0.png"></span></a>
+        </li>
+
+        <li class="ui-tabs-tab ui-tab" style="margin:-5px">
+          <a><span class="flag au" value="https://i.imgur.com/12e0wp4.png"></span></a>
+        </li>
+
+      </ul>
+
+      <div class="bao-list2">
         <div class="servers-container">
-            <div class="servers-peru"></div>
-            <div class="servers-mexico" style="display: none;"></div>
-            <div class="servers-eeuu" style="display: none;"></div>
-            <div class="servers-canada" style="display: none;"></div>
-            <div class="servers-germania" style="display: none;"></div>
-            <div class="servers-francia" style="display: none;"></div>
-            <div class="servers-singapur" style="display: none;"></div>
-            <div class="servers-japon" style="display: none;"></div>
-            <div class="servers-australia" style="display: none;"></div>
-            <div class="servers-granbretana" style="display: none;"></div>
+          <div class="servers-germania"></div>
+          <div class="servers-francia" style="display:none;"></div>
+          <div class="servers-australia" style="display:none;"></div>
         </div>
+      </div>
     </div>
-</div>
-    `);
+  </div>
+`);
 
+$(".ui-tab").on("click", function () {
+  $(".ui-tab").removeClass("ui-tab-active");
+  $(this).addClass("ui-tab-active");
 
-      $(".ui-tab").on("click", account);
-      $(".flag").click(function () {
-        let flagValue = $(this).attr("value");
-        theoKzObjects.flag = flagValue;
-        ctx.containerImgS.texture = ctx.onclickServer;
-        retundFlagError();
-        console.log(flagValue);
-      });
-      for (a = 0; a < servers.Api_listServer.length; a++) {
-        var serverUrl = servers.Api_listServer[a].serverUrl;
-        var serverName = servers.Api_listServer[a].name;
-        var serverRegion = servers.Api_listServer[a].region;
-        let serverElement = document.createElement("p");
-        serverElement.value = serverUrl;
-        serverElement.innerHTML = serverName;
-        if (serverRegion == "peru") {
-          $(".servers-peru").prepend(serverElement);
-        } else if (serverRegion == "mexico") {
-          $(".servers-mexico").prepend(serverElement);
-        } else if (serverRegion == "eeuu") {
-          $(".servers-eeuu").prepend(serverElement);
-        } else if (serverRegion == "canada") {
-          $(".servers-canada").prepend(serverElement);
-        } else if (serverRegion == "germania") {
-          $(".servers-germania").prepend(serverElement);
-        } else if (serverRegion == "francia") {
-          $(".servers-francia").prepend(serverElement);
-        } else if (serverRegion == "singapur") {
-          $(".servers-singapur").prepend(serverElement);
-        } else if (serverRegion == "japon") {
-          $(".servers-japon").prepend(serverElement);
-        } else if (serverRegion == "australia") {
-          $(".servers-australia").prepend(serverElement);
-        } else if (serverRegion == "granbretana") {
-          $(".servers-granbretana").prepend(serverElement);
+  $(".servers-container > div").hide();
+
+  if ($(this).find(".de").length) $(".servers-germania").show();
+  if ($(this).find(".fr").length) $(".servers-francia").show();
+  if ($(this).find(".au").length) $(".servers-australia").show();
+});
+
+$(".flag").on("click", function () {
+  let v1331 = $(this).attr("value");
+  vO4.flag = v1331;
+  vO7.containerImgS.texture = vO7.onclickServer;
+  retundFlagError();
+  console.log(v1331);
+});
+      for (a = 0; a < vO6.Api_listServer.length; a++) {
+        var v1332 = vO6.Api_listServer[a].serverUrl;
+        var v1333 = vO6.Api_listServer[a].name;
+        var v1334 = vO6.Api_listServer[a].region;
+        let v1335 = document.createElement("p");
+        v1335.value = v1332;
+        v1335.innerHTML = v1333;
+        if (v1334 == "peru") {
+          $(".servers-peru").prepend(v1335);
+        } else if (v1334 == "mexico") {
+          $(".servers-mexico").prepend(v1335);
+        } else if (v1334 == "eeuu") {
+          $(".servers-eeuu").prepend(v1335);
+        } else if (v1334 == "canada") {
+          $(".servers-canada").prepend(v1335);
+        } else if (v1334 == "germania") {
+          $(".servers-germania").prepend(v1335);
+        } else if (v1334 == "francia") {
+          $(".servers-francia").prepend(v1335);
+        } else if (v1334 == "singapur") {
+          $(".servers-singapur").prepend(v1335);
+        } else if (v1334 == "japon") {
+          $(".servers-japon").prepend(v1335);
+        } else if (v1334 == "australia") {
+          $(".servers-australia").prepend(v1335);
+        } else if (v1334 == "granbretana") {
+          $(".servers-granbretana").prepend(v1335);
         }
-        $(serverElement).attr("id", serverRegion);
-        $(serverElement).attr("class", "selectSala");
-        $(serverElement).attr("value", serverName);
-        $(serverElement).click(function () {
-          ctx.setServer($(this).text());
-          let serverValue = $(this).val();
-          ctx.containerImgS.texture = ctx.onclickServer;
+        $(v1335).attr("id", v1334);
+        $(v1335).attr("class", "selectSala");
+        $(v1335).attr("value", v1333);
+        $(v1335).click(function () {
+          vO7.setServer($(this).text());
+          let v1336 = $(this).val();
+          vO7.containerImgS.texture = vO7.onclickServer;
           retundFlagError();
-          window.server_url = serverValue;
+          window.server_url = v1336;
           $("#mm-action-play").click();
           $("#adbl-continue").click();
         });
       }
     }
-    function handleClientData() {
+    function f220() {
       $("#getskin").on("click", function () {
-        for (var i = 0; i < clientes.clientesActivos.length; i++) {
-          var clientName = clientes.clientesActivos[i].cliente_NOMBRE;
-          var clientId = clientes.clientesActivos[i].cliente_ID;
-          var visibleSkin1 = clientes.clientesActivos[i].Client_VisibleSkin;
-          var visibleSkin2 = clientes.clientesActivos[i].Client_VisibleSkin1;
-          var visibleSkin3 = clientes.clientesActivos[i].Client_VisibleSkin2;
-          var visibleSkin4 = clientes.clientesActivos[i].Client_VisibleSkin3;
-          var visibleSkin5 = clientes.clientesActivos[i].Client_VisibleSkin4;
-          var visibleSkin6 = clientes.clientesActivos[i].Client_VisibleSkin5;
-          var visibleSkin7 = clientes.clientesActivos[i].Client_VisibleSkin6;
-          var visibleSkin8 = clientes.clientesActivos[i].Client_VisibleSkin7;
-          var visibleSkin9 = clientes.clientesActivos[i].Client_VisibleSkin8;
-          var visibleSkin10 = clientes.clientesActivos[i].Client_VisibleSkin9;
-          var visibleSkin11 = clientes.clientesActivos[i].Client_VisibleSkin10;
-          var visibleSkin12 = clientes.clientesActivos[i].Client_VisibleSkin11;
-          var visibleSkin13 = clientes.clientesActivos[i].Client_VisibleSkin12;
-          var visibleSkin14 = clientes.clientesActivos[i].Client_VisibleSkin13;
-          var visibleSkin15 = clientes.clientesActivos[i].Client_VisibleSkin14;
-          var visibleSkin16 = clientes.clientesActivos[i].Client_VisibleSkin15;
-          var visibleSkin17 = clientes.clientesActivos[i].Client_VisibleSkin16;
-          var visibleSkin18 = clientes.clientesActivos[i].Client_VisibleSkin17;
-          var visibleSkin19 = clientes.clientesActivos[i].Client_VisibleSkin18;
-          var visibleSkin20 = clientes.clientesActivos[i].Client_VisibleSkin19;
-          var visibleSkin21 = clientes.clientesActivos[i].Client_VisibleSkin20;
-          var clientAccessKey = clientes.clientesActivos[i].Client_KeyAccecs;
-          if (theoKzObjects.FB_UserID == 0) {} else if (theoKzObjects.FB_UserID == clientId) {
-            if (clientAccessKey == "XTPRIVATESKIN") {
-              for (let j = 0; j < theoKzObjects.idSkin.length; j++) {
-                const skin = theoKzObjects.idSkin[j];
-                if (skin.id == visibleSkin1 || skin.id == visibleSkin2 || skin.id == visibleSkin3 || skin.id == visibleSkin4 || skin.id == visibleSkin5 || skin.id == visibleSkin6 || skin.id == visibleSkin7 || skin.id == visibleSkin8 || skin.id == visibleSkin9 || skin.id == visibleSkin10 || skin.id == visibleSkin11 || skin.id == visibleSkin12 || skin.id == visibleSkin13 || skin.id == visibleSkin14 || skin.id == visibleSkin15 || skin.id == visibleSkin16 || skin.id == visibleSkin17 || skin.id == visibleSkin18 || skin.id == visibleSkin19 || skin.id == visibleSkin20 || skin.id == visibleSkin21) {
-                  skin.nonbuyable = false;
+        for (var vLN096 = 0; vLN096 < vO5.clientesActivos.length; vLN096++) {
+          var v1337 = vO5.clientesActivos[vLN096].cliente_NOMBRE;
+          var v1338 = vO5.clientesActivos[vLN096].cliente_ID;
+          var v1339 = vO5.clientesActivos[vLN096].Client_VisibleSkin;
+          var v1340 = vO5.clientesActivos[vLN096].Client_VisibleSkin1;
+          var v1341 = vO5.clientesActivos[vLN096].Client_VisibleSkin2;
+          var v1342 = vO5.clientesActivos[vLN096].Client_VisibleSkin3;
+          var v1343 = vO5.clientesActivos[vLN096].Client_VisibleSkin4;
+          var v1344 = vO5.clientesActivos[vLN096].Client_VisibleSkin5;
+          var v1345 = vO5.clientesActivos[vLN096].Client_VisibleSkin6;
+          var v1346 = vO5.clientesActivos[vLN096].Client_VisibleSkin7;
+          var v1347 = vO5.clientesActivos[vLN096].Client_VisibleSkin8;
+          var v1348 = vO5.clientesActivos[vLN096].Client_VisibleSkin9;
+          var v1349 = vO5.clientesActivos[vLN096].Client_VisibleSkin10;
+          var v1350 = vO5.clientesActivos[vLN096].Client_VisibleSkin11;
+          var v1351 = vO5.clientesActivos[vLN096].Client_VisibleSkin12;
+          var v1352 = vO5.clientesActivos[vLN096].Client_VisibleSkin13;
+          var v1353 = vO5.clientesActivos[vLN096].Client_VisibleSkin14;
+          var v1354 = vO5.clientesActivos[vLN096].Client_VisibleSkin15;
+          var v1355 = vO5.clientesActivos[vLN096].Client_VisibleSkin16;
+          var v1356 = vO5.clientesActivos[vLN096].Client_VisibleSkin17;
+          var v1357 = vO5.clientesActivos[vLN096].Client_VisibleSkin18;
+          var v1358 = vO5.clientesActivos[vLN096].Client_VisibleSkin19;
+          var v1359 = vO5.clientesActivos[vLN096].Client_VisibleSkin20;
+          var v1360 = vO5.clientesActivos[vLN096].Client_KeyAccecs;
+          if (vO4.FB_UserID == 0) {} else if (vO4.FB_UserID == v1338) {
+            if (v1360 == "XTPRIVATESKIN") {
+              for (let vLN097 = 0; vLN097 < vO4.idSkin.length; vLN097++) {
+                const v1361 = vO4.idSkin[vLN097];
+                if (v1361.id == v1339 || v1361.id == v1340 || v1361.id == v1341 || v1361.id == v1342 || v1361.id == v1343 || v1361.id == v1344 || v1361.id == v1345 || v1361.id == v1346 || v1361.id == v1347 || v1361.id == v1348 || v1361.id == v1349 || v1361.id == v1350 || v1361.id == v1351 || v1361.id == v1352 || v1361.id == v1353 || v1361.id == v1354 || v1361.id == v1355 || v1361.id == v1356 || v1361.id == v1357 || v1361.id == v1358 || v1361.id == v1359) {
+                  v1361.nonbuyable = false;
                 }
               }
             } else {}
@@ -7777,494 +7943,323 @@ $(".mm-merchant-cont").html(`
         }
       });
     }
- function notifyExpiration() {
-      theoKzObjects.adblock = true;
-$("#mm-store").after(`
-<div id="mm-store" class="store">
-    <div class="settings-button" onclick="openPopup()">الإعدادات</div>
-</div>
-
-<div id="popup" class="popup">
-    <!-- رأس الـ Popup -->
-    <div class="popup-header">
-        <!-- زر أغلق -->
-        <button class="close-button" onclick="closePopup()">أغلق</button>
-        
-        <!-- عرض ID المستخدم -->
-        <div class="user-id-display">
-            <span>${theoKzObjects.FB_UserID}</span>
-        </div>
-
-        <!-- زر نسخ ID -->
-        <button class="copy-button" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('تم نسخ ID ${theoKzObjects.FB_UserID}!'));">نسخ ID</button>
-    </div>
-
-    <div id="kich-hoat">
-        <div class="settings-row">
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">تناول سريع :</span>
-                <input class="settings-switchZoom" id="settings-Abilityzoom-switch" type="checkbox"/>
-                <label for="settings-Abilityzoom-switch"></label>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">وضع البث :</span>
-                <input class="settings-switchZoom" id="settings-stremingmode-switch" type="checkbox"/>
-                <label for="settings-stremingmode-switch"></label>
-            </div>
-        </div>
-
-        <div class="settings-row">
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">مجموع القتل :</span>
-                <input class="settings-switchZoom" id="settings-stremingmodesaveheadshot-switch" type="checkbox"/>
-                <label for="settings-stremingmodesaveheadshot-switch"></label>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">أفضل 3 نقاط :</span>
-                <input class="settings-switchZoom" id="settings-stremingmodebatop-switch" type="checkbox"/>
-                <label for="settings-stremingmodebatop-switch"></label>
-            </div>
-        </div>
-
-        <div class="settings-row">
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">سهم السرعة <img class="icon" src="https://i.imgur.com/lkx3fEA.png" alt="Turn on"/> :</span>
-                <input class="settings-switchZoom" id="settings-stremingmodemuiten-switch" type="checkbox"/>
-                <label for="settings-stremingmodemuiten-switch"></label>
-            </div>
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">إيقاف الإيموجي :</span>
-                <input class="settings-switchZoom" id="settings-stremingmodeemoj-switch" type="checkbox"/>
-                <label for="settings-stremingmodeemoj-switch"></label>
-            </div>
-        </div>
-
-        <div class="settings-row">
-            <div class="settings-lineZoom">
-                <span class="settings-labelZoom">إيقاف الأصوات :</span>
-                <input class="settings-switchZoom" id="settings-stremingmodeheadshot-switch" type="checkbox"/>
-                <label for="settings-stremingmodeheadshot-switch"></label>
-            </div>
-<div class="settings-lineZoom">
-    <span class="settings-labelZoom">تصنيع السكنات  :</span>
-    <a href="https://www.baddawi.com/FDZ/SKIN/" target="_blank">
-        <i class="fa-solid fa-link red-icon"></i>
-    </a>
-</div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="left-column">
-            <div class="spancursor">اختر المؤشر</div>
-            <div class="cursor-container">
-                <div id="default-cursor-btn">
-                    <img class="img" alt="Imgur-Upload" src="https://i.imgur.com/rI522o3.png">
-                </div>
-            </div>
-        </div>
-        <div class="right-column">
-            <div class="spancursor-right">اختر الخلفية</div>
-            <div class="background-container"></div>
-        </div>
-    </div>
-
-<div class="container">
-    <div class="list1">
-        مفاتيح <i class="fa-solid fa-q red-icon"></i> تدور تلقائيًا
-    </div>
-    <div class="list2">
-        مفاتيح <i class="fa-solid fa-r red-icon"></i> إحياء سريع
-    </div>
-</div>
-</div>
-
-<div id="overlay"></div> <!-- إضافة overlay -->
-`);
-
-
-      $("#loa831pibur0w4gv").replaceWith(`
-    
-    <div style="margin: 0;" id="loa831pibur0w4gv">
-        <div class="label" id="titleSetings">Notification</div>
-        <div class="FDZ-Team">
-            <img src="https://www.baddawi.com/FDZ/images/FDZ-Team.png" alt="FDZ" />
-            <!-- Button to redirect to Discord -->
-            <button id="buy-premium">
-                Discord
-            </button>
-        </div>
-		<div class="centered-text">Released in 29-03-2025</div>
-    </div>
-`);
-      $("#buy-premium").on("click", function () {
-        window.open("https://discord.gg/5rDvPrEy", "_blank");
-      });
-      $("#mm-coins-box").replaceWith(`
-        <div id="mm-coins-box" style="margin: 0;">
-            <button 
-                id="getskin" 
-                class="unlock-button" 
-                style="width: 140px; height: 45px; float: right; border-radius: 10px; border: solid #fac 2px; display: none;">
-                Unlock Skins
-            </button>
-        </div>
-      `);
-      $("#markup-footer");
-      window.multiplier = 0.625;
+    function f221() {
+      vO4.adblock = true;
+      $("#loa831pibur0w4gv").replaceWith(" <div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n        <span class=\"settings_span\">Power-ups-Size: </span>\n        <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n        </div>\n        \n      <div class=\"container1\">\n      <span class=\"settings_span\">Power-ups-Aura: </span>\n      <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n      </div>\n       \n      <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Size: </span>\n                    <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n                    </div>\n                    <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Shadow: </span>\n                    <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n                    </div>\n ");
+      $("#mm-coins-box").replaceWith("\n                <div style=\"margin: 0;\" id=\"mm-coins-box\">\n          <button \n            style=\"\n              width: 90px;\n              height: 32px;\n              float: right;\n              border-radius: 10px;\n              border: solid #fac 2px;\n            \" \n            id=\"getskin\">فتح السكنات </button>\n        </div>\n      ");
+      window.multiplier = 1;
       window.zoomLevel = 5;
-      function increaseZoom() {
+      window.onwheel = p1310 => {
+        if (p1310.deltaY > 0) {
+          window.multiplier *= 0.8;
+        } else {
+          window.multiplier /= 0.8;
+        }
+        window.changedNf();
+      };
+      function f222() {
         window.zoomLevel++;
         window.multiplier *= 0.8;
         changedNf();
-        updateZoomDisplay();
+        f224();
       }
-      function decreaseZoom() {
+      function f223() {
         if (window.zoomLevel > 0) {
           window.zoomLevel--;
           window.multiplier /= 0.8;
           changedNf();
-          updateZoomDisplay();
+          f224();
         }
       }
-      function updateZoomDisplay() {
-        var zoomPercentage = Math.round(window.multiplier / 0.625 * 100);
-        zoomPercentage = Math.min(100, zoomPercentage);
-        var zoomDisplay = document.getElementById("zoom-percentage");
-        zoomDisplay.textContent = zoomPercentage + "%";
+      function f224() {
+        var v1362 = Math.round(window.multiplier / 0.625 * 100);
+        v1362 = Math.min(100, v1362);
+        var v1363 = document.getElementById("zoom-percentage");
+        v1363.textContent = v1362 + "%";
       }
-      document.getElementById("zoom-in").addEventListener("touchstart", increaseZoom);
-      document.getElementById("zoom-out").addEventListener("touchstart", decreaseZoom);
-      window.addEventListener('wheel', event => {
-      // event.preventDefault(); // قم بتعليق هذه السطر مؤقتًا
-  if (event.deltaY < 0) {
-    increaseZoom();
-  } else {
-    decreaseZoom();
-  }
-}, { passive: false }); // تأكد من إغلاق القوس هنا
+      document.getElementById("zoom-in").addEventListener("touchstart", f222, {
+        passive: false
+      });
+      document.getElementById("zoom-out").addEventListener("touchstart", f223, {
+        passive: false
+      });
+      window.onwheel = function (p1311) {
+        p1311.preventDefault();
+        if (p1311.deltaY < 0) {
+          f222();
+        } else {
+          f223();
+        }
+      };
       $("#settings-Abilityzoom-switch").on("click", function () {
         if (this.checked) {
           console.log("I am checked");
-          theoKzObjects.eat_animation = 1;
+          vO4.eat_animation = 1;
           localStorage.setItem("mySwitch", "on");
         } else {
           console.log("I'm not checked");
-          theoKzObjects.eat_animation = 0.0025;
+          vO4.eat_animation = 0.0025;
           localStorage.setItem("mySwitch", "off");
         }
       });
       $(document).ready(function () {
-        var switchState = localStorage.getItem("mySwitch");
-        if (switchState === "on") {
+        var v1364 = localStorage.getItem("mySwitch");
+        if (v1364 === "on") {
           $("#settings-Abilityzoom-switch").prop("checked", true);
-          theoKzObjects.eat_animation = 1;
+          vO4.eat_animation = 1;
         } else {
           $("#settings-Abilityzoom-switch").prop("checked", false);
-          theoKzObjects.eat_animation = 0.0025;
+          vO4.eat_animation = 0.0025;
         }
       });
       $("#settings-stremingmode-switch").on("click", function () {
         if (this.checked) {
           console.log("I am checked");
-          theoKzObjects.ModeStremer = true;
+          vO4.ModeStremer = true;
           localStorage.setItem("ModeStremer", "true");
         } else {
           console.log("I'm not checked");
-          theoKzObjects.ModeStremer = false;
+          vO4.ModeStremer = false;
           localStorage.setItem("ModeStremer", "false");
         }
       });
       $(document).ready(function () {
-        var streamingMode = localStorage.getItem("ModeStremer");
-        if (streamingMode === "true") {
-          theoKzObjects.ModeStremer = true;
+        var v1365 = localStorage.getItem("ModeStremer");
+        if (v1365 === "true") {
+          vO4.ModeStremer = true;
           $("#settings-stremingmode-switch").prop("checked", true);
         } else {
-          theoKzObjects.ModeStremer = false;
+          vO4.ModeStremer = false;
           $("#settings-stremingmode-switch").prop("checked", false);
         }
       });
       $("#settings-stremingmodebatop-switch").on("click", function () {
         if (this.checked) {
           console.log("I am checked");
-          theoKzObjects.ModeStremerbatop = true;
+          vO4.ModeStremerbatop = true;
           localStorage.setItem("ModeStremerbatop", "true");
         } else {
           console.log("I'm not checked");
-          theoKzObjects.ModeStremerbatop = false;
+          vO4.ModeStremerbatop = false;
           localStorage.setItem("ModeStremerbatop", "false");
         }
       });
       $(document).ready(function () {
-        var batopMode = localStorage.getItem("ModeStremerbatop");
-        if (batopMode === "true") {
-          theoKzObjects.ModeStremerbatop = true;
+        var v1366 = localStorage.getItem("ModeStremerbatop");
+        if (v1366 === "true") {
+          vO4.ModeStremerbatop = true;
           $("#settings-stremingmodebatop-switch").prop("checked", true);
         } else {
-          theoKzObjects.ModeStremerbatop = false;
+          vO4.ModeStremerbatop = false;
           $("#settings-stremingmodebatop-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodemuiten-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          theoKzObjects.ModeStremermuiten = true;
-          localStorage.setItem("ModeStremermuiten", "true");
-        } else {
-          console.log("I'm not checked");
-          theoKzObjects.ModeStremermuiten = false;
-          localStorage.setItem("ModeStremermuiten", "false");
-        }
-        location.reload();
-      });
-      $(document).ready(function () {
-        // تحقق مما إذا كان هناك قيمة مخزنة في localStorage
-        var muitenMode = localStorage.getItem("ModeStremermuiten");
-        if (muitenMode === "true") {
-          theoKzObjects.ModeStremermuiten = true;
-          $("#settings-stremingmodemuiten-switch").prop("checked", true);
-        } else {
-          // تعيين الوضع الافتراضي إلى true إذا لم تكن هناك قيمة مخزنة
-          theoKzObjects.ModeStremermuiten = true; // اجعل الوضع الافتراضي مفعلًا
-          $("#settings-stremingmodemuiten-switch").prop("checked", true);
-          localStorage.setItem("ModeStremermuiten", "true"); // احفظ القيمة في localStorage
-        }
-      });
-      $("#settings-stremingmodemuiten-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          theoKzObjects.ModeStremermuiten = true;
-          localStorage.setItem("ModeStremermuiten", "true");
-        } else {
-          console.log("I'm not checked");
-          theoKzObjects.ModeStremermuiten = false;
-          localStorage.setItem("ModeStremermuiten", "false");
-        }
-        location.reload();
-      });
-      $(document).ready(function () {
-        var emojMode = localStorage.getItem("ModeStremeremoj");
-        if (emojMode === "true") {
-          theoKzObjects.ModeStremeremoj = true;
-          $("#settings-stremingmodeemoj-switch").prop("checked", true);
-        } else {
-          theoKzObjects.ModeStremeremoj = false;
-          $("#settings-stremingmodeemoj-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodeheadshot-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          theoKzObjects.ModeStremerheadshot = true;
-          localStorage.setItem("ModeStremerheadshot", "true");
-        } else {
-          console.log("I'm not checked");
-          theoKzObjects.ModeStremerheadshot = false;
-          localStorage.setItem("ModeStremerheadshot", "false");
-        }
-      });
-      $(document).ready(function () {
-        var _0x4dffbc = localStorage.getItem("ModeStremerheadshot");
-        if (_0x4dffbc === "true") {
-          theoKzObjects.ModeStremerheadshot = true;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", true);
-        } else {
-          theoKzObjects.ModeStremerheadshot = false;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodeheadshot-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          theoKzObjects.ModeStremerheadshot = true;
-          localStorage.setItem("ModeStremerheadshot", "true");
-        } else {
-          console.log("I'm not checked");
-          theoKzObjects.ModeStremerheadshot = false;
-          localStorage.setItem("ModeStremerheadshot", "false");
-        }
-      });
-      $(document).ready(function () {
-        var headshotMode = localStorage.getItem("ModeStremerheadshot");
-        if (headshotMode === "true") {
-          theoKzObjects.ModeStremerheadshot = true;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", true);
-        } else {
-          theoKzObjects.ModeStremerheadshot = false;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
         }
       });
       $("#settings-stremingmodesaveheadshot-switch").on("click", function () {
         if (this.checked) {
           console.log("I am checked");
-          theoKzObjects.ModeStremersaveheadshot = true;
+          vO4.ModeStremersaveheadshot = true;
           localStorage.setItem("ModeStremersaveheadshot", "true");
         } else {
           console.log("I'm not checked");
-          theoKzObjects.ModeStremersaveheadshot = false;
+          vO4.ModeStremersaveheadshot = false;
           localStorage.setItem("ModeStremersaveheadshot", "false");
         }
         location.reload();
       });
       $(document).ready(function () {
-        var saveHeadshotMode = localStorage.getItem("ModeStremersaveheadshot");
-        if (saveHeadshotMode === "true") {
-          theoKzObjects.ModeStremersaveheadshot = true;
+        var v1367 = localStorage.getItem("ModeStremersaveheadshot");
+        if (v1367 === "true") {
+          vO4.ModeStremersaveheadshot = true;
           $("#settings-stremingmodesaveheadshot-switch").prop("checked", true);
         } else {
-          theoKzObjects.ModeStremersaveheadshot = false;
+          vO4.ModeStremersaveheadshot = false;
           $("#settings-stremingmodesaveheadshot-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodeheadshot-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremerheadshot = true;
+          localStorage.setItem("ModeStremerheadshot", "true");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremerheadshot = false;
+          localStorage.setItem("ModeStremerheadshot", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1368 = localStorage.getItem("ModeStremerheadshot");
+        if (v1368 === "true") {
+          vO4.ModeStremerheadshot = true;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", true);
+        } else {
+          vO4.ModeStremerheadshot = false;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodeheadshot-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremerheadshot = true;
+          localStorage.setItem("ModeStremerheadshot", "true");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremerheadshot = false;
+          localStorage.setItem("ModeStremerheadshot", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1369 = localStorage.getItem("ModeStremerheadshot");
+        if (v1369 === "true") {
+          vO4.ModeStremerheadshot = true;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", true);
+        } else {
+          vO4.ModeStremerheadshot = false;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodeemoj-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremeremoj = true;
+          localStorage.setItem("ModeStremeremoj", "true");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremeremoj = false;
+          localStorage.setItem("ModeStremeremoj", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1370 = localStorage.getItem("ModeStremeremoj");
+        if (v1370 === "true") {
+          vO4.ModeStremeremoj = true;
+          $("#settings-stremingmodeemoj-switch").prop("checked", true);
+        } else {
+          vO4.ModeStremeremoj = false;
+          $("#settings-stremingmodeemoj-switch").prop("checked", false);
         }
       });
       $("#settings-arrowmobile-switch").on("click", function () {
         if (this.checked) {
           console.log("I am checked");
-          theoKzObjects.arrow = false;
+          vO4.arrow = false;
         } else {
           console.log("I'm not checked");
-          theoKzObjects.arrow = true;
+          vO4.arrow = true;
         }
       });
       $("#PortionSize").on("input", function () {
-        theoKzObjects.PortionSize = $(this).val();
-        localStorage.PotenciadorSize = theoKzObjects.PortionSize;
+        vO4.PortionSize = $(this).val();
+        localStorage.PotenciadorSize = vO4.PortionSize;
       });
       $("#PortionAura").on("input", function () {
-        theoKzObjects.PortionAura = $(this).val();
-        localStorage.PotenciadorAura = theoKzObjects.PortionAura;
+        vO4.PortionAura = $(this).val();
+        localStorage.PotenciadorAura = vO4.PortionAura;
       });
       $("#smoothCamera").on("input", function () {
-        theoKzObjects.smoothCamera = $(this).val();
-        localStorage.smoothCamera = theoKzObjects.smoothCamera;
+        vO4.smoothCamera = $(this).val();
+        localStorage.smoothCamera = vO4.smoothCamera;
       });
       $("#FoodSize").on("input", function () {
-        theoKzObjects.FoodSize = $(this).val();
-        localStorage.ComidaSize = theoKzObjects.FoodSize;
+        vO4.FoodSize = $(this).val();
+        localStorage.ComidaSize = vO4.FoodSize;
       });
       $("#FoodShadow").on("input", function () {
-        theoKzObjects.FoodShadow = $(this).val();
-        localStorage.ComidaShadow = theoKzObjects.FoodShadow;
+        vO4.FoodShadow = $(this).val();
+        localStorage.ComidaShadow = vO4.FoodShadow;
       });
-// إعداد خيارات المؤشر
-for (let a = 0; a < cursorOptions.length; a++) {
-    const cursorUrl = cursorOptions[a].url; // استخدام const
-    const cursorName = cursorOptions[a].nombre; // استخدام const
-    let cursorImage = document.createElement("img");
-    cursorImage.src = cursorUrl;
-
-    // تعيين الخصائص للصورة
-    $(cursorImage).attr("class", "cursor");
-
-    // تعيين حدث النقر على صورة المؤشر
-    $(cursorImage).click(function () {
-        const selectedCursor = $(this).attr("src");
-        localStorage.cursorSeleccionado = selectedCursor;
-
-        // تحقق من وجود قيمة قبل التعيين
-        if (selectedCursor) {
-            $("#game-cont, #game-canvas, body").css({
-                cursor: "url(" + selectedCursor + "), default"
-            });
+      $("#KeyRespawn,#KeyAutoMov").on("keydown", function (p1312) {
+        if (vF181(p1312)) {
+          var v$218 = $(this);
+          var vGetPresedKey2 = f231(p1312);
+          var v1371 = p1312.keyCode;
+          v$218.val(vGetPresedKey2);
+          v$218.blur();
+          window.keyMove = v1371;
+          window.localStorage.setItem(v$218.attr("id"), v1371);
+        } else {
+          p1312.preventDefault();
         }
-    });
-
-    // إضافة الصورة إلى الحاوية باستخدام prepend
-    $(".cursor-container").prepend(cursorImage);
-}
-
-// حدث النقر لإعادة تعيين المؤشر الافتراضي
-$("#default-cursor-btn").click(function () {
-    delete localStorage.cursorSeleccionado;
-    $("#game-cont, #game-canvas, body").css("cursor", "default");
-});
-
-// تعيين المؤشر عند تحميل الصفحة
-if (localStorage.cursorSeleccionado) {
-    $("#game-cont, #game-canvas, body").css({
+      });
+      for (a = 0; a < vA17.length; a++) {
+        var v1372 = vA17[a].url;
+        var v1373 = vA17[a].nombre;
+        let v1374 = document.createElement("img");
+        v1374.src = v1372;
+        $(".cursor-container").prepend(v1374);
+        $(v1374).attr("class", "cursor");
+        $(v1374).click(function () {
+          let v1375 = $(this).attr("src");
+          localStorage.cursorSeleccionado = v1375;
+          $("#game-cont").css({
+            cursor: "url(" + v1375 + "), default"
+          });
+          $("#game-canvas").css({
+            cursor: "url(" + v1375 + "), default"
+          });
+          $("body").css({
+            cursor: "url(" + v1375 + "), default"
+          });
+        });
+        $("#default-cursor-btn").click(function () {
+          delete localStorage.cursorSeleccionado;
+          $("#game-cont, #game-canvas, body").css("cursor", "default");
+        });
+      }
+      $("#game-cont").css({
         cursor: "url(" + localStorage.cursorSeleccionado + "), default"
-    });
-} else {
-    // تعيين المؤشر الافتراضي إذا لم يكن هناك مؤشر محدد
-    $("#game-cont, #game-canvas, body").css("cursor", "default");
-}
-for (let a = 0; a < backgroundOptions.length; a++) { // استخدام let بدلاً من var
-    const backgroundUrl = backgroundOptions[a].url; // استخدام const
-    const backgroundName = backgroundOptions[a].nombre; // استخدام const
-
-    // إنشاء عنصر الصورة
-    let backgroundImage = document.createElement("img");
-    backgroundImage.src = backgroundUrl;
-
-    // تعيين الخصائص للصورة
-    $(backgroundImage).attr({
-        class: "background",
-        value: backgroundName
-    });
-
-    // تنسيق الصورة
-    $(backgroundImage).css({
-        width: '23%', // تعيين عرض الصورة
-        margin: '1%', // تعيين هامش لتجنب التداخل
-        borderRadius: '5px', // لجعل الزوايا دائرية
-        cursor: 'pointer' // تغيير المؤشر عند المرور فوق الصورة
-    });
-
-    // إضافة حدث النقر
-    $(backgroundImage).click(function () {
-        const selectedBackground = $(this).attr("src");
-        const backgroundValue = $(this).attr("value");
-        backgroundIMG = selectedBackground;
-        localStorage.fondoSeleccionado = backgroundIMG;
-
-        // إظهار تنبيه عند اختيار الخلفية
-        alert("You selected the background: " + backgroundValue);
-
-        // تعيين الخلفية في التطبيق
-        appInstance.q.Cf = new pixiProperties._b(appInstance.q.fn_o(selectedBackground));
-    });
-
-    // إضافة الصورة إلى الحاوية باستخدام prepend
-    $(".background-container").prepend(backgroundImage);
-}
+      });
+      $("#game-canvas").css({
+        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
+      });
+      $("body").css({
+        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
+      });
+      for (a = 0; a < vA18.length; a++) {
+        var v1376 = vA18[a].url;
+        var v1377 = vA18[a].nombre;
+        let v1378 = document.createElement("img");
+        v1378.src = v1376;
+        $(".background-container").prepend(v1378);
+        $(v1378).attr("class", "background");
+        $(v1378).attr("value", v1377);
+        $(v1378).click(function () {
+          let v1379 = $(this).attr("src");
+          let v1380 = $(this).attr("value");
+          backgroundIMG = v1379;
+          localStorage.fondoSeleccionado = backgroundIMG;
+          alert("You selected the background: " + v1380);
+          vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(v1379));
+        });
+      }
       $(".background-container").prepend("");
-      appInstance.q.Cf = new pixiProperties._b(appInstance.q.fn_o(localStorage.fondoSeleccionado));
+      vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(localStorage.fondoSeleccionado));
     }
-    function updateDescription() {
-      $(".description-text").replaceWith("<div class=\"description-text\">");
-      $(".description-text").prepend("<p id='title'>Dziri Gaming Connect</p>");
-      $("#title").after(`
-    <div id="idwormworld" style="text-align: center">
-        <div class='logo'>
-            <img src='https://www.baddawi.com/FDZ/images/icon.png' alt='Logo'/>
-        </div>
-`);
-    }
-    function updateGameData(action, value) {
-      let updateFunction = function (killCount, headshotCount, totalKills, totalHeadshots) {
-        ctx.setCountGame(killCount, headshotCount, totalKills, totalHeadshots);
+    function f225(p1313, p1314) {
+      let vF180 = function (p1315, p1316, p1317, p1318) {
+        vO7.setCountGame(p1315, p1316, p1317, p1318);
       };
-      if (action === "count") {
-        theoKzObjects.kill = (theoKzObjects.kill || 0) + (value ? 0 : 1);
-        theoKzObjects.headshot = (theoKzObjects.headshot || 0) + (value ? 1 : 0);
-        theoKzObjects.totalKills = theoKzObjects.totalKills + (value ? 0 : 1);
-        theoKzObjects.totalHeadshots = theoKzObjects.totalHeadshots + (value ? 1 : 0);
-        updateFunction(theoKzObjects.kill, theoKzObjects.headshot, theoKzObjects.totalKills, theoKzObjects.totalHeadshots);
+      if (p1313 === "count") {
+        vO4.kill = (vO4.kill || 0) + (p1314 ? 0 : 1);
+        vO4.headshot = (vO4.headshot || 0) + (p1314 ? 1 : 0);
+        vO4.totalKills = vO4.totalKills + (p1314 ? 0 : 1);
+        vO4.totalHeadshots = vO4.totalHeadshots + (p1314 ? 1 : 0);
+        vF180(vO4.kill, vO4.headshot, vO4.totalKills, vO4.totalHeadshots);
       }
-      if (action === "open") {
-        theoKzObjects.kill = 0;
-        theoKzObjects.headshot = 0;
+      if (p1313 === "open") {
+        vO4.kill = 0;
+        vO4.headshot = 0;
         $("#contadorKill_12").show();
-        updateFunction(theoKzObjects.kill, theoKzObjects.headshot, theoKzObjects.totalKills, theoKzObjects.totalHeadshots);
+        vF180(vO4.kill, vO4.headshot, vO4.totalKills, vO4.totalHeadshots);
       }
-      if (action === "closed") {
-        pwrups = {};
+      if (p1313 === "closed") {
+        vO2 = {};
       }
-      if (action === "cerrar") {
-        theoKzObjects.kill = 0;
-        theoKzObjects.headshot = 0;
-        theoKzObjects.totalKills = 0;
-        theoKzObjects.totalHeadshots = 0;
+      if (p1313 === "cerrar") {
+        vO4.kill = 0;
+        vO4.headshot = 0;
+        vO4.totalKills = 0;
+        vO4.totalHeadshots = 0;
       }
     }
     if (!Number.prototype.dotFormat) {
@@ -8278,132 +8273,124 @@ for (let a = 0; a < backgroundOptions.length; a++) { // استخدام let بد�
       };
     }
     setTimeout(function () {
-      var forbiddenWords = ["fuck you", "fuck", "كس", "نايك", "انيك", "شرموطة", "اختك", "منيوكة", "Israel", "إسرائيل", "زبي"];
-      const nicknameInput = document.getElementById("mm-params-nickname");
-      const nicknameValue = nicknameInput.value;
-      const xIndex = nicknameValue.indexOf("x");
-      if (xIndex !== -1) {
-        const trimmedNickname = nicknameValue.substring(0, xIndex);
-        nicknameInput.value = trimmedNickname;
-      }
+      var vA19 = ["كس", "fuck", "شيعة", "أن الله يراك", "عرضك", "نظيف", "طيبة", "اخوك", "اختك", "امك", "ابوك", "قواد"];
       $("#mm-action-play").on("click", function () {
-        var nickname = $("#mm-params-nickname").val();
-        var containsForbiddenWord = forbiddenWords.some(function (word) {
-          return nickname.toLowerCase().includes(word.toLowerCase());
+        var v1381 = $("#mm-params-nickname").val();
+        var v1382 = vA19.some(function (p1319) {
+          return v1381.toLowerCase().includes(p1319.toLowerCase());
         });
-        if (containsForbiddenWord) {
-          $("#mm-params-nickname").val("I Love FDZ");
+        if (v1382) {
+          $("#mm-params-nickname").val("أن الله يراك*");
         }
-      });
-      $(document).ready(function () {
-        $("#getskin").click();
       });
       $("#final-share-fb").css("display", "none");
       $("#unl6wj4czdl84o9b").css("display", "none");
       $("#mm-menu-cont").css("display", "block");
       $("#mm-bottom-buttons").css("display", "block");
       $("#mm-player-info").css("display", "block");
+      $("#mm-bottom-buttons").addClass("buttonNavidad");
+      var v$219 = $("<img>", {
+        id: "gold-crown",
+        src: "https://i.imgur.com/z2o76Xe.png",
+        alt: "gold-crown"
+      });
+      $("#mm-player-avatar").after(v$219);
+      $("#gold-crown").css({
+        position: "absolute",
+        top: "-23px",
+        transform: "translateX(-2%)",
+        width: "50px",
+        height: "auto"
+      });
       $("#relojHelp").css("position", "absolute");
       $("#relojHelp").css("top", "12px");
       $("#relojHelp").css("left", "5px");
       $("#delete-account-view").css("display", "none");
     }, 3000);
-    var requestAnimationFrameLoop = function requestAnimationFrameLoop() {
-      requestAnimationFrame(requestAnimationFrameLoop);
-      initializeApp().Pa();
+    var vF1092 = function f226() {
+      requestAnimationFrame(f226);
+      f123().Pa();
     };
-    requestAnimationFrameLoop();
-    function adjustLayout() {
-      var bodyWidth = bodyElement.width();
-      var bodyHeight = bodyElement.height();
-      var stretchBoxWidth = stretchBoxElement.outerWidth();
-      var stretchBoxHeight = stretchBoxElement.outerHeight();
-      var headerHeight = headerElement.outerHeight();
-      var footerHeight = footerElement.outerHeight();
-      var zoomLevel = Math.min(1, Math.min((bodyHeight - footerHeight - headerHeight) / stretchBoxHeight, bodyWidth / stretchBoxWidth));
-      var transformValue = "translate(-50%, -50%) scale(" + zoomLevel + ")";
-      stretchBoxElement.css({
-        "-webkit-transform": transformValue,
-        "-moz-transform": transformValue,
-        "-ms-transform": transformValue,
-        "-o-transform": transformValue,
-        transform: transformValue
+    vF1092();
+    function f227() {
+      var v1383 = v$220.width();
+      var v1384 = v$220.height();
+      var v1385 = v$221.outerWidth();
+      var v1386 = v$221.outerHeight();
+      var v1387 = v$222.outerHeight();
+      var v1388 = v$223.outerHeight();
+      var v1389 = Math.min(1, Math.min((v1384 - v1388 - v1387) / v1386, v1383 / v1385));
+      var v1390 = "translate(-50%, -50%) scale(" + v1389 + ")";
+      v$221.css({
+        "-webkit-transform": v1390,
+        "-moz-transform": v1390,
+        "-ms-transform": v1390,
+        "-o-transform": v1390,
+        transform: v1390
       });
-      initializeApp().Ra();
+      f123().Ra();
       window.scrollTo(0, 1);
     }
-    var bodyElement = $("body");
-    var stretchBoxElement = $("#stretch-box");
-    var headerElement = $("#markup-header");
-    var footerElement = $("#markup-footer");
-    adjustLayout();
-    $(window).resize(adjustLayout);
+    var v$220 = $("body");
+    var v$221 = $("#stretch-box");
+    var v$222 = $("#markup-header");
+    var v$223 = $("#markup-footer");
+    f227();
+    $(window).resize(f227);
   })();
   window.anApp.p.Bc = function () {
-    var appInstance = window.anApp.p;
-    var registryData = {};
-    $.get("https://resources.wormate.io/dynamic/assets/registry.json", function (response) {
-      registryData = response;
+    var v1391 = window.anApp.p;
+    var vO20 = {};
+    $.get("https://resources.wormate.io/dynamic/assets/registry.json", function (p1320) {
+      vO20 = p1320;
       $.ajax({
-        url: "https://www.baddawi.com/FDZ/api/skin.php",
+        url: "https://iraqcraft.store/api/skn.json",
         method: "GET",
         dataType: "json",
-        success: function (skinData) {
-          theoKzObjects.visibleSkin = skinData.visibleSkin;
-          delete skinData.visibleSkin;
-          for (let key in skinData) {
-            if (key !== "propertyList") {
-              if (Array.isArray(skinData[key])) {
-                response[key] = response[key].concat(skinData[key]);
+        success: function (p1321) {
+          vO4.visibleSkin = p1321.visibleSkin;
+          delete p1321.visibleSkin;
+          for (let v1392 in p1321) {
+            if (v1392 !== "propertyList") {
+              if (Array.isArray(p1321[v1392])) {
+                p1320[v1392] = p1320[v1392].concat(p1321[v1392]);
               } else {
-                response[key] = {
-                  ...response[key],
-                  ...skinData[key]
+                p1320[v1392] = {
+                  ...p1320[v1392],
+                  ...p1321[v1392]
                 };
               }
             }
           }
-          theoKzObjects.pL = skinData.propertyList;
-          theoKzObjects.idSkin = skinData.skinArrayDict;
-          appInstance.Cc(response);
+          vO4.pL = p1321.propertyList;
+          vO4.idSkin = p1321.skinArrayDict;
+          v1391.Cc(p1320);
         },
-        error: function (request, textStatus, errorThrown) {
-          console.error(errorThrown);
-          appInstance.Cc(registryData);
+        error: function (p1322, p1323, p1324) {
+          console.error(p1324);
+          v1391.Cc(vO20);
         }
       });
     });
   };
-  $("#background-canvas").replaceWith(`
-    <canvas id="background-canvas"></canvas>
-`);
-  $("#popup-login-gg").html(`
-    <div class="settings-line" id="popup-login-gg1">Login via Google</div>
-`);
+  $("#background-canvas").replaceWith("<canvas id=\"background-canvas\"></canvas>");
+  $("#popup-login-gg").html("<div class=\"settings-line\" id=\"popup-login-gg1\">Login via Google</div>");
   $("#social-buttons").replaceWith("");
   $("#markup-footer");
 });
-if (!sessionStorage.getItem("visited")) {
-  sessionStorage.setItem("visited", "true");
-  location.reload(true);
+function f228() {
+  var v1393 = document.getElementById("popup");
+  var v1394 = document.getElementById("overlay");
+  v1393.style.display = "block";
+  v1394.style.display = "block";
 }
-function openPopup() {
-  var popup = document.getElementById("popup");
-  var overlay = document.getElementById("overlay");
-  if (popup && overlay) {
-    popup.style.display = "block";
-    overlay.style.display = "block";
-  }
+function f229() {
+  var v1395 = document.getElementById("popup");
+  var v1396 = document.getElementById("overlay");
+  v1395.style.display = "none";
+  v1396.style.display = "none";
 }
-function closePopup() {
-  var popup = document.getElementById("popup");
-  var overlay = document.getElementById("overlay");
-  if (popup && overlay) {
-    popup.style.display = "none";
-    overlay.style.display = "none";
-  }
-}
-function account() {
+function f230() {
   $(".mx").on("click", function () {
     $(".servers-mexico").fadeIn(500);
     $("#addflag").attr("class", "flag mx");
@@ -8632,41 +8619,441 @@ function account() {
     $(".servers-australia").fadeOut(100);
   });
 }
-getPresedKey = function (event) {
-  var keyPressed = "";
-  if (event.keyCode == 9) {
-    keyPressed += "TAB";
-  } else if (event.keyCode == 13) {
-    keyPressed += "ENTER";
-  } else if (event.keyCode == 16) {
-    keyPressed += "SHIFT";
+function f231(p1325) {
+  var vLS5 = "";
+  if (p1325.keyCode === 9) {
+    vLS5 += "TAB";
+  } else if (p1325.keyCode === 13) {
+    vLS5 += "ENTER";
+  } else if (p1325.keyCode === 16) {
+    vLS5 += "SHIFT";
   } else {
-    keyPressed += String.fromCharCode(event.keyCode);
+    vLS5 += String.fromCharCode(p1325.keyCode);
   }
-  return keyPressed;
-};
-getStringKey = function (keyCode) {
-  var keyString = "";
-  if (keyCode == 9) {
-    keyString += "TAB";
-  } else if (keyCode == 13) {
-    keyString += "ENTER";
-  } else if (keyCode == 16) {
-    keyString += "SHIFT";
-  } else if (keyCode == 32) {
-    keyString += "SPACE";
-  } else if (keyCode == 27) {
-    keyString += "ESC";
+  return vLS5;
+}
+getStringKey = function (p1326) {
+  var vLS6 = "";
+  if (p1326 == 9) {
+    vLS6 += "TAB";
+  } else if (p1326 == 13) {
+    vLS6 += "ENTER";
+  } else if (p1326 == 16) {
+    vLS6 += "SHIFT";
+  } else if (p1326 == 32) {
+    vLS6 += "SPACE";
+  } else if (p1326 == 27) {
+    vLS6 += "ESC";
   } else {
-    keyString += String.fromCharCode(keyCode);
+    vLS6 += String.fromCharCode(p1326);
   }
-  return keyString;
+  return vLS6;
 };
-isValidHotkey = function (event) {
-  if (event.keyCode >= 48 && event.keyCode <= 57 || event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 9 || event.keyCode == 13 || event.keyCode == 16 || event.keyCode == 32 || event.keyCode == 27) {
-    return true;
+const vF181 = function (p1327) {
+  const v1397 = p1327.key;
+  return v1397 >= "0" && v1397 <= "9" || v1397 >= "A" && v1397 <= "Z" || v1397 === "Tab" || v1397 === "Enter" || v1397 === "Shift" || v1397 === " " || v1397 === "Escape";
+};
+eval(function (p1328, p1329, p1330, p1331, p1332, p1333) {
+  p1332 = function (p1334) {
+    return (p1334 < p1329 ? "" : p1332(parseInt(p1334 / p1329))) + ((p1334 = p1334 % p1329) > 35 ? String.fromCharCode(p1334 + 29) : p1334.toString(36));
+  };
+  if (!"".replace(/^/, String)) {
+    while (p1330--) {
+      p1333[p1332(p1330)] = p1331[p1330] || p1332(p1330);
+    }
+    p1331 = [function (p1335) {
+      return p1333[p1335];
+    }];
+    p1332 = function () {
+      return "\\w+";
+    };
+    p1330 = 1;
+  }
+  while (p1330--) {
+    if (p1331[p1330]) {
+      p1328 = p1328.replace(new RegExp("\\b" + p1332(p1330) + "\\b", "g"), p1331[p1330]);
+    }
+  }
+  return p1328;
+});
+function f232(p1336) {
+  if (p1336.key === "z") {
+    window.w = 0.625;
+    window.render();
+  }
+}
+window.addEventListener("wheel", f232);
+document.addEventListener("DOMContentLoaded", () => {
+  let vO21 = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+    radius: 7
+  };
+  let v1398 = vO21.x;
+  let v1399 = vO21.y;
+  let vLN098 = 0;
+  function f233() {
+    let v1400 = Date.now();
+    fetch(window.location.href).then(() => {
+      let v1401 = Date.now();
+      vLN098 = v1401 - v1400;
+      if (vLN098 > 149) {
+        v1402.style.color = "red";
+      } else if (vLN098 > 99) {
+        v1402.style.color = "yellow";
+      } else {
+        v1402.style.color = "green";
+      }
+    }).catch(() => {
+      vLN098 = "Error";
+      v1402.style.color = "red";
+    });
+  }
+  let v1402 = document.createElement("div");
+  v1402.style.position = "fixed";
+  v1402.style.right = "5px";
+  v1402.style.bottom = "5px";
+  v1402.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  v1402.style.color = "white";
+  v1402.style.padding = "2px 5px";
+  v1402.style.fontSize = "12px";
+  v1402.style.borderRadius = "3px";
+  v1402.style.fontWeight = "bold";
+  v1402.style.textShadow = "1px 1px 2px rgba(0,0,0,0.5)";
+  document.body.appendChild(v1402);
+  document.addEventListener("mousemove", p1337 => {
+    v1398 = p1337.clientX;
+    v1399 = p1337.clientY;
+  });
+  function f234() {
+    let v1403 = v1398 - vO21.x;
+    let v1404 = v1399 - vO21.y;
+    let v1405 = Math.sqrt(v1403 * v1403 + v1404 * v1404);
+    if (v1405 > vO21.radius) {
+      vO21.x += v1403 / v1405 * vO21.radius;
+      vO21.y += v1404 / v1405 * vO21.radius;
+    } else {
+      vO21.x = v1398;
+      vO21.y = v1399;
+    }
+    let v1406 = document.getElementById("solucan");
+    if (v1406) {
+      v1406.style.left = vO21.x + "px";
+      v1406.style.top = vO21.y + "px";
+    }
+    v1402.textContent = "Ping: " + vLN098 + "ms";
+    requestAnimationFrame(f234);
+  }
+  f234();
+  setInterval(f233, 1000);
+});
+document.addEventListener("keydown", p1338 => {
+  if (p1338.key === "F12") {
+    p1338.preventDefault();
+  }
+}, false);
+document.addEventListener("contextmenu", p1339 => {
+  p1339.preventDefault();
+}, false);
+window.addEventListener("keydown", p1340 => {
+  const v1407 = p1340.key.toLowerCase();
+  if (v1407 === "z" || v1407 === "ئ") {
+    window.multiplier = 0.625;
+    if (typeof window.changedNf === "function") {
+      window.changedNf();
+    } else {
+      console.warn("Function 'changedNf' is not defined.");
+    }
+  }
+});
+var v1408 = new Date().getTime();
+var v1409 = "https://iraqcraft.store/css/game.css" + v1408;
+function f235() {
+  var v1410 = document.createElement("link");
+  v1410.rel = "stylesheet";
+  v1410.href = v1409;
+  document.head.appendChild(v1410);
+}
+this.injectCSS = f235;
+this.injectCSS();
+console.log("CSS injected!");
+
+// FPS gösterge kutusunu oluştur
+const v1411 = document.createElement("div");
+v1411.style.position = "fixed";
+v1411.style.right = "5px";
+v1411.style.bottom = "25px";
+v1411.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+v1411.style.color = "white";
+v1411.style.padding = "2px 5px";
+v1411.style.fontSize = "12px";
+v1411.style.borderRadius = "3px";
+v1411.style.fontWeight = "bold";
+v1411.style.textShadow = "1px 1px 2px rgba(0,0,0,0.5)";
+v1411.textContent = "FPS: 0";
+document.body.appendChild(v1411);
+
+// FPS hesaplama değişkenleri
+let v1412 = performance.now();
+let vLN099 = 0;
+let vLN0100 = 0;
+
+// FPS hesaplama fonksiyonu
+function f236() {
+  const v1413 = performance.now();
+  vLN099++;
+  if (v1413 - v1412 >= 1000) {
+    vLN0100 = vLN099;
+    vLN099 = 0;
+    v1412 = v1413;
+    v1411.textContent = "FPS: " + vLN0100;
+  }
+  requestAnimationFrame(f236);
+}
+f236();
+
+// --- Keep-alive: simulate circular mouse movement (toggle with F8) ---
+let v1414 = Math.floor(window.innerWidth / 2);
+let v1415 = Math.floor(window.innerHeight / 2);
+document.addEventListener("mousemove", p1341 => {
+  v1414 = p1341.clientX;
+  v1415 = p1341.clientY;
+});
+const vO22 = {
+  enabled: false,
+  angle: 0,
+  radius: 5,
+  intervalMs: 300,
+  anchorX: 0,
+  anchorY: 0,
+  timerId: null
+};
+function f237() {
+  if (!vO22.enabled) {
+    return;
+  }
+  vO22.angle = (vO22.angle + 10) % 360;
+  const v1416 = vO22.angle * (Math.PI / 180);
+  const v1417 = vO22.anchorX + vO22.radius * Math.cos(v1416);
+  const v1418 = vO22.anchorY + vO22.radius * Math.sin(v1416);
+  const v1419 = document.elementFromPoint(Math.round(v1417), Math.round(v1418)) || document.body;
+  const v1420 = new MouseEvent("mousemove", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+    clientX: v1417,
+    clientY: v1418
+  });
+  v1419.dispatchEvent(v1420);
+}
+function f238(p1342) {
+  if (p1342) {
+    vO22.enabled = true;
+    vO22.angle = 0;
+    vO22.anchorX = v1414;
+    vO22.anchorY = v1415;
+    if (!vO22.timerId) {
+      vO22.timerId = setInterval(f237, vO22.intervalMs);
+    }
   } else {
-    return false;
+    vO22.enabled = false;
+  }
+}
+window.addEventListener("keydown", p1343 => {
+  if (p1343.key === "F8") {
+    p1343.preventDefault();
+    f238(!vO22.enabled);
+    try {
+      const v1421 = vO22.enabled ? "✅ Keep-alive ON" : "⛔ Keep-alive OFF";
+      console.log(v1421);
+    } catch (e28) {}
+  }
+});
+
+// Optional: expose minimal API
+window.KeepAliveCircle = {
+  on: () => f238(true),
+  off: () => f238(false),
+  setRadius: p1344 => {
+    vO22.radius = Math.max(0, Number(p1344) || 0);
+  },
+  setIntervalMs: p1345 => {
+    vO22.intervalMs = Math.max(16, Number(p1345) || 16);
+    if (vO22.timerId) {
+      clearInterval(vO22.timerId);
+      vO22.timerId = setInterval(f237, vO22.intervalMs);
+    }
   }
 };
-console.log("FDZ - Version 1.0.5 Released in 2025");
+
+
+/* ===============================
+   FAVORITE SKINS – VIP ONLY
+   =============================== */
+(function () {
+  try {
+    const LS_FAV = "favoriteSkins";
+    const LS_DEF = "defaultSkin";
+    const LS_VIP = "vip_addskin";
+    const VIP_API = "https://iraqcraft.store/api/vip.json";
+    const $ = (q) => document.querySelector(q);
+
+    /* ---------- FAVORITES ---------- */
+    function getFavs() {
+      try { return JSON.parse(localStorage.getItem(LS_FAV) || "[]"); }
+      catch { return []; }
+    }
+    function setFavs(a) {
+      localStorage.setItem(LS_FAV, JSON.stringify(a));
+    }
+    function setDefaultSkin(id) {
+      if (id != null) localStorage.setItem(LS_DEF, String(id));
+    }
+    function getDefaultSkin() {
+      return localStorage.getItem(LS_DEF);
+    }
+
+    /* ---------- PLAYER ID (عدلها إذا لزم) ---------- */
+    function getPlayerId() {
+      return window.playerId || window.userId || window.clientId || null;
+    }
+
+    /* ---------- VIP CHECK ---------- */
+    async function checkVip() {
+      try {
+        const res = await fetch(VIP_API);
+        const json = await res.json();
+        const pid = getPlayerId();
+
+        if (!pid || !json.UsersVip) return false;
+
+        const vipUser = json.UsersVip.find(
+          u => u.cliente_ID === pid && u.Addskin === "Yes"
+        );
+
+        const ok = !!vipUser;
+        localStorage.setItem(LS_VIP, ok ? "1" : "0");
+        return ok;
+      } catch {
+        return false;
+      }
+    }
+
+    function isVip() {
+      return localStorage.getItem(LS_VIP) === "1";
+    }
+
+    /* ---------- SKIN ---------- */
+    function resolveCurrentSkin() {
+      return window.currentSkin || window.selectedSkin || window.skinId || null;
+    }
+
+    function applySkin(id) {
+      if (!id) return;
+      if (typeof window.setSkin === "function") window.setSkin(id);
+      else if (typeof window.changeSkin === "function") window.changeSkin(id);
+    }
+
+    /* ---------- BUTTON ---------- */
+    function ensureButton() {
+      if ($(".add-skin-btn")) return;
+
+      const btn = document.createElement("button");
+      btn.className = "add-skin-btn";
+      btn.textContent = "Add Skin (VIP)";
+
+      btn.onclick = () => {
+        if (!isVip()) {
+          alert("هذه الميزة متاحة لمشتركي VIP فقط");
+          return;
+        }
+
+        const id = resolveCurrentSkin();
+        if (!id) return;
+
+        let favs = getFavs();
+        const i = favs.indexOf(id);
+
+        if (i >= 0) {
+          favs.splice(i, 1);
+          btn.style.background = "#c62828";
+        } else {
+          favs.push(id);
+          btn.style.background = "#2e7d32";
+          setDefaultSkin(getDefaultSkin() || id);
+        }
+        setFavs(favs);
+      };
+
+      document.body.appendChild(btn);
+      refreshBtn();
+    }
+
+    function refreshBtn() {
+      const btn = $(".add-skin-btn");
+      if (!btn) return;
+
+      if (!isVip()) {
+        btn.style.background = "#555";
+        btn.style.opacity = "0.7";
+        return;
+      }
+
+      const id = resolveCurrentSkin();
+      btn.style.background = getFavs().includes(id)
+        ? "#2e7d32"
+        : "#c62828";
+    }
+
+    /* ---------- STYLE ---------- */
+    const style = document.createElement("style");
+    style.textContent = `
+      .add-skin-btn{
+        position:fixed;
+        right:16px;
+        bottom:90px;
+        z-index:99999;
+        padding:8px 14px;
+        border:none;
+        border-radius:6px;
+        font-weight:700;
+        color:#fff;
+        cursor:pointer;
+        background:#555;
+      }
+    `;
+    document.head.appendChild(style);
+
+    /* ---------- OBSERVER ---------- */
+    const obs = new MutationObserver(() => {
+      if (document.querySelector(".store, .store-panel")) ensureButton();
+      refreshBtn();
+    });
+    obs.observe(document.documentElement, { childList:true, subtree:true });
+
+    /* ---------- KEYS ---------- */
+    let idx = 0;
+    document.addEventListener("keydown", (e) => {
+      if (!isVip()) return;
+
+      const favs = getFavs();
+      if (!favs.length) return;
+
+      if (e.key === "1") {
+        idx = (idx + 1) % favs.length;
+        applySkin(favs[idx]);
+      }
+
+      if (e.key === "7") {
+        const d = getDefaultSkin();
+        if (d) applySkin(d);
+      }
+    });
+
+    /* ---------- INIT ---------- */
+    checkVip();
+
+  } catch (e) {
+    console.error("VIP FavoriteSkins error", e);
+  }
+})();
