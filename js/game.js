@@ -4,11 +4,11 @@
 
   /* ===== SETTINGS ===== */
   const ZOOM_MIN = 0.5;
-  const ZOOM_MAX = 12.5;
-  const ZOOM_STEP = 0.5;
+  const ZOOM_MAX = 3.0;
+  const ZOOM_STEP = 0.1;
 
   /* ===== STATE ===== */
-  let zoomEnabled = localStorage.getItem("GAME_ZOOM_ENABLED") === "true";
+  let zoomEnabled = localStorage.getItem("GAME_ZOOM_ENABLED") === "false";
   let gameZoom = 1.0;
 
   /* ===== PUBLIC API ===== */
@@ -92,7 +92,7 @@
   /* ===== SETTINGS CONFIRM ===== */
   window.askEnableZoom = function () {
     const yes = confirm("هل تريد تفعيل الزوم؟");
-    localStorage.setItem("GAME_ZOOM_ENABLED", yes ? "true" : "false");
+    localStorage.setItem("GAME_ZOOM_ENABLED", yes ? "false" : "false");
     location.reload();
   };
 
@@ -7762,176 +7762,227 @@ window.addEventListener("load", function () {
       }
       localStorage.setItem("SaveGameXT", JSON.stringify(vO4));
     }, false);
-function f218() {
+// =======================
+// 1. المتغيرات والبيانات
+// =======================
+const vA17 = [
+    { nombre: "chuot 1", url: "https://i.imgur.com/SjFtyqp.png" },
+    { nombre: "chuot 2", url: "https://i.imgur.com/4QC2Exd.png" },
+    { nombre: "chuot 3", url: "https://i.imgur.com/PfdBkc2.png" },
+    { nombre: "chuot 4", url: "https://i.imgur.com/vD4zoMk.png" },
+    { nombre: "chuot 5", url: "https://i.imgur.com/n4N79UI.png" },
+    { nombre: "arrow", url: "https://cdn.custom-cursor.com/db/234/32/arrow2291.png" },
+    { nombre: "Superman", url: "https://cdn.custom-cursor.com/db/cursor/32/Superman_Cursor.png" },
+    { nombre: "Kratos", url: "https://cdn.custom-cursor.com/128/assets/pointers/32/GOW_Kratos_Pointer.png" },
+    { nombre: "Pusheen_Ca", url: "https://cdn.custom-cursor.com/db/cursor/32/Pusheen_Cat_Cursor.png" },
+    { nombre: "lipstick", url: "https://i.imgur.com/zNlNdlx.png" },
+    { nombre: "AKM", url: "https://cdn.custom-cursor.com/db/cursor/32/PUBG_AKM_Cursor.png" },
+    { nombre: "Cherries_Pointer", url: "https://cdn.custom-cursor.com/db/pointer/32/Cherries_Pointer.png" },
+    { nombre: "Tom_and_JerryCurso", url: "https://cdn.custom-cursor.com/db/cursor/32/Tom_and_JerryCursor.png" },
+    { nombre: "JerryPointer", url: "https://cdn.custom-cursor.com/db/pointer/32/Tom_and_JerryPointer.png" }
+];
 
-  // =======================
-  // تحديث واجهة الإعدادات
-  // =======================
-  $("#mm-event-text").replaceWith(
-    '<div class="text-vnxx"><a href="https://www.wormateup.live">privat</a></div>'
-  );
+const vA18 = [
+    { nombre: "Default", url: "https://i.imgur.com/8ubx4RA.png" },
+    { nombre: "Schwarze Background", url: "https://i.imgur.com/3cxXwZ6.png" },
+    { nombre: "light blue", url: "https://i.imgur.com/dWtJFIx.png" },
+    { nombre: "woman", url: "https://i.imgur.com/19YALRi.png" },
+    { nombre: "Navidad", url: "https://i.imgur.com/PSRIvVM.png" },
+    { nombre: "Mal3ab", url: "https://i.imgur.com/MlCgOma.png" },
+    { nombre: "Galaxy_Star", url: "https://i.imgur.com/yayb9Ru.png" },
+    { nombre: "Desert", url: "https://asserts.wormworld.io/backgrounds/bkgnd7.png" }
+];
 
-  $("#mm-store").after(`
-    <div id="mm-settings" style="float:right;position:relative;margin-right:10px;min-width:140px;">
-      <div id="settings-wrapper">
-        <div id="openSettings" style="cursor:pointer;">
-          <i class="fa fa-cog fa-spin" style="color:yellow;font-size:25px;"></i> Settings
-        </div>
+vO4.loading = true;
 
-        <div id="popup" class="popup" style="display:none;">
-          <div class="phdr1" style="display:flex;align-items:center;justify-content:center;">
-            <i class="fa fa-cog fa-spin" style="color:yellow;font-size:22px;margin-right:5px;"></i>
-            <span>Game Settings</span>
-          </div>
-
-          <button id="closePopup">Close</button>
-
-          <div class="tab-buttons" style="display:flex;gap:5px;margin:10px 0;">
-            <button data-tab="game" class="active">Game</button>
-            <button data-tab="messages">Messages</button>
-          </div>
-
-          <!-- GAME TAB -->
-          <div class="tab-content active" id="tab-game">
-
-            <div style="margin-bottom:5px;">
-              ID:
-              <input type="text" value="${vO4.FB_UserID}" readonly style="width:100px;">
-              <button id="copyID">COPY</button>
-            </div>
-
-            <label>
-              Eat Fast:
-              <input type="checkbox" id="eatFast">
-            </label><br>
-
-            <label>
-              Headshot Sound:
-              <input type="checkbox" id="hsSound">
-            </label><br>
-
-            <label>
-              Enable Game Zoom:
-              <input type="checkbox" id="enableGameZoom">
-            </label>
-
-            <br><br>
-
-            <select id="soundSelect">
-              <option value="">None</option>
-              <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option>
-              <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option>
-            </select>
-
-          </div>
-
-          <!-- MESSAGES TAB -->
-          <div class="tab-content" id="tab-messages">
-            <div style="margin-bottom:5px;">
-              Kill Message:
-              <select id="killSelect">
-                <option value="Well Done!">حاول مجددا بوت !</option>
-                <option value="Nice Try">حريكااا الحيط</option>
-              </select>
-            </div>
-
-            <div style="margin-bottom:5px;">
-              Headshot Message:
-              <select id="headshotSelect">
-                <option value="HEADSHOT">اديلو ادي</option>
-                <option value="BOOM">علوبي بوت</option>
-              </select>
-            </div>
-
-            <button id="saveMessages">Save</button>
-          </div>
-
-        </div>
-      </div>
+// =======================
+// 2. إنشاء HTML للعبة
+// =======================
+let vLS4 = `
+    </div></div></div>
+    <div id="wormcerca">
+        <img class="pwrups v0" style="display: none;" src="https://i.imgur.com/M1LFPpp.png">
+        <img class="pwrups v1" style="display: none;" src="https://i.imgur.com/z162iYa.png">
+        <img class="pwrups v2" style="display: none;" src="https://i.imgur.com/kXlF32q.png">
+        <img class="pwrups v3" style="display: none;" src="https://i.imgur.com/kJ6oz7e.png">
+        <img class="pwrups v4" style="display: none;" src="https://i.imgur.com/l3ds43O.png">
+        <img class="pwrups v5" style="display: none;" src="https://i.imgur.com/FqA56k6.png">
+        <img class="pwrups v6" style="display: none;" src="https://i.imgur.com/mSCZeEp.png">
     </div>
-  `);
+    <img class="worm_1" src="https://i.imgur.com/iekrYYm.png">
+    <span class="Worm_cerca"></span>
+    <div class="worm_4">
+        <button id="settingBtn"><img src="https://i.imgur.com/bKAe6W9.png"/></button>
+        <div id="settingContent">
+            <div class="container1">
+                <span class="settings_span">Spin-Fast: </span>
+                <input id="smoothCamera" class="range" type="range" min="0.3" max="0.6" value="${theoKzObjects.smoothCamera}" step="0.1" oninput="smoothCameraValue.value=value"/>
+            </div>
+            <div class="container1">
+                <span class="settings_span">Power-ups-Size: </span>
+                <input id="PortionSize" class="range" type="range" min="1" max="6" value="${theoKzObjects.PortionSize}" step="1" oninput="rangevalue1.value=value"/>
+            </div>
+            <div class="container1">
+                <span class="settings_span">Power-ups-Aura: </span>
+                <input id="PortionAura" class="range" type="range" min="1.2" max="3.2" value="${theoKzObjects.PortionAura}" step="0.2" oninput="PortionAuravalue.value=value"/>
+            </div>
+            <div class="container1">
+                <span class="settings_span">Food-Size: </span>
+                <input id="FoodSize" class="range" type="range" min="0.5" max="3" value="${theoKzObjects.FoodSize}" step="0.5" oninput="rangevalue2.value=value"/>
+            </div>
+            <div class="container1">
+                <span class="settings_span">Food-Shadow: </span>
+                <input id="FoodShadow" class="range" type="range" min="0.5" max="3" value="${theoKzObjects.FoodShadow}" step="0.5" oninput="FoodShadowvalue.value=value"/>
+            </div>
+        </div>
+    </div>
+    <div style="display:none" id="zoom-container">
+        <div id="zoom-out">-</div>
+        <div id="zoom-in">+</div>
+        <div class="worm_3">x.<span id="zoom-percentage"></span></div>
+    </div>
+`;
 
-  // =======================
-  // عناصر التحكم
-  // =======================
-  const popup = $("#popup");
-  const audio = new Audio();
+$("#game-view").append(vLS4);
 
-  $("#openSettings").on("click", () => popup.show());
-  $("#closePopup").on("click", () => popup.hide());
-
-  $("#copyID").on("click", () =>
-    navigator.clipboard.writeText(vO4.FB_UserID)
-  );
-
-  $(".tab-buttons button").on("click", function () {
-    $(".tab-buttons button").removeClass("active");
-    $(this).addClass("active");
-    $(".tab-content").removeClass("active");
-    $("#tab-" + $(this).data("tab")).addClass("active");
-  });
-
-  // =======================
-  // الصوت
-  // =======================
-  $("#soundSelect").on("change", function () {
-    const src = this.value;
-    localStorage.setItem("hsSoundSrc", src);
-    if ($("#hsSound").prop("checked")) {
-      audio.src = src;
-      audio.play();
+// =======================
+// 3. دوال مساعدة
+// =======================
+function f217(player) {
+    if (vO4.PropertyManager) {
+        player.skinId = vO4.PropertyManager.rh;
+        player.eyesId = vO4.PropertyManager.sh;
+        player.mouthId = vO4.PropertyManager.th;
+        player.glassesId = vO4.PropertyManager.uh;
+        player.hatId = vO4.PropertyManager.vh;
     }
-  });
+}
 
-  $("#hsSound").on("change", function () {
-    localStorage.setItem("hsSoundEnabled", this.checked);
-    if (!this.checked) audio.pause();
-  });
+// =======================
+// 4. إعداد واجهة الإعدادات
+// =======================
+function f218() {
+    // نص الرابط
+    $("#mm-event-text").replaceWith('<div class="text-vnxx"><a href="https://www.wormateup.live">privat</a></div>');
 
-  // =======================
-  // حفظ الرسائل
-  // =======================
-  $("#saveMessages").on("click", () => {
-    localStorage.setItem("killMsg", $("#killSelect").val());
-    localStorage.setItem("hsMsg", $("#headshotSelect").val());
-    alert("Messages saved!");
-  });
+    // إعداد البوب اب
+    $("#mm-store").after(`
+        <div id="mm-settings" style="float:right;position:relative;margin-right:10px;min-width:140px;">
+            <div id="settings-wrapper">
+                <div id="openSettings" style="cursor:pointer;">
+                    <i class="fa fa-cog fa-spin" style="color:yellow;font-size:25px;"></i> Settings
+                </div>
+                <div id="popup" class="popup" style="display:none;">
+                    <div class="phdr1" style="display:flex;align-items:center;justify-content:center;">
+                        <i class="fa fa-cog fa-spin" style="color:yellow;font-size:22px;margin-right:5px;"></i>
+                        <span>Game Settings</span>
+                    </div>
+                    <button id="closePopup">Close</button>
+                    <div class="tab-buttons" style="display:flex;gap:5px;margin:10px 0;">
+                        <button data-tab="game" class="active">Game</button>
+                        <button data-tab="messages">Messages</button>
+                    </div>
+                    <div class="tab-content active" id="tab-game">
+                        <div>ID: <input type="text" value="${vO4.FB_UserID}" readonly style="width:100px;"><button id="copyID">COPY</button></div>
+                        <label> Eat Fast: <input type="checkbox" id="eatFast"> </label>
+                        <label> Headshot Sound: <input type="checkbox" id="hsSound"> </label>
+                        <select id="soundSelect">
+                            <option value="">None</option>
+                            <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option>
+                            <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option>
+                        </select>
+                    </div>
+                    <div class="tab-content" id="tab-messages">
+                        <div>Kill Message: 
+                            <select id="killSelect">
+                                <option value="Well Done!">حاول مجددا بوت !</option>
+                                <option value="Nice Try">حريكااا الحيط</option>
+                            </select>
+                        </div>
+                        <div>Headshot Message: 
+                            <select id="headshotSelect">
+                                <option value="HEADSHOT">اديلو ادي</option>
+                                <option value="BOOM">علوبي بوت</option>
+                            </select>
+                        </div>
+                        <button id="saveMessages">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `);
 
-  // =======================
-  // تحميل الإعدادات
-  // =======================
-  (function loadSettings() {
-    $("#killSelect").val(localStorage.getItem("killMsg"));
-    $("#headshotSelect").val(localStorage.getItem("hsMsg"));
-    $("#hsSound").prop("checked", localStorage.getItem("hsSoundEnabled") === "true");
-    $("#soundSelect").val(localStorage.getItem("hsSoundSrc"));
+    // =======================
+    // التحكم في البوب اب
+    // =======================
+    const popup = $("#popup");
+    const audio = new Audio();
 
-    $("#enableGameZoom").prop(
-      "checked",
-      localStorage.getItem("GAME_ZOOM_ENABLED") === "true"
-    );
-  })();
+    $("#openSettings").on("click", () => popup.show());
+    $("#closePopup").on("click", () => popup.hide());
+    $("#copyID").on("click", () => navigator.clipboard.writeText(vO4.FB_UserID));
 
-  // =======================
-  // تفعيل / تعطيل الزوم
-  // =======================
-  $("#enableGameZoom").on("change", function () {
-    const enable = this.checked;
-    const ok = confirm("هل تريد تفعيل الزوم؟ سيتم إعادة تحميل الصفحة");
+    // التبويبات
+    $(".tab-buttons button").on("click", function () {
+        $(".tab-buttons button").removeClass("active");
+        $(this).addClass("active");
+        $(".tab-content").removeClass("active");
+        $("#tab-" + $(this).data("tab")).addClass("active");
+    });
 
-    if (!ok) {
-      this.checked = !enable;
-      return;
-    }
+    // التحكم بالصوت
+    $("#soundSelect").on("change", function () {
+        const src = this.value;
+        localStorage.setItem("hsSoundSrc", src);
+        if ($("#hsSound").prop("checked")) {
+            audio.src = src;
+            audio.play();
+        }
+    });
 
-    localStorage.setItem(
-      "GAME_ZOOM_ENABLED",
-      enable ? "true" : "false"
-    );
+    $("#hsSound").on("change", function () {
+        localStorage.setItem("hsSoundEnabled", this.checked);
+        if (!this.checked) audio.pause();
+    });
 
-    location.reload();
-  });
+    // حفظ الرسائل
+    $("#saveMessages").on("click", () => {
+        localStorage.setItem("killMsg", $("#killSelect").val());
+        localStorage.setItem("hsMsg", $("#headshotSelect").val());
+        alert("Messages saved!");
+    });
 
+    // تحميل الإعدادات المخزنة
+    (function loadSettings() {
+        $("#killSelect").val(localStorage.getItem("killMsg"));
+        $("#headshotSelect").val(localStorage.getItem("hsMsg"));
+        $("#hsSound").prop("checked", localStorage.getItem("hsSoundEnabled") === "true");
+        $("#soundSelect").val(localStorage.getItem("hsSoundSrc"));
+    })();
+
+    // =======================
+    // ربط عناصر التحكم باللعبة
+    // =======================
+    $("#PortionSize").on("input", function () {
+        vO4.PortionSize = $(this).val();
+        localStorage.PotenciadorSize = vO4.PortionSize;
+    });
+    $("#PortionAura").on("input", function () {
+        vO4.PortionAura = $(this).val();
+        localStorage.PotenciadorAura = vO4.PortionAura;
+    });
+    $("#smoothCamera").on("input", function () {
+        vO4.smoothCamera = $(this).val();
+        localStorage.smoothCamera = vO4.smoothCamera;
+    });
+    $("#FoodSize").on("input", function () {
+        vO4.FoodSize = $(this).val();
+        localStorage.ComidaSize = vO4.FoodSize;
+    });
+    $("#FoodShadow").on("input", function () {
+        vO4.FoodShadow = $(this).val();
+        localStorage.ComidaShadow = vO4.FoodShadow;
+    });
 }
       // تحديث محتوى النصائح
 $("#mm-advice-cont").html(`
