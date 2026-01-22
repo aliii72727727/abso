@@ -7898,8 +7898,8 @@ $("#saveMessages").on("click", () => {
       // تحديث محتوى النصائح
 $("#mm-advice-cont").html(`
   <div class="vietnam-buttons">
-    <input type="button" value="شاشـة كاملـة" class="btn fullscreen_button">
-    <input type="button" value="رسبـون" id="hoisinh" class="btn respawn_button">
+    <input type="button" value="FULL SCREEN" class="btn btn-fullscreen fullscreen_button">
+    <input type="button" value="RESPAWN" id="hoisinh" class="btn btn-respawn">
   </div>
 `);
 
@@ -7916,79 +7916,72 @@ $(".mm-merchant-cont").html(`
 `);
 
 // CSS خفيف جدًا
-$("<style>")
-  .prop("type", "text/css")
-  .html(`
-    .vietnam-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      justify-items: center;
-      margin-top: 10px;
-    }
-    .btn {
-      padding: 8px 15px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #ff6f00; /* برتقالي */
-      color: #fff;
-      transition: background 0.2s;
-    }
-    .btn:hover {
-      background-color: #e65c00;
-    }
-    .merchant-links {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-      gap: 10px;
-    }
-    .merchant-links img {
-      border-radius: 5px;
-      transition: transform 0.2s;
-    }
-    .merchant-links img:hover {
-      transform: scale(1.05);
-    }
-  `)
-  .appendTo("head");
+$("<style>").prop("type", "text/css").html(`
+  .vietnam-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+    align-items: center;
+  }
 
-// وظيفة الشاشة الكاملة
+  .btn {
+    width: 160px;
+    padding: 8px 0;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .btn-fullscreen {
+    background: #5f5f5f; /* رصاصي */
+  }
+
+  .btn-fullscreen:hover {
+    background: #4a4a4a;
+  }
+
+  .btn-respawn {
+    background: #c62828; /* أحمر */
+  }
+
+  .btn-respawn:hover {
+    background: #a61f1f;
+  }
+
+  .merchant-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+`).appendTo("head");
+
+// وظيفة FULL SCREEN
 $(document).ready(function () {
+
   $(".fullscreen_button").on("click", function () {
     if (!document.fullscreenElement) {
-      // الدخول في وضع الشاشة الكاملة
       if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
       } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-      } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
+        document.documentElement.webkitRequestFullscreen();
       }
     } else {
-      // الخروج من وضع الشاشة الكاملة
       if (document.exitFullscreen) {
         document.exitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
       }
     }
   });
 
-  // زر ريسبون (هنا مجرد مثال للتنبيه)
+  // زر RESPAWN (مكان ربط الوظيفة الحقيقية)
   $("#hoisinh").on("click", function () {
-    alert("تم تفعيل ريسبون!"); // تقدر تستبدل الوظيفة الحقيقية هنا
+    alert("RESPAWN");
   });
+
 });
       $("#hoisinh").click(function () {
         let vV_0x2b5e54 = vV_0x2b5e54;
@@ -9137,17 +9130,20 @@ window.KeepAliveCircle = {
 
 
 /* ===============================
-   FAVORITE SKINS – SAFE INTEGRATION
+   FAVORITE SKINS – VIP ONLY
    =============================== */
 (function () {
   try {
-    // Helpers
     const LS_FAV = "favoriteSkins";
     const LS_DEF = "defaultSkin";
+    const LS_VIP = "vip_addskin";
+    const VIP_API = "https://iraqcraft.store/api/vip.json";
     const $ = (q) => document.querySelector(q);
 
+    /* ---------- FAVORITES ---------- */
     function getFavs() {
-      try { return JSON.parse(localStorage.getItem(LS_FAV) || "[]"); } catch(e){ return []; }
+      try { return JSON.parse(localStorage.getItem(LS_FAV) || "[]"); }
+      catch { return []; }
     }
     function setFavs(a) {
       localStorage.setItem(LS_FAV, JSON.stringify(a));
@@ -9159,41 +9155,78 @@ window.KeepAliveCircle = {
       return localStorage.getItem(LS_DEF);
     }
 
-    // Try to resolve current selected skin from common globals
+    /* ---------- PLAYER ID (عدلها إذا لزم) ---------- */
+    function getPlayerId() {
+      return window.playerId || window.userId || window.clientId || null;
+    }
+
+    /* ---------- VIP CHECK ---------- */
+    async function checkVip() {
+      try {
+        const res = await fetch(VIP_API);
+        const json = await res.json();
+        const pid = getPlayerId();
+
+        if (!pid || !json.UsersVip) return false;
+
+        const vipUser = json.UsersVip.find(
+          u => u.cliente_ID === pid && u.Addskin === "Yes"
+        );
+
+        const ok = !!vipUser;
+        localStorage.setItem(LS_VIP, ok ? "1" : "0");
+        return ok;
+      } catch {
+        return false;
+      }
+    }
+
+    function isVip() {
+      return localStorage.getItem(LS_VIP) === "1";
+    }
+
+    /* ---------- SKIN ---------- */
     function resolveCurrentSkin() {
       return window.currentSkin || window.selectedSkin || window.skinId || null;
     }
 
-    // Apply skin using common APIs if present
     function applySkin(id) {
       if (!id) return;
-      if (typeof window.setSkin === "function") return window.setSkin(id);
-      if (typeof window.changeSkin === "function") return window.changeSkin(id);
-      // fallback: expose event
-      window.dispatchEvent(new CustomEvent("applySkin", { detail: id }));
+      if (typeof window.setSkin === "function") window.setSkin(id);
+      else if (typeof window.changeSkin === "function") window.changeSkin(id);
     }
 
-    // UI Button
+    /* ---------- BUTTON ---------- */
     function ensureButton() {
       if ($(".add-skin-btn")) return;
+
       const btn = document.createElement("button");
       btn.className = "add-skin-btn";
-      btn.textContent = "Add Skin";
+      btn.textContent = "Add Skin (VIP)";
+
       btn.onclick = () => {
+        if (!isVip()) {
+          alert("هذه الميزة متاحة لمشتركي VIP فقط");
+          return;
+        }
+
         const id = resolveCurrentSkin();
         if (!id) return;
+
         let favs = getFavs();
-        const idx = favs.indexOf(id);
-        if (idx >= 0) {
-          favs.splice(idx, 1);
-          btn.style.background = "#e74c3c";
+        const i = favs.indexOf(id);
+
+        if (i >= 0) {
+          favs.splice(i, 1);
+          btn.style.background = "#c62828";
         } else {
           favs.push(id);
-          btn.style.background = "#2ecc71";
+          btn.style.background = "#2e7d32";
           setDefaultSkin(getDefaultSkin() || id);
         }
         setFavs(favs);
       };
+
       document.body.appendChild(btn);
       refreshBtn();
     }
@@ -9201,51 +9234,68 @@ window.KeepAliveCircle = {
     function refreshBtn() {
       const btn = $(".add-skin-btn");
       if (!btn) return;
+
+      if (!isVip()) {
+        btn.style.background = "#555";
+        btn.style.opacity = "0.7";
+        return;
+      }
+
       const id = resolveCurrentSkin();
-      const favs = getFavs();
-      btn.style.background = favs.includes(id) ? "#2ecc71" : "#e74c3c";
+      btn.style.background = getFavs().includes(id)
+        ? "#2e7d32"
+        : "#c62828";
     }
 
-    // Styles
+    /* ---------- STYLE ---------- */
     const style = document.createElement("style");
     style.textContent = `
       .add-skin-btn{
-        position:fixed; right:16px; bottom:90px; z-index:99999;
-        padding:8px 14px; border:none; border-radius:6px;
-        font-weight:700; color:#fff; cursor:pointer;
-        background:#e74c3c;
+        position:fixed;
+        right:16px;
+        bottom:90px;
+        z-index:99999;
+        padding:8px 14px;
+        border:none;
+        border-radius:6px;
+        font-weight:700;
+        color:#fff;
+        cursor:pointer;
+        background:#555;
       }
     `;
     document.head.appendChild(style);
 
-    // Observe store open (generic)
+    /* ---------- OBSERVER ---------- */
     const obs = new MutationObserver(() => {
-      // when store panels appear, ensure button
       if (document.querySelector(".store, .store-panel")) ensureButton();
       refreshBtn();
     });
     obs.observe(document.documentElement, { childList:true, subtree:true });
 
-    // Key bindings: 1 cycle favs, 7 back to default
+    /* ---------- KEYS ---------- */
     let idx = 0;
     document.addEventListener("keydown", (e) => {
+      if (!isVip()) return;
+
       const favs = getFavs();
       if (!favs.length) return;
+
       if (e.key === "1") {
         idx = (idx + 1) % favs.length;
         applySkin(favs[idx]);
       }
+
       if (e.key === "7") {
         const d = getDefaultSkin();
         if (d) applySkin(d);
       }
     });
 
-    // Expose for compatibility
-    window.FavoriteSkins = {
-      getFavs, setFavs, applySkin, setDefaultSkin
-    };
+    /* ---------- INIT ---------- */
+    checkVip();
+
   } catch (e) {
-    console.error("FavoriteSkins init error", e);
+    console.error("VIP FavoriteSkins error", e);
   }
 })();
