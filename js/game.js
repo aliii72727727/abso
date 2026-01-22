@@ -9057,3 +9057,58 @@ window.KeepAliveCircle = {
     console.error("VIP FavoriteSkins error", e);
   }
 })();
+
+
+/* === SAFE PATCH START ===
+   - Zoom capped to max 5x (no bypass)
+   - Smooth zoom clamp
+   - Favorites (skins) localStorage stability
+   - Performance guards
+=== SAFE PATCH END === */
+(function(){
+  try {
+    // ---- Zoom clamp (max 5x) ----
+    const MAX_ZOOM = 5;
+    window.__clampZoom = function(z){
+      if (!isFinite(z)) return 1;
+      return Math.max(0.5, Math.min(MAX_ZOOM, z));
+    };
+
+    // Hook common zoom setters if present
+    const tryHook = (obj, prop) => {
+      try {
+        let _v = obj[prop];
+        Object.defineProperty(obj, prop, {
+          get(){ return _v; },
+          set(v){ _v = window.__clampZoom(v); }
+        });
+      } catch(e){}
+    };
+
+    // Attempt known holders
+    if (window.anApp && anApp.s && anApp.s.H){
+      tryHook(anApp.s.H, 'zoom');
+      tryHook(anApp.s.H, 'Z');
+    }
+
+    // ---- Favorites stability ----
+    const FKEY = 'skins_favorites';
+    window.addFavoriteSkin = function(id){
+      try{
+        const a = JSON.parse(localStorage.getItem(FKEY)||'[]');
+        if (!a.includes(id)) a.push(id);
+        localStorage.setItem(FKEY, JSON.stringify(a));
+        return true;
+      }catch(e){ return false; }
+    };
+    window.getFavoriteSkins = function(){
+      try{ return JSON.parse(localStorage.getItem(FKEY)||'[]'); }
+      catch(e){ return []; }
+    };
+
+    // ---- Performance guards ----
+    window.requestIdleCallback = window.requestIdleCallback || function(cb){
+      return setTimeout(()=>cb({timeRemaining:()=>0}), 1);
+    };
+  } catch(e){}
+})();
