@@ -1,54 +1,109 @@
 
-/* === INTERNAL GAME ZOOM PATCH (Z/X) === */
-(function(){
-  try {
-    let GAME_ZOOM = 1.0;
-    const ZOOM_STEP = 0.1;
-    const ZOOM_MIN = 0.5;
-    const ZOOM_MAX = 12.5;
+/* === GAME CAMERA ZOOM SYSTEM === */
+(function () {
 
-    // expose zoom for game
-    window.GAME_ZOOM = GAME_ZOOM;
+  /* ===== SETTINGS ===== */
+  const ZOOM_MIN = 0.5;
+  const ZOOM_MAX = 3.0;
+  const ZOOM_STEP = 0.1;
 
-    function applyZoom(){
-      document.querySelectorAll('canvas').forEach(c=>{
-        c.style.transformOrigin = "center center";
-        c.style.transform = `scale(${GAME_ZOOM})`;
-      });
-      window.GAME_ZOOM = GAME_ZOOM;
-    }
+  /* ===== STATE ===== */
+  let zoomEnabled = localStorage.getItem("GAME_ZOOM_ENABLED") === "true";
+  let gameZoom = 1.0;
 
-    window.addEventListener("keydown", function(e){
-      if (e.key === "z" || e.key === "Z") {
-        GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP);
-        applyZoom();
-      }
-      if (e.key === "x" || e.key === "X") {
-        GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP);
-        applyZoom();
-      }
-    });
+  /* ===== PUBLIC API ===== */
+  window.GameZoom = {
+    get: () => gameZoom,
+    set: (z) => {
+      gameZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, z));
+    },
+    reset: () => {
+      gameZoom = 1.0;
+    },
+    enabled: () => zoomEnabled
+  };
 
-    // Mobile pinch support (soft zoom)
-    let lastDist = null;
-    document.addEventListener("touchmove", function(e){
-      if (e.touches.length === 2) {
-        const dx = e.touches[0].clientX - e.touches[1].clientX;
-        const dy = e.touches[0].clientY - e.touches[1].clientY;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (lastDist) {
-          if (dist > lastDist) GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + 0.02);
-          if (dist < lastDist) GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - 0.02);
-          applyZoom();
-        }
-        lastDist = dist;
-      }
-    }, {passive:true});
+  /* ===== APPLY ZOOM TO CONTEXT (IMPORTANT) ===== */
+  window.applyGameZoom = function (ctx, canvas) {
+    if (!zoomEnabled) return;
 
-    document.addEventListener("touchend", ()=> lastDist = null);
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.scale(gameZoom, gameZoom);
+    ctx.translate(-canvas.width / 2, -canvas.height / 2);
+  };
 
-    applyZoom();
-  } catch(e){}
+  /* ===== PC CONTROLS ===== */
+  window.addEventListener("wheel", (e) => {
+    if (!zoomEnabled) return;
+    if (e.target.tagName !== "CANVAS") return;
+
+    e.preventDefault();
+    if (e.deltaY < 0) gameZoom += ZOOM_STEP;
+    else gameZoom -= ZOOM_STEP;
+
+    GameZoom.set(gameZoom);
+  }, { passive: false });
+
+  window.addEventListener("keydown", (e) => {
+    if (!zoomEnabled) return;
+
+    if (e.key === "+") GameZoom.set(gameZoom + ZOOM_STEP);
+    if (e.key === "-") GameZoom.set(gameZoom - ZOOM_STEP);
+    if (e.key === "z" || e.key === "Z") GameZoom.reset();
+  });
+
+  /* ===== MOBILE BUTTONS ===== */
+  function createMobileZoomUI() {
+    if (!("ontouchstart" in window)) return;
+
+    const wrap = document.createElement("div");
+    wrap.style.cssText = `
+      position:fixed;
+      right:15px;
+      bottom:120px;
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    `;
+
+    const btn = (txt, fn) => {
+      const b = document.createElement("button");
+      b.textContent = txt;
+      b.style.cssText = `
+        width:45px;height:45px;
+        font-size:22px;
+        border-radius:50%;
+        border:none;
+        background:#111;
+        color:#fff;
+      `;
+      b.onclick = fn;
+      return b;
+    };
+
+    wrap.appendChild(btn("+", () => GameZoom.set(gameZoom + ZOOM_STEP)));
+    wrap.appendChild(btn("-", () => GameZoom.set(gameZoom - ZOOM_STEP)));
+
+    document.body.appendChild(wrap);
+  }
+
+  /* ===== SETTINGS CONFIRM ===== */
+  window.askEnableZoom = function () {
+    const yes = confirm("هل تريد تفعيل الزوم؟");
+    localStorage.setItem("GAME_ZOOM_ENABLED", yes ? "true" : "false");
+    location.reload();
+  };
+
+  /* ===== INIT ===== */
+  if (zoomEnabled) {
+    createMobileZoomUI();
+    console.log("✅ Game Zoom Enabled");
+  } else {
+    console.log("❌ Game Zoom Disabled");
+  }
+
 })();
 /* === END GAME ZOOM PATCH === */
 
