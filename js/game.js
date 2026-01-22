@@ -1,4 +1,59 @@
 
+/* === INTERNAL GAME ZOOM PATCH (Z/X) === */
+(function(){
+  try {
+    let GAME_ZOOM = 1.0;
+    const ZOOM_STEP = 0.1;
+    const ZOOM_MIN = 0.5;
+    const ZOOM_MAX = 12.5;
+
+    // expose zoom for game
+    window.GAME_ZOOM = GAME_ZOOM;
+
+    function applyZoom(){
+      document.querySelectorAll('canvas').forEach(c=>{
+        c.style.transformOrigin = "center center";
+        c.style.transform = `scale(${GAME_ZOOM})`;
+      });
+      window.GAME_ZOOM = GAME_ZOOM;
+    }
+
+    window.addEventListener("keydown", function(e){
+      if (e.key === "z" || e.key === "Z") {
+        GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP);
+        applyZoom();
+      }
+      if (e.key === "x" || e.key === "X") {
+        GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP);
+        applyZoom();
+      }
+    });
+
+    // Mobile pinch support (soft zoom)
+    let lastDist = null;
+    document.addEventListener("touchmove", function(e){
+      if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (lastDist) {
+          if (dist > lastDist) GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + 0.02);
+          if (dist < lastDist) GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - 0.02);
+          applyZoom();
+        }
+        lastDist = dist;
+      }
+    }, {passive:true});
+
+    document.addEventListener("touchend", ()=> lastDist = null);
+
+    applyZoom();
+  } catch(e){}
+})();
+/* === END GAME ZOOM PATCH === */
+
+
+
 /* === BACKGROUND PATCH (Added) === */
 (function(){
   try {
@@ -9056,59 +9111,4 @@ window.KeepAliveCircle = {
   } catch (e) {
     console.error("VIP FavoriteSkins error", e);
   }
-})();
-
-
-/* === SAFE PATCH START ===
-   - Zoom capped to max 5x (no bypass)
-   - Smooth zoom clamp
-   - Favorites (skins) localStorage stability
-   - Performance guards
-=== SAFE PATCH END === */
-(function(){
-  try {
-    // ---- Zoom clamp (max 5x) ----
-    const MAX_ZOOM = 5;
-    window.__clampZoom = function(z){
-      if (!isFinite(z)) return 1;
-      return Math.max(0.5, Math.min(MAX_ZOOM, z));
-    };
-
-    // Hook common zoom setters if present
-    const tryHook = (obj, prop) => {
-      try {
-        let _v = obj[prop];
-        Object.defineProperty(obj, prop, {
-          get(){ return _v; },
-          set(v){ _v = window.__clampZoom(v); }
-        });
-      } catch(e){}
-    };
-
-    // Attempt known holders
-    if (window.anApp && anApp.s && anApp.s.H){
-      tryHook(anApp.s.H, 'zoom');
-      tryHook(anApp.s.H, 'Z');
-    }
-
-    // ---- Favorites stability ----
-    const FKEY = 'skins_favorites';
-    window.addFavoriteSkin = function(id){
-      try{
-        const a = JSON.parse(localStorage.getItem(FKEY)||'[]');
-        if (!a.includes(id)) a.push(id);
-        localStorage.setItem(FKEY, JSON.stringify(a));
-        return true;
-      }catch(e){ return false; }
-    };
-    window.getFavoriteSkins = function(){
-      try{ return JSON.parse(localStorage.getItem(FKEY)||'[]'); }
-      catch(e){ return []; }
-    };
-
-    // ---- Performance guards ----
-    window.requestIdleCallback = window.requestIdleCallback || function(cb){
-      return setTimeout(()=>cb({timeRemaining:()=>0}), 1);
-    };
-  } catch(e){}
 })();
