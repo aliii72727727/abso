@@ -7652,30 +7652,6 @@ window.addEventListener("load", function () {
       }
       localStorage.setItem("SaveGameXT", JSON.stringify(vO4));
     }, false);
-    /* ===============================
-   SETTINGS + UI CLEAN VERSION
-   =============================== */
-
-// ====== CURSORS ======
-const vA17 = [
-  { nombre: "chuot 1", url: "https://i.imgur.com/SjFtyqp.png" },
-  { nombre: "chuot 2", url: "https://i.imgur.com/4QC2Exd.png" },
-  { nombre: "chuot 3", url: "https://i.imgur.com/PfdBkc2.png" },
-  { nombre: "chuot 4", url: "https://i.imgur.com/vD4zoMk.png" },
-  { nombre: "chuot 5", url: "https://i.imgur.com/n4N79UI.png" },
-  { nombre: "arrow", url: "https://cdn.custom-cursor.com/db/234/32/arrow2291.png" },
-  { nombre: "Superman", url: "https://cdn.custom-cursor.com/db/cursor/32/Superman_Cursor.png" },
-  { nombre: "Kratos", url: "https://cdn.custom-cursor.com/128/assets/pointers/32/GOW_Kratos_Pointer.png" }
-];
-
-// ====== BACKGROUNDS ======
-const vA18 = [
-  { nombre: "Default", url: "https://i.imgur.com/8ubx4RA.png" },
-  { nombre: "Black", url: "https://i.imgur.com/3cxXwZ6.png" },
-  { nombre: "Blue", url: "https://i.imgur.com/dWtJFIx.png" },
-  { nombre: "Galaxy", url: "https://i.imgur.com/yayb9Ru.png" }
-];
-
 /* ===============================
    SETTINGS UI – JS ONLY
    =============================== */
