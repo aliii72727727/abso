@@ -7676,159 +7676,117 @@ const vA18 = [
   { nombre: "Galaxy", url: "https://i.imgur.com/yayb9Ru.png" }
 ];
 
-// ====== HTML UI ======
-const settingsHTML = `
-<div id="mm-settings">
-  <div id="openSettings">⚙ Settings</div>
+/* ===============================
+   SETTINGS UI – JS ONLY
+   =============================== */
 
-  <div id="popup">
-    <div class="popup-header">
-      ⚙ Game Settings
-      <span id="closePopup">✖</span>
-    </div>
+(function () {
+  try {
 
-    <div class="tabs">
-      <button data-tab="game" class="active">Game</button>
-      <button data-tab="messages">Messages</button>
-    </div>
+    const settingsHTML = `
+    <div id="mm-settings">
+      <div id="openSettings">⚙ Settings</div>
 
-    <div class="tab-content active" id="tab-game">
-      <div class="row">
-        ID:
-        <input type="text" value="${vO4.FB_UserID}" readonly>
-        <button id="copyID">COPY</button>
+      <div id="popup">
+        <div class="popup-header">
+          <span>⚙ Game Settings</span>
+          <span id="closePopup">✖</span>
+        </div>
+
+        <div class="tabs">
+          <button data-tab="game" class="active">Game</button>
+          <button data-tab="messages">Messages</button>
+        </div>
+
+        <div class="tab-content active" id="tab-game">
+          <div class="row">
+            ID:
+            <input type="text" value="${vO4.FB_UserID}" readonly>
+            <button id="copyID">COPY</button>
+          </div>
+
+          <label><input type="checkbox" id="eatFast"> Eat Fast</label>
+          <label><input type="checkbox" id="hsSound"> Headshot Sound</label>
+
+          <select id="soundSelect">
+            <option value="">None</option>
+            <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option>
+            <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option>
+          </select>
+        </div>
+
+        <div class="tab-content" id="tab-messages">
+          <label>
+            Kill Message
+            <select id="killSelect">
+              <option value="Well Done!">حاول مجددا بوت</option>
+              <option value="Nice Try">حريكااا الحيط</option>
+            </select>
+          </label>
+
+          <label>
+            Headshot Message
+            <select id="headshotSelect">
+              <option value="HEADSHOT">اديلو ادي</option>
+              <option value="BOOM">علوبي بوت</option>
+            </select>
+          </label>
+
+          <button id="saveMessages">Save</button>
+        </div>
       </div>
-
-      <label><input type="checkbox" id="eatFast"> Eat Fast</label>
-      <label><input type="checkbox" id="hsSound"> Headshot Sound</label>
-
-      <select id="soundSelect">
-        <option value="">None</option>
-        <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option>
-        <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option>
-      </select>
     </div>
+    `;
 
-    <div class="tab-content" id="tab-messages">
-      <label>Kill Message
-        <select id="killSelect">
-          <option value="Well Done!">حاول مجددا بوت</option>
-          <option value="Nice Try">حريكااا الحيط</option>
-        </select>
-      </label>
+    $("#mm-store").after(settingsHTML);
 
-      <label>Headshot Message
-        <select id="headshotSelect">
-          <option value="HEADSHOT">اديلو ادي</option>
-          <option value="BOOM">علوبي بوت</option>
-        </select>
-      </label>
+    const popup = $("#popup");
+    const audio = new Audio();
 
-      <button id="saveMessages">Save</button>
-    </div>
-  </div>
-</div>
-`;
+    $("#openSettings").on("click", () => popup.toggle());
+    $("#closePopup").on("click", () => popup.hide());
 
-$("#mm-store").after(settingsHTML);
+    $("#copyID").on("click", () =>
+      navigator.clipboard.writeText(vO4.FB_UserID)
+    );
 
-// ====== CSS (أبيض + برتقالي خفيف) ======
-$("<style>").text(`
-#mm-settings{
-  position:relative;
-  float:right;
-  margin-right:10px;
-  font-family:tahoma;
-}
-#openSettings{
-  cursor:pointer;
-  color:#ff9800;
-  font-weight:bold;
-}
-#popup{
-  display:none;
-  position:absolute;
-  right:0;
-  top:30px;
-  width:260px;
-  background:#fff;
-  border:2px solid #ff9800;
-  border-radius:8px;
-  color:#000;
-  padding:8px;
-  z-index:9999;
-}
-.popup-header{
-  display:flex;
-  justify-content:space-between;
-  font-weight:bold;
-  color:#ff9800;
-}
-.tabs{
-  display:flex;
-  gap:5px;
-  margin:8px 0;
-}
-.tabs button{
-  flex:1;
-  border:1px solid #ff9800;
-  background:#fff;
-  cursor:pointer;
-}
-.tabs button.active{
-  background:#ff9800;
-  color:#fff;
-}
-.tab-content{ display:none; }
-.tab-content.active{ display:block; }
-.row{
-  display:flex;
-  gap:5px;
-  margin-bottom:6px;
-}
-`).appendTo("head");
+    $(".tabs button").on("click", function () {
+      $(".tabs button").removeClass("active");
+      $(this).addClass("active");
 
-// ====== LOGIC ======
-const popup = $("#popup");
-const audio = new Audio();
+      $(".tab-content").removeClass("active");
+      $("#tab-" + $(this).data("tab")).addClass("active");
+    });
 
-$("#openSettings").on("click", () => popup.toggle());
-$("#closePopup").on("click", () => popup.hide());
+    $("#soundSelect").on("change", function () {
+      localStorage.hsSoundSrc = this.value;
+      if ($("#hsSound").prop("checked") && this.value) {
+        audio.src = this.value;
+        audio.play();
+      }
+    });
 
-$("#copyID").on("click", () => navigator.clipboard.writeText(vO4.FB_UserID));
+    $("#hsSound").on("change", function () {
+      localStorage.hsSoundEnabled = this.checked;
+      if (!this.checked) audio.pause();
+    });
 
-$(".tabs button").on("click", function () {
-  $(".tabs button").removeClass("active");
-  $(this).addClass("active");
-  $(".tab-content").removeClass("active");
-  $("#tab-" + $(this).data("tab")).addClass("active");
-});
+    $("#saveMessages").on("click", () => {
+      localStorage.killMsg = $("#killSelect").val();
+      localStorage.hsMsg = $("#headshotSelect").val();
+      alert("Saved!");
+    });
 
-$("#soundSelect").on("change", function () {
-  localStorage.hsSoundSrc = this.value;
-  if ($("#hsSound").prop("checked") && this.value) {
-    audio.src = this.value;
-    audio.play();
+    // Load saved
+    $("#killSelect").val(localStorage.killMsg || "");
+    $("#headshotSelect").val(localStorage.hsMsg || "");
+    $("#hsSound").prop("checked", localStorage.hsSoundEnabled === "true");
+    $("#soundSelect").val(localStorage.hsSoundSrc || "");
+
+  } catch (e) {
+    console.error("Settings UI error", e);
   }
-});
-
-$("#hsSound").on("change", function () {
-  localStorage.hsSoundEnabled = this.checked;
-  if (!this.checked) audio.pause();
-});
-
-$("#saveMessages").on("click", () => {
-  localStorage.killMsg = $("#killSelect").val();
-  localStorage.hsMsg = $("#headshotSelect").val();
-  alert("Saved!");
-});
-
-// ====== LOAD SAVED ======
-$("#killSelect").val(localStorage.killMsg);
-$("#headshotSelect").val(localStorage.hsMsg);
-$("#hsSound").prop("checked", localStorage.hsSoundEnabled === "true");
-$("#soundSelect").val(localStorage.hsSoundSrc);
-      
+})();
       // تحديث محتوى النصائح
 $("#mm-advice-cont").html(`
   <div class="vietnam-buttons">
