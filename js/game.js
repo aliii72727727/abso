@@ -5,251 +5,127 @@
         const ZOOM_STEP = 0.1;
         const ZOOM_MIN = 0.5;
         const ZOOM_MAX = 12.5;
-        
-        // expose zoom for game
+
         window.GAME_ZOOM = GAME_ZOOM;
-        
-        // البحث عن حاوية اللعبة الرئيسية
+
         let gameContainer = null;
-        
+
         function findGameContainer() {
-            // محاولة العثور على الحاوية الرئيسية للعبة
             const selectors = [
                 '#game-container',
                 '.game-container',
                 '#game',
                 '.game',
                 '#play-area',
-                '.play-area',
-                'canvas',
-                'body'
+                '.play-area'
             ];
-            
+
             for (const selector of selectors) {
                 const element = document.querySelector(selector);
                 if (element) {
-                    // إذا كان canvas، نستخدم parent
-                    if (selector === 'canvas' || selector === 'body') {
-                        gameContainer = element.parentElement || element;
-                    } else {
-                        gameContainer = element;
+                    gameContainer = element;
+                    const style = window.getComputedStyle(gameContainer);
+                    if (style.position === 'static') {
+                        gameContainer.style.position = 'relative';
                     }
-                    break;
+                    return gameContainer;
                 }
             }
-            
-            if (!gameContainer) {
-                gameContainer = document.body;
-            }
-            
-            // تأكد من أن الحاوية تحتوي على position غير static
-            const style = window.getComputedStyle(gameContainer);
-            if (style.position === 'static') {
-                gameContainer.style.position = 'relative';
-            }
-            
-            return gameContainer;
+
+            // إذا لم نجد حاوية، لا نطبق زووم
+            console.warn('Game container not found. Zoom disabled.');
+            return null;
         }
-        
-        function applyZoom(){
+
+        function applyZoom() {
             if (!gameContainer) {
                 gameContainer = findGameContainer();
+                if (!gameContainer) return; // لا نطبق الزووم إذا لم نجد اللعبة
             }
-            
-            // تطبيق التكبير فقط على عناصر اللعبة داخل الحاوية
+
             const gameElements = gameContainer.querySelectorAll('canvas, .game-element, [data-game-element="true"]');
-            
-            if (gameElements.length > 0) {
-                gameElements.forEach(element => {
-                    element.style.transformOrigin = "center center";
-                    element.style.transform = `scale(${GAME_ZOOM})`;
-                    element.style.transition = "transform 0.1s ease";
-                });
-            } else {
-                // إذا لم نجد عناصر محددة، نطبق على الحاوية نفسها
-                gameContainer.style.transformOrigin = "center center";
-                gameContainer.style.transform = `scale(${GAME_ZOOM})`;
-                gameContainer.style.transition = "transform 0.1s ease";
-            }
-            
+            if (gameElements.length === 0) return; // لا نطبق زووم إذا لم نجد عناصر للعبة
+
+            gameElements.forEach(el => {
+                el.style.transformOrigin = "center center";
+                el.style.transform = `scale(${GAME_ZOOM})`;
+                el.style.transition = "transform 0.1s ease";
+            });
+
             window.GAME_ZOOM = GAME_ZOOM;
-            console.log(`Zoom applied: ${GAME_ZOOM.toFixed(2)}x`);
         }
-        
-        // دعم لوحة المفاتيح (Z/X)
+
+        // لوحة المفاتيح
         window.addEventListener("keydown", function(e){
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            
-            if (e.key === "z" || e.key === "Z") {
-                GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP);
-                applyZoom();
-                e.preventDefault();
-            }
-            if (e.key === "x" || e.key === "X") {
-                GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP);
-                applyZoom();
-                e.preventDefault();
-            }
-            if (e.key === "0") {
-                GAME_ZOOM = 1.0;
-                applyZoom();
-                e.preventDefault();
-            }
+            if (e.key === "z" || e.key === "Z") { GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP); applyZoom(); e.preventDefault(); }
+            if (e.key === "x" || e.key === "X") { GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP); applyZoom(); e.preventDefault(); }
+            if (e.key === "0") { GAME_ZOOM = 1.0; applyZoom(); e.preventDefault(); }
         });
-        
-        // دعم اللمس (تقييم بشخصين)
+
+        // دعم اللمس
         let initialDistance = null;
         let initialZoom = null;
-        
-        function handleTouchStart(e) {
-            if (e.touches.length === 2) {
-                initialDistance = getTouchDistance(e.touches);
-                initialZoom = GAME_ZOOM;
-            }
-        }
-        
-        function handleTouchMove(e) {
-            if (e.touches.length === 2 && initialDistance !== null && initialZoom !== null) {
-                e.preventDefault();
-                
-                const currentDistance = getTouchDistance(e.touches);
-                const scaleFactor = currentDistance / initialDistance;
-                
-                GAME_ZOOM = initialZoom * scaleFactor;
-                GAME_ZOOM = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, GAME_ZOOM));
-                
-                applyZoom();
-            }
-        }
-        
-        function handleTouchEnd() {
-            initialDistance = null;
-            initialZoom = null;
-        }
-        
+
         function getTouchDistance(touches) {
             const dx = touches[0].clientX - touches[1].clientX;
             const dy = touches[0].clientY - touches[1].clientY;
-            return Math.sqrt(dx * dx + dy * dy);
+            return Math.sqrt(dx*dx + dy*dy);
         }
-        
-        // إضافة مستمعات اللمس
-        document.addEventListener('touchstart', handleTouchStart, { passive: false });
-        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+        function handleTouchStart(e) {
+            if (e.touches.length === 2) { initialDistance = getTouchDistance(e.touches); initialZoom = GAME_ZOOM; }
+        }
+        function handleTouchMove(e) {
+            if (e.touches.length === 2 && initialDistance && initialZoom) {
+                e.preventDefault();
+                const scaleFactor = getTouchDistance(e.touches) / initialDistance;
+                GAME_ZOOM = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, initialZoom * scaleFactor));
+                applyZoom();
+            }
+        }
+        function handleTouchEnd() { initialDistance = null; initialZoom = null; }
+
+        document.addEventListener('touchstart', handleTouchStart, { passive:false });
+        document.addEventListener('touchmove', handleTouchMove, { passive:false });
         document.addEventListener('touchend', handleTouchEnd);
-        
-        // إضافة أزرار تحكم للمسام
+
+        // أزرار التحكم للموبايل
         function addMobileControls() {
             const controlsHTML = `
-                <div id="zoom-controls" style="
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    z-index: 10000;
-                    display: flex;
-                    gap: 10px;
-                    opacity: 0.8;
-                ">
-                    <button id="zoom-in-btn" style="
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        background: #4CAF50;
-                        color: white;
-                        border: none;
-                        font-size: 24px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                    ">+</button>
-                    <button id="zoom-out-btn" style="
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        background: #f44336;
-                        color: white;
-                        border: none;
-                        font-size: 24px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                    ">-</button>
-                    <button id="zoom-reset-btn" style="
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        background: #2196F3;
-                        color: white;
-                        border: none;
-                        font-size: 18px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                    ">⟲</button>
-                </div>
-            `;
-            
-            // إضافة التحكم إلى الصفحة
+                <div id="zoom-controls" style="position: fixed; bottom:20px; right:20px; z-index:10000; display:flex; gap:10px; opacity:0.8;">
+                    <button id="zoom-in-btn" style="width:50px;height:50px;border-radius:50%;background:#4CAF50;color:white;border:none;font-size:24px;font-weight:bold;cursor:pointer;">+</button>
+                    <button id="zoom-out-btn" style="width:50px;height:50px;border-radius:50%;background:#f44336;color:white;border:none;font-size:24px;font-weight:bold;cursor:pointer;">-</button>
+                    <button id="zoom-reset-btn" style="width:50px;height:50px;border-radius:50%;background:#2196F3;color:white;border:none;font-size:18px;font-weight:bold;cursor:pointer;">⟲</button>
+                </div>`;
             document.body.insertAdjacentHTML('beforeend', controlsHTML);
-            
-            // إضافة معالجين الأحداث
-            document.getElementById('zoom-in-btn').addEventListener('click', () => {
-                GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP);
-                applyZoom();
-            });
-            
-            document.getElementById('zoom-out-btn').addEventListener('click', () => {
-                GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP);
-                applyZoom();
-            });
-            
-            document.getElementById('zoom-reset-btn').addEventListener('click', () => {
-                GAME_ZOOM = 1.0;
-                applyZoom();
-            });
-            
-            // إخفاء التحكم عند التمرير على سطح المكتب
-            if (!('ontouchstart' in window)) {
-                document.getElementById('zoom-controls').style.display = 'none';
-            }
+
+            document.getElementById('zoom-in-btn').addEventListener('click', () => { GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP); applyZoom(); });
+            document.getElementById('zoom-out-btn').addEventListener('click', () => { GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP); applyZoom(); });
+            document.getElementById('zoom-reset-btn').addEventListener('click', () => { GAME_ZOOM = 1.0; applyZoom(); });
+
+            if (!('ontouchstart' in window)) document.getElementById('zoom-controls').style.display='none';
         }
-        
-        // التهيئة
+
         function init() {
-            // البحث عن حاوية اللعبة
             gameContainer = findGameContainer();
-            
-            // تطبيق التكبير الأولي
+            if (!gameContainer) return;
             applyZoom();
-            
-            // إضافة تحكم للمسام إذا كان الجهاز يدعم اللمس
-            if ('ontouchstart' in window) {
-                addMobileControls();
-            }
-            
-            // إعادة تطبيق التكبير عند تغيير حجم النافذة
+            if ('ontouchstart' in window) addMobileControls();
             window.addEventListener('resize', applyZoom);
-            
-            // محاولة إعادة اكتشاف عناصر اللعبة عند تحميل DOM
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => {
-                    gameContainer = findGameContainer();
-                    applyZoom();
-                });
-            }
         }
-        
-        // بدء التهيئة
+
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
             setTimeout(init, 100);
         } else {
             document.addEventListener('DOMContentLoaded', init);
         }
-        
+
     } catch(e) {
         console.error('Zoom patch error:', e);
     }
 })();
+
 
 
 /* === BACKGROUND PATCH (Added) === */
