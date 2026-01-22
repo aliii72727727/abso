@@ -1,78 +1,85 @@
+/* === GAME ZOOM PATCH (PC: Mouse Wheel, Mobile: Buttons) === */
 (function () {
-    /* ===== SETTINGS ===== */
-    const ZOOM_MIN = 0.5;
-    const ZOOM_MAX = 3.0;
-    const ZOOM_STEP = 0.1;
+    try {
+        let GAME_ZOOM = 1.0;
+        const ZOOM_STEP = 0.1;
+        const ZOOM_MIN = 0.5;
+        const ZOOM_MAX = 2.5;
 
-    /* ===== STATE ===== */
-    let gameZoom = 1.0; // Zoom الحالي
-    const canvas = document.querySelector("canvas");
-
-    /* ===== APPLY ZOOM ===== */
-    function applyZoom() {
+        // اختر فقط canvas اللعبة (أول canvas)
+        const canvas = document.querySelector("canvas");
         if (!canvas) return;
-        canvas.style.transformOrigin = "center center";
-        canvas.style.transform = `scale(${gameZoom})`;
-    }
 
-    /* ===== PC CONTROLS (Mouse + Keyboard) ===== */
-    window.addEventListener("wheel", (e) => {
-        if (!canvas) return;
-        e.preventDefault(); // منع scroll الصفحة
-        gameZoom += e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP;
-        gameZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, gameZoom));
-        applyZoom();
-    }, { passive: false });
+        function applyZoom() {
+            canvas.style.transformOrigin = "center center";
+            canvas.style.transform = `scale(${GAME_ZOOM})`;
+        }
 
-    window.addEventListener("keydown", (e) => {
-        if (!canvas) return;
-        if (e.key === "+" || e.key === "=") gameZoom += ZOOM_STEP;
-        if (e.key === "-") gameZoom -= ZOOM_STEP;
-        if (e.key === "0") gameZoom = 1.0; // إعادة ضبط
-        gameZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, gameZoom));
-        applyZoom();
-    });
+        // ===== PC: Mouse Wheel Zoom =====
+        canvas.addEventListener("wheel", function (e) {
+            e.preventDefault();
+            GAME_ZOOM += e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP;
+            GAME_ZOOM = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, GAME_ZOOM));
+            applyZoom();
+        }, { passive: false });
 
-    /* ===== MOBILE BUTTONS ===== */
-    function createMobileZoomUI() {
-        if (!("ontouchstart" in window)) return; // فقط للجوال
+        // ===== PC: Keyboard Zoom (Z/X or +/-) =====
+        window.addEventListener("keydown", function (e) {
+            if (!canvas) return;
+            if (e.key === "z" || e.key === "Z" || e.key === "+") {
+                GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP);
+                applyZoom();
+            }
+            if (e.key === "x" || e.key === "X" || e.key === "-") {
+                GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP);
+                applyZoom();
+            }
+            if (e.key === "0") { // Reset
+                GAME_ZOOM = 1.0;
+                applyZoom();
+            }
+        });
 
-        const wrap = document.createElement("div");
-        wrap.style.cssText = `
-            position:fixed;
-            right:15px;
-            bottom:120px;
-            z-index:9999;
-            display:flex;
-            flex-direction:column;
-            gap:10px;
-        `;
-
-        const btn = (txt, fn) => {
-            const b = document.createElement("button");
-            b.textContent = txt;
-            b.style.cssText = `
-                width:45px;height:45px;
-                font-size:22px;
-                border-radius:50%;
-                border:none;
-                background:#111;
-                color:#fff;
+        // ===== MOBILE BUTTONS =====
+        if ("ontouchstart" in window) {
+            const wrap = document.createElement("div");
+            wrap.style.cssText = `
+                position:fixed;
+                right:15px;
+                bottom:120px;
+                z-index:9999;
+                display:flex;
+                flex-direction:column;
+                gap:10px;
             `;
-            b.onclick = fn;
-            return b;
-        };
 
-        wrap.appendChild(btn("+", () => { gameZoom += ZOOM_STEP; gameZoom = Math.min(ZOOM_MAX, gameZoom); applyZoom(); }));
-        wrap.appendChild(btn("-", () => { gameZoom -= ZOOM_STEP; gameZoom = Math.max(ZOOM_MIN, gameZoom); applyZoom(); }));
+            const btn = (txt, fn) => {
+                const b = document.createElement("button");
+                b.textContent = txt;
+                b.style.cssText = `
+                    width:45px;height:45px;
+                    font-size:22px;
+                    border-radius:50%;
+                    border:none;
+                    background:#111;
+                    color:#fff;
+                `;
+                b.onclick = fn;
+                return b;
+            };
 
-        document.body.appendChild(wrap);
+            wrap.appendChild(btn("+", () => { GAME_ZOOM = Math.min(ZOOM_MAX, GAME_ZOOM + ZOOM_STEP); applyZoom(); }));
+            wrap.appendChild(btn("-", () => { GAME_ZOOM = Math.max(ZOOM_MIN, GAME_ZOOM - ZOOM_STEP); applyZoom(); }));
+
+            document.body.appendChild(wrap);
+        }
+
+        applyZoom();
+        console.log("✅ Game Zoom Activated (PC + Mobile)");
+
+    } catch (e) {
+        console.error("Game Zoom Error:", e);
     }
-
-    /* ===== INIT ===== */
-    applyZoom(); // تفعيل الزوم مباشرة
-    createMobileZoomUI();
-    console.log("✅ Game Zoom Activated for PC & Mobile");
 })();
 
 
