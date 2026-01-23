@@ -1,21 +1,906 @@
-(function() {
-    let zoomLevel = 1; // Başlangıç zoom seviyesi
-    const zoomMin = 0.5, zoomMax = 2; // Zoom sınırları
 
-    document.addEventListener("wheel", function(event) {
-        event.preventDefault(); // Sayfanın kaymasını engelle
-        
-        let zoomFactor = event.deltaY > 0 ? 0.9 : 1.1; // Tekerlek yukarı: büyüt, aşağı: küçült
-        zoomLevel = Math.min(Math.max(zoomLevel * zoomFactor, zoomMin), zoomMax); // Sınırları aşma
+(function () {
+  const images = [
+    "https://i.ibb.co/Kck6fjTb/image.jpg",
+    "https://i.ibb.co/N2sH2Z1G/image.jpg",
+    "https://i.ibb.co/GvdTs7GT/image.png",
+    "https://i.ibb.co/rR56QJ0C/image.jpg"
+  ];
 
-        let canvas = document.querySelector("canvas");
-        if (canvas) {
-            canvas.style.transform = `scale(${zoomLevel})`;
-            canvas.style.transformOrigin = "center center"; // Ortadan büyüt/küçült
-        }
-    });
+  const randomImage = images[Math.floor(Math.random() * images.length)];
+  const gameWrap = document.getElementById("game-wrap");
+
+  if (gameWrap) {
+    gameWrap.style.setProperty(
+      "--bg-image",
+      `url("${randomImage}")`
+    );
+    gameWrap.style.backgroundImage = `url("${randomImage}")`;
+    gameWrap.style.setProperty("--bg", `url("${randomImage}")`);
+    gameWrap.style.setProperty("--bg-after", `url("${randomImage}")`);
+    gameWrap.style.setProperty("--bg-img", `url("${randomImage}")`);
+    gameWrap.style.setProperty("--background", `url("${randomImage}")`);
+
+    gameWrap.style.setProperty(
+      "background-image",
+      `url("${randomImage}")`
+    );
+
+    gameWrap.style.setProperty(
+      "--after-bg",
+      `url("${randomImage}")`
+    );
+
+    gameWrap.style.setProperty(
+      "--img",
+      `url("${randomImage}")`
+    );
+
+    gameWrap.style.style = "";
+    gameWrap.querySelector(":scope::after");
+  }
+
+  gameWrap?.style.setProperty(
+    "--bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bg-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bgx",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bgy",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bgz",
+    `url("${randomImage}")`
+  );
+
+  gameWrap?.style.setProperty(
+    "--bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--afterx",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--aftery",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--afterz",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-after-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-after-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-final-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-bg-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-final-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-background",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-background-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-background-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-final-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-final-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-img",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-img-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-img-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-img-bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-after-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image-after-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image-final-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image-final-after-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-background-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-url-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-url-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--img-url-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img-url-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img-url-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-img-url-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-img-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-img-url-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-url-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-url-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-url-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-background-url",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-background-url-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg-image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after-bg-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final-bg-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--bg",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--image-final-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-after",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final",
+    `url("${randomImage}")`
+  );
+
+  gameWrap.style.setProperty(
+    "--background-image-final-after",
+    `url("${randomImage}")`
+  );
+
 })();
-
 
 /* === BACKGROUND PATCH (Added) === */
 (function(){
