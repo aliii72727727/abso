@@ -5182,40 +5182,47 @@ body{
   pointer-events:none;
   filter:grayscale(1);
 }
-/* === Ads Bar (Image Only) === */
+/* === Ads Ticker === */
 .ads-bar {
   position: fixed;
-  bottom: 120px;
+  bottom: 0;
   width: 100%;
-  background: transparent;
+  background: #111;
   overflow: hidden;
   z-index: 9999;
-  height: 80px;
+  height: 90px;
 }
 
 .ads-track {
   display: flex;
   width: max-content;
-  animation: scrollAds 22s linear infinite;
+  animation: scrollAds 25s linear infinite;
 }
 
 .ad-item {
-  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  padding: 10px 25px;
+  white-space: nowrap;
 }
 
 .ad-item img {
-  height: 70px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease;
+  height: 60px;
+  border-radius: 10px;
 }
 
-.ad-item img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(0,255,200,.6);
+.ad-item a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 @keyframes scrollAds {
   from { transform: translateX(100%); }
   to { transform: translateX(-100%); }
 }
+
+
+/* === SB3 CUSTOM HUD PATCH (Added) === */
