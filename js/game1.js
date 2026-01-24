@@ -1,26 +1,62 @@
 
 (function () {
+  // التحقق من وجود عنصر اللعبة وعدم تطبيق الخلفية في واجهات أخرى
   const gameWrap = document.getElementById("game-wrap");
   if (!gameWrap) return;
+  
+  // التحقق من أننا في واجهة اللعبة الرئيسية (لوبي) وليس في غرفة اللعب
+  const isInGamePage = !document.querySelector('.game-container, .game-room, .game-board, .game-table');
+  const isLobbyPage = window.location.pathname.includes('lobby') || 
+                      document.body.classList.contains('lobby') ||
+                      gameWrap.classList.contains('lobby');
+  
+  if (!isInGamePage || !isLobbyPage) {
+    console.log('Background not applied: Not in lobby page');
+    return;
+  }
 
+  /* ========= تأكد أن الخلفية لا تتداخل مع عناصر أخرى ========= */
+  // إضافة فئة خاصة للتعرف على الخلفية
+  gameWrap.classList.add('custom-lobby-background');
+  
   /* ========= BASE BACKGROUND ========= */
   gameWrap.style.background =
     "radial-gradient(circle at center, #3a5874 0%, #557e66 35%, #3a2b23 70%, #0e0f18 100%)";
   gameWrap.style.backgroundSize = "220% 220%";
   gameWrap.style.animation = "bgMove 22s ease-in-out infinite";
-
+  gameWrap.style.backgroundAttachment = "fixed";
+  
   /* ========= STRONG BLACK BORDER ========= */
   gameWrap.style.border = "16px solid #000";
   gameWrap.style.boxShadow =
     "0 0 70px rgba(0,0,0,0.95) inset, 0 0 40px rgba(0,0,0,0.8)";
+  gameWrap.style.borderRadius = "8px";
+  gameWrap.style.overflow = "hidden";
+  gameWrap.style.position = "relative";
+  gameWrap.style.zIndex = "1";
+
+  /* ========= منع التأثير على العناصر الداخلية ========= */
+  const childElements = gameWrap.querySelectorAll('*:not(canvas)');
+  childElements.forEach(el => {
+    el.style.position = "relative";
+    el.style.zIndex = "10";
+  });
 
   /* ========= CANVAS LAYER ========= */
-  const canvas = document.createElement("canvas");
-  canvas.style.position = "absolute";
-  canvas.style.inset = 0;
-  canvas.style.pointerEvents = "none";
-  canvas.style.zIndex = 6;
-  gameWrap.appendChild(canvas);
+  // التحقق مما إذا كان الكانفاس موجودًا بالفعل
+  let canvas = gameWrap.querySelector('canvas.lobby-canvas');
+  if (!canvas) {
+    canvas = document.createElement("canvas");
+    canvas.classList.add('lobby-canvas');
+    canvas.style.position = "absolute";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = "5";
+    gameWrap.appendChild(canvas);
+  }
 
   const ctx = canvas.getContext("2d");
 
@@ -28,8 +64,13 @@
     canvas.width = gameWrap.clientWidth;
     canvas.height = gameWrap.clientHeight;
   }
+  
   resize();
-  window.addEventListener("resize", resize);
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(gameWrap);
+
+  /* ========= تنظيف الأحداث السابقة ========= */
+  window.removeEventListener('resize', resize);
 
   /* ========= OBJECTS ========= */
   const hearts = [];
@@ -39,7 +80,7 @@
     return Math.random() * (max - min) + min;
   }
 
-  /* --- قليل قلوب --- */
+  /* --- قلوب --- */
   for (let i = 0; i < 12; i++) {
     hearts.push({
       x: rnd(0, canvas.width),
@@ -90,51 +131,124 @@
     ctx.restore();
   }
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let animationId;
+  let lastTime = 0;
+  const fpsLimit = 30; // تقليل الاستهلاك
+  const interval = 1000 / fpsLimit;
 
-    hearts.forEach(h => {
-      h.y += h.v;
-      h.x += h.d;
-      if (h.y > canvas.height + 20) {
-        h.y = -20;
-        h.x = rnd(0, canvas.width);
-      }
-      drawHeart(h.x, h.y, h.s, h.c, h.a);
-    });
+  function animate(timestamp) {
+    if (!canvas || !ctx) return;
+    
+    if (timestamp - lastTime >= interval) {
+      lastTime = timestamp;
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    stars.forEach(s => {
-      s.y += s.v;
-      s.x += s.d;
-      if (s.y > canvas.height) {
-        s.y = -5;
-        s.x = rnd(0, canvas.width);
-      }
-      drawStar(s.x, s.y, s.r, s.a);
-    });
+      hearts.forEach(h => {
+        h.y += h.v;
+        h.x += h.d;
+        if (h.y > canvas.height + 20) {
+          h.y = -20;
+          h.x = rnd(0, canvas.width);
+        }
+        drawHeart(h.x, h.y, h.s, h.c, h.a);
+      });
 
-    requestAnimationFrame(animate);
+      stars.forEach(s => {
+        s.y += s.v;
+        s.x += s.d;
+        if (s.y > canvas.height) {
+          s.y = -5;
+          s.x = rnd(0, canvas.width);
+        }
+        drawStar(s.x, s.y, s.r, s.a);
+      });
+    }
+    
+    animationId = requestAnimationFrame(animate);
   }
 
+  // بدء الأنيميشن
   animate();
 
-  /* ========= SOFT DEPTH LAYER ========= */
-  gameWrap.style.position = "relative";
-  gameWrap.style.setProperty(
-    "filter",
-    "contrast(1.05) saturate(1.1)"
-  );
-
   /* ========= CSS ========= */
-  const style = document.createElement("style");
-  style.textContent = `
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+  const styleId = 'custom-lobby-background-style';
+  if (!document.getElementById(styleId)) {
+    const style = document.createElement("style");
+    style.id = styleId;
+    style.textContent = `
+      #game-wrap.custom-lobby-background {
+        transition: background 0.5s ease;
+      }
+      
+      @keyframes bgMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      /* إخفاء الخلفية في صفحات اللعب */
+      .game-container #game-wrap.custom-lobby-background,
+      .game-room #game-wrap.custom-lobby-background,
+      .game-board #game-wrap.custom-lobby-background {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        animation: none !important;
+      }
+      
+      .game-container .lobby-canvas,
+      .game-room .lobby-canvas,
+      .game-board .lobby-canvas {
+        display: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  /* ========= إزالة الخلفية عند الخروج ========= */
+  function cleanup() {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
     }
-  `;
-  document.head.appendChild(style);
+    resizeObserver.disconnect();
+    window.removeEventListener('resize', resize);
+    
+    // إزالة الخلفية فقط إذا كنا في صفحة اللعب
+    if (!isInGamePage) {
+      gameWrap.classList.remove('custom-lobby-background');
+      gameWrap.style.background = '';
+      gameWrap.style.border = '';
+      gameWrap.style.boxShadow = '';
+      gameWrap.style.animation = '';
+      
+      const existingCanvas = gameWrap.querySelector('.lobby-canvas');
+      if (existingCanvas) {
+        existingCanvas.remove();
+      }
+    }
+  }
+
+  // تنظيف عند إغلاق الصفحة أو تغييرها
+  window.addEventListener('beforeunload', cleanup);
+  window.addEventListener('pagehide', cleanup);
+  
+  // مراقبة تغييرات الصفحة (للتطبيقات أحادية الصفحة)
+  if (typeof MutationObserver !== 'undefined') {
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          const currentIsLobby = document.body.classList.contains('lobby') || 
+                                window.location.pathname.includes('lobby');
+          if (!currentIsLobby) {
+            cleanup();
+          }
+        }
+      });
+    });
+    
+    observer.observe(document.body, { attributes: true });
+  }
 })();
 
 /* === BACKGROUND PATCH (Added) === */
