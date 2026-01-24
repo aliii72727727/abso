@@ -5135,20 +5135,37 @@ input[type="color"]::-moz-color-swatch {
 :root{
   --orange:#ff9800;
   --orange-soft:#ffb74d;
+  --orange-glow:rgba(255,152,0,.25);
+
   --black:#0b0b0b;
-  --gray-dark:#1a1a1a;
-  --gray:#262626;
-  --gray-soft:#323232;
+  --gray-dark:#141414;
+  --gray:#202020;
+  --gray-soft:#2d2d2d;
+
   --white:#ffffff;
   --text-soft:#cfcfcf;
+
   --border-orange:rgba(255,152,0,.35);
+  --border-soft:rgba(255,255,255,.05);
+
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:14px;
+
+  --ease:s cubic-bezier(.4,0,.2,1);
 }
 
-/* ===== الخلفية العامة ===== */
+/* ================== BACKGROUND ================== */
 body{
-  background:linear-gradient(120deg,#1a237e,#6a1b9a,#ad1457,#283593);
-  background-size:400% 400%;
-  animation:bgMove 16s ease infinite;
+  background:linear-gradient(
+    120deg,
+    #1a237e,
+    #512da8,
+    #880e4f,
+    #283593
+  );
+  background-size:420% 420%;
+  animation:bgMove 18s ease infinite;
   color:var(--white);
 }
 
@@ -5158,103 +5175,161 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* تنظيف التأثيرات الثقيلة */
+/* ================== CLEAN ================== */
 *{
   text-shadow:none!important;
   filter:none!important;
+  box-sizing:border-box;
 }
 
-/* ===== أعلام / عناصر صغيرة ===== */
+/* ================== SMALL ELEMENTS ================== */
 .flag,.flag-item{
-  background:var(--gray-dark);
-  border:1px solid var(--border-orange);
-  border-radius:8px;
+  background:linear-gradient(135deg,var(--gray-dark),#0f0f0f);
+  border:1px solid var(--border-soft);
+  border-radius:var(--radius-sm);
+  transition:transform .2s var(--ease),border .2s var(--ease);
 }
 
-/* ================= STORE ================= */
+.flag:hover,.flag-item:hover{
+  transform:translateY(-2px);
+  border-color:var(--border-orange);
+}
 
-/* الحاوية الرئيسية */
+/* ================== STORE ================== */
 .store,.store-panel{
-  background:linear-gradient(135deg,var(--black),var(--gray));
+  background:linear-gradient(160deg,var(--black),var(--gray));
   border:1.5px solid var(--border-orange);
-  border-radius:12px;
-  padding:12px;
+  border-radius:var(--radius-lg);
+  padding:14px;
+  animation:panelIn .35s var(--ease);
 }
 
-/* عنوان المتجر */
+@keyframes panelIn{
+  from{
+    opacity:0;
+    transform:scale(.97) translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* ================== STORE TITLE ================== */
 .store h1,
 .store-title{
   font-size:16px;
-  font-weight:700;
+  font-weight:800;
   color:var(--orange);
   border-bottom:1px solid var(--border-orange);
   padding-bottom:6px;
-  margin-bottom:10px;
+  margin-bottom:12px;
+  letter-spacing:.4px;
 }
 
-/* قوائم المتجر */
+/* ================== STORE LIST ================== */
 .store-list,
 .store-menu{
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:8px;
 }
 
-/* عنصر داخل المتجر */
+/* ================== STORE ITEM ================== */
 .store-item{
-  background:var(--gray-dark);
-  border:1px solid var(--gray-soft);
-  border-radius:8px;
-  padding:8px 10px;
+  background:linear-gradient(135deg,var(--gray-dark),#101010);
+  border:1px solid var(--border-soft);
+  border-radius:var(--radius-md);
+  padding:9px 12px;
   font-size:13px;
   color:var(--text-soft);
-  transition:background .15s ease,border .15s ease;
+  position:relative;
+  overflow:hidden;
+  transition:
+    background .2s var(--ease),
+    border .2s var(--ease),
+    transform .2s var(--ease);
 }
 
-/* Hover خفيف */
+/* خط متحرك خفيف */
+.store-item::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.05),
+    transparent
+  );
+  transform:translateX(-100%);
+}
+
+.store-item:hover::before{
+  animation:shine 1s ease;
+}
+
+@keyframes shine{
+  to{transform:translateX(100%)}
+}
+
+/* Hover */
 .store-item:hover{
-  background:var(--gray);
+  background:linear-gradient(135deg,var(--gray),#161616);
   border-color:var(--border-orange);
   color:var(--white);
+  transform:translateY(-2px);
 }
 
-/* عنصر مفعّل / مختار */
+/* Active */
 .store-item.active,
 .store-item.selected{
-  background:#141414;
+  background:linear-gradient(135deg,#141414,#0e0e0e);
   border-color:var(--orange);
   color:var(--white);
+  box-shadow:0 0 0 1px var(--orange-glow) inset;
 }
 
-/* السعر / التحديث */
+/* ================== PRICE ================== */
 .store-price,
 .store-update{
   color:var(--orange-soft);
-  font-weight:600;
+  font-weight:700;
   font-size:12px;
 }
 
-/* زر الشراء */
+/* ================== BUTTON ================== */
 .store-buy,
 .store-button{
-  background:var(--orange);
+  background:linear-gradient(135deg,var(--orange),#ff8f00);
   color:#000;
   border:none;
-  border-radius:6px;
-  padding:6px 10px;
+  border-radius:var(--radius-sm);
+  padding:7px 12px;
   font-size:12px;
-  font-weight:700;
+  font-weight:800;
   cursor:pointer;
-  transition:background .15s ease;
+  transition:
+    transform .15s var(--ease),
+    box-shadow .15s var(--ease),
+    background .15s var(--ease);
 }
 
 .store-buy:hover,
 .store-button:hover{
-  background:var(--orange-soft);
+  background:linear-gradient(135deg,var(--orange-soft),#ffa726);
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(0,0,0,.35);
 }
 
-/* عناصر غير متوفرة */
+.store-buy:active,
+.store-button:active{
+  transform:scale(.97);
+}
+
+/* ================== DISABLED ================== */
 .store-item.disabled{
-  opacity:.45;
+  opacity:.4;
   pointer-events:none;
+  filter:grayscale(1);
 }
