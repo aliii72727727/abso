@@ -5182,41 +5182,37 @@ body{
   pointer-events:none;
   filter:grayscale(1);
 }
-/* === Ads Ticker === */
+/* === Ads Bar (Image Only) === */
 .ads-bar {
   position: fixed;
-  bottom: 0;
+  bottom: 120px;
   width: 100%;
-  background: #111;
+  background: transparent;
   overflow: hidden;
   z-index: 9999;
-  height: 90px;
+  height: 80px;
 }
 
 .ads-track {
   display: flex;
   width: max-content;
-  animation: scrollAds 25s linear infinite;
+  animation: scrollAds 22s linear infinite;
 }
 
 .ad-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  padding: 10px 25px;
-  white-space: nowrap;
+  padding: 0 20px;
 }
 
 .ad-item img {
-  height: 60px;
-  border-radius: 10px;
+  height: 70px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
-.ad-item a {
-  color: #00ffcc;
-  text-decoration: none;
-  font-weight: bold;
+.ad-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0,255,200,.6);
 }
 
 @keyframes scrollAds {
