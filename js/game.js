@@ -3,23 +3,23 @@
   const gameWrap = document.getElementById("game-wrap");
   if (!gameWrap) return;
 
-  /* ====== BACKGROUND GRADIENT ====== */
+  /* ========= BASE BACKGROUND ========= */
   gameWrap.style.background =
     "radial-gradient(circle at center, #3a5874 0%, #557e66 35%, #3a2b23 70%, #0e0f18 100%)";
-  gameWrap.style.backgroundSize = "200% 200%";
-  gameWrap.style.animation = "bgMove 18s ease-in-out infinite";
+  gameWrap.style.backgroundSize = "220% 220%";
+  gameWrap.style.animation = "bgMove 22s ease-in-out infinite";
 
-  /* ====== BLACK BORDER STRONG ====== */
-  gameWrap.style.border = "14px solid #000";
-  gameWrap.style.boxShadow = "0 0 60px rgba(0,0,0,0.9) inset";
+  /* ========= STRONG BLACK BORDER ========= */
+  gameWrap.style.border = "16px solid #000";
+  gameWrap.style.boxShadow =
+    "0 0 70px rgba(0,0,0,0.95) inset, 0 0 40px rgba(0,0,0,0.8)";
 
-  /* ====== CANVAS FOR HEART SNOW ====== */
+  /* ========= CANVAS LAYER ========= */
   const canvas = document.createElement("canvas");
   canvas.style.position = "absolute";
-  canvas.style.top = 0;
-  canvas.style.left = 0;
+  canvas.style.inset = 0;
   canvas.style.pointerEvents = "none";
-  canvas.style.zIndex = 5;
+  canvas.style.zIndex = 6;
   gameWrap.appendChild(canvas);
 
   const ctx = canvas.getContext("2d");
@@ -31,40 +31,62 @@
   resize();
   window.addEventListener("resize", resize);
 
-  /* ====== HEART OBJECT ====== */
+  /* ========= OBJECTS ========= */
   const hearts = [];
-  const HEART_COUNT = 45;
+  const stars = [];
 
-  function random(min, max) {
+  function rnd(min, max) {
     return Math.random() * (max - min) + min;
   }
 
-  for (let i = 0; i < HEART_COUNT; i++) {
+  /* --- قليل قلوب --- */
+  for (let i = 0; i < 12; i++) {
     hearts.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: random(8, 26),
-      speed: random(0.3, 1.2),
-      drift: random(-0.4, 0.4),
-      opacity: random(0.4, 0.9),
-      color: `hsl(${random(330, 360)}, 70%, 60%)`
+      x: rnd(0, canvas.width),
+      y: rnd(0, canvas.height),
+      s: rnd(10, 22),
+      v: rnd(0.2, 0.6),
+      d: rnd(-0.2, 0.2),
+      a: rnd(0.35, 0.6),
+      c: `hsl(${rnd(330, 360)},60%,65%)`
     });
   }
 
-  function drawHeart(x, y, size, color, opacity) {
-    ctx.save();
-    ctx.globalAlpha = opacity;
-    ctx.fillStyle = color;
-    ctx.strokeStyle = "#000";
-    ctx.lineWidth = 2;
+  /* --- نجوم ثلج --- */
+  for (let i = 0; i < 90; i++) {
+    stars.push({
+      x: rnd(0, canvas.width),
+      y: rnd(0, canvas.height),
+      r: rnd(0.6, 1.6),
+      v: rnd(0.4, 1.4),
+      d: rnd(-0.3, 0.3),
+      a: rnd(0.4, 0.9)
+    });
+  }
 
+  function drawHeart(x, y, s, c, a) {
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.fillStyle = c;
+    ctx.strokeStyle = "#000";
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(x, y);
-    ctx.bezierCurveTo(x - size, y - size, x - size * 1.5, y + size / 2, x, y + size);
-    ctx.bezierCurveTo(x + size * 1.5, y + size / 2, x + size, y - size, x, y);
+    ctx.bezierCurveTo(x - s, y - s, x - s * 1.4, y + s / 2, x, y + s);
+    ctx.bezierCurveTo(x + s * 1.4, y + s / 2, x + s, y - s, x, y);
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawStar(x, y, r, a) {
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
   }
 
@@ -72,15 +94,23 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     hearts.forEach(h => {
-      h.y += h.speed;
-      h.x += h.drift;
-
+      h.y += h.v;
+      h.x += h.d;
       if (h.y > canvas.height + 20) {
         h.y = -20;
-        h.x = Math.random() * canvas.width;
+        h.x = rnd(0, canvas.width);
       }
+      drawHeart(h.x, h.y, h.s, h.c, h.a);
+    });
 
-      drawHeart(h.x, h.y, h.size, h.color, h.opacity);
+    stars.forEach(s => {
+      s.y += s.v;
+      s.x += s.d;
+      if (s.y > canvas.height) {
+        s.y = -5;
+        s.x = rnd(0, canvas.width);
+      }
+      drawStar(s.x, s.y, s.r, s.a);
     });
 
     requestAnimationFrame(animate);
@@ -88,7 +118,14 @@
 
   animate();
 
-  /* ====== CSS ANIMATION ====== */
+  /* ========= SOFT DEPTH LAYER ========= */
+  gameWrap.style.position = "relative";
+  gameWrap.style.setProperty(
+    "filter",
+    "contrast(1.05) saturate(1.1)"
+  );
+
+  /* ========= CSS ========= */
   const style = document.createElement("style");
   style.textContent = `
     @keyframes bgMove {
@@ -99,7 +136,6 @@
   `;
   document.head.appendChild(style);
 })();
-
 
 /* === BACKGROUND PATCH (Added) === */
 (function(){
