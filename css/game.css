@@ -5182,3 +5182,44 @@ body{
   pointer-events:none;
   filter:grayscale(1);
 }
+/* === Ads Ticker === */
+.ads-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #111;
+  overflow: hidden;
+  z-index: 9999;
+  height: 90px;
+}
+
+.ads-track {
+  display: flex;
+  width: max-content;
+  animation: scrollAds 25s linear infinite;
+}
+
+.ad-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  padding: 10px 25px;
+  white-space: nowrap;
+}
+
+.ad-item img {
+  height: 60px;
+  border-radius: 10px;
+}
+
+.ad-item a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@keyframes scrollAds {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
