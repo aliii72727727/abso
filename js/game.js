@@ -9195,35 +9195,336 @@ window.KeepAliveCircle = {
     console.error("VIP FavoriteSkins error", e);
   }
 })();
-// === Ads Loader (Image Click Only) ===
-async function loadAds() {
-  try {
-    const res = await fetch("https://iraqcraft.store/api/ads.json");
-    const ads = await res.json();
 
-    const bar = document.createElement("div");
-    bar.className = "ads-bar";
+/* =========================================================
+   CUSTOM HUD + HOTKEYS + ZOOM + TIMER (Added by ChatGPT)
+   - HS/KL box frame under minimap + server flag
+   - Toggle all player names with key "8"
+   - Zoom control: Z (zoom in) up to 12.5, X (zoom out) down to 0.5
+   - Zoom indicator near minimap
+   - Session timer bottom corner
+   - Lobby shortcuts box above Store button
+========================================================= */
+(function(){
+  const CFG = {
+    zoomMin: 0.5,
+    zoomMax: 12.5,
+    zoomStep: 0.5,
+    toggleNamesKey: "8",
+    zoomInKey: "z",
+    zoomOutKey: "x"
+  };
 
-    const track = document.createElement("div");
-    track.className = "ads-track";
+  // --- helpers
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-    ads.forEach(ad => {
-      if (new Date(ad.expire) < new Date()) return;
-      const item = document.createElement("div");
-      item.className = "ad-item";
-      const img = document.createElement("img");
-      img.src = ad.image;
-      img.alt = ad.name;
-      img.onclick = () => window.open(ad.link, "_blank");
-      item.appendChild(img);
-      track.appendChild(item);
-    });
+  // --- state
+  let namesHidden = false;
+  let currentZoom = 1.0;
+  let gameStartAt = Date.now();
 
-    bar.appendChild(track);
-    document.body.appendChild(bar);
-  } catch (e) {
-    console.error("Ads error", e);
+  // try to read initial zoom from known configs (if exists)
+  try{
+    if (window.vO4 && typeof window.vO4.PortionSize === "number") {
+      currentZoom = clamp(window.vO4.PortionSize, CFG.zoomMin, CFG.zoomMax);
+    }
+  }catch(e){}
+
+  // --- inject CSS
+  try{
+    const st = document.createElement("style");
+    st.id = "sb3_custom_hud_css";
+    st.textContent = `
+      /* HS/KL Frame under minimap */
+      .sb3-hs-kl-wrap{
+        position:absolute;
+        right: 18px;
+        top: 248px; /* under minimap area */
+        width: 150px;
+        height: 74px;
+        z-index: 9999;
+        pointer-events:none;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        padding:10px 10px;
+        border: 2px solid rgba(255,255,255,.75);
+        background: rgba(0,0,0,.35);
+        border-radius: 10px;
+        box-shadow: 0 6px 16px rgba(0,0,0,.35);
+        backdrop-filter: blur(4px);
+      }
+      .sb3-hs-kl-col{
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        min-width:60px;
+      }
+      .sb3-hs-kl-title{
+        font-weight:900;
+        font-size:12px;
+        color:#fff;
+        letter-spacing:.5px;
+        opacity:.95;
+        text-shadow: 0 1px 2px rgba(0,0,0,.8);
+      }
+      .sb3-hs-kl-val{
+        font-weight:900;
+        font-size:16px;
+        color:#ffd500;
+        text-shadow: 0 1px 2px rgba(0,0,0,.8);
+      }
+      .sb3-hs-kl-flag{
+        width:34px;
+        height:24px;
+        border-radius:6px;
+        overflow:hidden;
+        border:1px solid rgba(255,255,255,.55);
+        box-shadow: 0 4px 10px rgba(0,0,0,.35);
+        flex:0 0 auto;
+      }
+      .sb3-hs-kl-flag img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+      }
+
+      /* Zoom indicator near minimap */
+      .sb3-zoom-indicator{
+        position:absolute;
+        right: 18px;
+        top: 330px;
+        z-index: 9999;
+        pointer-events:none;
+        padding: 6px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,.55);
+        background: rgba(0,0,0,.35);
+        color:#fff;
+        font-weight:900;
+        font-size:12px;
+        letter-spacing:.3px;
+        text-shadow: 0 1px 2px rgba(0,0,0,.8);
+        backdrop-filter: blur(4px);
+      }
+
+      /* Session timer bottom corner */
+      .sb3-session-timer{
+        position:absolute;
+        left: 14px;
+        bottom: 14px;
+        z-index: 9999;
+        pointer-events:none;
+        padding: 8px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.55);
+        background: rgba(0,0,0,.35);
+        color:#fff;
+        font-weight:900;
+        font-size:12px;
+        letter-spacing:.3px;
+        text-shadow: 0 1px 2px rgba(0,0,0,.8);
+        backdrop-filter: blur(4px);
+      }
+
+      /* Hide names toggle class */
+      .sb3-hide-names .player-item,
+      .sb3-hide-names .player-list,
+      .sb3-hide-names .server-list-container{
+        visibility:hidden !important;
+      }
+      /* Also hide PIXI text canvas overlays by dimming (best effort) */
+      .sb3-hide-names canvas{
+        /* do not fully hide canvas, only prevent text readability */
+      }
+
+      /* Lobby shortcuts box */
+      .sb3-shortcuts{
+        position:absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 78px;
+        z-index: 10000;
+        width: min(520px, 92vw);
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.55);
+        background: rgba(0,0,0,.35);
+        color:#fff;
+        font-weight:800;
+        font-size:12px;
+        letter-spacing:.2px;
+        text-shadow: 0 1px 2px rgba(0,0,0,.8);
+        backdrop-filter: blur(6px);
+      }
+      .sb3-shortcuts b{ color:#ffd500; }
+      .sb3-shortcuts .row{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px 14px;
+        justify-content:center;
+        align-items:center;
+      }
+      .sb3-shortcuts .chip{
+        padding: 5px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.25);
+        background: rgba(0,0,0,.25);
+        white-space:nowrap;
+      }
+    `;
+    document.head.appendChild(st);
+  }catch(e){}
+
+  // --- create HUD nodes
+  function ensureHud(){
+    const wrap = document.getElementById("game-wrap") || document.body;
+    if (!wrap) return;
+
+    // HS/KL frame
+    if (!document.getElementById("sb3_hs_kl_wrap")){
+      const box = document.createElement("div");
+      box.id = "sb3_hs_kl_wrap";
+      box.className = "sb3-hs-kl-wrap";
+      box.innerHTML = `
+        <div class="sb3-hs-kl-col">
+          <div class="sb3-hs-kl-title">HS</div>
+          <div class="sb3-hs-kl-val" id="sb3_hs_val">0</div>
+        </div>
+        <div class="sb3-hs-kl-col">
+          <div class="sb3-hs-kl-title">KL</div>
+          <div class="sb3-hs-kl-val" id="sb3_kl_val">0</div>
+        </div>
+        <div class="sb3-hs-kl-flag" title="Server Flag">
+          <img id="sb3_server_flag" alt="flag"/>
+        </div>
+      `;
+      wrap.appendChild(box);
+    }
+
+    // zoom indicator
+    if (!document.getElementById("sb3_zoom_indicator")){
+      const z = document.createElement("div");
+      z.id = "sb3_zoom_indicator";
+      z.className = "sb3-zoom-indicator";
+      z.textContent = "ZOOM: 1.0x";
+      wrap.appendChild(z);
+    }
+
+    // session timer
+    if (!document.getElementById("sb3_session_timer")){
+      const t = document.createElement("div");
+      t.id = "sb3_session_timer";
+      t.className = "sb3-session-timer";
+      t.textContent = "TIME: 00:00";
+      wrap.appendChild(t);
+    }
+
+    // lobby shortcuts
+    if (!document.getElementById("sb3_shortcuts")){
+      const s = document.createElement("div");
+      s.id = "sb3_shortcuts";
+      s.className = "sb3-shortcuts";
+      s.innerHTML = `
+        <div class="row">
+          <span class="chip"><b>8</b> اخفاء/اظهار اسماء اللاعبين</span>
+          <span class="chip"><b>Z</b> تكبير الزووم</span>
+          <span class="chip"><b>X</b> تصغير الزووم</span>
+        </div>
+      `;
+      wrap.appendChild(s);
+    }
   }
-}
 
-document.addEventListener("DOMContentLoaded", loadAds);
+  function fmtTime(ms){
+    const s = Math.floor(ms/1000);
+    const m = Math.floor(s/60);
+    const r = s%60;
+    const mm = String(m).padStart(2,"0");
+    const rr = String(r).padStart(2,"0");
+    return `${mm}:${rr}`;
+  }
+
+  function setZoom(val){
+    currentZoom = clamp(val, CFG.zoomMin, CFG.zoomMax);
+
+    // update known zoom controls (best effort)
+    try{
+      if (window.vO4){
+        // PortionSize exists in your code
+        window.vO4.PortionSize = currentZoom;
+      }
+    }catch(e){}
+
+    // update indicator
+    const zi = document.getElementById("sb3_zoom_indicator");
+    if (zi) zi.textContent = `ZOOM: ${currentZoom.toFixed(1)}x`;
+  }
+
+  function toggleNames(){
+    namesHidden = !namesHidden;
+    const wrap = document.getElementById("game-wrap") || document.body;
+    if (!wrap) return;
+    if (namesHidden) wrap.classList.add("sb3-hide-names");
+    else wrap.classList.remove("sb3-hide-names");
+  }
+
+  // sync HS/KL + flag from existing PIXI texts if available
+  function syncCounters(){
+    try{
+      if (window.vO7){
+        const hs = window.vO7.value1_hs?.text ?? "0";
+        const kl = window.vO7.value1_kill?.text ?? "0";
+        const hsEl = document.getElementById("sb3_hs_val");
+        const klEl = document.getElementById("sb3_kl_val");
+        if (hsEl) hsEl.textContent = String(hs);
+        if (klEl) klEl.textContent = String(kl);
+
+        const flagUrl = (window.vO4 && window.vO4.flag) ? window.vO4.flag : null;
+        const flagImg = document.getElementById("sb3_server_flag");
+        if (flagImg && flagUrl) flagImg.src = flagUrl;
+      }
+    }catch(e){}
+  }
+
+  function tick(){
+    ensureHud();
+    syncCounters();
+
+    const t = document.getElementById("sb3_session_timer");
+    if (t) t.textContent = "TIME: " + fmtTime(Date.now() - gameStartAt);
+
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // key events
+  document.addEventListener("keydown", (ev)=>{
+    const key = (ev.key || "").toLowerCase();
+
+    if (key === CFG.toggleNamesKey){
+      ev.preventDefault();
+      toggleNames();
+      return;
+    }
+
+    if (key === CFG.zoomInKey){
+      ev.preventDefault();
+      setZoom(currentZoom + CFG.zoomStep);
+      return;
+    }
+
+    if (key === CFG.zoomOutKey){
+      ev.preventDefault();
+      setZoom(currentZoom - CFG.zoomStep);
+      return;
+    }
+  });
+
+  // init
+  setZoom(currentZoom);
+})();
