@@ -9195,3 +9195,40 @@ window.KeepAliveCircle = {
     console.error("VIP FavoriteSkins error", e);
   }
 })();
+// === Ads Loader ===
+async function loadAds() {
+  try {
+    const res = await fetch("https://iraqcraft.store/api/ads.json");
+    const ads = await res.json();
+
+    const bar = document.createElement("div");
+    bar.className = "ads-bar";
+
+    const track = document.createElement("div");
+    track.className = "ads-track";
+
+    ads.forEach(ad => {
+      if (new Date(ad.expire) < new Date()) return;
+
+      const item = document.createElement("div");
+      item.className = "ad-item";
+
+      item.innerHTML = `
+        <img src="${ad.image}" alt="${ad.name}">
+        <div>
+          <div>${ad.name}</div>
+          <a href="${ad.link}" target="_blank">زيارة</a>
+        </div>
+      `;
+
+      track.appendChild(item);
+    });
+
+    bar.appendChild(track);
+    document.body.appendChild(bar);
+  } catch (e) {
+    console.error("Ads error", e);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadAds);
