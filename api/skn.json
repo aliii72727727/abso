@@ -2,23 +2,27 @@
     "textureDict": {
         "skin_ar_1": {
             "custom": true,
-            "relativePath": "https:\/\/i.ibb.co\/FkXNK6J4\/aa7a7a347f37.png"
+            "relativePath": "https://i.imgur.com/zleIHGQ.png"
         },
         "skin_ar_2": {
             "custom": true,
-            "relativePath": "https:\/\/i.ibb.co\/8tgKJyt\/b3035136f069.png"
+            "relativePath": "https://i.ibb.co/8tgKJyt/b3035136f069.png"
         },
         "eyes_389": {
             "custom": true,
-            "relativePath": "https:\/\/i.ibb.co\/TBG9nzhT\/ae84cd100ed1.png"
+            "relativePath": "https://i.ibb.co/TBG9nzhT/ae84cd100ed1.png"
         },
         "hat_877": {
             "custom": true,
-            "relativePath": "https:\/\/i.ibb.co\/KpZcbGSg\/003a7397c0a9.png"
+            "relativePath": "https://i.ibb.co/KpZcbGSg/003a7397c0a9.png"
         },
         "hat_413": {
             "custom": true,
-            "relativePath": "https:\/\/i.ibb.co\/MDyt3rKn\/5a8487d1f80c.png"
+            "relativePath": "https://i.ibb.co/MDyt3rKn/5a8487d1f80c.png"
+        },
+        "skin_sh_876": {
+            "custom": true,
+            "relativePath": "https://i.ibb.co/v4Qr3y7Y/image.png"
         }
     },
     "regionDict": {
@@ -82,8 +86,10 @@
             "texture": "skin_ar_1",
             "h": 170,
             "w": 174,
-            "x": 1392,
-            "y": 0
+            "x": 1396,
+            "y": 0,
+            "createdAt": "2026-01-25T07:40",
+            "expiresAt": "2026-02-24T07:40"
         },
         "skin_ar_2_0": {
             "texture": "skin_ar_2",
@@ -180,9 +186,140 @@
             "py": 64,
             "pw": 128,
             "ph": 128
+        },
+        "skin_sh_876_0": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_sh_876_1": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_sh_876_2": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_sh_876_3": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_sh_876_4": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_sh_876_5": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_sh_876_6": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_sh_876_7": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_sh_876_8": {
+            "texture": "skin_sh_876",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0,
+            "createdAt": "2026-01-25T07:44",
+            "expiresAt": "2026-02-24T07:44"
         }
     },
     "skinArrayDict": [
+        {
+            "id": 6470,
+            "guest": false,
+            "nonbuyable": true,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_sh_876_8",
+                "skin_sh_876_7",
+                "skin_sh_876_6",
+                "skin_sh_876_5",
+                "skin_sh_876_4",
+                "skin_sh_876_3",
+                "skin_sh_876_2",
+                "skin_sh_876_1",
+                "skin_sh_876_0"
+            ],
+            "glow": [
+                "a__red",
+                "a__yllw",
+                "a__blue",
+                "a__pink",
+                "a__green",
+                "a__orng",
+                "a__purp",
+                "a__cyan",
+                "a__color9",
+                "a__color10",
+                "a__color11",
+                "a__color12"
+            ]
+        },
+        {
+            "id": 1001,
+            "guest": false,
+            "nonbuyable": true,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_ar_1_8",
+                "skin_ar_1_7",
+                "skin_ar_1_6",
+                "skin_ar_1_5",
+                "skin_ar_1_4",
+                "skin_ar_1_3",
+                "skin_ar_1_2",
+                "skin_ar_1_1",
+                "skin_ar_1_0"
+            ],
+            "glow": [
+                "a__red",
+                "a__yllw",
+                "a__blue",
+                "a__pink",
+                "a__green",
+                "a__orng",
+                "a__purp",
+                "a__cyan",
+                "a__color9",
+                "a__color10",
+                "a__color11",
+                "a__color12"
+            ]
+        },
         {
             "id": 1000,
             "guest": false,
