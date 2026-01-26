@@ -314,6 +314,69 @@
             "w": 174,
             "x": 1392,
             "y": 0
+        },
+        "skin_jjkms_924_0": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_jjkms_924_1": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_jjkms_924_2": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_jjkms_924_3": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_jjkms_924_4": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_jjkms_924_5": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_jjkms_924_6": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_jjkms_924_7": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_jjkms_924_8": {
+            "texture": "skin_jjkms_924",
+            "h": 170,
+            "w": 174,
+            "x": 1392,
+            "y": 0
         }
     },
     "textureDict": {
@@ -336,6 +399,10 @@
         "skin_sr": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/Zpsx1WSg\/90af8f3ab01f.webp"
+        },
+        "skin_jjkms_924": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/sp16Fc86\/347a646f6c02.png"
         }
     },
     "skinArrayDict": [
@@ -488,6 +555,30 @@
                 "a__card",
                 "a__ruby",
                 "a_grass"
+            ]
+        },
+        {
+            "id": 1234,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_jjkms_924_8",
+                "skin_jjkms_924_7",
+                "skin_jjkms_924_6",
+                "skin_jjkms_924_5",
+                "skin_jjkms_924_4",
+                "skin_jjkms_924_3",
+                "skin_jjkms_924_2",
+                "skin_jjkms_924_1",
+                "skin_jjkms_924_0"
+            ],
+            "glow": [
+                "a_death",
+                "a__card",
+                "a__ruby"
             ]
         }
     ]
