@@ -31,6 +31,10 @@
         "skin_bmw_4": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/Jw9pVV5z\/91d9c657a54c.png"
+        },
+        "skin_bmw_5": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/sp16Fc86\/347a646f6c02.png"
         }
     },
     "regionDict": {
@@ -537,6 +541,69 @@
             "w": 174,
             "x": 1392,
             "y": 0
+        },
+        "skin_bmw_5_0": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_bmw_5_1": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_bmw_5_2": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_bmw_5_3": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_bmw_5_4": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_bmw_5_5": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_bmw_5_6": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_bmw_5_7": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_bmw_5_8": {
+            "texture": "skin_bmw_5",
+            "h": 170,
+            "w": 174,
+            "x": 1392,
+            "y": 0
         }
     },
     "skinArrayDict": [
@@ -732,6 +799,30 @@
                 "a__ruby",
                 "a_grass"
             ]
+        },
+        {
+            "id": 3768,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_bmw_5_8",
+                "skin_bmw_5_7",
+                "skin_bmw_5_6",
+                "skin_bmw_5_5",
+                "skin_bmw_5_4",
+                "skin_bmw_5_3",
+                "skin_bmw_5_2",
+                "skin_bmw_5_1",
+                "skin_bmw_5_0"
+            ],
+            "glow": [
+                "a_death",
+                "a__card",
+                "a__ruby"
+            ]
         }
     ],
     "skinGroupArrayDict": [
@@ -758,6 +849,7 @@
             },
             "list": [
                 "7676",
+                "3768",
                 "6868",
                 "6969",
                 "987"
