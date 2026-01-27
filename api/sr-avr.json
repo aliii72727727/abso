@@ -35,7 +35,14 @@
             "region": "germania",
             "serverUrl": "wss://fra-c.wormate.io:32017/wormy",
             "status": 1
+        },
+        {
+            "id": 941,
+            "name": "MILYAR GAMING<img class='team' src='https://yt3.ggpht.com/vsPhJ8h_BgvGKffUfcVNJDLEYpIu_4eotbJCJM3u-u_t-2tSRA6I35g46smPfUpqNXyCftY2dg=s176-c-k-c0x00ffffff-no-rj-mo'/><div id='online'></div>",
+            "region": "germania",
+            "serverUrl": "wss://fra-c.wormate.io:32064/wormy",
+            "status": 1
         }
     ],
-    "last_update": "2026-01-27 10:51:22"
+    "last_update": "2026-01-27 10:53:47"
 }
