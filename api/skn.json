@@ -1,5 +1,5 @@
 {
-    "revision": 80002,
+    "revision": 80003,
     "visibleSkin": [
         400,
         401,
@@ -3971,7 +3971,8 @@
         4399,
         4400,
         8991,
-        8992
+        8992,
+        8993
     ],
     "hatVariantArray": [
         [
@@ -9081,6 +9082,38 @@
     },
     "skinArrayDict": [
         {
+            "id": 8993,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_abso_3_8",
+                "skin_abso_3_7",
+                "skin_abso_3_6",
+                "skin_abso_3_5",
+                "skin_abso_3_4",
+                "skin_abso_3_3",
+                "skin_abso_3_2",
+                "skin_abso_3_1",
+                "skin_abso_3_0"
+            ],
+            "glow": [
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white"
+            ]
+        },
+        {
             "id": 8992,
             "guest": false,
             "nonbuyable": false,
@@ -9129,15 +9162,15 @@
                 "skin_abso_1_0"
             ],
             "glow": [
-                "a__read",
-                "a__yllw",
                 "a__blue",
-                "a__pink",
-                "a__green",
-                "a__orng",
-                "a__purp",
-                "a__cyan",
-                "a__color9"
+                "a__blue",
+                "a__blue",
+                "a__blue",
+                "a__blue",
+                "a__blue",
+                "a__blue",
+                "a__blue",
+                "a__blue"
             ]
         },
         {
@@ -29559,7 +29592,9 @@
             },
             "list": [
                 "8991",
-                "8992"
+                "8992",
+                "8993",
+                "8994"
             ],
             "isCustom": false
         }
@@ -33720,6 +33755,10 @@
         "skin_abso_2": {
             "custom": true,
             "relativePath": "https://i.ibb.co/Y7fHkcjJ/image.png"
+        },
+        "skin_abso_3": {
+            "custom": true,
+            "relativePath": "https://i.ibb.co/k23gYYyt/image.png"
         }
     },
     "colorDict": {
@@ -80525,6 +80564,71 @@
             "w": 174,
             "x": 1396,
             "y": 0
+        },
+        "skin_abso_3_0": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_abso_3_1": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_abso_3_2": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_abso_3_3": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_abso_3_4": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_abso_3_5": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_abso_3_6": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_abso_3_7": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_abso_3_8": {
+            "texture": "skin_abso_3",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0,
+            "createdAt": "2026-01-27T12:32",
+            "expiresAt": "2026-01-27T12:55"
         }
     }
 }
