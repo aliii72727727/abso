@@ -1703,235 +1703,474 @@ body {font-family: vuonghiep; }
   right:20px;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left {
-  position:absolute;
-  top:0;
-  left:0;
-  width:440px;
-  height:100%;
+/* ===================================================== */
+/* SKINS VIEW - ENHANCED VERSION WITH MODERN DESIGN     */
+/* ===================================================== */
+
+#skins-view .store-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 15px;
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4),
+              inset 0 0 20px rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont {
-  width:100%;
-  position:absolute;
-  top:20px;
-  height:calc(100% - 100px);
+#skins-view .store-left .store-view-cont {
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  height: calc(100% - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #skin-group-description-cont {
-  position:absolute;
-  top:0;
-  left:10px;
-  right:10px;
-  height:100px;
-  font-size:20px;
-  color:#fff;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-align:center;
-  align-items:center;
-  text-align:center;
-  overflow:hidden;
+/* ========== SKIN PREVIEW CONTAINER ========== */
+#skins-view .store-left .store-view-cont #store-view-canv {
+  position: relative;
+  width: 360px;
+  height: 180px;
+  margin: 20px auto;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+  border: 3px solid #ff0000;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5),
+              inset 0 0 15px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #skin-group-description-cont #skin-group-description-text {
-  box-sizing:border-box;
-  margin:0 10px;
-  width:100%;
+/* WORM SKIN BOX BACKGROUND */
+.worm-skin-box {
+  position: absolute;
+  width: 90%;
+  height: 85%;
+  background: linear-gradient(45deg, 
+              rgba(255, 255, 255, 0.05) 0%,
+              rgba(255, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.9) 100%);
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3),
+              inset 0 0 30px rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #skin-group-description-cont #skin-group-description-text a {
-  color:#fff;
-  text-decoration:underline;
+.worm-skin-box::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+              #ff0000, #ff9900, #ffff00, #00ff00, 
+              #00ffff, #0000ff, #ff00ff, #ff0000);
+  border-radius: 16px;
+  z-index: -1;
+  animation: rainbow-border 4s linear infinite;
+  background-size: 400% 400%;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #skin-description-cont {
-  position:absolute;
-  top:200px;
-  left:10px;
-  right:10px;
-  height:100px;
-  font-size:16px;
-  color:#fff;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-align:center;
-  align-items:center;
-  text-align:center;
-  overflow:hidden;
+@keyframes rainbow-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #skin-description-cont #skin-description-text {
-  box-sizing:border-box;
-  margin:0 10px;
-  width:100%;
+/* ========== SKIN DESCRIPTION ========== */
+#skins-view .store-left .store-view-cont #skin-group-description-cont {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  padding: 15px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #skin-description-cont #skin-description-text a {
-  color:#fff;
-  text-decoration:underline;
+#skin-group-description-text {
+  color: #ffffff;
+  font-family: 'vuonghiep', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-canv {
-  position:absolute;
-  top:100px;
-  left:70px;
-  width:300px;
-  height:100px;
+#skin-group-description-text a {
+  color: #00ff00;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-prev {
-  left:10px;
-  transform:scale(-1,1);
+#skin-group-description-text a:hover {
+  color: #ffff00;
+  text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-next {
-  right:10px;
+/* ========== INDIVIDUAL SKIN DESCRIPTION ========== */
+#skins-view .store-left .store-view-cont #skin-description-cont {
+  position: relative;
+  top: 240px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  background: rgba(255, 0, 0, 0.15);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  margin-top: 10px;
+  box-sizing: border-box;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-next,
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-prev {
-  position:absolute;
-  top:130px;
-  width:50px;
-  height:40px;
-  cursor:pointer;
-  overflow:hidden;
+#skin-description-text {
+  color: #ffff00;
+  font-family: 'vuonghiep', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-next svg,
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-prev svg {
-  transition:stroke .5s ease;
-  stroke:#f7941d;
+/* ========== NAVIGATION ARROWS ========== */
+#store-view-prev, #store-view-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 0, 0, 0.8);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-next svg:hover,
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left .store-view-cont #store-view-prev svg:hover {
-  stroke:#fa0;
+#store-view-prev {
+  left: 10px;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left #store-buy-button {
-  background-color:#8bc34a;
-  color:#fff;
-  overflow:hidden;
-  height:40px;
-  line-height:40px;
-  font-size:18px;
-  padding:0 10px;
-  box-sizing:border-box;
-  border-radius:5px;
-  border:0;
-  outline:0;
-  box-shadow:0 1px 1px 0 rgba(0,0,0,.2);
-  text-align:center;
-  text-shadow:0 0 1px #000;
-  cursor:pointer;
-  transition:background-color .5s ease;
-  position:absolute;
-  bottom:20px;
-  left:50px;
-  width:300px;
+#store-view-next {
+  right: 10px;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left #store-buy-button:hover {
-  box-shadow:0 1px 1px 0 rgba(0,0,0,.5);
-  background-color:#a4d070;
+#store-view-prev:hover, #store-view-next:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left #store-buy-button:focus {
-  outline:0;
+#store-view-prev:hover svg, #store-view-next:hover svg {
+  stroke: #ff0000;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left #store-buy-button * {
-  vertical-align:middle;
+#store-view-prev svg, #store-view-next svg {
+  width: 30px;
+  height: 30px;
+  stroke: #ffffff;
+  transition: stroke 0.3s ease;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left #store-buy-button>* {
-  vertical-align:middle;
-  display:inline-block;
-  height:20px;
-  line-height:20px;
+/* ========== BUY BUTTON ========== */
+#skins-view .store-left #store-buy-button {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 60px;
+  background: linear-gradient(45deg, #ff0000, #ff9900);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'vuonghiep', sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4),
+              inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left #store-locked-bar {
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  right:10px;
-  border:2px solid #c3c3c3;
-  font-size:18px;
-  overflow:hidden;
-  height:60px;
-  border-radius:4px;
-  text-shadow:0 0 1px #000;
-  display:-ms-flexbox;
-  display:flex;
-  -ms-flex-align:center;
-  align-items:center;
-  text-align:center;
+#skins-view .store-left #store-buy-button:hover {
+  background: linear-gradient(45deg, #ffff00, #00ff00);
+  color: #000000;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.7),
+              0 0 50px rgba(0, 255, 0, 0.4);
+  letter-spacing: 1px;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-left #store-locked-bar #store-locked-bar-text {
-  box-sizing:border-box;
-  margin:0 10px;
-  width:100%;
+#skins-view .store-left #store-buy-button:active {
+  transform: translateX(-50%) scale(0.98);
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-right {
-  top:0;
-  right:0;
-  position:absolute;
-  width:200px;
-  height:100%;
+#skins-view .store-left #store-buy-button span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-right #store-groups {
-  background:rgba(0,0,0,.3);
-  padding:10px;
-  border-radius:4px;
-  box-sizing:border-box;
-  overflow-y:scroll;
-  margin:0;
-  height:100%;
+#skins-view .store-left #store-buy-button img {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-right #store-groups .pressed {
-  background:#1e9faf !important;
+/* ========== LOCKED SKIN BAR ========== */
+#skins-view .store-left #store-locked-bar {
+  position: absolute;
+  bottom: 100px;
+  left: 20px;
+  right: 20px;
+  height: 70px;
+  background: linear-gradient(90deg, 
+              rgba(255, 0, 0, 0.2), 
+              rgba(0, 0, 0, 0.8), 
+              rgba(255, 0, 0, 0.2));
+  border: 2px solid rgba(255, 255, 0, 0.5);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.3),
+              inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-right #store-groups li {
-  background-image: linear-gradient(#8f22ff, #35b3a2);
-  color:#fff;
-  overflow:hidden;
-  height:40px;
-  line-height:40px;
-  font-size:20px;
-  padding:0 10px;
-  box-sizing:border-box;
-  border-radius:5px;
-  border:0;
-  outline:0;
-  box-shadow:0 1px 1px 0 rgba(0,0,0,.2);
-  text-align:center;
-  text-shadow:0 0 1px #000;
-  cursor:pointer;
-  transition:background-color .5s ease;
-  margin-bottom:10px;
-  padding:0;
-  list-style:none;
+#store-locked-bar-text {
+  color: #ffff00;
+  font-family: 'vuonghiep', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+  line-height: 1.3;
+  padding: 5px;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-right #store-groups li:hover {
-  box-shadow:0 1px 1px 0 rgba(0,0,0,.5);
-  background-color:#52d1e1;
+/* ========== SKIN GROUPS LIST ========== */
+#skins-view .store-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 220px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 15px;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.4),
+              inset 0 0 20px rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-right #store-groups li:focus {
-  outline:0;
+#skins-view .store-right #store-groups {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin: 0;
+  height: 100%;
 }
 
-#game-wrap #game-cont #stretch-box #popup-view .popup-view-list #skins-view .store-right #store-groups li * {
-  vertical-align:middle;
+#store-groups li {
+  background: linear-gradient(45deg, rgba(255, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+  color: #ffffff;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  padding: 0 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+  list-style: none;
+  font-family: 'vuonghiep', sans-serif;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+#store-groups li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+              transparent, 
+              rgba(255, 255, 255, 0.2), 
+              transparent);
+  transition: left 0.5s ease;
+}
+
+#store-groups li:hover {
+  background: linear-gradient(45deg, rgba(255, 255, 0, 0.4), rgba(0, 0, 0, 0.8));
+  transform: translateX(5px);
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.5),
+              inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+#store-groups li:hover::before {
+  left: 100%;
+}
+
+#store-groups li.pressed {
+  background: linear-gradient(45deg, #00ff00, #008800) !important;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.7),
+              inset 0 0 15px rgba(255, 255, 255, 0.2);
+  color: #000000;
+  border-color: #00ff00;
+}
+
+/* ========== SKIN STATS ========== */
+.skin-stats {
+  position: absolute;
+  bottom: 180px;
+  left: 20px;
+  right: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+  color: #00ffff;
+  font-size: 12px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+.stat-value {
+  color: #ffff00;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(255, 255, 0, 0.7);
+}
+
+/* ========== RARITY BADGES ========== */
+.rarity-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 5;
+}
+
+.rarity-common {
+  background: linear-gradient(45deg, #808080, #404040);
+  color: #ffffff;
+  border: 1px solid #aaaaaa;
+}
+
+.rarity-rare {
+  background: linear-gradient(45deg, #0000ff, #0088ff);
+  color: #ffffff;
+  border: 1px solid #00ffff;
+}
+
+.rarity-epic {
+  background: linear-gradient(45deg, #800080, #ff00ff);
+  color: #ffffff;
+  border: 1px solid #ff88ff;
+}
+
+.rarity-legendary {
+  background: linear-gradient(45deg, #ff9900, #ff0000);
+  color: #ffffff;
+  border: 1px solid #ffff00;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5),
+                inset 0 0 15px rgba(0, 0, 0, 0.6);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.worm-skin-box {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  #skins-view .store-left {
+    width: 100%;
+    height: 60%;
+  }
+  
+  #skins-view .store-right {
+    width: 100%;
+    height: 40%;
+    top: 60%;
+  }
+  
+  .skin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 #game-wrap #game-cont #stretch-box #popup-view .popup-view-list #wear-view .wear-types {
