@@ -4777,3 +4777,89 @@ button:hover{
 .bao-list1{
   margin-top: -20000px;
 }
+
+
+/* === BMW BLUE & WHITE THEME ENHANCEMENTS === */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body, html {
+  font-family: 'Poppins', sans-serif !important;
+  background: radial-gradient(circle at top, #0b3c6d 0%, #000 70%);
+}
+
+/* Soft black borders */
+#game-wrap, #stretch-box, .column-left {
+  border: 2px solid rgba(0,0,0,0.9);
+  box-shadow: 0 0 25px rgba(0,0,0,0.8);
+}
+
+/* Falling BMW letters */
+@keyframes fallBMW {
+  0% { transform: translateY(-10vh); opacity:0; }
+  10% { opacity:1; }
+  100% { transform: translateY(110vh); opacity:0; }
+}
+
+.bmw-letter {
+  position: fixed;
+  top: -10%;
+  color: rgba(255,255,255,0.15);
+  font-size: 28px;
+  animation: fallBMW linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Snow */
+@keyframes snow {
+  0% { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
+}
+
+.snowflake {
+  position: fixed;
+  top: -10%;
+  color: #fff;
+  opacity: 0.4;
+  font-size: 12px;
+  animation: snow linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Hearts */
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(0.6); opacity:0; }
+  20% { opacity:0.8; }
+  100% { transform: translateY(-120px) scale(1); opacity:0; }
+}
+
+.heart {
+  position: fixed;
+  bottom: 0;
+  color: rgba(0,150,255,0.6);
+  font-size: 18px;
+  animation: floatHeart 6s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Buttons blue/white hover */
+#mm-action-play, #mm-action-login, #mm-action-guest {
+  background: linear-gradient(135deg, #0d6efd, #ffffff);
+  color: #000 !important;
+}
+
+#mm-action-play:hover, 
+#mm-action-login:hover, 
+#mm-action-guest:hover {
+  background: linear-gradient(135deg, #ffffff, #0d6efd);
+  color: #000 !important;
+}
+
+/* Smooth UI animation */
+* {
+  transition: all .25s ease;
+}
