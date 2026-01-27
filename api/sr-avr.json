@@ -16,6 +16,13 @@
             "status": 1
         },
         {
+            "id": 688,
+            "name": "Tik - سراج البياتي<img class='team' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRylIw2M6P_ySu0M46dbQQRG4L0LhQ8lRHVRg&amp;s'/><div id='online'></div>",
+            "region": "germania",
+            "serverUrl": "wss://fra-c.wormate.io:32285/wormy",
+            "status": 1
+        },
+        {
             "id": 848,
             "name": "المانيا 2<img class='team' src='https://i.ibb.co/21vs6dJX/image.jpg'/><div id='online'></div>",
             "region": "germania",
@@ -30,5 +37,5 @@
             "status": 1
         }
     ],
-    "last_update": "2026-01-27 10:45:59"
+    "last_update": "2026-01-27 10:51:22"
 }
