@@ -2,17 +2,17 @@
     "success": true,
     "servers": [
         {
-            "id": 151,
-            "name": "IRAQ UP TIMOR<img class='team' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsVupSFMZvbOsK43GzcpDMFfLz_B3IB7gqwQ&amp;s'/><div id='online'></div>",
-            "region": "germania",
-            "serverUrl": "wss://fra-c.wormate.io:32285/wormy",
-            "status": 1
-        },
-        {
             "id": 203,
             "name": "المانيا 1<img class='team' src='https://i.ibb.co/21vs6dJX/image.jpg'/><div id='online'></div>",
             "region": "germania",
             "serverUrl": "wss://fra-c.wormate.io:32053/wormy",
+            "status": 1
+        },
+        {
+            "id": 368,
+            "name": "IRAQ<img class='team' src='https://i.ibb.co/pv4xXT40/download.png'/><div id='online'></div>",
+            "region": "germania",
+            "serverUrl": "wss://fra-c.wormate.io:32095/wormy",
             "status": 1
         },
         {
@@ -30,5 +30,5 @@
             "status": 1
         }
     ],
-    "last_update": "2026-01-27 10:44:15"
+    "last_update": "2026-01-27 10:45:59"
 }
