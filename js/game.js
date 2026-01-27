@@ -1,118 +1,78 @@
-/* === ADVANCED ANIMATED HEART BACKGROUND === */
+
+/* === STATIC BACKGROUND + STRONG ANIMATED BLACK BORDER === */
 (function () {
   try {
-    const BG_ID = "wormate-heart-bg";
+    const BG_ID = "wormate-static-bg";
+    const BORDER_ID = "wormate-animated-border";
 
     // منع التكرار
     if (document.getElementById(BG_ID)) return;
 
-    /* ===== CANVAS SETUP ===== */
-    const canvas = document.createElement("canvas");
-    canvas.id = BG_ID;
-    Object.assign(canvas.style, {
+    /* ===== BACKGROUND LAYER ===== */
+    const bg = document.createElement("div");
+    bg.id = BG_ID;
+    Object.assign(bg.style, {
       position: "fixed",
-      top: 0,
-      left: 0,
+      top: "0",
+      left: "0",
+      width: "100vw",
+      height: "100vh",
+      zIndex: "-2",
+      backgroundImage: "url('https://i.ibb.co/V0PwQySD/image.webp')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat"
+    });
+
+    /* ===== BORDER LAYER ===== */
+    const border = document.createElement("div");
+    border.id = BORDER_ID;
+    Object.assign(border.style, {
+      position: "fixed",
+      top: "0",
+      left: "0",
       width: "100vw",
       height: "100vh",
       zIndex: "-1",
-      pointerEvents: "none"
+      pointerEvents: "none",
+      boxSizing: "border-box",
+      border: "14px solid black",
+      animation: "wormateBorderPulse 3s infinite ease-in-out"
     });
 
-    document.body.prepend(canvas);
-    const ctx = canvas.getContext("2d");
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    /* ===== GRADIENT ENGINE ===== */
-    let hue = 0;
-    function drawGradient() {
-      hue = (hue + 0.1) % 360;
-      const g = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        canvas.width
-      );
-
-      g.addColorStop(0, `hsla(${hue},70%,55%,0.8)`);
-      g.addColorStop(0.5, `hsla(${hue + 60},60%,40%,0.85)`);
-      g.addColorStop(1, "#0b0e1a");
-
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    /* ===== HEART PARTICLE ===== */
-    class Heart {
-      constructor() {
-        this.reset();
+    /* ===== CSS ANIMATION ===== */
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @keyframes wormateBorderPulse {
+        0% {
+          border-color: rgba(0,0,0,1);
+          box-shadow:
+            inset 0 0 0 0 rgba(0,0,0,1),
+            0 0 40px rgba(0,0,0,0.9);
+        }
+        50% {
+          border-color: rgba(0,0,0,1);
+          box-shadow:
+            inset 0 0 25px 8px rgba(0,0,0,1),
+            0 0 80px rgba(0,0,0,1);
+        }
+        100% {
+          border-color: rgba(0,0,0,1);
+          box-shadow:
+            inset 0 0 0 0 rgba(0,0,0,1),
+            0 0 40px rgba(0,0,0,0.9);
+        }
       }
+    `;
 
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height + Math.random() * 200;
-        this.size = 8 + Math.random() * 14;
-        this.speed = 0.5 + Math.random() * 1.5;
-        this.alpha = 0.4 + Math.random() * 0.6;
-        this.swing = Math.random() * Math.PI * 2;
-        this.swingSpeed = 0.01 + Math.random() * 0.02;
-        this.color = `hsla(${330 + Math.random() * 40},80%,65%,${this.alpha})`;
-      }
+    document.head.appendChild(style);
+    document.body.prepend(border);
+    document.body.prepend(bg);
 
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.scale(this.size / 20, this.size / 20);
-        ctx.beginPath();
-        ctx.moveTo(0, -10);
-        ctx.bezierCurveTo(10, -20, 25, -5, 0, 20);
-        ctx.bezierCurveTo(-25, -5, -10, -20, 0, -10);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.restore();
-      }
-
-      update() {
-        this.y -= this.speed;
-        this.swing += this.swingSpeed;
-        this.x += Math.sin(this.swing) * 0.6;
-
-        if (this.y < -50) this.reset();
-        this.draw();
-      }
-    }
-
-    /* ===== PARTICLE SYSTEM ===== */
-    const hearts = [];
-    const HEART_COUNT = Math.min(120, Math.floor(window.innerWidth / 8));
-
-    for (let i = 0; i < HEART_COUNT; i++) {
-      hearts.push(new Heart());
-    }
-
-    /* ===== MAIN LOOP ===== */
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawGradient();
-      hearts.forEach(h => h.update());
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-  } catch (err) {
-    console.error("Heart Background Error:", err);
+  } catch (e) {
+    console.error("Static BG + Border error:", e);
   }
 })();
-
 
 // ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
 // var intervalID = null;
