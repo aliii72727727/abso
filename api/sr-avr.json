@@ -107,111 +107,6 @@
             "status": 1
         },
         {
-            "id": 400,
-            "name": "01. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:32368/wormy",
-            "status": 1
-        },
-        {
-            "id": 401,
-            "name": "02. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:31211/wormy",
-            "status": 1
-        },
-        {
-            "id": 402,
-            "name": "03. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:32053/wormy",
-            "status": 1
-        },
-        {
-            "id": 403,
-            "name": "04. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:32212/wormy",
-            "status": 1
-        },
-        {
-            "id": 404,
-            "name": "05. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:30703/wormy",
-            "status": 1
-        },
-        {
-            "id": 405,
-            "name": "06. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:31026/wormy",
-            "status": 1
-        },
-        {
-            "id": 406,
-            "name": "07. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:31142/wormy",
-            "status": 1
-        },
-        {
-            "id": 407,
-            "name": "08. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:30165/wormy",
-            "status": 1
-        },
-        {
-            "id": 408,
-            "name": "09. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:31311/wormy",
-            "status": 1
-        },
-        {
-            "id": 409,
-            "name": "10. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:31516/wormy",
-            "status": 1
-        },
-        {
-            "id": 410,
-            "name": "11. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:30332/wormy",
-            "status": 1
-        },
-        {
-            "id": 411,
-            "name": "12. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:30407/wormy",
-            "status": 1
-        },
-        {
-            "id": 412,
-            "name": "13. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:32368/wormy",
-            "status": 1
-        },
-        {
-            "id": 413,
-            "name": "14. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:32500/wormy",
-            "status": 1
-        },
-        {
-            "id": 414,
-            "name": "15. Lithuania<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "canada",
-            "serverUrl": "wss://vin-a.wormate.io:32465/wormy",
-            "status": 1
-        },
-        {
             "id": 470,
             "name": "01. UAE - WFT <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
             "region": "mexico",
@@ -597,5 +492,5 @@
             "status": 1
         }
     ],
-    "last_update": "2026-01-27 10:31:20"
+    "last_update": "2026-01-27 10:31:24"
 }
