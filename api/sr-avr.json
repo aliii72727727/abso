@@ -254,6 +254,55 @@
             "status": 1
         },
         {
+            "id": 606,
+            "name": "07. JP - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
+            "region": "japon",
+            "serverUrl": "wss://tok-b.wormate.io:31091/wormy",
+            "status": 1
+        },
+        {
+            "id": 605,
+            "name": "06. JP - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
+            "region": "japon",
+            "serverUrl": "wss://tok-b.wormate.io:30725/wormy",
+            "status": 1
+        },
+        {
+            "id": 604,
+            "name": "05. JP - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
+            "region": "japon",
+            "serverUrl": "wss://tok-b.wormate.io:30161/wormy",
+            "status": 1
+        },
+        {
+            "id": 603,
+            "name": "04. JP - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
+            "region": "japon",
+            "serverUrl": "wss://tok-b.wormate.io:32499/wormy",
+            "status": 1
+        },
+        {
+            "id": 602,
+            "name": "03. JP - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
+            "region": "japon",
+            "serverUrl": "wss://tok-b.wormate.io:30786/wormy",
+            "status": 1
+        },
+        {
+            "id": 601,
+            "name": "02. JP - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
+            "region": "japon",
+            "serverUrl": "wss://tok-b.wormate.io:31770/wormy",
+            "status": 1
+        },
+        {
+            "id": 600,
+            "name": "01. JP - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
+            "region": "japon",
+            "serverUrl": "wss://tok-b.wormate.io:30171/wormy",
+            "status": 1
+        },
+        {
             "id": 545,
             "name": "06. AU - WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
             "region": "granbretana",
@@ -1225,182 +1274,7 @@
             "region": "eeuu",
             "serverUrl": "wss://hil-a.wormate.io:32584/wormy",
             "status": 1
-        },
-        {
-            "id": 25,
-            "name": "25. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30339/wormy",
-            "status": 1
-        },
-        {
-            "id": 24,
-            "name": "24. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30208/wormy",
-            "status": 1
-        },
-        {
-            "id": 23,
-            "name": "23. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31533/wormy",
-            "status": 1
-        },
-        {
-            "id": 22,
-            "name": "22. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30725/wormy",
-            "status": 1
-        },
-        {
-            "id": 21,
-            "name": "21. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31084/wormy",
-            "status": 1
-        },
-        {
-            "id": 20,
-            "name": "20. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30809/wormy",
-            "status": 1
-        },
-        {
-            "id": 19,
-            "name": "19. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30135/wormy",
-            "status": 1
-        },
-        {
-            "id": 18,
-            "name": "18. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30909/wormy",
-            "status": 1
-        },
-        {
-            "id": 17,
-            "name": "17. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31163/wormy",
-            "status": 1
-        },
-        {
-            "id": 16,
-            "name": "16. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31695/wormy",
-            "status": 1
-        },
-        {
-            "id": 15,
-            "name": "15. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30171/wormy",
-            "status": 1
-        },
-        {
-            "id": 14,
-            "name": "14. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:32054/wormy",
-            "status": 1
-        },
-        {
-            "id": 13,
-            "name": "13. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://hil-a.wormate.io:30213/wormy",
-            "status": 1
-        },
-        {
-            "id": 12,
-            "name": "12. Team vs Team 🅽NEW<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:32581/wormy",
-            "status": 1
-        },
-        {
-            "id": 11,
-            "name": "11. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31230/wormy",
-            "status": 1
-        },
-        {
-            "id": 10,
-            "name": "10. WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31819/wormy",
-            "status": 1
-        },
-        {
-            "id": 9,
-            "name": "09. WORM 007<img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30265/wormy",
-            "status": 1
-        },
-        {
-            "id": 8,
-            "name": "08. WORM 007 <img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30702/wormy",
-            "status": 1
-        },
-        {
-            "id": 7,
-            "name": "07. WORM 007 <a href='###'><img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31750/wormy",
-            "status": 1
-        },
-        {
-            "id": 6,
-            "name": "06. WORM 007<a href='###'><img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://gra-a.wormate.io:32054/wormy",
-            "status": 1
-        },
-        {
-            "id": 5,
-            "name": "05. WORM 007<a href='###'><img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31695/wormy",
-            "status": 1
-        },
-        {
-            "id": 4,
-            "name": "04. WORM 007 <a href='###'><img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:32584/wormy",
-            "status": 1
-        },
-        {
-            "id": 3,
-            "name": "03. WORM 007<a href='###'><img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30106/wormy",
-            "status": 1
-        },
-        {
-            "id": 2,
-            "name": "02. WORM 007<a href='###'><img class='team' src='https://i.imgur.com/XDSCMg7.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:31163/wormy",
-            "status": 1
-        },
-        {
-            "id": 1,
-            "name": "01. ☾☆ DV-PLATEN ☾☆<a href='https://www.tiktok.com/@dv.platen'><img class='team' src='https://i.imgur.com/jedAzH0.png'/>",
-            "region": "peru",
-            "serverUrl": "wss://fra-c.wormate.io:30055/wormy",
-            "status": 1
         }
     ],
-    "last_update": "2026-01-27 10:18:43"
+    "last_update": "2026-01-27 10:18:52"
 }
