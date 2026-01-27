@@ -9159,7 +9159,7 @@
         {
             "id": 1199,
             "guest": false,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -9189,7 +9189,7 @@
         {
             "id": 1200,
             "guest": false,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -9219,7 +9219,7 @@
         {
             "id": 1201,
             "guest": false,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -9249,7 +9249,7 @@
         {
             "id": 1202,
             "guest": false,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -9309,7 +9309,7 @@
         {
             "id": 1204,
             "guest": false,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
