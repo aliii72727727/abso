@@ -1,28 +1,3 @@
-radial-gradient(circle at center, #3a5874 0%, #557e66 35%, #3a2b23 70%, #0e0f18 100%)";
-this.fn_o = f75;
-        this.Fe = new vF._b(vF.$b.from("/images/bg-obstacle.png"));
-        var v424 = vF.$b.from("/images/confetti-xmas2022.png");
-        this.Ge = [
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-          new vF._b(v424, new vF.dc(0, 0, 128, 128)),
-        ];
-امتداد wormate.io 
-/images/confetti-xmas2022.png
-
 
 // ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
 // var intervalID = null;
