@@ -1,4 +1,32 @@
 
+
+/* === BACKGROUND PATCH (Added) === */
+(function(){
+  try {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center,
+          #3a5874 0%,
+          #557e66 35%,
+          #3a2b23 70%,
+          #0e0f18 100%) !important;
+        overflow: hidden;
+      }
+      canvas {
+        background: transparent !important;
+      }
+    `;
+    document.head.appendChild(style);
+  } catch(e){}
+})();
+/* === END BACKGROUND PATCH === */
+
+
 // ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
 // var intervalID = null;
 // var afkTimer = null;
