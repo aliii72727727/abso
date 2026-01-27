@@ -1,30 +1,45 @@
 
-
-/* === BACKGROUND PATCH (Added) === */
-(function(){
+/* === SAFE INIT: BACKGROUND + CONFETTI PATCH === */
+(function () {
   try {
-    const style = document.createElement("style");
-    style.innerHTML = `
-      html, body {
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at center,
-          #3a5874 0%,
-          #557e66 35%,
-          #3a2b23 70%,
-          #0e0f18 100%) !important;
-        overflow: hidden;
-      }
-      canvas {
-        background: transparent !important;
-      }
-    `;
-    document.head.appendChild(style);
-  } catch(e){}
+    // تأكد إن الكائنات الأساسية موجودة
+    if (typeof vF === "undefined" || !vF.$b || !vF._b || !vF.dc) {
+      console.warn("vF not ready yet");
+      return;
+    }
+
+    // الخلفية (Gradient)
+    this.backgroundGradient =
+      "radial-gradient(circle at center, #3a5874 0%, #557e66 35%, #3a2b23 70%, #0e0f18 100%)";
+
+    // ربط الدالة بدون كسر
+    if (typeof f75 !== "undefined") {
+      this.fn_o = f75;
+    }
+
+    // صورة العوائق
+    this.Fe = new vF._b(
+      vF.$b.from("https://wormate.io/images/bg-obstacle.png")
+    );
+
+    // صورة الكونفيتي (الرابط الكامل)
+    var confettiImg = vF.$b.from(
+      "https://wormate.io/images/confetti-xmas2022.png"
+    );
+
+    // توليد مصفوفة الكونفيتي (16 عنصر)
+    this.Ge = [];
+    for (let i = 0; i < 16; i++) {
+      this.Ge.push(
+        new vF._b(confettiImg, new vF.dc(0, 0, 128, 128))
+      );
+    }
+
+  } catch (e) {
+    console.error("Confetti init error:", e);
+  }
 })();
-/* === END BACKGROUND PATCH === */
+
 
 
 // ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
