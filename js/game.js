@@ -7812,47 +7812,53 @@ $(document).ready(function () {
 
 $(".description-text").replaceWith(`
   <div class="description-text">
-    <div class="title-wormate-foghunter-flag" style="position:absolute;top:0;z-index:1;width:92%;margin-left:-2px;">
-      <img src="" width="20" align="center" alt="">
+    <!-- إطار أبيض أعلى قائمة السيرفرات -->
+    <div style="border: 2px solid white; border-radius: 5px; margin-bottom: 10px; padding: 5px; text-align: center; background: rgba(255,255,255,0.1);">
+      <div style="font-weight: bold; color: white; font-size: 14px;">
+        Wormate Bmw Connect
+      </div>
     </div>
-
+    
     <div class="description-text-test">
       <ul style="margin-top:5px;" class="ui-tabs-nav">
-
+        <!-- سيرفر ألمانيا فقط -->
         <li class="ui-tabs-tab ui-tab ui-tab-active" style="margin:-5px">
-          <a><span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span></a>
+          <a>
+            <span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span>
+            <span style="color: white; margin-left: 5px;">Germany Server</span>
+          </a>
         </li>
-
-        <li class="ui-tabs-tab ui-tab" style="margin:-5px">
-          <a><span class="flag fr" value="https://i.imgur.com/QuEjBr0.png"></span></a>
-        </li>
-
-        <li class="ui-tabs-tab ui-tab" style="margin:-5px">
-          <a><span class="flag au" value="https://i.imgur.com/12e0wp4.png"></span></a>
-        </li>
-
       </ul>
 
       <div class="bao-list2">
         <div class="servers-container">
-          <div class="servers-germania"></div>
-          <div class="servers-francia" style="display:none;"></div>
-          <div class="servers-australia" style="display:none;"></div>
+          <!-- عرض سيرفر ألمانيا فقط -->
+          <div class="servers-germania" style="display: block;">
+            <!-- محتوى سيرفر ألمانيا -->
+            <div style="text-align: center; color: white; padding: 10px;">
+              <img src="https://i.ibb.co/21vs6dJX/image.jpg" alt="Germany Server" style="max-width: 100%; border-radius: 5px;">
+              <div style="margin-top: 10px; font-weight: bold;">Germany Server Active</div>
+            </div>
+          </div>
+          
+          <!-- إضافة NUBER أسفل قائمة السيرفرات -->
+          <div style="border: 1px solid white; border-radius: 5px; margin-top: 15px; padding: 10px; text-align: center; background: rgba(255,255,255,0.1);">
+            <div style="font-weight: bold; color: white; font-size: 12px; margin-bottom: 5px;">NUBER</div>
+            <div style="color: #4CAF50; font-size: 14px;">+9647737458879</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 `);
 
+// التعامل مع النقر على التبويبات (إذا كان هناك تبويب واحد فقط، يمكن تبسيطه)
 $(".ui-tab").on("click", function () {
   $(".ui-tab").removeClass("ui-tab-active");
   $(this).addClass("ui-tab-active");
-
-  $(".servers-container > div").hide();
-
-  if ($(this).find(".de").length) $(".servers-germania").show();
-  if ($(this).find(".fr").length) $(".servers-francia").show();
-  if ($(this).find(".au").length) $(".servers-australia").show();
+  
+  // نظراً لأن لدينا سيرفر واحد فقط (ألمانيا)، نعرضه دائمًا
+  $(".servers-germania").show();
 });
 
 $(".flag").on("click", function () {
