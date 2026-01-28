@@ -653,9 +653,6 @@
             722
         ],
         [
-            869
-        ],
-        [
             723
         ],
         [
@@ -866,6 +863,9 @@
             868
         ],
         [
+            869
+        ],
+        [
             874
         ],
         [
@@ -927,6 +927,33 @@
         ],
         [
             958
+        ],
+        [
+            991
+        ],
+        [
+            992
+        ],
+        [
+            993
+        ],
+        [
+            994
+        ],
+        [
+            995
+        ],
+        [
+            996
+        ],
+        [
+            997
+        ],
+        [
+            998
+        ],
+        [
+            999
         ]
     ],
     "eyesVariantArray": [
@@ -3062,6 +3089,123 @@
             "base": [
                 {
                     "region": "hat_958"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "991": {
+            "id": 991,
+            "base": [
+                {
+                    "region": "hat_991"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "992": {
+            "id": 992,
+            "base": [
+                {
+                    "region": "hat_992"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "993": {
+            "id": 993,
+            "base": [
+                {
+                    "region": "hat_993"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "994": {
+            "id": 994,
+            "base": [
+                {
+                    "region": "hat_994"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "995": {
+            "id": 995,
+            "base": [
+                {
+                    "region": "hat_995"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "996": {
+            "id": 996,
+            "base": [
+                {
+                    "region": "hat_996"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "997": {
+            "id": 997,
+            "base": [
+                {
+                    "region": "hat_997"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "998": {
+            "id": 998,
+            "base": [
+                {
+                    "region": "hat_998"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "999": {
+            "id": 999,
+            "base": [
+                {
+                    "region": "hat_999"
                 }
             ],
             "guest": false,
@@ -19499,6 +19643,42 @@
         "eyes_983": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/HTWnFWQ4\/4091f9fcde2b.png"
+        },
+        "hat_991": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/zHDffGNN\/9ee8f5b43436.png"
+        },
+        "hat_992": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/YB925Z5Y\/4038fdc3f52e.png"
+        },
+        "hat_993": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/LDK0qxzw\/541eba1b4a46.png"
+        },
+        "hat_994": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/QFT01L8h\/ce8c73caf98d.png"
+        },
+        "hat_995": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/3mbphb4v\/58cb211bc604.png"
+        },
+        "hat_996": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/yB0N4dhm\/eb8d46f48247.png"
+        },
+        "hat_997": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/F44mNcWb\/a2b17b3ec22e.png"
+        },
+        "hat_998": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/zWjmCFRY\/963d6d62bf92.png"
+        },
+        "hat_999": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/gZ6CVXnJ\/585aa69f1b3e.png"
         }
     },
     "colorDict": {
@@ -48631,6 +48811,105 @@
         },
         "eyes_983": {
             "texture": "eyes_983",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_991": {
+            "texture": "hat_991",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_992": {
+            "texture": "hat_992",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_993": {
+            "texture": "hat_993",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_994": {
+            "texture": "hat_994",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_995": {
+            "texture": "hat_995",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_996": {
+            "texture": "hat_996",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_997": {
+            "texture": "hat_997",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_998": {
+            "texture": "hat_998",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_999": {
+            "texture": "hat_999",
             "x": 0,
             "y": 0,
             "w": 400,
