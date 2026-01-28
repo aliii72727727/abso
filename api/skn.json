@@ -1,5 +1,5 @@
 {
-    "revision": 80012,
+    "revision": 80018,
     "visibleSkin": [
         1000,
         1001,
@@ -607,7 +607,10 @@
         9005,
         9006,
         9007,
-        9008
+        9008,
+        9009,
+        9010,
+        9011
     ],
     "hatVariantArray": [
         [
@@ -4323,6 +4326,81 @@
         }
     },
     "skinArrayDict": [
+        {
+            "id": 9011,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_arabflag_0574_8",
+                "skin_arabflag_0574_7",
+                "skin_arabflag_0574_6",
+                "skin_arabflag_0574_5",
+                "skin_arabflag_0574_4",
+                "skin_arabflag_0574_3",
+                "skin_arabflag_0574_2",
+                "skin_arabflag_0574_1",
+                "skin_arabflag_0574_0"
+            ],
+            "glow": [
+                "a_grass"
+            ]
+        },
+        {
+            "id": 9010,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_arabflag_0986_8",
+                "skin_arabflag_0986_7",
+                "skin_arabflag_0986_6",
+                "skin_arabflag_0986_5",
+                "skin_arabflag_0986_4",
+                "skin_arabflag_0986_3",
+                "skin_arabflag_0986_2",
+                "skin_arabflag_0986_1",
+                "skin_arabflag_0986_0"
+            ],
+            "glow": [
+                "a_death",
+                "a__card",
+                "a__ruby",
+                "a_white",
+                "a_grass"
+            ]
+        },
+        {
+            "id": 9009,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_arabflag_654_8",
+                "skin_arabflag_654_7",
+                "skin_arabflag_654_6",
+                "skin_arabflag_654_5",
+                "skin_arabflag_654_4",
+                "skin_arabflag_654_3",
+                "skin_arabflag_654_2",
+                "skin_arabflag_654_1",
+                "skin_arabflag_654_0"
+            ],
+            "glow": [
+                "a_white",
+                "a__ruby",
+                "a_death",
+                "a__yllw",
+                "a__card",
+                "a_trans"
+            ]
+        },
         {
             "id": 9008,
             "guest": false,
@@ -16716,7 +16794,10 @@
                 "1174",
                 "9006",
                 "9007",
-                "9008"
+                "9008",
+                "9009",
+                "9010",
+                "9011"
             ]
         },
         {
@@ -19679,6 +19760,18 @@
         "hat_999": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/gZ6CVXnJ\/585aa69f1b3e.png"
+        },
+        "skin_arabflag_654": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/q3qm437F\/image.png"
+        },
+        "skin_arabflag_0986": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/GfRWGj5g\/image.png"
+        },
+        "skin_arabflag_0574": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/Qjf0X8y6\/image.png"
         }
     },
     "colorDict": {
@@ -48918,6 +49011,195 @@
             "py": 64,
             "pw": 128,
             "ph": 128
+        },
+        "skin_arabflag_654_0": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_arabflag_654_1": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_arabflag_654_2": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_arabflag_654_3": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_arabflag_654_4": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_arabflag_654_5": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_arabflag_654_6": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_arabflag_654_7": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_arabflag_654_8": {
+            "texture": "skin_arabflag_654",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_arabflag_0986_0": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_arabflag_0986_1": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_arabflag_0986_2": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_arabflag_0986_3": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_arabflag_0986_4": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_arabflag_0986_5": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_arabflag_0986_6": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_arabflag_0986_7": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_arabflag_0986_8": {
+            "texture": "skin_arabflag_0986",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_arabflag_0574_0": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_arabflag_0574_1": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_arabflag_0574_2": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_arabflag_0574_3": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_arabflag_0574_4": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_arabflag_0574_5": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_arabflag_0574_6": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_arabflag_0574_7": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_arabflag_0574_8": {
+            "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
         }
     }
 }
