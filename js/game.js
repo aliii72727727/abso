@@ -3968,10 +3968,10 @@ window.addEventListener("load", function () {
         }());
         this.Af = new vF91._b(vF91.$b.from("/images/lens.png"));
         var v1125 = vF91.$b.from("/images/wear-ability.png");
-        var v1126 = vF91.$b.from("https://i.imgur.com/EDt862t.png");
-        var v1127 = vF91.$b.from("https://i.imgur.com/U5sTlhC.png");
+        var v1126 = vF91.$b.from("https://i.imgur.com/zdp9pEI.png");
+        var v1127 = vF91.$b.from("https://i.imgur.com/zdp9pEI.png");
         var v1128 = vF91.$b.from("https://i.imgur.com/ub4ed3R.png");
-        var v1129 = vF91.$b.from("https://i.imgur.com/hk8xI4i.png");
+        var v1129 = vF91.$b.from("https://i.imgur.com/zdp9pEI.png");
         this.X_x5 = new vF125(v1129, 156, 80, 87, 60, 170, 1.5, 128, 128);
         this.X_x2 = new vF125(v1129, 156, 140, 87, 60, 170, 128.5, 128, 128);
         this.X_x10 = new vF125(v1129, 158, 200, 95, 55, 265, 128.5, 128, 128);
