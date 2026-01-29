@@ -2,8 +2,37 @@
   "success": true,
   "Users": [
     {
+      "id": 1,
+      "username": "gg",
       "userId": "gg_108022486223048441992",
-      "expireDate": "2028-12-31"
+      "role": "admin",
+      "status": "active",
+
+      "permissions": {
+        "canUseMods": true,
+        "canUseSkins": true,
+        "canBanPlayers": true,
+        "canKickPlayers": true,
+        "canChangeServer": true,
+        "canSeeHiddenStats": true,
+        "canUseAdminPanel": true
+      },
+
+      "features": {
+        "vipBadge": true,
+        "specialColor": "#FFD700",
+        "customFlag": true,
+        "antiAFK": true,
+        "zoomUnlocked": true
+      },
+
+      "limits": {
+        "maxZoom": 3.0,
+        "maxSpeed": 1.5
+      },
+
+      "cliente_DateCreated": "2024-01-01",
+      "cliente_DateExpired": "2028-12-31"
     }
   ]
 }
