@@ -1,4 +1,4 @@
-123
+
 
 // ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
 // var intervalID = null;
@@ -7927,372 +7927,156 @@ $(".flag").on("click", function () {
       vO4.adblock = true;
       $("#loa831pibur0w4gv").replaceWith(" <div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n        <span class=\"settings_span\">Power-ups-Size: </span>\n        <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n        </div>\n        \n      <div class=\"container1\">\n      <span class=\"settings_span\">Power-ups-Aura: </span>\n      <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n      </div>\n       \n      <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Size: </span>\n                    <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n                    </div>\n                    <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Shadow: </span>\n                    <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n                    </div>\n ");
       $("#mm-coins-box").replaceWith("\n                <div style=\"margin: 0;\" id=\"mm-coins-box\">\n          <button \n            style=\"\n              width: 90px;\n              height: 32px;\n              float: right;\n              border-radius: 10px;\n              border: solid #fac 2px;\n            \" \n            id=\"getskin\">فتح السكنات </button>\n        </div>\n      ");
-      // إعدادات التكبير والتصغير
+      // --- إعدادات الزووم الافتراضية ---
 window.multiplier = 1;
 window.zoomLevel = 5;
 
-// دالة التكبير
-function zoomIn() {
+const updateZoomUI = () => {
+    let zoomPercent = Math.min(100, Math.round(window.multiplier / 0.625 * 100));
+    $("#zoom-percentage").text(zoomPercent + "%");
+};
+
+window.f222 = function() { // Zoom In
     window.zoomLevel++;
     window.multiplier *= 0.8;
-    changedNf();
-    updateZoomPercentage();
-}
+    if (typeof changedNf === "function") changedNf();
+    updateZoomUI();
+};
 
-// دالة التصغير
-function zoomOut() {
+window.f223 = function() { // Zoom Out
     if (window.zoomLevel > 0) {
         window.zoomLevel--;
         window.multiplier /= 0.8;
-        changedNf();
-        updateZoomPercentage();
-    }
-}
-
-// تحديث نسبة التكبير المعروضة
-function updateZoomPercentage() {
-    const zoomPercentage = Math.round(window.multiplier / 0.625 * 100);
-    const displayPercentage = Math.min(100, zoomPercentage);
-    const zoomElement = document.getElementById("zoom-percentage");
-    
-    if (zoomElement) {
-        zoomElement.textContent = displayPercentage + "%";
-    }
-}
-
-// التحكم بالتكبير باستخدام عجلة الماوس
-window.onwheel = function (event) {
-    event.preventDefault();
-    
-    if (event.deltaY < 0) {
-        zoomIn();
-    } else {
-        zoomOut();
+        if (typeof changedNf === "function") changedNf();
+        updateZoomUI();
     }
 };
 
-// إضافة event listeners لأزرار التكبير والتصغير (للمس)
-document.getElementById("zoom-in")?.addEventListener("touchstart", zoomIn, { passive: false });
-document.getElementById("zoom-out")?.addEventListener("touchstart", zoomOut, { passive: false });
+// --- التعامل مع الأحداث (Events) ---
+window.onwheel = (e) => {
+    e.preventDefault();
+    e.deltaY < 0 ? f222() : f223();
+};
 
-// إدارة الـ switches والإعدادات
-class SettingsManager {
-    constructor() {
-        this.vO4 = window.vO4 || {};
-        this.initSwitches();
-    }
+document.getElementById("zoom-in")?.addEventListener("touchstart", f222, { passive: false });
+document.getElementById("zoom-out")?.addEventListener("touchstart", f223, { passive: false });
 
-    // تهيئة جميع الـ switches
-    initSwitches() {
-        this.initSwitch({
-            switchId: "settings-Abilityzoom-switch",
-            storageKey: "mySwitch",
-            onValue: "on",
-            offValue: "off",
-            onCallback: (checked) => {
-                this.vO4.eat_animation = checked ? 1 : 0.0025;
-            }
-        });
+$(document).ready(function () {
+    
+    // 1. دالة ذكية لإدارة المفاتيح (Switches) تلقائياً
+    function setupSwitch(selector, storageKey, vO4Property, isInverted = false) {
+        const $el = $(selector);
+        
+        // استرجاع القيمة المخزنة
+        const savedVal = localStorage.getItem(storageKey);
+        if (savedVal !== null) {
+            const isTrue = savedVal === "true";
+            vO4[vO4Property] = isTrue;
+            $el.prop("checked", isTrue);
+        }
 
-        this.initSwitch({
-            switchId: "settings-stremingmode-switch",
-            storageKey: "ModeStremer",
-            onValue: "true",
-            offValue: "false",
-            onCallback: (checked) => {
-                this.vO4.ModeStremer = checked;
-            }
-        });
-
-        this.initSwitch({
-            switchId: "settings-stremingmodebatop-switch",
-            storageKey: "ModeStremerbatop",
-            onValue: "true",
-            offValue: "false",
-            onCallback: (checked) => {
-                this.vO4.ModeStremerbatop = checked;
-            }
-        });
-
-        this.initSwitch({
-            switchId: "settings-stremingmodesaveheadshot-switch",
-            storageKey: "ModeStremersaveheadshot",
-            onValue: "true",
-            offValue: "false",
-            onCallback: (checked) => {
-                this.vO4.ModeStremersaveheadshot = checked;
-                location.reload(); // إعادة تحميل الصفحة عند التغيير
-            }
-        });
-
-        this.initSwitch({
-            switchId: "settings-stremingmodeheadshot-switch",
-            storageKey: "ModeStremerheadshot",
-            onValue: "true",
-            offValue: "false",
-            onCallback: (checked) => {
-                this.vO4.ModeStremerheadshot = checked;
-            }
-        });
-
-        this.initSwitch({
-            switchId: "settings-stremingmodeemoj-switch",
-            storageKey: "ModeStremeremoj",
-            onValue: "true",
-            offValue: "false",
-            onCallback: (checked) => {
-                this.vO4.ModeStremeremoj = checked;
-            }
-        });
-
-        this.initSwitch({
-            switchId: "settings-arrowmobile-switch",
-            storageKey: null, // لا يوجد حفظ في localStorage
-            onCallback: (checked) => {
-                this.vO4.arrow = !checked;
-            }
-        });
-    }
-
-    // دالة عامة لإدارة الـ switches
-    initSwitch(config) {
-        const { switchId, storageKey, onValue, offValue, onCallback } = config;
-        const switchElement = $("#" + switchId);
-
-        if (switchElement.length === 0) return;
-
-        // إضافة حدث النقر
-        switchElement.on("click", function() {
+        // عند التغيير
+        $el.on("change", function() {
             const isChecked = this.checked;
-            console.log(`${switchId} is ${isChecked ? 'checked' : 'not checked'}`);
+            vO4[vO4Property] = isChecked;
+            localStorage.setItem(storageKey, isChecked);
+            console.log(`${storageKey} set to: ${isChecked}`);
             
-            if (onCallback) {
-                onCallback(isChecked);
-            }
-            
-            if (storageKey) {
-                localStorage.setItem(storageKey, isChecked ? onValue : offValue);
-            }
-        });
-
-        // تهيئة القيمة من localStorage عند تحميل الصفحة
-        $(document).ready(() => {
-            if (storageKey) {
-                const savedValue = localStorage.getItem(storageKey);
-                if (savedValue === onValue) {
-                    switchElement.prop("checked", true);
-                    if (onCallback) onCallback(true);
-                } else {
-                    switchElement.prop("checked", false);
-                    if (onCallback) onCallback(false);
-                }
-            }
-        });
-    }
-}
-
-// إدارة إعدادات المدخلات
-class InputManager {
-    constructor() {
-        this.initInputs();
-    }
-
-    initInputs() {
-        // إدارة أشرطة التمرير
-        this.initRangeInput("PortionSize", "PotenciadorSize");
-        this.initRangeInput("PortionAura", "PotenciadorAura");
-        this.initRangeInput("smoothCamera", "smoothCamera");
-        this.initRangeInput("FoodSize", "ComidaSize");
-        this.initRangeInput("FoodShadow", "ComidaShadow");
-
-        // إدارة إدخال المفاتيح
-        this.initKeyInput("KeyRespawn");
-        this.initKeyInput("KeyAutoMov");
-    }
-
-    initRangeInput(inputId, storageKey) {
-        const inputElement = $("#" + inputId);
-        
-        if (inputElement.length === 0) return;
-
-        inputElement.on("input", function() {
-            if (window.vO4) {
-                window.vO4[inputId] = $(this).val();
-                localStorage.setItem(storageKey, $(this).val());
-            }
-        });
-
-        // استعادة القيمة المحفوظة
-        $(document).ready(() => {
-            const savedValue = localStorage.getItem(storageKey);
-            if (savedValue && inputElement) {
-                inputElement.val(savedValue);
-                if (window.vO4) {
-                    window.vO4[inputId] = savedValue;
-                }
-            }
+            // حالة خاصة لـ Headshot Reload
+            if (storageKey === "ModeStremersaveheadshot") location.reload();
         });
     }
 
-    initKeyInput(inputId) {
-        const inputElement = $("#" + inputId);
-        
-        if (inputElement.length === 0) return;
+    // 2. تطبيق الإعدادات على كافة المفاتيح
+    setupSwitch("#settings-stremingmode-switch", "ModeStremer", "ModeStremer");
+    setupSwitch("#settings-stremingmodebatop-switch", "ModeStremerbatop", "ModeStremerbatop");
+    setupSwitch("#settings-stremingmodesaveheadshot-switch", "ModeStremersaveheadshot", "ModeStremersaveheadshot");
+    setupSwitch("#settings-stremingmodeheadshot-switch", "ModeStremerheadshot", "ModeStremerheadshot");
+    setupSwitch("#settings-stremingmodeemoj-switch", "ModeStremeremoj", "ModeStremeremoj");
 
-        inputElement.on("keydown", (event) => {
-            if (this.isValidKey(event)) {
-                event.preventDefault();
-                const keyName = this.getKeyName(event);
-                const keyCode = event.keyCode;
-                
-                inputElement.val(keyName);
-                inputElement.blur();
-                
-                window.keyMove = keyCode;
-                localStorage.setItem(inputId, keyCode);
-                
-                return false;
+    // إعدادات خاصة (Ability Zoom)
+    $("#settings-Abilityzoom-switch").on("change", function() {
+        vO4.eat_animation = this.checked ? 1 : 0.0025;
+        localStorage.setItem("mySwitch", this.checked ? "on" : "off");
+    }).prop("checked", localStorage.getItem("mySwitch") === "on");
+
+    // إعداد الـ Arrow
+    $("#settings-arrowmobile-switch").on("change", function() {
+        vO4.arrow = !this.checked;
+    });
+
+    // 3. مستشعرات الإدخال (Sliders)
+    const sliders = {
+        "#PortionSize": "PotenciadorSize",
+        "#PortionAura": "PotenciadorAura",
+        "#smoothCamera": "smoothCamera",
+        "#FoodSize": "ComidaSize",
+        "#FoodShadow": "ComidaShadow"
+    };
+
+    Object.entries(sliders).forEach(([id, localKey]) => {
+        $(id).on("input", function() {
+            const val = $(this).val();
+            const prop = id.replace('#', '');
+            vO4[prop] = val;
+            localStorage.setItem(localKey, val);
+        });
+    });
+
+    // 4. تعيين الكيبورد
+    $("#KeyRespawn,#KeyAutoMov").on("keydown", function (e) {
+        if (typeof vF181 === "function" && vF181(e)) {
+            const keyName = f231(e);
+            $(this).val(keyName).blur();
+            window.keyMove = e.keyCode;
+            localStorage.setItem(this.id, e.keyCode);
+        } else {
+            e.preventDefault();
+        }
+    });
+
+    // 5. إدارة الكرسر (Cursors)
+    vA17.forEach(item => {
+        let $img = $("<img>", {
+            src: item.url,
+            class: "cursor",
+            click: function() {
+                const src = $(this).attr("src");
+                localStorage.cursorSeleccionado = src;
+                $("#game-cont, #game-canvas, body").css("cursor", `url(${src}), default`);
             }
-            return true;
         });
+        $(".cursor-container").prepend($img);
+    });
 
-        // استعادة القيمة المحفوظة
-        $(document).ready(() => {
-            const savedKeyCode = localStorage.getItem(inputId);
-            if (savedKeyCode && inputElement) {
-                const keyName = this.getKeyNameFromCode(savedKeyCode);
-                if (keyName) {
-                    inputElement.val(keyName);
-                }
-            }
-        });
-    }
-
-    isValidKey(event) {
-        // دالة للتحقق من صحة المفتاح
-        return true; // يمكن تعديلها حسب الحاجة
-    }
-
-    getKeyName(event) {
-        // دالة للحصول على اسم المفتاح
-        return event.key || String.fromCharCode(event.keyCode);
-    }
-
-    getKeyNameFromCode(keyCode) {
-        // دالة للحصول على اسم المفتاح من الرمز
-        // يمكن إضافة المزيد من المنطق هنا
-        return null;
-    }
-}
-
-// إدارة المؤشرات (Cursors)
-class CursorManager {
-    constructor() {
-        this.cursors = window.vA17 || [];
-        this.initCursors();
-        this.applySavedCursor();
-    }
-
-    initCursors() {
-        const cursorContainer = $(".cursor-container");
-        if (cursorContainer.length === 0) return;
-
-        // إضافة مؤشر مخصص
-        this.cursors.forEach(cursor => {
-            const cursorImg = $("<img>")
-                .attr("src", cursor.url)
-                .attr("alt", cursor.nombre)
-                .attr("title", cursor.nombre)
-                .addClass("cursor")
-                .on("click", () => this.selectCursor(cursor.url));
-            
-            cursorContainer.prepend(cursorImg);
-        });
-
-        // زر الرجوع للمؤشر الافتراضي
-        $("#default-cursor-btn").on("click", () => this.resetToDefaultCursor());
-    }
-
-    selectCursor(cursorUrl) {
-        localStorage.cursorSeleccionado = cursorUrl;
-        this.applyCursor(cursorUrl);
-    }
-
-    resetToDefaultCursor() {
+    $("#default-cursor-btn").click(() => {
         localStorage.removeItem("cursorSeleccionado");
-        this.applyCursor("default");
+        $("#game-cont, #game-canvas, body").css("cursor", "default");
+    });
+
+    // تطبيق الكرسر المحفوظ
+    if (localStorage.cursorSeleccionado) {
+        $("#game-cont, #game-canvas, body").css("cursor", `url(${localStorage.cursorSeleccionado}), default`);
     }
 
-    applyCursor(cursorStyle) {
-        const cursorValue = cursorStyle === "default" ? "default" : `url(${cursorStyle}), default`;
-        
-        $("#game-cont, #game-canvas, body").css({
-            cursor: cursorValue
+    // 6. إدارة الخلفيات (Backgrounds)
+    vA18.forEach(item => {
+        let $bgImg = $("<img>", {
+            src: item.url,
+            class: "background",
+            value: item.nombre,
+            click: function() {
+                const src = $(this).attr("src");
+                localStorage.fondoSeleccionado = src;
+                alert("Selected: " + $(this).attr("value"));
+                if (window.vUndefined28) {
+                    vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(src));
+                }
+            }
         });
-    }
-
-    applySavedCursor() {
-        const savedCursor = localStorage.getItem("cursorSeleccionado");
-        if (savedCursor) {
-            this.applyCursor(savedCursor);
-        }
-    }
-}
-
-// إدارة الخلفيات
-class BackgroundManager {
-    constructor() {
-        this.backgrounds = window.vA18 || [];
-        this.initBackgrounds();
-    }
-
-    initBackgrounds() {
-        const backgroundContainer = $(".background-container");
-        if (backgroundContainer.length === 0) return;
-
-        this.backgrounds.forEach(background => {
-            const bgImg = $("<img>")
-                .attr("src", background.url)
-                .attr("alt", background.nombre)
-                .attr("title", background.nombre)
-                .attr("value", background.nombre)
-                .addClass("background")
-                .on("click", () => this.selectBackground(background.url, background.nombre));
-            
-            backgroundContainer.prepend(bgImg);
-        });
-    }
-
-    selectBackground(backgroundUrl, backgroundName) {
-        localStorage.fondoSeleccionado = backgroundUrl;
-        
-        if (window.vUndefined28?.q?.Cf && typeof window.vUndefined28.q.fn_o === "function") {
-            window.vUndefined28.q.Cf = new window.vF91._b(window.vUndefined28.q.fn_o(backgroundUrl));
-        }
-        
-        alert(`You selected the background: ${backgroundName}`);
-    }
-}
-
-// تهيئة جميع المدراء عند تحميل الصفحة
-$(document).ready(function() {
-    // تحديث نسبة التكبير عند التحميل
-    updateZoomPercentage();
-    
-    // تهيئة المدراء
-    window.settingsManager = new SettingsManager();
-    window.inputManager = new InputManager();
-    window.cursorManager = new CursorManager();
-    window.backgroundManager = new BackgroundManager();
-    
-    console.log("All managers initialized successfully");
+        $(".background-container").prepend($bgImg);
+    });
 });
-
-// إعادة تسمية الدوال القديمة للحفاظ على التوافق
-window.f222 = zoomIn;
-window.f223 = zoomOut;
-window.f224 = updateZoomPercentage;
-    
       }
       $(".background-container").prepend("");
       vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(localStorage.fondoSeleccionado));
