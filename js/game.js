@@ -7927,290 +7927,371 @@ $(".flag").on("click", function () {
       vO4.adblock = true;
       $("#loa831pibur0w4gv").replaceWith(" <div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n        <span class=\"settings_span\">Power-ups-Size: </span>\n        <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n        </div>\n        \n      <div class=\"container1\">\n      <span class=\"settings_span\">Power-ups-Aura: </span>\n      <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n      </div>\n       \n      <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Size: </span>\n                    <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n                    </div>\n                    <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Shadow: </span>\n                    <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n                    </div>\n ");
       $("#mm-coins-box").replaceWith("\n                <div style=\"margin: 0;\" id=\"mm-coins-box\">\n          <button \n            style=\"\n              width: 90px;\n              height: 32px;\n              float: right;\n              border-radius: 10px;\n              border: solid #fac 2px;\n            \" \n            id=\"getskin\">فتح السكنات </button>\n        </div>\n      ");
-      window.multiplier = 1;
-      window.zoomLevel = 5;
-      window.onwheel = p1310 => {
-        if (p1310.deltaY > 0) {
-          window.multiplier *= 0.8;
-        } else {
-          window.multiplier /= 0.8;
-        }
-        window.changedNf();
-      };
-      function f222() {
-        window.zoomLevel++;
-        window.multiplier *= 0.8;
+      // إعدادات التكبير والتصغير
+window.multiplier = 1;
+window.zoomLevel = 5;
+
+// دالة التكبير
+function zoomIn() {
+    window.zoomLevel++;
+    window.multiplier *= 0.8;
+    changedNf();
+    updateZoomPercentage();
+}
+
+// دالة التصغير
+function zoomOut() {
+    if (window.zoomLevel > 0) {
+        window.zoomLevel--;
+        window.multiplier /= 0.8;
         changedNf();
-        f224();
-      }
-      function f223() {
-        if (window.zoomLevel > 0) {
-          window.zoomLevel--;
-          window.multiplier /= 0.8;
-          changedNf();
-          f224();
-        }
-      }
-      function f224() {
-        var v1362 = Math.round(window.multiplier / 0.625 * 100);
-        v1362 = Math.min(100, v1362);
-        var v1363 = document.getElementById("zoom-percentage");
-        v1363.textContent = v1362 + "%";
-      }
-      document.getElementById("zoom-in").addEventListener("touchstart", f222, {
-        passive: false
-      });
-      document.getElementById("zoom-out").addEventListener("touchstart", f223, {
-        passive: false
-      });
-      window.onwheel = function (p1311) {
-        p1311.preventDefault();
-        if (p1311.deltaY < 0) {
-          f222();
-        } else {
-          f223();
-        }
-      };
-      $("#settings-Abilityzoom-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.eat_animation = 1;
-          localStorage.setItem("mySwitch", "on");
-        } else {
-          console.log("I'm not checked");
-          vO4.eat_animation = 0.0025;
-          localStorage.setItem("mySwitch", "off");
-        }
-      });
-      $(document).ready(function () {
-        var v1364 = localStorage.getItem("mySwitch");
-        if (v1364 === "on") {
-          $("#settings-Abilityzoom-switch").prop("checked", true);
-          vO4.eat_animation = 1;
-        } else {
-          $("#settings-Abilityzoom-switch").prop("checked", false);
-          vO4.eat_animation = 0.0025;
-        }
-      });
-      $("#settings-stremingmode-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.ModeStremer = true;
-          localStorage.setItem("ModeStremer", "true");
-        } else {
-          console.log("I'm not checked");
-          vO4.ModeStremer = false;
-          localStorage.setItem("ModeStremer", "false");
-        }
-      });
-      $(document).ready(function () {
-        var v1365 = localStorage.getItem("ModeStremer");
-        if (v1365 === "true") {
-          vO4.ModeStremer = true;
-          $("#settings-stremingmode-switch").prop("checked", true);
-        } else {
-          vO4.ModeStremer = false;
-          $("#settings-stremingmode-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodebatop-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.ModeStremerbatop = true;
-          localStorage.setItem("ModeStremerbatop", "true");
-        } else {
-          console.log("I'm not checked");
-          vO4.ModeStremerbatop = false;
-          localStorage.setItem("ModeStremerbatop", "false");
-        }
-      });
-      $(document).ready(function () {
-        var v1366 = localStorage.getItem("ModeStremerbatop");
-        if (v1366 === "true") {
-          vO4.ModeStremerbatop = true;
-          $("#settings-stremingmodebatop-switch").prop("checked", true);
-        } else {
-          vO4.ModeStremerbatop = false;
-          $("#settings-stremingmodebatop-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodesaveheadshot-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.ModeStremersaveheadshot = true;
-          localStorage.setItem("ModeStremersaveheadshot", "true");
-        } else {
-          console.log("I'm not checked");
-          vO4.ModeStremersaveheadshot = false;
-          localStorage.setItem("ModeStremersaveheadshot", "false");
-        }
-        location.reload();
-      });
-      $(document).ready(function () {
-        var v1367 = localStorage.getItem("ModeStremersaveheadshot");
-        if (v1367 === "true") {
-          vO4.ModeStremersaveheadshot = true;
-          $("#settings-stremingmodesaveheadshot-switch").prop("checked", true);
-        } else {
-          vO4.ModeStremersaveheadshot = false;
-          $("#settings-stremingmodesaveheadshot-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodeheadshot-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.ModeStremerheadshot = true;
-          localStorage.setItem("ModeStremerheadshot", "true");
-        } else {
-          console.log("I'm not checked");
-          vO4.ModeStremerheadshot = false;
-          localStorage.setItem("ModeStremerheadshot", "false");
-        }
-      });
-      $(document).ready(function () {
-        var v1368 = localStorage.getItem("ModeStremerheadshot");
-        if (v1368 === "true") {
-          vO4.ModeStremerheadshot = true;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", true);
-        } else {
-          vO4.ModeStremerheadshot = false;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodeheadshot-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.ModeStremerheadshot = true;
-          localStorage.setItem("ModeStremerheadshot", "true");
-        } else {
-          console.log("I'm not checked");
-          vO4.ModeStremerheadshot = false;
-          localStorage.setItem("ModeStremerheadshot", "false");
-        }
-      });
-      $(document).ready(function () {
-        var v1369 = localStorage.getItem("ModeStremerheadshot");
-        if (v1369 === "true") {
-          vO4.ModeStremerheadshot = true;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", true);
-        } else {
-          vO4.ModeStremerheadshot = false;
-          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
-        }
-      });
-      $("#settings-stremingmodeemoj-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.ModeStremeremoj = true;
-          localStorage.setItem("ModeStremeremoj", "true");
-        } else {
-          console.log("I'm not checked");
-          vO4.ModeStremeremoj = false;
-          localStorage.setItem("ModeStremeremoj", "false");
-        }
-      });
-      $(document).ready(function () {
-        var v1370 = localStorage.getItem("ModeStremeremoj");
-        if (v1370 === "true") {
-          vO4.ModeStremeremoj = true;
-          $("#settings-stremingmodeemoj-switch").prop("checked", true);
-        } else {
-          vO4.ModeStremeremoj = false;
-          $("#settings-stremingmodeemoj-switch").prop("checked", false);
-        }
-      });
-      $("#settings-arrowmobile-switch").on("click", function () {
-        if (this.checked) {
-          console.log("I am checked");
-          vO4.arrow = false;
-        } else {
-          console.log("I'm not checked");
-          vO4.arrow = true;
-        }
-      });
-      $("#PortionSize").on("input", function () {
-        vO4.PortionSize = $(this).val();
-        localStorage.PotenciadorSize = vO4.PortionSize;
-      });
-      $("#PortionAura").on("input", function () {
-        vO4.PortionAura = $(this).val();
-        localStorage.PotenciadorAura = vO4.PortionAura;
-      });
-      $("#smoothCamera").on("input", function () {
-        vO4.smoothCamera = $(this).val();
-        localStorage.smoothCamera = vO4.smoothCamera;
-      });
-      $("#FoodSize").on("input", function () {
-        vO4.FoodSize = $(this).val();
-        localStorage.ComidaSize = vO4.FoodSize;
-      });
-      $("#FoodShadow").on("input", function () {
-        vO4.FoodShadow = $(this).val();
-        localStorage.ComidaShadow = vO4.FoodShadow;
-      });
-      $("#KeyRespawn,#KeyAutoMov").on("keydown", function (p1312) {
-        if (vF181(p1312)) {
-          var v$218 = $(this);
-          var vGetPresedKey2 = f231(p1312);
-          var v1371 = p1312.keyCode;
-          v$218.val(vGetPresedKey2);
-          v$218.blur();
-          window.keyMove = v1371;
-          window.localStorage.setItem(v$218.attr("id"), v1371);
-        } else {
-          p1312.preventDefault();
-        }
-      });
-      for (a = 0; a < vA17.length; a++) {
-        var v1372 = vA17[a].url;
-        var v1373 = vA17[a].nombre;
-        let v1374 = document.createElement("img");
-        v1374.src = v1372;
-        $(".cursor-container").prepend(v1374);
-        $(v1374).attr("class", "cursor");
-        $(v1374).click(function () {
-          let v1375 = $(this).attr("src");
-          localStorage.cursorSeleccionado = v1375;
-          $("#game-cont").css({
-            cursor: "url(" + v1375 + "), default"
-          });
-          $("#game-canvas").css({
-            cursor: "url(" + v1375 + "), default"
-          });
-          $("body").css({
-            cursor: "url(" + v1375 + "), default"
-          });
+        updateZoomPercentage();
+    }
+}
+
+// تحديث نسبة التكبير المعروضة
+function updateZoomPercentage() {
+    const zoomPercentage = Math.round(window.multiplier / 0.625 * 100);
+    const displayPercentage = Math.min(100, zoomPercentage);
+    const zoomElement = document.getElementById("zoom-percentage");
+    
+    if (zoomElement) {
+        zoomElement.textContent = displayPercentage + "%";
+    }
+}
+
+// التحكم بالتكبير باستخدام عجلة الماوس
+window.onwheel = function (event) {
+    event.preventDefault();
+    
+    if (event.deltaY < 0) {
+        zoomIn();
+    } else {
+        zoomOut();
+    }
+};
+
+// إضافة event listeners لأزرار التكبير والتصغير (للمس)
+document.getElementById("zoom-in")?.addEventListener("touchstart", zoomIn, { passive: false });
+document.getElementById("zoom-out")?.addEventListener("touchstart", zoomOut, { passive: false });
+
+// إدارة الـ switches والإعدادات
+class SettingsManager {
+    constructor() {
+        this.vO4 = window.vO4 || {};
+        this.initSwitches();
+    }
+
+    // تهيئة جميع الـ switches
+    initSwitches() {
+        this.initSwitch({
+            switchId: "settings-Abilityzoom-switch",
+            storageKey: "mySwitch",
+            onValue: "on",
+            offValue: "off",
+            onCallback: (checked) => {
+                this.vO4.eat_animation = checked ? 1 : 0.0025;
+            }
         });
-        $("#default-cursor-btn").click(function () {
-          delete localStorage.cursorSeleccionado;
-          $("#game-cont, #game-canvas, body").css("cursor", "default");
+
+        this.initSwitch({
+            switchId: "settings-stremingmode-switch",
+            storageKey: "ModeStremer",
+            onValue: "true",
+            offValue: "false",
+            onCallback: (checked) => {
+                this.vO4.ModeStremer = checked;
+            }
         });
-      }
-      $("#game-cont").css({
-        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
-      });
-      $("#game-canvas").css({
-        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
-      });
-      $("body").css({
-        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
-      });
-      for (a = 0; a < vA18.length; a++) {
-        var v1376 = vA18[a].url;
-        var v1377 = vA18[a].nombre;
-        let v1378 = document.createElement("img");
-        v1378.src = v1376;
-        $(".background-container").prepend(v1378);
-        $(v1378).attr("class", "background");
-        $(v1378).attr("value", v1377);
-        $(v1378).click(function () {
-          let v1379 = $(this).attr("src");
-          let v1380 = $(this).attr("value");
-          backgroundIMG = v1379;
-          localStorage.fondoSeleccionado = backgroundIMG;
-          alert("You selected the background: " + v1380);
-          vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(v1379));
+
+        this.initSwitch({
+            switchId: "settings-stremingmodebatop-switch",
+            storageKey: "ModeStremerbatop",
+            onValue: "true",
+            offValue: "false",
+            onCallback: (checked) => {
+                this.vO4.ModeStremerbatop = checked;
+            }
         });
+
+        this.initSwitch({
+            switchId: "settings-stremingmodesaveheadshot-switch",
+            storageKey: "ModeStremersaveheadshot",
+            onValue: "true",
+            offValue: "false",
+            onCallback: (checked) => {
+                this.vO4.ModeStremersaveheadshot = checked;
+                location.reload(); // إعادة تحميل الصفحة عند التغيير
+            }
+        });
+
+        this.initSwitch({
+            switchId: "settings-stremingmodeheadshot-switch",
+            storageKey: "ModeStremerheadshot",
+            onValue: "true",
+            offValue: "false",
+            onCallback: (checked) => {
+                this.vO4.ModeStremerheadshot = checked;
+            }
+        });
+
+        this.initSwitch({
+            switchId: "settings-stremingmodeemoj-switch",
+            storageKey: "ModeStremeremoj",
+            onValue: "true",
+            offValue: "false",
+            onCallback: (checked) => {
+                this.vO4.ModeStremeremoj = checked;
+            }
+        });
+
+        this.initSwitch({
+            switchId: "settings-arrowmobile-switch",
+            storageKey: null, // لا يوجد حفظ في localStorage
+            onCallback: (checked) => {
+                this.vO4.arrow = !checked;
+            }
+        });
+    }
+
+    // دالة عامة لإدارة الـ switches
+    initSwitch(config) {
+        const { switchId, storageKey, onValue, offValue, onCallback } = config;
+        const switchElement = $("#" + switchId);
+
+        if (switchElement.length === 0) return;
+
+        // إضافة حدث النقر
+        switchElement.on("click", function() {
+            const isChecked = this.checked;
+            console.log(`${switchId} is ${isChecked ? 'checked' : 'not checked'}`);
+            
+            if (onCallback) {
+                onCallback(isChecked);
+            }
+            
+            if (storageKey) {
+                localStorage.setItem(storageKey, isChecked ? onValue : offValue);
+            }
+        });
+
+        // تهيئة القيمة من localStorage عند تحميل الصفحة
+        $(document).ready(() => {
+            if (storageKey) {
+                const savedValue = localStorage.getItem(storageKey);
+                if (savedValue === onValue) {
+                    switchElement.prop("checked", true);
+                    if (onCallback) onCallback(true);
+                } else {
+                    switchElement.prop("checked", false);
+                    if (onCallback) onCallback(false);
+                }
+            }
+        });
+    }
+}
+
+// إدارة إعدادات المدخلات
+class InputManager {
+    constructor() {
+        this.initInputs();
+    }
+
+    initInputs() {
+        // إدارة أشرطة التمرير
+        this.initRangeInput("PortionSize", "PotenciadorSize");
+        this.initRangeInput("PortionAura", "PotenciadorAura");
+        this.initRangeInput("smoothCamera", "smoothCamera");
+        this.initRangeInput("FoodSize", "ComidaSize");
+        this.initRangeInput("FoodShadow", "ComidaShadow");
+
+        // إدارة إدخال المفاتيح
+        this.initKeyInput("KeyRespawn");
+        this.initKeyInput("KeyAutoMov");
+    }
+
+    initRangeInput(inputId, storageKey) {
+        const inputElement = $("#" + inputId);
+        
+        if (inputElement.length === 0) return;
+
+        inputElement.on("input", function() {
+            if (window.vO4) {
+                window.vO4[inputId] = $(this).val();
+                localStorage.setItem(storageKey, $(this).val());
+            }
+        });
+
+        // استعادة القيمة المحفوظة
+        $(document).ready(() => {
+            const savedValue = localStorage.getItem(storageKey);
+            if (savedValue && inputElement) {
+                inputElement.val(savedValue);
+                if (window.vO4) {
+                    window.vO4[inputId] = savedValue;
+                }
+            }
+        });
+    }
+
+    initKeyInput(inputId) {
+        const inputElement = $("#" + inputId);
+        
+        if (inputElement.length === 0) return;
+
+        inputElement.on("keydown", (event) => {
+            if (this.isValidKey(event)) {
+                event.preventDefault();
+                const keyName = this.getKeyName(event);
+                const keyCode = event.keyCode;
+                
+                inputElement.val(keyName);
+                inputElement.blur();
+                
+                window.keyMove = keyCode;
+                localStorage.setItem(inputId, keyCode);
+                
+                return false;
+            }
+            return true;
+        });
+
+        // استعادة القيمة المحفوظة
+        $(document).ready(() => {
+            const savedKeyCode = localStorage.getItem(inputId);
+            if (savedKeyCode && inputElement) {
+                const keyName = this.getKeyNameFromCode(savedKeyCode);
+                if (keyName) {
+                    inputElement.val(keyName);
+                }
+            }
+        });
+    }
+
+    isValidKey(event) {
+        // دالة للتحقق من صحة المفتاح
+        return true; // يمكن تعديلها حسب الحاجة
+    }
+
+    getKeyName(event) {
+        // دالة للحصول على اسم المفتاح
+        return event.key || String.fromCharCode(event.keyCode);
+    }
+
+    getKeyNameFromCode(keyCode) {
+        // دالة للحصول على اسم المفتاح من الرمز
+        // يمكن إضافة المزيد من المنطق هنا
+        return null;
+    }
+}
+
+// إدارة المؤشرات (Cursors)
+class CursorManager {
+    constructor() {
+        this.cursors = window.vA17 || [];
+        this.initCursors();
+        this.applySavedCursor();
+    }
+
+    initCursors() {
+        const cursorContainer = $(".cursor-container");
+        if (cursorContainer.length === 0) return;
+
+        // إضافة مؤشر مخصص
+        this.cursors.forEach(cursor => {
+            const cursorImg = $("<img>")
+                .attr("src", cursor.url)
+                .attr("alt", cursor.nombre)
+                .attr("title", cursor.nombre)
+                .addClass("cursor")
+                .on("click", () => this.selectCursor(cursor.url));
+            
+            cursorContainer.prepend(cursorImg);
+        });
+
+        // زر الرجوع للمؤشر الافتراضي
+        $("#default-cursor-btn").on("click", () => this.resetToDefaultCursor());
+    }
+
+    selectCursor(cursorUrl) {
+        localStorage.cursorSeleccionado = cursorUrl;
+        this.applyCursor(cursorUrl);
+    }
+
+    resetToDefaultCursor() {
+        localStorage.removeItem("cursorSeleccionado");
+        this.applyCursor("default");
+    }
+
+    applyCursor(cursorStyle) {
+        const cursorValue = cursorStyle === "default" ? "default" : `url(${cursorStyle}), default`;
+        
+        $("#game-cont, #game-canvas, body").css({
+            cursor: cursorValue
+        });
+    }
+
+    applySavedCursor() {
+        const savedCursor = localStorage.getItem("cursorSeleccionado");
+        if (savedCursor) {
+            this.applyCursor(savedCursor);
+        }
+    }
+}
+
+// إدارة الخلفيات
+class BackgroundManager {
+    constructor() {
+        this.backgrounds = window.vA18 || [];
+        this.initBackgrounds();
+    }
+
+    initBackgrounds() {
+        const backgroundContainer = $(".background-container");
+        if (backgroundContainer.length === 0) return;
+
+        this.backgrounds.forEach(background => {
+            const bgImg = $("<img>")
+                .attr("src", background.url)
+                .attr("alt", background.nombre)
+                .attr("title", background.nombre)
+                .attr("value", background.nombre)
+                .addClass("background")
+                .on("click", () => this.selectBackground(background.url, background.nombre));
+            
+            backgroundContainer.prepend(bgImg);
+        });
+    }
+
+    selectBackground(backgroundUrl, backgroundName) {
+        localStorage.fondoSeleccionado = backgroundUrl;
+        
+        if (window.vUndefined28?.q?.Cf && typeof window.vUndefined28.q.fn_o === "function") {
+            window.vUndefined28.q.Cf = new window.vF91._b(window.vUndefined28.q.fn_o(backgroundUrl));
+        }
+        
+        alert(`You selected the background: ${backgroundName}`);
+    }
+}
+
+// تهيئة جميع المدراء عند تحميل الصفحة
+$(document).ready(function() {
+    // تحديث نسبة التكبير عند التحميل
+    updateZoomPercentage();
+    
+    // تهيئة المدراء
+    window.settingsManager = new SettingsManager();
+    window.inputManager = new InputManager();
+    window.cursorManager = new CursorManager();
+    window.backgroundManager = new BackgroundManager();
+    
+    console.log("All managers initialized successfully");
+});
+
+// إعادة تسمية الدوال القديمة للحفاظ على التوافق
+window.f222 = zoomIn;
+window.f223 = zoomOut;
+window.f224 = updateZoomPercentage;
       }
       $(".background-container").prepend("");
       vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(localStorage.fondoSeleccionado));
