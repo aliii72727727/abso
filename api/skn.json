@@ -1,5 +1,5 @@
 {
-    "revision": 80018,
+    "revision": 80020,
     "visibleSkin": [
         1000,
         1001,
@@ -610,7 +610,8 @@
         9008,
         9009,
         9010,
-        9011
+        9011,
+        9012
     ],
     "hatVariantArray": [
         [
@@ -930,6 +931,9 @@
         ],
         [
             958
+        ],
+        [
+            983
         ],
         [
             991
@@ -3216,6 +3220,19 @@
             "priceBefore": 0,
             "nonbuyable": false,
             "prime": "c_white"
+        },
+        "983": {
+            "id": 983,
+            "base": [
+                {
+                    "region": "hat_983"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
         }
     },
     "eyesDict": {
@@ -4326,6 +4343,28 @@
         }
     },
     "skinArrayDict": [
+        {
+            "id": 9012,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_arabflag_0016_8",
+                "skin_arabflag_0016_7",
+                "skin_arabflag_0016_6",
+                "skin_arabflag_0016_5",
+                "skin_arabflag_0016_4",
+                "skin_arabflag_0016_3",
+                "skin_arabflag_0016_2",
+                "skin_arabflag_0016_1",
+                "skin_arabflag_0016_0"
+            ],
+            "glow": [
+                "a_white"
+            ]
+        },
         {
             "id": 9011,
             "guest": false,
@@ -16797,7 +16836,8 @@
                 "9008",
                 "9009",
                 "9010",
-                "9011"
+                "9011",
+                "9012"
             ]
         },
         {
@@ -19772,6 +19812,14 @@
         "skin_arabflag_0574": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/Qjf0X8y6\/image.png"
+        },
+        "hat_983": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/mrXhcKrs\/d8ae04ce2ac3.png"
+        },
+        "skin_arabflag_0016": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/YFZn1YYz\/download.png"
         }
     },
     "colorDict": {
@@ -49196,6 +49244,80 @@
         },
         "skin_arabflag_0574_8": {
             "texture": "skin_arabflag_0574",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "hat_983": {
+            "texture": "hat_983",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "skin_arabflag_0016_0": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_arabflag_0016_1": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_arabflag_0016_2": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_arabflag_0016_3": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_arabflag_0016_4": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_arabflag_0016_5": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_arabflag_0016_6": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_arabflag_0016_7": {
+            "texture": "skin_arabflag_0016",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_arabflag_0016_8": {
+            "texture": "skin_arabflag_0016",
             "h": 170,
             "w": 174,
             "x": 1396,
