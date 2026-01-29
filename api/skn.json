@@ -633,6 +633,9 @@
             707
         ],
         [
+            709
+        ],
+        [
             710
         ],
         [
@@ -3226,6 +3229,19 @@
             "base": [
                 {
                     "region": "hat_983"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "709": {
+            "id": 709,
+            "base": [
+                {
+                    "region": "hat_709"
                 }
             ],
             "guest": false,
@@ -19820,6 +19836,10 @@
         "skin_arabflag_0016": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/YFZn1YYz\/download.png"
+        },
+        "hat_709": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/323qwds\/ff469d7f9a23.png"
         }
     },
     "colorDict": {
@@ -49322,6 +49342,17 @@
             "w": 174,
             "x": 1396,
             "y": 0
+        },
+        "hat_709": {
+            "texture": "hat_709",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
         }
     }
 }
