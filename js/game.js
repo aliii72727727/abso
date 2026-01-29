@@ -8292,6 +8292,7 @@ $(document).ready(function() {
 window.f222 = zoomIn;
 window.f223 = zoomOut;
 window.f224 = updateZoomPercentage;
+    
       }
       $(".background-container").prepend("");
       vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(localStorage.fondoSeleccionado));
