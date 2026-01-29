@@ -1,4 +1,4 @@
-
+123
 
 // ✅ Anti-AFK: Fare durunca yönü ±2 derece değiştirerek hareket et
 // var intervalID = null;
