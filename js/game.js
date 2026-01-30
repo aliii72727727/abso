@@ -83,7 +83,7 @@ window.safeInitUI = function(){
 
 
 'use strict';
-const zUrl = "https://wormy.wormatrix.io";
+const zUrl = "https://iraqcraft.store";
 const xUrl = "https://iraqcraft.store"
 const URLSERV_WORMBMW = "https://iraqcraft.store/api"
 var Z = {
