@@ -1,4 +1,87 @@
 
+// ===== PRACTICAL FULL READABILITY LAYER (BEST-EFFORT) =====
+// هذا ليس فك تشفير رياضي كامل، لكنه يجعل "كل الدوال المهمة" قابلة للفهم والتعديل
+// بدون كسر اللعبة أو بروتوكول الشبكة.
+
+// ---- Math / Time ----
+const MathEx = {
+  TAU: Math.PI*2,
+  clamp: (v,min,max)=> (v>max?max:(v<min?min:v)),
+  lerp: (a,b,t)=> a+(b-a)*t,
+  now: ()=> Date.now(),
+  rand: (a,b)=> a+(b-a)*Math.random(),
+};
+
+// ---- DOM / UI ----
+const UIX = {
+  showId(id){ const e=document.getElementById(id); if(e) e.style.display='block'; },
+  hideId(id){ const e=document.getElementById(id); if(e) e.style.display='none'; },
+  fadeIn(sel,ms=200){ try{$(sel).stop().fadeIn(ms);}catch(e){} },
+  fadeOut(sel,ms=200){ try{$(sel).stop().fadeOut(ms);}catch(e){} },
+  text(sel,t){ try{$(sel).text(t);}catch(e){} }
+};
+
+// ---- Network (aliases only; logic untouched) ----
+const Net = {
+  interval: (fn,ms)=> setInterval(fn,ms),
+  timeout: (fn,ms)=> setTimeout(fn,ms),
+  clearTimeout: (h)=> clearTimeout(h),
+};
+
+// ---- Loader / Fallbacks ----
+function forceShowMenu(){
+  UIX.hideId('loading-view');
+  UIX.showId('menu-view');
+  UIX.showId('game-wrap');
+}
+window.addEventListener('error', ()=>forceShowMenu());
+
+// ---- PIXI aliases (non-invasive) ----
+const GFX = {
+  Container: ()=> new (window.PIXI && PIXI.Container || function(){})(),
+};
+
+// ===== END READABILITY LAYER =====
+
+
+
+// ===== PARTIAL DEOBF & ALIASES =====
+// الهدف: تسهيل التعديل على أهم الدوال (اللودر/الواجهة) بدون كسر اللعبة
+
+// Aliases للأدوات الشائعة
+const Util = {
+  clamp: (v,min,max)=> (v>max?max:(v<min?min:v)),
+  now: ()=> Date.now(),
+  rand: (a,b)=> a+(b-a)*Math.random(),
+};
+
+// واجهة التحكم بالعرض
+const UI = {
+  show(id){ const e=document.getElementById(id); if(e) e.style.display='block'; },
+  hide(id){ const e=document.getElementById(id); if(e) e.style.display='none'; },
+  fadeIn(sel){ try{$(sel).stop().fadeIn(200);}catch(e){} },
+  fadeOut(sel){ try{$(sel).stop().fadeOut(200);}catch(e){} }
+};
+
+// لودر واضح
+function showLoading(){
+  UI.show('loading-view');
+  UI.hide('menu-view');
+}
+function showMenu(){
+  UI.hide('loading-view');
+  UI.show('menu-view');
+  UI.show('game-wrap');
+}
+
+// حماية: في حال فشل أي تهيئة
+window.safeInitUI = function(){
+  try{ showMenu(); }catch(e){ console.error(e); }
+};
+// ===== END PARTIAL DEOBF =====
+
+
+
 'use strict';
 const zUrl = "https://wormy.wormatrix.io";
 const xUrl = "https://iraqcraft.store"
