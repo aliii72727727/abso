@@ -7927,199 +7927,290 @@ $(".flag").on("click", function () {
       vO4.adblock = true;
       $("#loa831pibur0w4gv").replaceWith(" <div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n        <span class=\"settings_span\">Power-ups-Size: </span>\n        <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n        </div>\n        \n      <div class=\"container1\">\n      <span class=\"settings_span\">Power-ups-Aura: </span>\n      <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n      </div>\n       \n      <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Size: </span>\n                    <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n                    </div>\n                    <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Shadow: </span>\n                    <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n                    </div>\n ");
       $("#mm-coins-box").replaceWith("\n                <div style=\"margin: 0;\" id=\"mm-coins-box\">\n          <button \n            style=\"\n              width: 90px;\n              height: 32px;\n              float: right;\n              border-radius: 10px;\n              border: solid #fac 2px;\n            \" \n            id=\"getskin\">فتح السكنات </button>\n        </div>\n      ");
-      /* ===============================
-   ZOOM SYSTEM (IMPROVED)
-   =============================== */
-
-window.multiplier = 1;
-window.zoomLevel = 5;
-
-const ZOOM_STEP = 0.8;
-const ZOOM_MIN = 0.3;
-const ZOOM_MAX = 3;
-
-function changedNf() {
-  // اربطها بمحرك اللعبة عندك
-}
-
-function updateZoomUI() {
-  let percent = Math.round((window.multiplier / 0.625) * 100);
-  percent = Math.max(10, Math.min(200, percent));
-  const el = document.getElementById("zoom-percentage");
-  if (el) el.textContent = percent + "%";
-}
-
-function applyZoom(delta) {
-  if (delta > 0) {
-    window.multiplier *= ZOOM_STEP;
-    window.zoomLevel++;
-  } else {
-    window.multiplier /= ZOOM_STEP;
-    window.zoomLevel--;
-  }
-
-  window.multiplier = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, window.multiplier));
-  changedNf();
-  updateZoomUI();
-}
-
-window.addEventListener(
-  "wheel",
-  e => {
-    e.preventDefault();
-    applyZoom(e.deltaY < 0 ? 1 : -1);
-  },
-  { passive: false }
-);
-
-// أزرار الموبايل
-document.getElementById("zoom-in")?.addEventListener("touchstart", e => {
-  e.preventDefault();
-  applyZoom(1);
-});
-document.getElementById("zoom-out")?.addEventListener("touchstart", e => {
-  e.preventDefault();
-  applyZoom(-1);
-});
-
-/* ===============================
-   SWITCH HELPER (CLEAN)
-   =============================== */
-
-function bindSwitch(id, key, onValue, offValue, callback, reload = false) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  const saved = localStorage.getItem(key);
-  el.checked = saved === "true";
-  callback(el.checked ? onValue : offValue);
-
-  el.addEventListener("click", () => {
-    localStorage.setItem(key, el.checked);
-    callback(el.checked ? onValue : offValue);
-    if (reload) location.reload();
-  });
-}
-
-/* ===============================
-   SETTINGS BINDS
-   =============================== */
-
-bindSwitch(
-  "settings-Abilityzoom-switch",
-  "AbilityZoom",
-  1,
-  0.0025,
-  v => (vO4.eat_animation = v)
-);
-
-bindSwitch(
-  "settings-stremingmode-switch",
-  "ModeStremer",
-  true,
-  false,
-  v => (vO4.ModeStremer = v)
-);
-
-bindSwitch(
-  "settings-stremingmodebatop-switch",
-  "ModeStremerbatop",
-  true,
-  false,
-  v => (vO4.ModeStremerbatop = v)
-);
-
-bindSwitch(
-  "settings-stremingmodesaveheadshot-switch",
-  "ModeStremersaveheadshot",
-  true,
-  false,
-  v => (vO4.ModeStremersaveheadshot = v),
-  true
-);
-
-bindSwitch(
-  "settings-stremingmodeheadshot-switch",
-  "ModeStremerheadshot",
-  true,
-  false,
-  v => (vO4.ModeStremerheadshot = v)
-);
-
-bindSwitch(
-  "settings-stremingmodeemoj-switch",
-  "ModeStremeremoj",
-  true,
-  false,
-  v => (vO4.ModeStremeremoj = v)
-);
-
-/* ===============================
-   SLIDERS
-   =============================== */
-
-function bindRange(id, key, target) {
-  $("#" + id).on("input", function () {
-    vO4[target] = this.value;
-    localStorage[key] = this.value;
-  });
-}
-
-bindRange("PortionSize", "PotenciadorSize", "PortionSize");
-bindRange("PortionAura", "PotenciadorAura", "PortionAura");
-bindRange("smoothCamera", "smoothCamera", "smoothCamera");
-bindRange("FoodSize", "ComidaSize", "FoodSize");
-bindRange("FoodShadow", "ComidaShadow", "FoodShadow");
-
-/* ===============================
-   CURSOR SYSTEM (SAFE)
-   =============================== */
-
-function applyCursor(url) {
-  $("#game-cont, #game-canvas, body").css({
-    cursor: url ? `url(${url}), default` : "default"
-  });
-}
-
-if (localStorage.cursorSeleccionado) {
-  applyCursor(localStorage.cursorSeleccionado);
-}
-
-vA17.forEach(c => {
-  const img = $("<img>", { src: c.url, class: "cursor" });
-  $(".cursor-container").prepend(img);
-  img.on("click", () => {
-    localStorage.cursorSeleccionado = c.url;
-    applyCursor(c.url);
-  });
-});
-
-$("#default-cursor-btn").on("click", () => {
-  localStorage.removeItem("cursorSeleccionado");
-  applyCursor(null);
-});
-
-/* ===============================
-   BACKGROUNDS
-   =============================== */
-
-vA18.forEach(bg => {
-  const img = $("<img>", {
-    src: bg.url,
-    class: "background",
-    value: bg.nombre
-  });
-  $(".background-container").prepend(img);
-
-  img.on("click", function () {
-    const src = $(this).attr("src");
-    localStorage.fondoSeleccionado = src;
-    backgroundIMG = src;
-    vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(src));
-    alert("Background selected: " + bg.nombre);
-  });
-});
-
+      window.multiplier = 1;
+      window.zoomLevel = 5;
+      window.onwheel = p1310 => {
+        if (p1310.deltaY > 0) {
+          window.multiplier *= 0.8;
+        } else {
+          window.multiplier /= 0.8;
+        }
+        window.changedNf();
+      };
+      function f222() {
+        window.zoomLevel++;
+        window.multiplier *= 0.8;
+        changedNf();
+        f224();
+      }
+      function f223() {
+        if (window.zoomLevel > 0) {
+          window.zoomLevel--;
+          window.multiplier /= 0.8;
+          changedNf();
+          f224();
+        }
+      }
+      function f224() {
+        var v1362 = Math.round(window.multiplier / 0.625 * 100);
+        v1362 = Math.min(100, v1362);
+        var v1363 = document.getElementById("zoom-percentage");
+        v1363.textContent = v1362 + "%";
+      }
+      document.getElementById("zoom-in").addEventListener("touchstart", f222, {
+        passive: false
+      });
+      document.getElementById("zoom-out").addEventListener("touchstart", f223, {
+        passive: false
+      });
+      window.onwheel = function (p1311) {
+        p1311.preventDefault();
+        if (p1311.deltaY < 0) {
+          f222();
+        } else {
+          f223();
+        }
+      };
+      $("#settings-Abilityzoom-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.eat_animation = 1;
+          localStorage.setItem("mySwitch", "on");
+        } else {
+          console.log("I'm not checked");
+          vO4.eat_animation = 0.0025;
+          localStorage.setItem("mySwitch", "on");
+        }
+      });
+      $(document).ready(function () {
+        var v1364 = localStorage.getItem("mySwitch");
+        if (v1364 === "on") {
+          $("#settings-Abilityzoom-switch").prop("checked", false);
+          vO4.eat_animation = 1;
+        } else {
+          $("#settings-Abilityzoom-switch").prop("checked", false);
+          vO4.eat_animation = 0.0025;
+        }
+      });
+      $("#settings-stremingmode-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremer = false;
+          localStorage.setItem("ModeStremer", "false");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremer = false;
+          localStorage.setItem("ModeStremer", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1365 = localStorage.getItem("ModeStremer");
+        if (v1365 === "true") {
+          vO4.ModeStremer = true;
+          $("#settings-stremingmode-switch").prop("checked", false);
+        } else {
+          vO4.ModeStremer = false;
+          $("#settings-stremingmode-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodebatop-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremerbatop = true;
+          localStorage.setItem("ModeStremerbatop", "false");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremerbatop = false;
+          localStorage.setItem("ModeStremerbatop", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1366 = localStorage.getItem("ModeStremerbatop");
+        if (v1366 === "true") {
+          vO4.ModeStremerbatop = false;
+          $("#settings-stremingmodebatop-switch").prop("checked", false);
+        } else {
+          vO4.ModeStremerbatop = false;
+          $("#settings-stremingmodebatop-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodesaveheadshot-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremersaveheadshot = false;
+          localStorage.setItem("ModeStremersaveheadshot", "false");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremersaveheadshot = false;
+          localStorage.setItem("ModeStremersaveheadshot", "false");
+        }
+        location.reload();
+      });
+      $(document).ready(function () {
+        var v1367 = localStorage.getItem("ModeStremersaveheadshot");
+        if (v1367 === "false") {
+          vO4.ModeStremersaveheadshot = false;
+          $("#settings-stremingmodesaveheadshot-switch").prop("checked", false);
+        } else {
+          vO4.ModeStremersaveheadshot = false;
+          $("#settings-stremingmodesaveheadshot-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodeheadshot-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremerheadshot = false;
+          localStorage.setItem("ModeStremerheadshot", "false");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremerheadshot = false;
+          localStorage.setItem("ModeStremerheadshot", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1368 = localStorage.getItem("ModeStremerheadshot");
+        if (v1368 === "false") {
+          vO4.ModeStremerheadshot = false;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
+        } else {
+          vO4.ModeStremerheadshot = false;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodeheadshot-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremerheadshot = false;
+          localStorage.setItem("ModeStremerheadshot", "false");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremerheadshot = false;
+          localStorage.setItem("ModeStremerheadshot", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1369 = localStorage.getItem("ModeStremerheadshot");
+        if (v1369 === "true") {
+          vO4.ModeStremerheadshot = false;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
+        } else {
+          vO4.ModeStremerheadshot = false;
+          $("#settings-stremingmodeheadshot-switch").prop("checked", false);
+        }
+      });
+      $("#settings-stremingmodeemoj-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.ModeStremeremoj = false;
+          localStorage.setItem("ModeStremeremoj", "false");
+        } else {
+          console.log("I'm not checked");
+          vO4.ModeStremeremoj = false;
+          localStorage.setItem("ModeStremeremoj", "false");
+        }
+      });
+      $(document).ready(function () {
+        var v1370 = localStorage.getItem("ModeStremeremoj");
+        if (v1370 === "true") {
+          vO4.ModeStremeremoj = true;
+          $("#settings-stremingmodeemoj-switch").prop("checked", true);
+        } else {
+          vO4.ModeStremeremoj = false;
+          $("#settings-stremingmodeemoj-switch").prop("checked", false);
+        }
+      });
+      $("#settings-arrowmobile-switch").on("click", function () {
+        if (this.checked) {
+          console.log("I am checked");
+          vO4.arrow = false;
+        } else {
+          console.log("I'm not checked");
+          vO4.arrow = true;
+        }
+      });
+      $("#PortionSize").on("input", function () {
+        vO4.PortionSize = $(this).val();
+        localStorage.PotenciadorSize = vO4.PortionSize;
+      });
+      $("#PortionAura").on("input", function () {
+        vO4.PortionAura = $(this).val();
+        localStorage.PotenciadorAura = vO4.PortionAura;
+      });
+      $("#smoothCamera").on("input", function () {
+        vO4.smoothCamera = $(this).val();
+        localStorage.smoothCamera = vO4.smoothCamera;
+      });
+      $("#FoodSize").on("input", function () {
+        vO4.FoodSize = $(this).val();
+        localStorage.ComidaSize = vO4.FoodSize;
+      });
+      $("#FoodShadow").on("input", function () {
+        vO4.FoodShadow = $(this).val();
+        localStorage.ComidaShadow = vO4.FoodShadow;
+      });
+      $("#KeyRespawn,#KeyAutoMov").on("keydown", function (p1312) {
+        if (vF181(p1312)) {
+          var v$218 = $(this);
+          var vGetPresedKey2 = f231(p1312);
+          var v1371 = p1312.keyCode;
+          v$218.val(vGetPresedKey2);
+          v$218.blur();
+          window.keyMove = v1371;
+          window.localStorage.setItem(v$218.attr("id"), v1371);
+        } else {
+          p1312.preventDefault();
+        }
+      });
+      for (a = 0; a < vA17.length; a++) {
+        var v1372 = vA17[a].url;
+        var v1373 = vA17[a].nombre;
+        let v1374 = document.createElement("img");
+        v1374.src = v1372;
+        $(".cursor-container").prepend(v1374);
+        $(v1374).attr("class", "cursor");
+        $(v1374).click(function () {
+          let v1375 = $(this).attr("src");
+          localStorage.cursorSeleccionado = v1375;
+          $("#game-cont").css({
+            cursor: "url(" + v1375 + "), default"
+          });
+          $("#game-canvas").css({
+            cursor: "url(" + v1375 + "), default"
+          });
+          $("body").css({
+            cursor: "url(" + v1375 + "), default"
+          });
+        });
+        $("#default-cursor-btn").click(function () {
+          delete localStorage.cursorSeleccionado;
+          $("#game-cont, #game-canvas, body").css("cursor", "default");
+        });
+      }
+      $("#game-cont").css({
+        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
+      });
+      $("#game-canvas").css({
+        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
+      });
+      $("body").css({
+        cursor: "url(" + localStorage.cursorSeleccionado + "), default"
+      });
+      for (a = 0; a < vA18.length; a++) {
+        var v1376 = vA18[a].url;
+        var v1377 = vA18[a].nombre;
+        let v1378 = document.createElement("img");
+        v1378.src = v1376;
+        $(".background-container").prepend(v1378);
+        $(v1378).attr("class", "background");
+        $(v1378).attr("value", v1377);
+        $(v1378).click(function () {
+          let v1379 = $(this).attr("src");
+          let v1380 = $(this).attr("value");
+          backgroundIMG = v1379;
+          localStorage.fondoSeleccionado = backgroundIMG;
+          alert("You selected the background: " + v1380);
+          vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(v1379));
+        });
       }
       $(".background-container").prepend("");
       vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(localStorage.fondoSeleccionado));
