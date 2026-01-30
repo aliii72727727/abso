@@ -7927,156 +7927,199 @@ $(".flag").on("click", function () {
       vO4.adblock = true;
       $("#loa831pibur0w4gv").replaceWith(" <div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n        <span class=\"settings_span\">Power-ups-Size: </span>\n        <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n        </div>\n        \n      <div class=\"container1\">\n      <span class=\"settings_span\">Power-ups-Aura: </span>\n      <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n      </div>\n       \n      <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Size: </span>\n                    <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n                    </div>\n                    <div class=\"container1\">\n                    <span class=\"settings_span\">Food-Shadow: </span>\n                    <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n                    </div>\n ");
       $("#mm-coins-box").replaceWith("\n                <div style=\"margin: 0;\" id=\"mm-coins-box\">\n          <button \n            style=\"\n              width: 90px;\n              height: 32px;\n              float: right;\n              border-radius: 10px;\n              border: solid #fac 2px;\n            \" \n            id=\"getskin\">فتح السكنات </button>\n        </div>\n      ");
-      // --- إعدادات الزووم الافتراضية ---
+      /* ===============================
+   ZOOM SYSTEM (IMPROVED)
+   =============================== */
+
 window.multiplier = 1;
 window.zoomLevel = 5;
 
-const updateZoomUI = () => {
-    let zoomPercent = Math.min(100, Math.round(window.multiplier / 0.625 * 100));
-    $("#zoom-percentage").text(zoomPercent + "%");
-};
+const ZOOM_STEP = 0.8;
+const ZOOM_MIN = 0.3;
+const ZOOM_MAX = 3;
 
-window.f222 = function() { // Zoom In
+function changedNf() {
+  // اربطها بمحرك اللعبة عندك
+}
+
+function updateZoomUI() {
+  let percent = Math.round((window.multiplier / 0.625) * 100);
+  percent = Math.max(10, Math.min(200, percent));
+  const el = document.getElementById("zoom-percentage");
+  if (el) el.textContent = percent + "%";
+}
+
+function applyZoom(delta) {
+  if (delta > 0) {
+    window.multiplier *= ZOOM_STEP;
     window.zoomLevel++;
-    window.multiplier *= 0.8;
-    if (typeof changedNf === "function") changedNf();
-    updateZoomUI();
-};
+  } else {
+    window.multiplier /= ZOOM_STEP;
+    window.zoomLevel--;
+  }
 
-window.f223 = function() { // Zoom Out
-    if (window.zoomLevel > 0) {
-        window.zoomLevel--;
-        window.multiplier /= 0.8;
-        if (typeof changedNf === "function") changedNf();
-        updateZoomUI();
-    }
-};
+  window.multiplier = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, window.multiplier));
+  changedNf();
+  updateZoomUI();
+}
 
-// --- التعامل مع الأحداث (Events) ---
-window.onwheel = (e) => {
+window.addEventListener(
+  "wheel",
+  e => {
     e.preventDefault();
-    e.deltaY < 0 ? f222() : f223();
-};
+    applyZoom(e.deltaY < 0 ? 1 : -1);
+  },
+  { passive: false }
+);
 
-document.getElementById("zoom-in")?.addEventListener("touchstart", f222, { passive: false });
-document.getElementById("zoom-out")?.addEventListener("touchstart", f223, { passive: false });
-
-$(document).ready(function () {
-    
-    // 1. دالة ذكية لإدارة المفاتيح (Switches) تلقائياً
-    function setupSwitch(selector, storageKey, vO4Property, isInverted = false) {
-        const $el = $(selector);
-        
-        // استرجاع القيمة المخزنة
-        const savedVal = localStorage.getItem(storageKey);
-        if (savedVal !== null) {
-            const isTrue = savedVal === "true";
-            vO4[vO4Property] = isTrue;
-            $el.prop("checked", isTrue);
-        }
-
-        // عند التغيير
-        $el.on("change", function() {
-            const isChecked = this.checked;
-            vO4[vO4Property] = isChecked;
-            localStorage.setItem(storageKey, isChecked);
-            console.log(`${storageKey} set to: ${isChecked}`);
-            
-            // حالة خاصة لـ Headshot Reload
-            if (storageKey === "ModeStremersaveheadshot") location.reload();
-        });
-    }
-
-    // 2. تطبيق الإعدادات على كافة المفاتيح
-    setupSwitch("#settings-stremingmode-switch", "ModeStremer", "ModeStremer");
-    setupSwitch("#settings-stremingmodebatop-switch", "ModeStremerbatop", "ModeStremerbatop");
-    setupSwitch("#settings-stremingmodesaveheadshot-switch", "ModeStremersaveheadshot", "ModeStremersaveheadshot");
-    setupSwitch("#settings-stremingmodeheadshot-switch", "ModeStremerheadshot", "ModeStremerheadshot");
-    setupSwitch("#settings-stremingmodeemoj-switch", "ModeStremeremoj", "ModeStremeremoj");
-
-    // إعدادات خاصة (Ability Zoom)
-    $("#settings-Abilityzoom-switch").on("change", function() {
-        vO4.eat_animation = this.checked ? 1 : 0.0025;
-        localStorage.setItem("mySwitch", this.checked ? "on" : "off");
-    }).prop("checked", localStorage.getItem("mySwitch") === "on");
-
-    // إعداد الـ Arrow
-    $("#settings-arrowmobile-switch").on("change", function() {
-        vO4.arrow = !this.checked;
-    });
-
-    // 3. مستشعرات الإدخال (Sliders)
-    const sliders = {
-        "#PortionSize": "PotenciadorSize",
-        "#PortionAura": "PotenciadorAura",
-        "#smoothCamera": "smoothCamera",
-        "#FoodSize": "ComidaSize",
-        "#FoodShadow": "ComidaShadow"
-    };
-
-    Object.entries(sliders).forEach(([id, localKey]) => {
-        $(id).on("input", function() {
-            const val = $(this).val();
-            const prop = id.replace('#', '');
-            vO4[prop] = val;
-            localStorage.setItem(localKey, val);
-        });
-    });
-
-    // 4. تعيين الكيبورد
-    $("#KeyRespawn,#KeyAutoMov").on("keydown", function (e) {
-        if (typeof vF181 === "function" && vF181(e)) {
-            const keyName = f231(e);
-            $(this).val(keyName).blur();
-            window.keyMove = e.keyCode;
-            localStorage.setItem(this.id, e.keyCode);
-        } else {
-            e.preventDefault();
-        }
-    });
-
-    // 5. إدارة الكرسر (Cursors)
-    vA17.forEach(item => {
-        let $img = $("<img>", {
-            src: item.url,
-            class: "cursor",
-            click: function() {
-                const src = $(this).attr("src");
-                localStorage.cursorSeleccionado = src;
-                $("#game-cont, #game-canvas, body").css("cursor", `url(${src}), default`);
-            }
-        });
-        $(".cursor-container").prepend($img);
-    });
-
-    $("#default-cursor-btn").click(() => {
-        localStorage.removeItem("cursorSeleccionado");
-        $("#game-cont, #game-canvas, body").css("cursor", "default");
-    });
-
-    // تطبيق الكرسر المحفوظ
-    if (localStorage.cursorSeleccionado) {
-        $("#game-cont, #game-canvas, body").css("cursor", `url(${localStorage.cursorSeleccionado}), default`);
-    }
-
-    // 6. إدارة الخلفيات (Backgrounds)
-    vA18.forEach(item => {
-        let $bgImg = $("<img>", {
-            src: item.url,
-            class: "background",
-            value: item.nombre,
-            click: function() {
-                const src = $(this).attr("src");
-                localStorage.fondoSeleccionado = src;
-                alert("Selected: " + $(this).attr("value"));
-                if (window.vUndefined28) {
-                    vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(src));
-                }
-            }
-        });
-        $(".background-container").prepend($bgImg);
-    });
+// أزرار الموبايل
+document.getElementById("zoom-in")?.addEventListener("touchstart", e => {
+  e.preventDefault();
+  applyZoom(1);
 });
+document.getElementById("zoom-out")?.addEventListener("touchstart", e => {
+  e.preventDefault();
+  applyZoom(-1);
+});
+
+/* ===============================
+   SWITCH HELPER (CLEAN)
+   =============================== */
+
+function bindSwitch(id, key, onValue, offValue, callback, reload = false) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const saved = localStorage.getItem(key);
+  el.checked = saved === "true";
+  callback(el.checked ? onValue : offValue);
+
+  el.addEventListener("click", () => {
+    localStorage.setItem(key, el.checked);
+    callback(el.checked ? onValue : offValue);
+    if (reload) location.reload();
+  });
+}
+
+/* ===============================
+   SETTINGS BINDS
+   =============================== */
+
+bindSwitch(
+  "settings-Abilityzoom-switch",
+  "AbilityZoom",
+  1,
+  0.0025,
+  v => (vO4.eat_animation = v)
+);
+
+bindSwitch(
+  "settings-stremingmode-switch",
+  "ModeStremer",
+  true,
+  false,
+  v => (vO4.ModeStremer = v)
+);
+
+bindSwitch(
+  "settings-stremingmodebatop-switch",
+  "ModeStremerbatop",
+  true,
+  false,
+  v => (vO4.ModeStremerbatop = v)
+);
+
+bindSwitch(
+  "settings-stremingmodesaveheadshot-switch",
+  "ModeStremersaveheadshot",
+  true,
+  false,
+  v => (vO4.ModeStremersaveheadshot = v),
+  true
+);
+
+bindSwitch(
+  "settings-stremingmodeheadshot-switch",
+  "ModeStremerheadshot",
+  true,
+  false,
+  v => (vO4.ModeStremerheadshot = v)
+);
+
+bindSwitch(
+  "settings-stremingmodeemoj-switch",
+  "ModeStremeremoj",
+  true,
+  false,
+  v => (vO4.ModeStremeremoj = v)
+);
+
+/* ===============================
+   SLIDERS
+   =============================== */
+
+function bindRange(id, key, target) {
+  $("#" + id).on("input", function () {
+    vO4[target] = this.value;
+    localStorage[key] = this.value;
+  });
+}
+
+bindRange("PortionSize", "PotenciadorSize", "PortionSize");
+bindRange("PortionAura", "PotenciadorAura", "PortionAura");
+bindRange("smoothCamera", "smoothCamera", "smoothCamera");
+bindRange("FoodSize", "ComidaSize", "FoodSize");
+bindRange("FoodShadow", "ComidaShadow", "FoodShadow");
+
+/* ===============================
+   CURSOR SYSTEM (SAFE)
+   =============================== */
+
+function applyCursor(url) {
+  $("#game-cont, #game-canvas, body").css({
+    cursor: url ? `url(${url}), default` : "default"
+  });
+}
+
+if (localStorage.cursorSeleccionado) {
+  applyCursor(localStorage.cursorSeleccionado);
+}
+
+vA17.forEach(c => {
+  const img = $("<img>", { src: c.url, class: "cursor" });
+  $(".cursor-container").prepend(img);
+  img.on("click", () => {
+    localStorage.cursorSeleccionado = c.url;
+    applyCursor(c.url);
+  });
+});
+
+$("#default-cursor-btn").on("click", () => {
+  localStorage.removeItem("cursorSeleccionado");
+  applyCursor(null);
+});
+
+/* ===============================
+   BACKGROUNDS
+   =============================== */
+
+vA18.forEach(bg => {
+  const img = $("<img>", {
+    src: bg.url,
+    class: "background",
+    value: bg.nombre
+  });
+  $(".background-container").prepend(img);
+
+  img.on("click", function () {
+    const src = $(this).attr("src");
+    localStorage.fondoSeleccionado = src;
+    backgroundIMG = src;
+    vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(src));
+    alert("Background selected: " + bg.nombre);
+  });
+});
+
       }
       $(".background-container").prepend("");
       vUndefined28.q.Cf = new vF91._b(vUndefined28.q.fn_o(localStorage.fondoSeleccionado));
