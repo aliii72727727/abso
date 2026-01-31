@@ -1,4 +1,3 @@
-
 {
     "success": true,
     "Users": [
@@ -5530,7 +5529,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 306,
@@ -5550,7 +5548,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 307,
@@ -5570,7 +5567,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 313,
@@ -5894,7 +5890,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 329,
@@ -5914,7 +5909,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 330,
@@ -6162,7 +6156,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 343,
@@ -6182,7 +6175,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 343,
@@ -6202,7 +6194,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 343,
@@ -6222,7 +6213,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 343,
@@ -6888,7 +6878,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 376,
@@ -6908,7 +6897,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 376,
@@ -6928,7 +6916,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 376,
@@ -6948,7 +6935,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 376,
@@ -10425,7 +10411,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000"  
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 547,
@@ -11166,7 +11152,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 585,
@@ -11413,7 +11399,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 598,
@@ -12175,7 +12161,8 @@
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
         },
-        {   "id": 640,
+        {
+            "id": 640,
             "cliente_NOMBRE": "bektas",
             "cliente_ID": "gg_117880076780333091146",
             "Client_KeyAccecs": "XTPRIVATESKIN",
@@ -12325,7 +12312,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 647,
@@ -12345,7 +12331,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 647,
@@ -12555,7 +12540,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 655,
@@ -13867,8 +13851,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
-
         },
         {
             "id": 717,
@@ -14154,8 +14136,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
-
         },
         {
             "id": 731,
@@ -14250,7 +14230,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000"        
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 737,
@@ -14536,8 +14516,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
-
         },
         {
             "id": 752,
@@ -15127,7 +15105,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 782,
@@ -15698,7 +15675,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 810,
@@ -15718,7 +15694,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 810,
@@ -16669,7 +16644,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
         },
         {
             "id": 860,
@@ -18494,8 +18468,6 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
-
         },
         {
             "id": 971,
@@ -20984,7 +20956,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1102,
@@ -21003,7 +20975,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1103,
@@ -21060,7 +21032,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1106,
@@ -21079,7 +21051,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1107,
@@ -21098,7 +21070,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1108,
@@ -21117,7 +21089,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1109,
@@ -21136,7 +21108,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1110,
@@ -21155,7 +21127,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1111,
@@ -21174,7 +21146,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1112,
@@ -21193,7 +21165,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1113,
@@ -21212,7 +21184,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1114,
@@ -21231,7 +21203,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1115,
@@ -21250,7 +21222,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1116,
@@ -21269,7 +21241,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1117,
@@ -21288,7 +21260,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1118,
@@ -21307,7 +21279,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1119,
@@ -21326,7 +21298,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1120,
@@ -21345,7 +21317,7 @@
             "Client_VisibleSkin7": "0000",
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
-            "Client_VisibleSkin10": "0000" 
+            "Client_VisibleSkin10": "0000"
         },
         {
             "id": 1121,
@@ -22296,8 +22268,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1171,
             "cliente_NOMBRE": "Fevzi ata",
             "cliente_ID": "gg_107494311411352527950",
@@ -22315,8 +22287,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1172,
             "cliente_NOMBRE": "rakkao Gaming",
             "cliente_ID": "gg_111607977412565701977",
@@ -22334,8 +22306,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1173,
             "cliente_NOMBRE": "Yunus baspÄ±nar",
             "cliente_ID": "gg_109950466327696975190",
@@ -22353,8 +22325,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1174,
             "cliente_NOMBRE": "Bedirhan kÄ±yak",
             "cliente_ID": "gg_111131577534288544457",
@@ -22372,8 +22344,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1175,
             "cliente_NOMBRE": "ulin Rauf",
             "cliente_ID": "gg_106743317792019339266",
@@ -22391,8 +22363,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1176,
             "cliente_NOMBRE": "Kefen",
             "cliente_ID": "gg_100593964501568254557",
@@ -22410,8 +22382,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1177,
             "cliente_NOMBRE": "ff can 027",
             "cliente_ID": "gg_105870782966900439787",
@@ -22429,8 +22401,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1178,
             "cliente_NOMBRE": "TÄ°GER",
             "cliente_ID": "gg_106463702134893837347",
@@ -22448,8 +22420,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1179,
             "cliente_NOMBRE": "Yunus Kucuktunca",
             "cliente_ID": "gg_112397914212738701705",
@@ -22467,8 +22439,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1180,
             "cliente_NOMBRE": "Emir",
             "cliente_ID": "gg_113774800679441498517",
@@ -22486,8 +22458,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1181,
             "cliente_NOMBRE": "Elmin kerimli",
             "cliente_ID": "gg_115979844376909469416",
@@ -22505,8 +22477,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1182,
             "cliente_NOMBRE": "Ramazan AydÄ±n",
             "cliente_ID": "gg_115471293650872472697",
@@ -22524,8 +22496,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1183,
             "cliente_NOMBRE": "Serdar",
             "cliente_ID": "gg_112361065927700066449",
@@ -22543,8 +22515,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1184,
             "cliente_NOMBRE": "Serdar Dayanan",
             "cliente_ID": "gg_104352388173809857617",
@@ -22562,8 +22534,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1185,
             "cliente_NOMBRE": "Sardar Behram ali",
             "cliente_ID": "gg_114548384349462468897",
@@ -22581,8 +22553,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1186,
             "cliente_NOMBRE": "Anees Ahmed",
             "cliente_ID": "gg_116855579669153015625",
@@ -22600,8 +22572,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1187,
             "cliente_NOMBRE": "ali bhai",
             "cliente_ID": "gg_100260284501965366438",
@@ -22619,8 +22591,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1188,
             "cliente_NOMBRE": "tural veliyev",
             "cliente_ID": "gg_116217562274535906896",
@@ -22638,8 +22610,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1189,
             "cliente_NOMBRE": "saki iptal etmeyiniz (gÃ¼rsel)",
             "cliente_ID": "gg_106305658650978425506",
@@ -22657,8 +22629,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1190,
             "cliente_NOMBRE": "ramazan kandag",
             "cliente_ID": "gg_111672317066159024144",
@@ -22676,8 +22648,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1191,
             "cliente_NOMBRE": "turk mehmet",
             "cliente_ID": "gg_109395445898439699431",
@@ -22695,8 +22667,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1192,
             "cliente_NOMBRE": "tedsmoi",
             "cliente_ID": "gg_106478975545777881675",
@@ -22714,8 +22686,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1193,
             "cliente_NOMBRE": "quisi",
             "cliente_ID": "gg_101487248864428611727",
@@ -22733,8 +22705,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1194,
             "cliente_NOMBRE": "maqa arkadaÅŸÄ±",
             "cliente_ID": "gg_117168185544041987743",
@@ -22752,8 +22724,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1195,
             "cliente_NOMBRE": "lfrda",
             "cliente_ID": "gg_109075588864192652884",
@@ -22771,8 +22743,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1196,
             "cliente_NOMBRE": "Vijay",
             "cliente_ID": "gg_103135220144638985346",
@@ -22790,8 +22762,8 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-       },
-       {
+        },
+        {
             "id": 1197,
             "cliente_NOMBRE": "emrah",
             "cliente_ID": "gg_108299084771199659805",
@@ -22828,11 +22800,25 @@
             "Client_VisibleSkin8": "0000",
             "Client_VisibleSkin9": "0000",
             "Client_VisibleSkin10": "0000"
-
-
-
-
-
+        },
+        {
+            "id": 1199,
+            "cliente_NOMBRE": "Tiger829",
+            "cliente_ID": "gg_9875743829345654",
+            "Client_KeyAccecs": "XTPRIVATESKIN",
+            "cliente_DateExpired": "2030-12-31",
+            "status": 1,
+            "Client_VisibleSkin": "0000",
+            "Client_VisibleSkin1": 5414,
+            "Client_VisibleSkin2": 2579,
+            "Client_VisibleSkin3": "0000",
+            "Client_VisibleSkin4": "0000",
+            "Client_VisibleSkin5": "0000",
+            "Client_VisibleSkin6": "0000",
+            "Client_VisibleSkin7": "0000",
+            "Client_VisibleSkin8": "0000",
+            "Client_VisibleSkin9": "0000",
+            "Client_VisibleSkin10": "0000"
         }
     ]
 }
