@@ -1,12 +1,5 @@
 
-// ===============================
-// WORMATE BACKGROUND & EFFECTS
-// ===============================
 (function () {
-
-  // -------------------------------
-  // 1) خلفيات متغيرة (5 ألوان زرقاء)
-  // -------------------------------
   const wormateBackgrounds = [
     "radial-gradient(circle at center, #0d47a1 0%, #1565c0 35%, #0b3c5d 70%, #000814 100%)",
     "radial-gradient(circle at center, #1e88e5 0%, #0d47a1 40%, #102027 75%, #000000 100%)",
