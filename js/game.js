@@ -8292,14 +8292,12 @@ $(".flag").on("click", function () {
   $("#mm-action-play").on("click", function () {
     var v1381 = $("#mm-params-nickname").val().trim();
 
-    // إذا الاسم فاضي
     if (v1381 === "") {
-      var randomId = Math.floor(1000 + Math.random() * 9000); // 4 أرقام
-      $("#mm-params-nickname").val("✅ {" + randomId + "} ✡️​🔯​");
+      var randomId = Math.floor(1000 + Math.random() * 9000);
+      $("#mm-params-nickname").val("✅ " + randomId + " ✡️🔯");
       return;
     }
 
-    // فلترة الكلمات
     var v1382 = vA19.some(function (p1319) {
       return v1381.toLowerCase().includes(p1319.toLowerCase());
     });
@@ -8308,7 +8306,7 @@ $(".flag").on("click", function () {
       $("#mm-params-nickname").val("أن الله يراك*");
     }
   });
-}, 0);
+      
       $("#final-share-fb").css("display", "none");
       $("#unl6wj4czdl84o9b").css("display", "none");
       $("#mm-menu-cont").css("display", "block");
