@@ -1,5 +1,5 @@
 {
-    "revision": 80025,
+    "revision": 80035,
     "visibleSkin": [
         1000,
         1001,
@@ -612,7 +612,12 @@
         6486,
         6487,
         6488,
-        6489
+        6489,
+        6491,
+        6492,
+        6493,
+        8374,
+        8375
     ],
     "hatVariantArray": [
         [
@@ -4408,6 +4413,156 @@
         }
     },
     "skinArrayDict": [
+        {
+            "id": 8375,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_SVO_8",
+                "skin_SVO_7",
+                "skin_SVO_6",
+                "skin_SVO_5",
+                "skin_SVO_4",
+                "skin_SVO_3",
+                "skin_SVO_2",
+                "skin_SVO_1",
+                "skin_SVO_0"
+            ],
+            "glow": [
+                "a__ruby",
+                "a__ruby",
+                "a_white",
+                "a_grass",
+                "a_grass",
+                "a_death",
+                "a__ruby",
+                "a_white",
+                "a_grass"
+            ]
+        },
+        {
+            "id": 8374,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_smv_8",
+                "skin_smv_7",
+                "skin_smv_6",
+                "skin_smv_5",
+                "skin_smv_4",
+                "skin_smv_3",
+                "skin_smv_2",
+                "skin_smv_1",
+                "skin_smv_0"
+            ],
+            "glow": [
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white"
+            ]
+        },
+        {
+            "id": 6493,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_hlhvhj_8",
+                "skin_hlhvhj_7",
+                "skin_hlhvhj_6",
+                "skin_hlhvhj_5",
+                "skin_hlhvhj_4",
+                "skin_hlhvhj_3",
+                "skin_hlhvhj_2",
+                "skin_hlhvhj_1",
+                "skin_hlhvhj_0"
+            ],
+            "glow": [
+                "a__ruby",
+                "a__card",
+                "a_grass",
+                "a_white",
+                "a_grass",
+                "a_grass",
+                "a_death",
+                "a__ruby",
+                "a_white"
+            ]
+        },
+        {
+            "id": 6492,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_sudan_8",
+                "skin_sudan_7",
+                "skin_sudan_6",
+                "skin_sudan_5",
+                "skin_sudan_4",
+                "skin_sudan_3",
+                "skin_sudan_2",
+                "skin_sudan_1",
+                "skin_sudan_0"
+            ],
+            "glow": [
+                "a_grass",
+                "a_grass",
+                "a__ruby",
+                "a_white",
+                "a_white",
+                "a_death",
+                "a_grass",
+                "a__card",
+                "a_death"
+            ]
+        },
+        {
+            "id": 6491,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_arabix_5744_8",
+                "skin_arabix_5744_7",
+                "skin_arabix_5744_6",
+                "skin_arabix_5744_5",
+                "skin_arabix_5744_4",
+                "skin_arabix_5744_3",
+                "skin_arabix_5744_2",
+                "skin_arabix_5744_1",
+                "skin_arabix_5744_0"
+            ],
+            "glow": [
+                "a_grass",
+                "a_grass",
+                "a_death",
+                "a__ruby",
+                "a__ruby",
+                "a_white",
+                "a_grass",
+                "a_white",
+                "a__orng"
+            ]
+        },
         {
             "id": 6489,
             "guest": false,
@@ -16926,7 +17081,12 @@
                 "1603",
                 "6487",
                 "6488",
-                "6489"
+                "6489",
+                "6491",
+                "6492",
+                "6493",
+                "8374",
+                "8375"
             ]
         },
         {
@@ -19920,6 +20080,26 @@
         "eyes_747": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/whBWhC8M\/47088a6dedc8.png"
+        },
+        "skin_arabix_5744": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/WvQcCq90\/download-13.png"
+        },
+        "skin_sudan": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/fGN8dmvD\/download.png"
+        },
+        "skin_hlhvhj": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/5xn5TFmQ\/download-1.png"
+        },
+        "skin_smv": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/bgDpQP0h\/download-2.png"
+        },
+        "skin_SVO": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/q3G9ZZGG\/vv.png"
         }
     },
     "colorDict": {
@@ -49535,6 +49715,321 @@
             "py": 64,
             "pw": 128,
             "ph": 128
+        },
+        "skin_arabix_5744_0": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_arabix_5744_1": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_arabix_5744_2": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_arabix_5744_3": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_arabix_5744_4": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_arabix_5744_5": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_arabix_5744_6": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_arabix_5744_7": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_arabix_5744_8": {
+            "texture": "skin_arabix_5744",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_sudan_0": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_sudan_1": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_sudan_2": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_sudan_3": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_sudan_4": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_sudan_5": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_sudan_6": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_sudan_7": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_sudan_8": {
+            "texture": "skin_sudan",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_hlhvhj_0": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_hlhvhj_1": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_hlhvhj_2": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_hlhvhj_3": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_hlhvhj_4": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_hlhvhj_5": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_hlhvhj_6": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_hlhvhj_7": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_hlhvhj_8": {
+            "texture": "skin_hlhvhj",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_smv_0": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_smv_1": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_smv_2": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_smv_3": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_smv_4": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_smv_5": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_smv_6": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_smv_7": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_smv_8": {
+            "texture": "skin_smv",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_SVO_0": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_SVO_1": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_SVO_2": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_SVO_3": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_SVO_4": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_SVO_5": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_SVO_6": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_SVO_7": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_SVO_8": {
+            "texture": "skin_SVO",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
         }
     }
 }
