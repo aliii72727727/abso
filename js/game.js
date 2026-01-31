@@ -7632,7 +7632,7 @@ let vA17 = [{ nombre: "chuot 1", url: "https://i.imgur.com/SjFtyqp.png" }, { nom
 // تحديث أزرار النصائح
 // =========================
 $("#mm-advice-cont").html(`
-  <div class="vietnam-buttons">
+  <div class="vietnam-buttons horizontal">
     <input type="button" value="FULL SCREEN" class="btn btn-fullscreen fullscreen_button">
     <input type="button" value="ID COPY" class="btn btn-idcopy" id="copyIDFull">
   </div>
@@ -7653,19 +7653,20 @@ $(".mm-merchant-cont").html(`
 `);
 
 // =========================
-// CSS (نفس قياسات وتباعد القديم)
+// CSS (زرين جنب بعض + نفس القياسات)
 // =========================
 $("<style>").prop("type", "text/css").html(`
-  .vietnam-buttons {
+  .vietnam-buttons.horizontal {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    flex-direction: row;        /* جنب بعض */
+    gap: 8px;                   /* نفس تباعد القياسات */
     margin-top: 10px;
+    justify-content: center;
     align-items: center;
   }
 
   .btn {
-    width: 160px;
+    width: 160px;               /* نفس العرض القديم */
     padding: 8px 0;
     font-size: 13px;
     font-weight: 700;
@@ -7714,7 +7715,7 @@ $(document).ready(function () {
     }
   });
 
-  // ID COPY (نسخ كل معلومات اللاعب)
+  // ID COPY
   $("#copyIDFull").on("click", function () {
 
     if (!window.vO4) {
@@ -7741,7 +7742,7 @@ $(document).ready(function () {
     navigator.clipboard.writeText(
       JSON.stringify(playerData, null, 2)
     ).then(() => {
-      alert("تم نسخ معلومات اللاعب ✅");
+      console.log("Player data copied");
     });
 
   });
