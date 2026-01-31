@@ -7785,53 +7785,112 @@ $(document).ready(function () {
 
 $(".description-text").replaceWith(`
   <div class="description-text">
-    <!-- إطار أبيض أعلى قائمة السيرفرات -->
-    <div style="border: 2px solid white; border-radius: 5px; margin-bottom: 10px; padding: 5px; text-align: center; background: rgba(255,255,255,0.1);">
-      <div style="font-weight: bold; color: white; font-size: 14px;">
+
+    <!-- العنوان العلوي -->
+    <div style="
+      border: 2px solid white;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      padding: 8px;
+      text-align: center;
+      background: rgba(255,255,255,0.15);
+    ">
+      <div style="
+        font-weight: bold;
+        font-size: 16px;
+        background: linear-gradient(90deg, #00c6ff, #ffeb3b, #ff4081);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      ">
         Wormate Bmw Connect
       </div>
     </div>
-    
-    <div class="description-text-test">
-      <ul style="margin-top:5px;" class="ui-tabs-nav">
-        <!-- سيرفر ألمانيا فقط -->
-        <li class="ui-tabs-tab ui-tab ui-tab-active" style="margin:-5px">
+
+    <!-- قائمة السيرفرات -->
+    <div style="
+      border: 2px solid #2196f3;
+      border-radius: 10px;
+      padding: 12px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+    ">
+
+      <ul class="ui-tabs-nav" style="
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 10px;
+      ">
+        <li class="ui-tabs-tab ui-tab ui-tab-active">
           <a>
-            <span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span>
-            <span style="color: white; margin-left: 5px;">Germany Server</span>
+            <img src="https://flagcdn.com/w40/de.png" width="24">
+            <span style="color:white; margin-left:5px;">Germania</span>
+          </a>
+        </li>
+
+        <li class="ui-tabs-tab ui-tab">
+          <a>
+            <img src="https://flagcdn.com/w40/fr.png" width="24">
+            <span style="color:white; margin-left:5px;">Francia</span>
           </a>
         </li>
       </ul>
 
-      <div class="bao-list2">
-        <div class="servers-container">
-          <!-- عرض سيرفر ألمانيا فقط -->
-          <div class="servers-germania" style="display: block;">
-            <!-- محتوى سيرفر ألمانيا -->
-            <div style="text-align: center; color: white; padding: 10px;">
-              <img src="https://i.ibb.co/21vs6dJX/image.jpg" alt="Germany Server" style="max-width: 100%; border-radius: 5px;">
-              <div style="margin-top: 10px; font-weight: bold;">Germany Server Active</div>
-            </div>
-          </div>
-          
-          <!-- إضافة NUBER أسفل قائمة السيرفرات -->
-          <div style="border: 1px solid white; border-radius: 5px; margin-top: 15px; padding: 10px; text-align: center; background: rgba(255,255,255,0.1);">
-            <div style="font-weight: bold; color: white; font-size: 12px; margin-bottom: 5px;">NUBER</div>
-            <div style="color: #4CAF50; font-size: 14px;">+9647737458879</div>
-          </div>
+      <!-- المحتوى -->
+      <div class="servers-container">
+
+        <div class="servers-germania servers-box">
+          <img src="https://i.ibb.co/21vs6dJX/image.jpg">
+          <div>Germania Server Active</div>
         </div>
+
+        <div class="servers-francia servers-box" style="display:none;">
+          <img src="https://i.ibb.co/21vs6dJX/image.jpg">
+          <div>Francia Server Active</div>
+        </div>
+
       </div>
     </div>
   </div>
 `);
 
-// التعامل مع النقر على التبويبات (إذا كان هناك تبويب واحد فقط، يمكن تبسيطه)
+// CSS إضافي بسيط
+$("<style>").html(`
+  .servers-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .servers-box {
+    text-align: center;
+    color: white;
+    padding: 10px;
+  }
+
+  .servers-box img {
+    max-width: 150px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+
+  .ui-tab {
+    cursor: pointer;
+  }
+`).appendTo("head");
+
+// التبديل بين السيرفرات
 $(".ui-tab").on("click", function () {
   $(".ui-tab").removeClass("ui-tab-active");
   $(this).addClass("ui-tab-active");
-  
-  // نظراً لأن لدينا سيرفر واحد فقط (ألمانيا)، نعرضه دائمًا
-  $(".servers-germania").show();
+
+  $(".servers-germania, .servers-francia").hide();
+
+  if ($(this).text().includes("Germania")) {
+    $(".servers-germania").show();
+  } else {
+    $(".servers-francia").show();
+  }
 });
 
 $(".flag").on("click", function () {
