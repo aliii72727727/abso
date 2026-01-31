@@ -7738,7 +7738,6 @@ $(document).ready(function () {
     });
 
   });
-
       $("#hoisinh").click(function () {
         let vV_0x2b5e54 = vV_0x2b5e54;
         if (vV_0x2b5e54) {
