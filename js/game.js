@@ -8286,18 +8286,21 @@ $(".flag").on("click", function () {
         return this.toString().substr(3, 2);
       };
     }
-    setTimeout(function () {
+    $(document).ready(function () {
+
   var vA19 = ["كس", "fuck", "شيعة", "أن الله يراك", "عرضك", "نظيف", "طيبة", "اخوك", "اختك", "امك", "ابوك", "قواد"];
 
   $("#mm-action-play").on("click", function () {
     var v1381 = $("#mm-params-nickname").val().trim();
 
+    // إذا الاسم فاضي
     if (v1381 === "") {
       var randomId = Math.floor(1000 + Math.random() * 9000);
       $("#mm-params-nickname").val("✅ " + randomId + " ✡️🔯");
       return;
     }
 
+    // فلترة الكلمات
     var v1382 = vA19.some(function (p1319) {
       return v1381.toLowerCase().includes(p1319.toLowerCase());
     });
@@ -8306,6 +8309,7 @@ $(".flag").on("click", function () {
       $("#mm-params-nickname").val("أن الله يراك*");
     }
   });
+
 });
 
       $("#final-share-fb").css("display", "none");
