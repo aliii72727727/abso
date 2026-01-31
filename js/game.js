@@ -1,6 +1,6 @@
-
 (function () {
-  const wormateBackgrounds = [
+
+  const backgrounds = [
     "radial-gradient(circle at center, #0d47a1 0%, #1565c0 35%, #0b3c5d 70%, #000814 100%)",
     "radial-gradient(circle at center, #1e88e5 0%, #0d47a1 40%, #102027 75%, #000000 100%)",
     "radial-gradient(circle at center, #1976d2 0%, #0d47a1 45%, #082032 75%, #000000 100%)",
@@ -9,11 +9,8 @@
   ];
 
   document.documentElement.style.background =
-    wormateBackgrounds[Math.floor(Math.random() * wormateBackgrounds.length)];
+    backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
-  // -------------------------------
-  // 2) حواف سوداء قوية
-  // -------------------------------
   const style = document.createElement("style");
   style.innerHTML = `
     body, #game-view, canvas {
@@ -23,26 +20,24 @@
   `;
   document.head.appendChild(style);
 
-  // -------------------------------
-  // 3) قلوب تسقط (Confetti Hearts)
-  // -------------------------------
-  const heartCount = 16;
-  const hearts = [];
   const heartImg = new Image();
   heartImg.src = "/images/confetti-xmas2022.png";
 
+  const hearts = [];
+  const count = 16;
+
   function createHeart() {
     return {
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
+      x: Math.random() * innerWidth,
+      y: Math.random() * innerHeight,
       size: 24 + Math.random() * 20,
       speed: 0.6 + Math.random(),
       swing: Math.random() * 2,
-      rotation: Math.random() * Math.PI
+      rot: Math.random() * Math.PI
     };
   }
 
-  for (let i = 0; i < heartCount; i++) {
+  for (let i = 0; i < count; i++) {
     hearts.push(createHeart());
   }
 
@@ -59,11 +54,11 @@
   const ctx = canvas.getContext("2d");
 
   function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
   }
   resize();
-  window.addEventListener("resize", resize);
+  addEventListener("resize", resize);
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -79,7 +74,7 @@
 
       ctx.save();
       ctx.translate(h.x, h.y);
-      ctx.rotate(h.rotation);
+      ctx.rotate(h.rot);
       ctx.globalAlpha = 0.85;
       ctx.drawImage(heartImg, -h.size / 2, -h.size / 2, h.size, h.size);
       ctx.restore();
