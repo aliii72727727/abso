@@ -8306,7 +8306,6 @@ $(".flag").on("click", function () {
       $("#mm-params-nickname").val("أن الله يراك*");
     }
   });
-      
       $("#final-share-fb").css("display", "none");
       $("#unl6wj4czdl84o9b").css("display", "none");
       $("#mm-menu-cont").css("display", "block");
