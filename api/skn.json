@@ -1,5 +1,5 @@
 {
-    "revision": 80037,
+    "revision": 80044,
     "visibleSkin": [
         1000,
         1001,
@@ -618,7 +618,10 @@
         6493,
         8374,
         8375,
-        8376
+        8376,
+        8377,
+        8378,
+        8379
     ],
     "hatVariantArray": [
         [
@@ -4415,9 +4418,99 @@
     },
     "skinArrayDict": [
         {
-            "id": 8376,
+            "id": 8379,
             "guest": false,
             "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_fls_8",
+                "skin_fls_7",
+                "skin_fls_6",
+                "skin_fls_5",
+                "skin_fls_4",
+                "skin_fls_3",
+                "skin_fls_2",
+                "skin_fls_1",
+                "skin_fls_0"
+            ],
+            "glow": [
+                "a__ruby",
+                "a__ruby",
+                "a_grass",
+                "a_white",
+                "a_death",
+                "a__card",
+                "a_grass",
+                "a__ruby",
+                "a_white"
+            ]
+        },
+        {
+            "id": 8378,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_jhy_8",
+                "skin_jhy_7",
+                "skin_jhy_6",
+                "skin_jhy_5",
+                "skin_jhy_4",
+                "skin_jhy_3",
+                "skin_jhy_2",
+                "skin_jhy_1",
+                "skin_jhy_0"
+            ],
+            "glow": [
+                "a__ruby",
+                "a__ruby",
+                "a__ruby",
+                "a_grass",
+                "a_grass",
+                "a_grass",
+                "a_death",
+                "a_death",
+                "a_death"
+            ]
+        },
+        {
+            "id": 8377,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 0,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_eugbt-jordan_8",
+                "skin_eugbt-jordan_7",
+                "skin_eugbt-jordan_6",
+                "skin_eugbt-jordan_5",
+                "skin_eugbt-jordan_4",
+                "skin_eugbt-jordan_3",
+                "skin_eugbt-jordan_2",
+                "skin_eugbt-jordan_1",
+                "skin_eugbt-jordan_0"
+            ],
+            "glow": [
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white",
+                "a_white"
+            ]
+        },
+        {
+            "id": 8376,
+            "guest": false,
+            "nonbuyable": true,
             "price": 0,
             "priceBefore": 0,
             "prime": "c__yllw",
@@ -17117,7 +17210,10 @@
                 "6492",
                 "6493",
                 "8374",
-                "8375"
+                "8375",
+                "8377",
+                "8378",
+                "8379"
             ]
         },
         {
@@ -20136,6 +20232,18 @@
         "skin_abs": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/GfVWCh4s\/download.png"
+        },
+        "skin_eugbt-jordan": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/WvjjxN98\/lwvhv-k.png"
+        },
+        "skin_jhy": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/MxLGywh0\/image.png"
+        },
+        "skin_fls": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/F43pzMZ2\/tgs.png"
         }
     },
     "colorDict": {
@@ -50125,6 +50233,195 @@
         },
         "skin_abs_8": {
             "texture": "skin_abs",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_eugbt-jordan_0": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_eugbt-jordan_1": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_eugbt-jordan_2": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_eugbt-jordan_3": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_eugbt-jordan_4": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_eugbt-jordan_5": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_eugbt-jordan_6": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_eugbt-jordan_7": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_eugbt-jordan_8": {
+            "texture": "skin_eugbt-jordan",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_jhy_0": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_jhy_1": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_jhy_2": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_jhy_3": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_jhy_4": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_jhy_5": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_jhy_6": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_jhy_7": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_jhy_8": {
+            "texture": "skin_jhy",
+            "h": 170,
+            "w": 174,
+            "x": 1396,
+            "y": 0
+        },
+        "skin_fls_0": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_fls_1": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_fls_2": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_fls_3": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_fls_4": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_fls_5": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_fls_6": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_fls_7": {
+            "texture": "skin_fls",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_fls_8": {
+            "texture": "skin_fls",
             "h": 170,
             "w": 174,
             "x": 1396,
