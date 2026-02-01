@@ -2,6 +2,104 @@
     "success": true,
     "servers": [
         {
+            "id": 1,
+            "name": "فرنسا 1<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32053/wormy",
+            "status": 1
+        },
+        {
+            "id": 2,
+            "name": "فرنسا 2<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32609/wormy",
+            "status": 1
+        },
+        {
+            "id": 3,
+            "name": "فرنسا 3<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32103/wormy",
+            "status": 1
+        },
+        {
+            "id": 4,
+            "name": "فرنسا 4<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32064/wormy",
+            "status": 1
+        },
+        {
+            "id": 5,
+            "name": "فرنسا 5<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32708/wormy",
+            "status": 1
+        },
+        {
+            "id": 6,
+            "name": "فرنسا 6<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32026/wormy",
+            "status": 1
+        },
+        {
+            "id": 7,
+            "name": "فرنسا 7<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32285/wormy",
+            "status": 1
+        },
+        {
+            "id": 8,
+            "name": "فرنسا 8<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:31280/wormy",
+            "status": 1
+        },
+        {
+            "id": 9,
+            "name": "فرنسا 9<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32017/wormy",
+            "status": 1
+        },
+        {
+            "id": 10,
+            "name": "فرنسا 10<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32095/wormy",
+            "status": 1
+        },
+        {
+            "id": 11,
+            "name": "فرنسا 11<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:31050/wormy",
+            "status": 1
+        },
+        {
+            "id": 12,
+            "name": "فرنسا 12<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:30956/wormy",
+            "status": 1
+        },
+        {
+            "id": 13,
+            "name": "فرنسا 13<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:32567/wormy",
+            "status": 1
+        },
+        {
+            "id": 14,
+            "name": "فرنسا 14<img class='team' src='https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png?20220120162234'/><div class='france-effect'>🇫🇷</div><div id='online'></div>",
+            "region": "france",
+            "serverUrl": "wss://fra-c.wormate.io:31886/wormy",
+            "status": 1
+        },
+        {
             "id": 203,
             "name": "المانيا 1<img class='team' src='https://i.ibb.co/21vs6dJX/image.jpg'/><div id='online'></div>",
             "region": "germania",
