@@ -2,7 +2,7 @@
     {
         "id": 7791,
         "name": "SKIN_\u0641\u0644\u0633",
-        "texture": "https://i.ibb.co/Z627Zhbh/5c3c09dfddda8df4b744.png",
+        "texture": "https:\/\/i.ibb.co\/Z627Zhbh\/5c3c0984b744.png",
         "glow": [
             "a__ruby",
             "a__ruby",
@@ -25,7 +25,7 @@
     {
         "id": 9554,
         "name": "SKIN_\u0644\u0627\u0629\u0635",
-        "texture": "https://i.ibb.co/kV2LkMT8/e8c6848662b0.png",
+        "texture": "https:\/\/i.ibb.co\/kV2LkMT8\/e8c6848662b0.png",
         "glow": [
             "a__ruby",
             "a__ruby",
@@ -44,5 +44,17 @@
         "source": "json_upload",
         "original_file": "SKIN_\u0644\u0627\u0629\u0635.json",
         "original_id": "Sgk"
+    },
+    {
+        "id": "Sdx",
+        "fileName": "SKIN_Sdx",
+        "imageUrl": "https:\/\/i.ibb.co\/6KTjvcX\/caa878c00d78.png",
+        "uploadedAt": "2026-02-05 21:36:54"
+    },
+    {
+        "id": "SXX",
+        "fileName": "SKIN_\u0641\u0644\u0633",
+        "imageUrl": "https:\/\/i.ibb.co\/Z627Zhbh\/5c3c0984b744.png",
+        "uploadedAt": "2026-02-05 21:37:11"
     }
 ]
