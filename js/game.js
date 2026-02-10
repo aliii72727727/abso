@@ -7646,7 +7646,7 @@ vUndefined28 = f148();
 vUndefined28.v();
 
 if (vF88()) {
-  f130("https://wormatefriendsglobal.com/js/joy.min.js", "mobileconfig", function () {
+  f130("https://iraqcraft.store/js/joy.JS.P.js", "mobileconfig", function () {
     initZoomUI();
   });
 }
