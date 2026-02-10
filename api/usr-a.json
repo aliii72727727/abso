@@ -251,6 +251,17 @@
             "status": 1,
             "Client_VisibleSkin": "0000",
             "Client_VisibleSkin1": "0000"
+        },
+        {
+            "id": "27",
+            "cliente_NOMBRE": "test",
+            "cliente_ID": "gg_1080224862230484419834",
+            "Client_KeyAccecs": "XTPRIVATESKIN",
+            "cliente_DateStarted": "10-02-2026",
+            "cliente_DateExpired": "15-01-2028",
+            "status": 1,
+            "Client_VisibleSkin": "0000",
+            "Client_VisibleSkin1": "0000"
         }
     ]
 }
