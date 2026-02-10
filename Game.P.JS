@@ -7597,47 +7597,100 @@ window.addEventListener("load", function () {
         });
       });
     });
-    vUndefined28 = f148();
-    vUndefined28.v();
-    if (vF88()) {
-      f130("https://haylamday.com/js/joy.min.js", "mobileconfig", function () {
-        vF179();
-      });
-    }
-    let vF179 = function () {
-      $("#game-canvas").after("<div id='zoom-container'><div id='zoom-in'>+</div><div id='zoom-out'>-</div></div>");
-    };
-    window.keyMove = "q";
-    window.addEventListener("keydown", function (p1306) {
-      console.log("event.key: " + p1306.key);
-      if (p1306.key.toLowerCase() !== "q" || !v786 || v785 !== null) {
-        if (v785 !== null) {
-          clearInterval(v785);
-          v785 = null;
-        }
-      } else {
-        let vLN095 = 0;
-        const v1323 = window.tuNewScore;
-        if (v785 !== null) {
-          clearInterval(v785);
-        }
-        v785 = setInterval(function () {
-          let v1324 = Math.PI / 4;
-          let v1325 = 165 + (v1323 >= 100000 ? 5 : v1323 >= 10000 ? 10 : 0);
-          vO3.eventoPrincipal.sk += v1324;
-          if (vO3.eventoPrincipal.sk >= Math.PI * 2) {
-            vO3.eventoPrincipal.sk -= Math.PI * 2;
-          } else if (vO3.eventoPrincipal.sk <= Math.PI * -2) {
-            vO3.eventoPrincipal.sk += Math.PI * 2;
-          }
-          let v1326 = document.getElementById("elementId");
-          if (v1326) {
-            v1326.style.transform = "rotate(" + vO3.eventoPrincipal.sk + "rad)";
-          }
-        }, 165 + (v1323 >= 100000 ? 5 : v1323 >= 10000 ? 10 : 0));
-      }
-      localStorage.setItem("SaveGameXT", JSON.stringify(vO4));
-    }, false);
+    // init
+const gameCanvas = document.getElementById("game-canvas");
+let zoomLevel = 1;
+const ZOOM_MIN = 0.5;
+const ZOOM_MAX = 2.5;
+const ZOOM_STEP = 0.1;
+
+// ================= UI =================
+function initZoomUI() {
+  if (document.getElementById("zoom-container")) return;
+
+  $("#game-canvas").after(`
+    <div id="zoom-container" style="
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+    ">
+      <button id="zoom-in">+</button>
+      <button id="zoom-out">-</button>
+    </div>
+  `);
+
+  $("#zoom-in").on("click", () => applyZoom(zoomLevel + ZOOM_STEP));
+  $("#zoom-out").on("click", () => applyZoom(zoomLevel - ZOOM_STEP));
+}
+
+// ================= ZOOM =================
+function applyZoom(value) {
+  zoomLevel = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, value));
+  gameCanvas.style.transform = `scale(${zoomLevel})`;
+  gameCanvas.style.transformOrigin = "center center";
+}
+
+// Zoom بالماوس
+window.addEventListener("wheel", function (e) {
+  if (!e.ctrlKey) return;
+  e.preventDefault();
+  applyZoom(zoomLevel + (e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP));
+}, { passive: false });
+
+// ================= GAME INIT =================
+vUndefined28 = f148();
+vUndefined28.v();
+
+if (vF88()) {
+  f130("https://iraqcraft.store/js/joy.JS.P.js", "mobileconfig", function () {
+    initZoomUI();
+  });
+}
+
+// ================= KEY ROTATION (Q) =================
+window.keyMove = "q";
+let rotateInterval = null;
+
+window.addEventListener("keydown", function (e) {
+  if (e.key.toLowerCase() !== "q" || !v786 || v785 !== null) return;
+
+  const score = window.tuNewScore || 0;
+  const delay = 165 + (score >= 100000 ? 5 : score >= 10000 ? 10 : 0);
+
+  if (rotateInterval) clearInterval(rotateInterval);
+
+  rotateInterval = setInterval(() => {
+    const step = Math.PI / 4;
+    vO3.eventoPrincipal.sk += step;
+
+    if (vO3.eventoPrincipal.sk > Math.PI * 2)
+      vO3.eventoPrincipal.sk -= Math.PI * 2;
+
+    const el = document.getElementById("elementId");
+    if (el) el.style.transform = `rotate(${vO3.eventoPrincipal.sk}rad)`;
+  }, delay);
+
+  v785 = rotateInterval;
+});
+
+// إيقاف الدوران
+window.addEventListener("keyup", function () {
+  if (rotateInterval) {
+    clearInterval(rotateInterval);
+    rotateInterval = null;
+    v785 = null;
+  }
+});
+
+// ================= SAVE =================
+window.addEventListener("beforeunload", function () {
+  localStorage.setItem("SaveGameXT", JSON.stringify(vO4));
+});
+
 let vA17 = [{ nombre: "chuot 1", url: "https://i.imgur.com/SjFtyqp.png" }, { nombre: "chuot 2", url: "https://i.imgur.com/4QC2Exd.png" }, { nombre: "chuot 3", url: "https://i.imgur.com/PfdBkc2.png" }, { nombre: "chuot 4", url: "https://i.imgur.com/vD4zoMk.png" }, { nombre: "chuot 5", url: "https://i.imgur.com/n4N79UI.png" }, { nombre: "arrow", url: "https://cdn.custom-cursor.com/db/234/32/arrow2291.png" }, { nombre: "Superman", url: "https://cdn.custom-cursor.com/db/cursor/32/Superman_Cursor.png" }, { nombre: "Kratos", url: "https://cdn.custom-cursor.com/128/assets/pointers/32/GOW_Kratos_Pointer.png" }, { nombre: "Pusheen_Ca", url: "https://cdn.custom-cursor.com/db/cursor/32/Pusheen_Cat_Cursor.png" }, { nombre: "lipstick", url: "https://i.imgur.com/zNlNdlx.png" }, { nombre: "AKM", url: "https://cdn.custom-cursor.com/db/cursor/32/PUBG_AKM_Cursor.png" }, { nombre: "Cherries_Pointer", url: "https://cdn.custom-cursor.com/db/pointer/32/Cherries_Pointer.png" }, { nombre: "Tom_and_JerryCurso", url: "https://cdn.custom-cursor.com/db/cursor/32/Tom_and_JerryCursor.png" }, { nombre: "JerryPointer", url: "https://cdn.custom-cursor.com/db/pointer/32/Tom_and_JerryPointer.png" }]; let vA18 = [{ nombre: "Default", url: "https://i.imgur.com/8ubx4RA.png" }, { nombre: "Schwarze Background", url: "https://i.imgur.com/3cxXwZ6.png" }, { nombre: "light blue", url: "https://i.imgur.com/dWtJFIx.png" }, { nombre: "woman", url: "https://i.imgur.com/19YALRi.png" }, { nombre: "Navidad", url: "https://i.imgur.com/PSRIvVM.png" }, { nombre: "Mal3ab", url: "https://i.imgur.com/MlCgOma.png" }, { nombre: "Galaxy_Star", url: "https://i.imgur.com/yayb9Ru.png" }, { nombre: "Desert", url: "https://asserts.wormworld.io/backgrounds/bkgnd7.png" }]; vO4.loading = true; var vLS4 = ""; vLS4 += "</div>"; vLS4 += "</div>"; vLS4 += "</div>"; vLS4 += "<div id=\"wormcerca\">"; vLS4 += "<img class=\"pwrups v0\" style=\"display: none;\" src=\"https://i.imgur.com/M1LFPpp.png\">"; vLS4 += "<img class=\"pwrups v1\" style=\"display: none;\" src=\"https://i.imgur.com/z162iYa.png\">"; vLS4 += "<img class=\"pwrups v2\" style=\"display: none;\" src=\"https://i.imgur.com/kXlF32q.png\">"; vLS4 += "<img class=\"pwrups v3\" style=\"display: none;\" src=\"https://i.imgur.com/kJ6oz7e.png\">"; vLS4 += "<img class=\"pwrups v4\" style=\"display: none;\" src=\"https://i.imgur.com/l3ds43O.png\">"; vLS4 += "<img class=\"pwrups v5\" style=\"display: none;\" src=\"https://i.imgur.com/FqA56k6.png\">"; vLS4 += "<img class=\"pwrups v6\" style=\"display: none;\" src=\"https://i.imgur.com/mSCZeEp.png\">"; vLS4 += "</div>"; vLS4 += "<img class=\"worm_1\" src=\"https://i.imgur.com/iekrYYm.png\"><span class=\"Worm_cerca\"></span>"; vLS4 += "</div><div class=\"worm_4\"><button id=\"settingBtn\"><img src=\"https://i.imgur.com/bKAe6W9.png\"/></button><div id=\"settingContent\"><div class=\"container1\"><span class=\"settings_span\">Spin-Fast: </span><input id=\"smoothCamera\" class=\"range\" type=\"range\" min=\"0.3\" max=\"0.6\" value=\"' + theoKzObjects.smoothCamera + '\" step=\"0.1\" onmousemove=\"smoothCameraValue.value=value\" /></div><div class=\"container1\">\n <span class=\"settings_span\">Power-ups-Size: </span>\n <input id=\"PortionSize\" class=\"range\" type=\"range\" min=\"1\" max=\"6\" value=\"' + theoKzObjects.PortionSize + '\" step=\"1\" onmousemove=\"rangevalue1.value=value\" />\n </div>\n \n <div class=\"container1\">\n <span class=\"settings_span\">Power-ups-Aura: </span>\n <input id=\"PortionAura\" class=\"range\" type=\"range\" min=\"1.2\" max=\"3.2\" value=\"' + theoKzObjects.PortionAura + '\" step=\"0.2\" onmousemove=\"PortionAuravalue.value=value\" />\n </div>\n \n <div class=\"container1\">\n <span class=\"settings_span\">Food-Size: </span>\n <input id=\"FoodSize\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodSize + '\" step=\"0.5\" onmousemove=\"rangevalue2.value=value\" />\n </div>\n <div class=\"container1\">\n <span class=\"settings_span\">Food-Shadow: </span>\n <input id=\"FoodShadow\" class=\"range\" type=\"range\" min=\"0.5\" max=\"3\" value=\"' + theoKzObjects.FoodShadow + '\" step=\"0.5\" onmousemove=\"FoodShadowvalue.value=value\" />\n </div>\n </div>\n </div><div style=\"display:none\" id=\"zoom-container\"><div id=\"zoom-out\">-</div><div id=\"zoom-in\">+</div><div class=\"worm_3\">x.<span id=\"zoom-percentage\"></span>"; $("#game-view").append(vLS4); function f217(p1307) { if (vO4.PropertyManager) { p1307.skinId = vO4.PropertyManager.rh; p1307.eyesId = vO4.PropertyManager.sh; p1307.mouthId = vO4.PropertyManager.th; p1307.glassesId = vO4.PropertyManager.uh; p1307.hatId = vO4.PropertyManager.vh; } } function f218() { // ======================= // تحديث واجهة الإعدادات // ======================= $("#mm-event-text").replaceWith( '<div class="text-vnxx"><a href="https://www.wormateup.live">privat</a></div>' ); $("#mm-store").after( <div id="mm-settings" style="float:right;position:relative;margin-right:10px;min-width:140px;"> <div id="settings-wrapper"> <div id="openSettings" style="cursor:pointer;"> <i class="fa fa-cog fa-spin" style="color:yellow;font-size:25px;"></i> Settings </div> <div id="popup" class="popup" style="display:none;"> <div class="phdr1" style="display:flex;align-items:center;justify-content:center;"> <i class="fa fa-cog fa-spin" style="color:yellow;font-size:22px;margin-right:5px;"></i> <span>Game Settings</span> </div> <button id="closePopup">Close</button> <div class="tab-buttons" style="display:flex;gap:5px;margin:10px 0;"> <button data-tab="game" class="active">Game</button> <button data-tab="messages">Messages</button> </div> <div class="tab-content active" id="tab-game"> <div style="margin-bottom:5px;"> ID: <input type="text" value="${vO4.FB_UserID}" readonly style="width:100px;"> <button id="copyID">COPY</button> </div> <label> Eat Fast: <input type="checkbox" id="eatFast"> </label> <label> Headshot Sound: <input type="checkbox" id="hsSound"> </label> <select id="soundSelect"> <option value="">None</option> <option value="https://wormup.in/video/monster-kill-hahaha.MP3">Kill</option> <option value="https://wormateup.live/images/store/hs_2.mp3">HS</option> </select> </div> <div class="tab-content" id="tab-messages"> <div style="margin-bottom:5px;"> Kill Message: <select id="killSelect"> <option value="Well Done!">حاول مجددا بوت !</option> <option value="Nice Try">حريكااا الحيط</option> </select> </div> <div style="margin-bottom:5px;"> Headshot Message: <select id="headshotSelect"> <option value="HEADSHOT">اديلو ادي</option> <option value="BOOM">علوبي بوت</option> </select> </div> <button id="saveMessages">Save</button> </div> </div> </div> </div> ); // ======================= // عناصر التحكم // ======================= const popup = $("#popup"); const audio = new Audio(); // فتح وغلق البوب اب $("#openSettings").on("click", () => popup.show()); $("#closePopup").on("click", () => popup.hide()); // نسخ الـ ID $("#copyID").on("click", () => navigator.clipboard.writeText(vO4.FB_UserID)); // التبويبات $(".tab-buttons button").on("click", function () { $(".tab-buttons button").removeClass("active"); $(this).addClass("active"); $(".tab-content").removeClass("active"); $("#tab-" + $(this).data("tab")).addClass("active"); }); // التحكم بالصوت $("#soundSelect").on("change", function () { const src = this.value; localStorage.setItem("hsSoundSrc", src); if ($("#hsSound").prop("checked")) { audio.src = src; audio.play(); } }); $("#hsSound").on("change", function () { localStorage.setItem("hsSoundEnabled", this.checked); if (!this.checked) audio.pause(); }); // حفظ الرسائل $("#saveMessages").on("click", () => { localStorage.setItem("killMsg", $("#killSelect").val()); localStorage.setItem("hsMsg", $("#headshotSelect").val()); alert("Messages saved!"); }); // ======================= // تحميل الإعدادات المخزنة // ======================= (function loadSettings() { $("#killSelect").val(localStorage.getItem("killMsg")); $("#headshotSelect").val(localStorage.getItem("hsMsg")); $("#hsSound").prop("checked", localStorage.getItem("hsSoundEnabled") === "true"); $("#soundSelect").val(localStorage.getItem("hsSoundSrc")); })(); $("#PortionSize").on("input", function () { vO4.PortionSize = $(this).val(); localStorage.PotenciadorSize = vO4.PortionSize; }); $("#PortionAura").on("input", function () { vO4.PortionAura = $(this).val(); localStorage.PotenciadorAura = vO4.PortionAura; }); $("#smoothCamera").on("input", function () { vO4.smoothCamera = $(this).val(); localStorage.smoothCamera = vO4.smoothCamera; }); $("#FoodSize").on("input", function () { vO4.FoodSize = $(this).val(); localStorage.ComidaSize = vO4.FoodSize; }); $("#FoodShadow").on("input", function () { vO4.FoodShadow = $(this).val(); localStorage.ComidaShadow = vO4.FoodShadow; });
      // تحديث محتوى النصائح
 $("#mm-advice-cont").html(`
