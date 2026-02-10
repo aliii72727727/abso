@@ -7597,39 +7597,16 @@ window.addEventListener("load", function () {
         });
       });
     });
-    // تعريف الدالة أولاً
-let vF179 = function () {
-  if ($("#game-canvas").length) {
-    $("#game-canvas").after(`
-      <div id="zoom-container">
-        <div id="zoom-in">+</div>
-        <div id="zoom-out">-</div>
-      </div>
-    `);
-  } else {
-    console.warn("game-canvas not found");
-  }
-};
-
-// تشغيل الكود بعد جاهزية الصفحة
-$(document).ready(function () {
-
-  let vUndefined28 = f148();
-  if (vUndefined28 && typeof vUndefined28.v === "function") {
+    vUndefined28 = f148();
     vUndefined28.v();
-  }
-
-  if (vF88()) {
-    f130(
-      "https://haylamday.com/js/joy.min.js",
-      "mobileconfig",
-      function () {
+    if (vF88()) {
+      f130("https://haylamday.com/js/joy.min.js", "mobileconfig", function () {
         vF179();
-      }
-    );
-  }
-
-});
+      });
+    }
+    let vF179 = function () {
+      $("#game-canvas").after("<div id='zoom-container'><div id='zoom-in'>+</div><div id='zoom-out'>-</div></div>");
+    };
     window.keyMove = "q";
     window.addEventListener("keydown", function (p1306) {
       console.log("event.key: " + p1306.key);
