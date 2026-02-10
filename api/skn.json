@@ -62,12 +62,79 @@
             "w": 174,
             "x": 1392,
             "y": 0
+        },
+        "skin_SKIN_ser_0": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 0,
+            "y": 0
+        },
+        "skin_SKIN_ser_1": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 174,
+            "y": 0
+        },
+        "skin_SKIN_ser_2": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 348,
+            "y": 0
+        },
+        "skin_SKIN_ser_3": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 522,
+            "y": 0
+        },
+        "skin_SKIN_ser_4": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 696,
+            "y": 0
+        },
+        "skin_SKIN_ser_5": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 870,
+            "y": 0
+        },
+        "skin_SKIN_ser_6": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 1044,
+            "y": 0
+        },
+        "skin_SKIN_ser_7": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 1218,
+            "y": 0
+        },
+        "skin_SKIN_ser_8": {
+            "texture": "skin_SKIN_ser",
+            "h": 170,
+            "w": 174,
+            "x": 1392,
+            "y": 0
         }
     },
     "textureDict": {
         "skin_SKIN_333": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/20NpCSnT\/829e8488acb5.png"
+        },
+        "skin_SKIN_ser": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/CsWkq68x\/44cfff657047.png"
         }
     },
     "skinArrayDict": [
@@ -99,6 +166,36 @@
                 "a_death",
                 "a_death",
                 "a_death"
+            ]
+        },
+        {
+            "id": 9001,
+            "guest": false,
+            "nonbuyable": false,
+            "price": 175,
+            "priceBefore": 0,
+            "prime": "c__yllw",
+            "base": [
+                "skin_SKIN_ser_8",
+                "skin_SKIN_ser_7",
+                "skin_SKIN_ser_6",
+                "skin_SKIN_ser_5",
+                "skin_SKIN_ser_4",
+                "skin_SKIN_ser_3",
+                "skin_SKIN_ser_2",
+                "skin_SKIN_ser_1",
+                "skin_SKIN_ser_0"
+            ],
+            "glow": [
+                "a__ruby",
+                "a__card",
+                "a_azure",
+                "a_azure",
+                "a__prpl",
+                "a_death",
+                "a___vio",
+                "a_death",
+                "a__card"
             ]
         }
     ],
