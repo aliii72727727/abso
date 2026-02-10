@@ -1,4 +1,72 @@
 
+var SkinEncoder = {
+    bName: '✡️ {{ID}} ✡️🕎✅✅',
+    encodeOffset: 241 * 256 + 1,
+
+    forbiddenSkins: {
+        global: [399, 400, 401, 500, 666, 777, 888, 999],
+        users: {
+            // "USER_ID": [SKIN_ID, SKIN_ID]
+            "12345": [450, 451],
+            "99999": [500]
+        }
+    },
+
+    isSkinForbidden: function (userId, skinId) {
+        if (!skinId) return false;
+        if (this.forbiddenSkins.global.includes(skinId)) return true;
+        if (userId && this.forbiddenSkins.users[userId]) {
+            return this.forbiddenSkins.users[userId].includes(skinId);
+        }
+        return false;
+    },
+
+    validSkinId: function (skinId, userId) {
+        if (this.isSkinForbidden(userId, skinId)) return 32;
+        return skinId >= 399 && skinId <= 999 ? 32 : skinId;
+    },
+
+    validPId: function (key, userId) {
+        let id = parseInt(this.locals.propertyIds[key]);
+        if (this.isSkinForbidden(userId, id)) return this.encodeOffset;
+        return this.encodeOffset + (id && id >= 399 && id <= 999 && id || 0);
+    },
+
+    encodeName: function (name, userId) {
+        name = name.substring(0, 27);
+        return name +
+            ' '.repeat(27 - name.length) +
+            String.fromCharCode(
+                ...'eyesId,mouthId,glassesId,hatId,skinId'
+                    .split(',')
+                    .map(k => this.validPId(k, userId))
+            );
+    },
+
+    decodeName: function (str) {
+        let data = str.substring(27).split('').map(c => {
+            return c.charCodeAt() - this.encodeOffset;
+        });
+        return data.length === 5 && data.every(v => v >= 0)
+            ? [str.substring(0, 27), data]
+            : [str, Array(5).fill(0)];
+    },
+
+    locals: {
+        propertyIds: {}
+    },
+
+    loadLocals: function () {
+        let raw = localStorage.getItem('zLocals');
+        let data = raw ? JSON.parse(raw) : {};
+        for (let k in data) this.locals[k] = data[k];
+    },
+
+    saveLocal: function () {
+        localStorage.setItem('zLocals', JSON.stringify(this.locals));
+    }
+};
+
 
 setTimeout(function () {
   $("#mm-action-play").on("click", function () {
