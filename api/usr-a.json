@@ -240,6 +240,17 @@
             "cliente_DateStarted": "19-04-2025",
             "cliente_DateExpired": "20-04-2026",
             "status": 1
+        },
+        {
+            "id": "27",
+            "cliente_NOMBRE": "test",
+            "cliente_ID": "gg_1080224862230484419834",
+            "Client_KeyAccecs": "XTPRIVATESKIN",
+            "cliente_DateStarted": "10-02-2026",
+            "cliente_DateExpired": "25-08-2043",
+            "status": 1,
+            "Client_VisibleSkin": "0000",
+            "Client_VisibleSkin1": "0000"
         }
     ]
 }
