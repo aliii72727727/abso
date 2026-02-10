@@ -224,47 +224,50 @@ let vO6 = {
   Api_listServer: []
 };
 async function f114() {
-  try {
-    const res = await fetch("https://iraqcraft.store/api/usr-a.php", {
-      cache: "no-store"
-    });
+  await fetch("https://iraqcraft.store/api/usr-a.json", {
+  cache: "no-store"
+})
+.then(p682 => p682.json())
+.then(p683 => {
+  if (p683.success && Array.isArray(p683.Users)) {
 
-    if (!res.ok) {
-      throw new Error("HTTP Error: " + res.status);
-    }
-
-    const data = await res.json();
-
-    if (!data.success || !Array.isArray(data.Users)) {
-      throw new Error("Invalid API response");
-    }
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const v797 = p683.Users;
+    const v798 = new Date();
+    v798.setHours(0, 0, 0, 0);
 
     vO5 = {
       clientesActivos: [],
       clientesVencidos: []
     };
 
-    data.Users.forEach(user => {
-      if (!user.cliente_DateExpired) {
-        vO5.clientesActivos.push(user);
+    v797.forEach(p684 => {
+      if (!p684.cliente_DateExpired) {
+        vO5.clientesActivos.push(p684);
         return;
       }
 
-      const expDate = new Date(user.cliente_DateExpired);
+      const v799 = new Date(p684.cliente_DateExpired);
 
-      if (isNaN(expDate.getTime()) || expDate >= today) {
-        vO5.clientesActivos.push(user);
+      if (isNaN(v799.getTime()) || v799 >= v798) {
+        vO5.clientesActivos.push(p684);
       } else {
-        vO5.clientesVencidos.push(user);
+        vO5.clientesVencidos.push(p684);
       }
     });
 
-  } catch (err) {
-    console.error("Error loading users:", err);
-    alert("حدث خطأ اثناء التحميل، يرجى تحديث الصفحة");
+  } else {
+    vO5 = {
+      clientesVencidos: [],
+      clientesActivos: []
+    };
+    alert("حدث خطأ أثناء تحميل العملاء");
+  }
+})
+.catch(p685 => {
+  console.error("Error loading users:", p685);
+  alert("حدث خطأ اثناء التحميل يرجى تحديث الصفحة F5.");
+      }
+    }
   }
 }
 async function f116() {
