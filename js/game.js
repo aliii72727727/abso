@@ -224,7 +224,7 @@ let vO6 = {
   Api_listServer: []
 };
 async function f114() {
-  await fetch("https://iraqcraft.store/api/usr-a.json", {
+  await fetch("https://iraqcraft.store/api/usr-a.php", {
   cache: "no-store"
 })
 .then(p682 => p682.json())
