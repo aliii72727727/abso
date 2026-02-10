@@ -224,47 +224,47 @@ let vO6 = {
   Api_listServer: []
 };
 async function f114() {
-  await fetch("https://iraqcraft.store/api/usr-a.json").then(p682 => p682.json()).then(p683 => {
-    if (p683.success) {
-      let v797 = p683.Users;
-      const v798 = new Date();
-      v798.setHours(0, 0, 0, 0);
-      vO5.clientesActivos = v797.filter(p684 => {
-        if (p684.cliente_DateExpired) {
-          const v799 = new Date(p684.cliente_DateExpired);
-          return v799 >= v798;
-        }
-        return true;
-      });
-    } else {
-      vO5 = {
-        clientesVencidos: [],
-        clientesActivos: []
-      };
-      alert("حدث خطأ أثناء تحميل العملاء");
+  try {
+    const res = await fetch("https://iraqcraft.store/api/usr-a.php", {
+      cache: "no-store"
+    });
+
+    if (!res.ok) {
+      throw new Error("HTTP Error: " + res.status);
     }
-  }).catch(p685 => {
-    console.error("Error loading users:", p685);
-    alert("حدث خطأ اثناء التحميل يرجي تحديث الصفحة F5.");
-  });
-}
-async function f115(p686, p687 = 3, p688 = 2000) {
-  for (let vLN1 = 1; vLN1 <= p687; vLN1++) {
-    try {
-      const v800 = await fetch(p686);
-      if (!v800.ok) {
-        throw new Error("HTTP error! status: " + v800.status);
+
+    const data = await res.json();
+
+    if (!data.success || !Array.isArray(data.Users)) {
+      throw new Error("Invalid API response");
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    vO5 = {
+      clientesActivos: [],
+      clientesVencidos: []
+    };
+
+    data.Users.forEach(user => {
+      if (!user.cliente_DateExpired) {
+        vO5.clientesActivos.push(user);
+        return;
       }
-      const v801 = await v800.json();
-      return v801;
-    } catch (e4) {
-      console.error("Attempt " + vLN1 + " failed: " + e4.message);
-      if (vLN1 < p687) {
-        await new Promise(p689 => setTimeout(p689, p688));
+
+      const expDate = new Date(user.cliente_DateExpired);
+
+      if (isNaN(expDate.getTime()) || expDate >= today) {
+        vO5.clientesActivos.push(user);
       } else {
-        throw e4;
+        vO5.clientesVencidos.push(user);
       }
-    }
+    });
+
+  } catch (err) {
+    console.error("Error loading users:", err);
+    alert("حدث خطأ اثناء التحميل، يرجى تحديث الصفحة");
   }
 }
 async function f116() {
