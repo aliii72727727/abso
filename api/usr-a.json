@@ -262,6 +262,17 @@
             "status": 1,
             "Client_VisibleSkin": "0000",
             "Client_VisibleSkin1": "0000"
+        },
+        {
+            "id": "28",
+            "cliente_NOMBRE": "Zozo As",
+            "cliente_ID": "gg_115844072933581819130",
+            "Client_KeyAccecs": "XTPRIVATESKIN",
+            "cliente_DateStarted": "10-02-2026",
+            "cliente_DateExpired": "11-01-2055",
+            "status": 1,
+            "Client_VisibleSkin": "0000",
+            "Client_VisibleSkin1": "0000"
         }
     ]
 }
