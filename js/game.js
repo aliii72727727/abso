@@ -7956,103 +7956,131 @@ $(document).ready(function () {
       $(".mm-merchant").replaceWith("");
 
 $(".description-text").replaceWith(`
-  <div class="description-text" style="background:#ffffff;padding:15px;border-radius:8px;">
+  <div class="description-text" style="width:100%; max-width:100%;">
 
-    <!-- الإطار العلوي الأبيض -->
-    <div style="border:3px solid #ffffff;background:#ffffff;padding:10px;text-align:center;border-radius:8px;margin-bottom:15px;">
-      <div style="font-size:20px;font-weight:bold;color:#000;">
-        SERVERS LIST
+    <!-- إطار علوي أبيض عريض -->
+    <div style="
+        border: 3px solid #ffffff;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        padding: 12px;
+        text-align: center;
+        background: rgba(255,255,255,0.15);
+        box-shadow: 0 0 15px rgba(255,255,255,0.4);
+    ">
+      <div style="
+          font-weight: bold;
+          color: #ffffff;
+          font-size: 18px;
+          letter-spacing: 1px;
+      ">
+        Wormate BMW Connect
       </div>
     </div>
+    
+    <div class="description-text-test" style="
+        background: rgba(255,255,255,0.08);
+        padding: 15px;
+        border-radius: 12px;
+        border: 2px solid rgba(255,255,255,0.4);
+    ">
 
-    <!-- تبويبات ألمانيا وفرنسا -->
-    <div style="text-align:center;margin-bottom:15px;">
-      <button class="server-tab active" data-region="germany"
-        style="padding:8px 20px;margin:5px;font-size:16px;font-weight:bold;border-radius:6px;border:none;cursor:pointer;background:#000;color:#fff;">
-        🇩🇪 Germany
-      </button>
+      <ul style="margin-top:5px; display:flex; justify-content:center;" class="ui-tabs-nav">
+        <li class="ui-tabs-tab ui-tab ui-tab-active" style="
+            padding:8px 15px;
+            border-radius:8px;
+            background: rgba(255,255,255,0.2);
+            border:1px solid white;
+        ">
+          <a style="display:flex; align-items:center;">
+            <span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span>
+            <span style="color: white; margin-left: 8px; font-weight:bold;">
+              Germany Server
+            </span>
+          </a>
+        </li>
+      </ul>
 
-      <button class="server-tab" data-region="france"
-        style="padding:8px 20px;margin:5px;font-size:16px;font-weight:bold;border-radius:6px;border:none;cursor:pointer;background:#ccc;color:#000;">
-        🇫🇷 France
-      </button>
+      <div class="bao-list2">
+        <div class="servers-container" style="width:100%;">
+
+          <div class="servers-germania" style="
+              display:block;
+              margin-top:15px;
+              background: rgba(255,255,255,0.12);
+              padding:20px;
+              border-radius:12px;
+              border:2px solid white;
+              box-shadow: 0 0 20px rgba(255,255,255,0.3);
+              text-align:center;
+          ">
+              <img src="https://i.ibb.co/21vs6dJX/image.jpg"
+                   alt="Germany Server"
+                   style="
+                     width:100%;
+                     max-width:450px;
+                     border-radius:12px;
+                     border:3px solid white;
+                     box-shadow:0 0 15px rgba(255,255,255,0.5);
+                   ">
+              <div style="
+                   margin-top:15px;
+                   font-weight:bold;
+                   font-size:16px;
+                   color:#ffffff;
+                   text-shadow:0 0 8px white;
+              ">
+                Germany Server Active
+              </div>
+          </div>
+
+          <!-- رقم التواصل -->
+          <div style="
+              border: 2px solid #ffffff;
+              border-radius: 12px;
+              margin-top: 20px;
+              padding: 15px;
+              text-align: center;
+              background: rgba(255,255,255,0.15);
+              box-shadow: 0 0 15px rgba(255,255,255,0.4);
+          ">
+            <div style="
+                font-weight: bold;
+                color: white;
+                font-size: 14px;
+                margin-bottom: 8px;
+                letter-spacing:1px;
+            ">
+              CONTACT NUMBER
+            </div>
+            <div style="
+                color: #00ff88;
+                font-size: 18px;
+                font-weight:bold;
+                text-shadow:0 0 10px #00ff88;
+            ">
+              +9647737458879
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-
-    <!-- مكان عرض السيرفرات -->
-    <div id="servers-list"></div>
-
   </div>
 `);
 
-
-// سحب السيرفرات من API
-fetch("https://iraqcraft.store/api/sr-avr.json")
-  .then(res => res.json())
-  .then(data => {
-
-    if (!data.success) return;
-
-    const serversContainer = $("#servers-list");
-
-    data.servers.forEach(server => {
-
-      const serverBox = $(`
-        <div class="server-box"
-          data-region="${server.region}"
-          data-url="${server.serverUrl}"
-          style="
-            background:#111;
-            color:#ccc;
-            margin-bottom:12px;
-            padding:15px;
-            border-radius:8px;
-            font-size:18px;
-            font-weight:bold;
-            cursor:pointer;
-            transition:0.2s;
-          ">
-          ${server.name}
-        </div>
-      `);
-
-      serversContainer.append(serverBox);
-    });
-
-    filterServers("germany"); // افتراضياً ألمانيا
-  });
-
-
-// فلترة حسب الدولة
-function filterServers(region) {
-
-  $(".server-tab").removeClass("active")
-    .css({background:"#ccc",color:"#000"});
-
-  $(`.server-tab[data-region="${region}"]`)
-    .addClass("active")
-    .css({background:"#000",color:"#fff"});
-
-  $(".server-box").each(function(){
-    if ($(this).data("region") == region) {
-      $(this).show();
-    } else {
-      $(this).hide();
-    }
-  });
-}
-
-
-// حدث الضغط على التبويبات
-$(document).on("click",".server-tab",function(){
-  const region = $(this).data("region");
-  filterServers(region);
+$(".ui-tab").on("click", function () {
+  $(".ui-tab").removeClass("ui-tab-active");
+  $(this).addClass("ui-tab-active");
+  $(".servers-germania").fadeIn(200);
 });
 
-
-// عند الضغط على السيرفر (بدون connect admin)
-$(document).on("click",".server-box",function(){
-  const url = $(this).data("url");
-  console.log("Selected Server:", url);
+$(".flag").on("click", function () {
+  let v1331 = $(this).attr("value");
+  vO4.flag = v1331;
+  vO7.containerImgS.texture = vO7.onclickServer;
+  retundFlagError();
+  console.log(v1331);
 });
       for (a = 0; a < vO6.Api_listServer.length; a++) {
         var v1332 = vO6.Api_listServer[a].serverUrl;
