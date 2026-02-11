@@ -1,8 +1,12 @@
 [
   {
-    "name": "IraqCraft",
-    "image": "https://i.ibb.co/Kx1SFrvG/image.webp",
-    "link": "https://iraqcraft.store",
-    "expire": "2026-12-31"
+    "image-url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
+    "link-ads": "https://discord.gg/W7VpDMfGqx",
+    "expreid-date": "2026-12-31"
+  },
+  {
+    "image-url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Iraq.svg",
+    "link-ads": "https://discord.gg/W7VpDMfGqx",
+    "expreid-date": "2026-12-31"
   }
 ]
