@@ -284,6 +284,17 @@
             "status": 1,
             "Client_VisibleSkin": "1022",
             "Client_VisibleSkin1": "1202"
+        },
+        {
+            "id": 30,
+            "cliente_NOMBRE": "BMW ʟ̤ɾʅɹɹɹɹ̣ـc",
+            "cliente_ID": "gg_422751170055181500",
+            "Client_KeyAccecs": "BMW-E089874E-2187",
+            "cliente_DateStarted": "02-12-2026",
+            "cliente_DateExpired": "06-03-2282",
+            "status": 1,
+            "Client_VisibleSkin": "1022",
+            "Client_VisibleSkin1": "1202"
         }
     ]
 }
