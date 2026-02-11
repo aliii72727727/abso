@@ -7907,62 +7907,259 @@ $(document).ready(function () {
 
 $(".description-text").replaceWith(`
   <div class="description-text">
-    <!-- إطار أبيض أعلى قائمة السيرفرات -->
-    <div style="border: 2px solid white; border-radius: 5px; margin-bottom: 10px; padding: 5px; text-align: center; background: rgba(255,255,255,0.1);">
-      <div style="font-weight: bold; color: white; font-size: 14px;">
-        Wormate Bmw Connect
+    <!-- الإطار العلوي الأبيض -->
+    <div style="
+      background: white;
+      border-radius: 8px 8px 0 0;
+      padding: 15px;
+      margin-bottom: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    ">
+      <div style="
+        font-weight: bold;
+        color: #333;
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: 1px;
+      ">
+        Wormate Servers List
       </div>
     </div>
     
-    <div class="description-text-test">
-      <ul style="margin-top:5px;" class="ui-tabs-nav">
-        <!-- سيرفر ألمانيا فقط -->
-        <li class="ui-tabs-tab ui-tab ui-tab-active" style="margin:-5px">
-          <a>
-            <span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span>
-            <span style="color: white; margin-left: 5px;">Germany Server</span>
-          </a>
-        </li>
-      </ul>
-
-      <div class="bao-list2">
-        <div class="servers-container">
-          <!-- عرض سيرفر ألمانيا فقط -->
-          <div class="servers-germania" style="display: block;">
-            <!-- محتوى سيرفر ألمانيا -->
-            <div style="text-align: center; color: white; padding: 10px;">
-              <img src="https://i.ibb.co/21vs6dJX/image.jpg" alt="Germany Server" style="max-width: 100%; border-radius: 5px;">
-              <div style="margin-top: 10px; font-weight: bold;">Germany Server Active</div>
+    <!-- جدول السيرفرات -->
+    <div class="servers-table-container" style="background: rgba(255,255,255,0.95); padding: 15px; border-radius: 0 0 8px 8px;">
+      <!-- رأس الجدول -->
+      <div style="
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 10px;
+        padding: 12px 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 6px;
+        margin-bottom: 10px;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+      ">
+        <div>NAME</div>
+        <div>REGION</div>
+        <div>OF/ON</div>
+        <div>STREAMER</div>
+      </div>
+      
+      <!-- قائمة السيرفرات -->
+      <div class="servers-list">
+        <!-- سيرفر ألمانيا -->
+        <div style="
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: 10px;
+          padding: 15px;
+          margin-bottom: 8px;
+          background: #f8f9fa;
+          border-radius: 6px;
+          border-left: 4px solid #4CAF50;
+          align-items: center;
+          transition: all 0.3s ease;
+        " class="server-item" 
+          data-server="germany" 
+          data-region="EU" 
+          data-status="online" 
+          data-streamer="WormateTV">
+          
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://i.imgur.com/VgCH8iy.png" 
+                 alt="Germany Flag" 
+                 style="width: 30px; height: 20px; border-radius: 3px; object-fit: cover;">
+            <div>
+              <div style="font-weight: bold; color: #333; font-size: 16px;">Germany Server</div>
+              <div style="color: #666; font-size: 12px;">Premium Low Latency</div>
             </div>
           </div>
           
-          <!-- إضافة NUBER أسفل قائمة السيرفرات -->
-          <div style="border: 1px solid white; border-radius: 5px; margin-top: 15px; padding: 10px; text-align: center; background: rgba(255,255,255,0.1);">
-            <div style="font-weight: bold; color: white; font-size: 12px; margin-bottom: 5px;">NUBER</div>
-            <div style="color: #4CAF50; font-size: 14px;">+9647737458879</div>
+          <div style="color: #333; font-weight: 500;">EUROPE</div>
+          
+          <div>
+            <span style="
+              background: #4CAF50;
+              color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              font-weight: bold;
+            ">ONLINE</span>
           </div>
+          
+          <div style="color: #2196F3; font-weight: 500;">@WormateTV</div>
         </div>
+        
+        <!-- سيرفر أمريكا (مثال) -->
+        <div style="
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: 10px;
+          padding: 15px;
+          margin-bottom: 8px;
+          background: #f8f9fa;
+          border-radius: 6px;
+          border-left: 4px solid #FF9800;
+          align-items: center;
+          transition: all 0.3s ease;
+        " class="server-item" 
+          data-server="usa" 
+          data-region="NA" 
+          data-status="online" 
+          data-streamer="WormateUS">
+          
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://i.imgur.com/w6QZf7P.png" 
+                 alt="USA Flag" 
+                 style="width: 30px; height: 20px; border-radius: 3px; object-fit: cover;">
+            <div>
+              <div style="font-weight: bold; color: #333; font-size: 16px;">USA Server</div>
+              <div style="color: #666; font-size: 12px;">East Coast</div>
+            </div>
+          </div>
+          
+          <div style="color: #333; font-weight: 500;">NORTH AMERICA</div>
+          
+          <div>
+            <span style="
+              background: #4CAF50;
+              color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              font-weight: bold;
+            ">ONLINE</span>
+          </div>
+          
+          <div style="color: #2196F3; font-weight: 500;">@WormateUS</div>
+        </div>
+        
+        <!-- سيرفر آسيا (مثال) -->
+        <div style="
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: 10px;
+          padding: 15px;
+          margin-bottom: 8px;
+          background: #f8f9fa;
+          border-radius: 6px;
+          border-left: 4px solid #9C27B0;
+          align-items: center;
+          transition: all 0.3s ease;
+        " class="server-item" 
+          data-server="singapore" 
+          data-region="ASIA" 
+          data-status="offline" 
+          data-streamer="WormateASIA">
+          
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://i.imgur.com/4GXHZyY.png" 
+                 alt="Singapore Flag" 
+                 style="width: 30px; height: 20px; border-radius: 3px; object-fit: cover;">
+            <div>
+              <div style="font-weight: bold; color: #333; font-size: 16px;">Singapore Server</div>
+              <div style="color: #666; font-size: 12px;">Coming Soon</div>
+            </div>
+          </div>
+          
+          <div style="color: #333; font-weight: 500;">SOUTHEAST ASIA</div>
+          
+          <div>
+            <span style="
+              background: #f44336;
+              color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              font-weight: bold;
+            ">OFFLINE</span>
+          </div>
+          
+          <div style="color: #9E9E9E; font-weight: 500;">@WormateASIA</div>
+        </div>
+      </div>
+      
+      <!-- معلومات الاتصال -->
+      <div style="
+        margin-top: 20px;
+        padding: 15px;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        border-radius: 8px;
+        text-align: center;
+        color: white;
+      ">
+        <div style="font-weight: bold; font-size: 14px; margin-bottom: 5px;">CONTACT ADMIN</div>
+        <div style="font-size: 18px; font-weight: bold; letter-spacing: 1px;">+964 773 745 8879</div>
+        <div style="font-size: 12px; margin-top: 5px; opacity: 0.9;">Available 24/7 for support</div>
       </div>
     </div>
   </div>
 `);
 
-// التعامل مع النقر على التبويبات (إذا كان هناك تبويب واحد فقط، يمكن تبسيطه)
-$(".ui-tab").on("click", function () {
-  $(".ui-tab").removeClass("ui-tab-active");
-  $(this).addClass("ui-tab-active");
+// إضافة تأثيرات تفاعلية
+$(document).ready(function() {
+  // تأثير عند المرور على السيرفر
+  $(".server-item").hover(
+    function() {
+      $(this).css({
+        'transform': 'translateY(-2px)',
+        'box-shadow': '0 5px 15px rgba(0,0,0,0.1)',
+        'background': '#ffffff'
+      });
+    },
+    function() {
+      $(this).css({
+        'transform': 'translateY(0)',
+        'box-shadow': 'none',
+        'background': '#f8f9fa'
+      });
+    }
+  );
   
-  // نظراً لأن لدينا سيرفر واحد فقط (ألمانيا)، نعرضه دائمًا
-  $(".servers-germania").show();
+  // النقر على السيرفر
+  $(".server-item").on("click", function() {
+    const serverName = $(this).data("server");
+    const region = $(this).data("region");
+    const status = $(this).data("status");
+    const streamer = $(this).data("streamer");
+    
+    // عرض تفاصيل السيرفر
+    alert(`Selected Server:\n\n` +
+          `Name: ${$(this).find("div:first-child div:first-child").text()}\n` +
+          `Region: ${region}\n` +
+          `Status: ${status.toUpperCase()}\n` +
+          `Streamer: ${streamer}`);
+    
+    // إضافة تأثير اختيار
+    $(".server-item").css('border-left', '4px solid #ddd');
+    $(this).css('border-left', '4px solid #2196F3');
+  });
+  
+  // فلترة حسب الحالة
+  $("span[style*='background: #4CAF50'], span[style*='background: #f44336']").on("click", function() {
+    const status = $(this).text().toLowerCase();
+    
+    $(".server-item").each(function() {
+      if (status === "all" || $(this).data("status") === status) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
 });
 
-$(".flag").on("click", function () {
-  let v1331 = $(this).attr("value");
-  vO4.flag = v1331;
-  vO7.containerImgS.texture = vO7.onclickServer;
-  retundFlagError();
-  console.log(v1331);
-});
+// دالة تحديث حالة السيرفرات
+function updateServerStatus() {
+  // هنا يمكنك إضافة كود للتحقق من حالة السيرفرات الحقيقية
+  console.log("Updating server status...");
+}
+
+// تحديث كل 30 ثانية
+setInterval(updateServerStatus, 30000);
       for (a = 0; a < vO6.Api_listServer.length; a++) {
         var v1332 = vO6.Api_listServer[a].serverUrl;
         var v1333 = vO6.Api_listServer[a].name;
