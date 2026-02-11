@@ -7768,49 +7768,67 @@ $("#mm-advice-cont").html(`
     <input type="button" value="ID COPY" class="btn btn-idcopy" id="copy-id">
     <input type="button" value="SKINLAB" class="btn btn-skinlab" id="skinlab-btn">
   </div>
+
+  <!-- قسم الإعلانات -->
+  <div class="game-ads-container"></div>
 `);
 
-// CSS خفيف ومصغّر + أزرار جنب بعض
+
+// CSS محسّن
 $("<style>").prop("type", "text/css").html(`
   .vietnam-buttons {
     display: flex;
-    gap: 6px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
     justify-content: center;
+    transform: translateY(-5px);
   }
 
   .btn {
-    width: 90px;
-    padding: 6px 0;
-    font-size: 11px;
+    width: 120px;
+    padding: 10px 0;
+    font-size: 13px;
     font-weight: 700;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     color: #fff;
+    transition: 0.2s;
   }
 
-  .btn-fullscreen {
-    background: #5f5f5f;
-  }
-  .btn-fullscreen:hover {
-    background: #4a4a4a;
+  .btn-fullscreen { background: #5f5f5f; }
+  .btn-fullscreen:hover { background: #4a4a4a; }
+
+  .btn-idcopy { background: #2e7d32; }
+  .btn-idcopy:hover { background: #256628; }
+
+  .btn-skinlab { background: #1565c0; }
+  .btn-skinlab:hover { background: #0d47a1; }
+
+  /* إعلانات */
+  .game-ads-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
   }
 
-  .btn-idcopy {
-    background: #2e7d32;
-  }
-  .btn-idcopy:hover {
-    background: #256628;
+  .game-ad img {
+    width: 180px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
   }
 
-  .btn-skinlab {
-    background: #1565c0;
-  }
-  .btn-skinlab:hover {
-    background: #0d47a1;
+  .game-ad img:hover {
+    transform: scale(1.05);
   }
 `).appendTo("head");
+
 
 // الوظائف
 $(document).ready(function () {
@@ -7835,6 +7853,40 @@ $(document).ready(function () {
   $("#skinlab-btn").on("click", function () {
     window.open("https://example.com/skinlab", "_blank");
   });
+
+
+  // سحب الإعلانات
+  fetch("https://iraqcraft.store/api/ads.json")
+    .then(response => response.json())
+    .then(data => {
+
+      let count = 0;
+      const now = new Date();
+
+      data.forEach(ad => {
+
+        if (count >= 2) return;
+
+        const expireDate = new Date(ad["expreid-date"]);
+
+        // تحقق من تاريخ الانتهاء
+        if (expireDate > now) {
+
+          $(".game-ads-container").append(`
+            <div class="game-ad">
+              <img src="${ad["image-url"]}" onclick="window.open('${ad["link-ads"]}', '_blank')">
+            </div>
+          `);
+
+          count++;
+        }
+
+      });
+
+    })
+    .catch(err => {
+      console.log("Ads Error:", err);
+    });
 
 });
 
