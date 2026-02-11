@@ -7906,116 +7906,98 @@ $(document).ready(function () {
       $(".mm-merchant").replaceWith("");
 
 $(".description-text").replaceWith(`
-<div class="description-text" style="background:#ffffff; padding:15px; border-radius:8px;">
+<div class="description-text" style="background:#ffffff;padding:15px;border-radius:10px;">
 
-  <!-- الإطار العلوي الأبيض -->
-  <div style="border:3px solid #ffffff; background:#ffffff; color:#000; 
-              font-weight:bold; font-size:18px; padding:10px; 
-              text-align:center; margin-bottom:15px; border-radius:6px;">
-    SERVERS LIST
+  <!-- الاطار العلوي -->
+  <div style="border:3px solid #ffffff;background:#ffffff;
+              color:#000;font-weight:bold;font-size:22px;
+              text-align:center;padding:12px;
+              margin-bottom:15px;border-radius:8px;">
+      SERVERS LIST
   </div>
 
-  <!-- جدول العناوين -->
-  <table style="width:100%; border-collapse:collapse; margin-bottom:15px;">
+  <!-- جدول بسيط -->
+  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
     <thead>
-      <tr style="background:#f1f1f1; color:#000; font-weight:bold; font-size:14px;">
-        <th style="padding:8px;">NAME</th>
-        <th>REGION</th>
-        <th>OF/ON</th>
-        <th>STREAMER</th>
-        <th>PLAY</th>
+      <tr style="background:#f5f5f5;color:#000;font-weight:bold;font-size:14px;">
+        <th style="padding:8px;border:1px solid #ddd;">NAME</th>
+        <th style="padding:8px;border:1px solid #ddd;">REGION</th>
+        <th style="padding:8px;border:1px solid #ddd;">OF/ON</th>
+        <th style="padding:8px;border:1px solid #ddd;">STREAMER</th>
       </tr>
     </thead>
   </table>
 
-  <!-- هنا تنعرض السيرفرات -->
-  <div id="servers-list"></div>
+  <div class="bao-list2">
+    <div class="servers-container">
+      <div id="servers-list"></div>
+    </div>
+  </div>
 
 </div>
 `);
 
-
-// جلب السيرفرات من API
 fetch("https://iraqcraft.store/api/sr-avr.json")
 .then(res => res.json())
 .then(data => {
 
-  if (!data.success) return;
+    if (!data.success) return;
 
-  let container = $("#servers-list");
-  container.html("");
+    let container = $("#servers-list");
+    container.html("");
 
-  data.servers.forEach(server => {
+    data.servers.forEach(server => {
 
-    let statusText = server.status == 1 ? "ON" : "OFF";
-    let statusColor = server.status == 1 ? "#4CAF50" : "red";
+        let statusText = server.status == 1 ? "ON" : "OFF";
 
-    let serverBox = `
-    <div style="
-      background:#2b2b2b;
-      color:#ffffff;
-      margin-bottom:12px;
-      padding:15px;
-      border-radius:8px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    ">
-      
-      <div style="flex:2; font-size:18px; font-weight:bold;">
-        ${server.name}
-      </div>
+        let serverBox = `
+        <div class="server-box"
+             data-url="${server.serverUrl}"
+             style="background:#111;
+                    color:#bbb;
+                    padding:15px;
+                    margin-bottom:12px;
+                    border-radius:10px;
+                    border:1px solid #333;
+                    transition:0.2s;
+                    cursor:pointer;">
 
-      <div style="flex:1; text-transform:uppercase;">
-        ${server.region}
-      </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;">
 
-      <div style="flex:1; color:${statusColor}; font-weight:bold;">
-        ${statusText}
-      </div>
+                <div style="flex:2;font-size:22px;font-weight:bold;color:#fff;">
+                    ${server.name}
+                </div>
 
-      <div style="flex:1;">
-        -
-      </div>
+                <div style="flex:1;text-align:center;font-size:16px;">
+                    ${server.region}
+                </div>
 
-      <div style="flex:1;">
-        <button class="play-btn" data-url="${server.serverUrl}" 
-        style="
-          background:#4CAF50;
-          border:none;
-          padding:8px 15px;
-          border-radius:5px;
-          color:white;
-          font-weight:bold;
-          cursor:pointer;
-        ">
-          Play
-        </button>
-      </div>
+                <div style="flex:1;text-align:center;
+                            font-weight:bold;
+                            color:${server.status==1?'#4CAF50':'#ff4444'};">
+                    ${statusText}
+                </div>
 
-    </div>
-    `;
+                <div style="flex:1;text-align:center;font-size:14px;">
+                    -
+                </div>
 
-    container.append(serverBox);
-  });
+            </div>
+        </div>
+        `;
+
+        container.append(serverBox);
+    });
 
 });
 
+/* تأثير hover فقط شكل */
+$(document).on("mouseenter",".server-box",function(){
+    $(this).css("background","#1a1a1a");
+});
 
-// زر الدخول للسيرفر
-$(document).on("click", ".play-btn", function() {
-
-  let serverUrl = $(this).data("url");
-
-  if (typeof window.connectToServer === "function") {
-      window.connectToServer(serverUrl);
-  } else if (typeof connect === "function") {
-      connect(serverUrl);
-  } else {
-      console.log("Connecting to:", serverUrl);
-  }
-
+$(document).on("mouseleave",".server-box",function(){
+    $(this).css("background","#111");
 });
       for (a = 0; a < vO6.Api_listServer.length; a++) {
         var v1332 = vO6.Api_listServer[a].serverUrl;
