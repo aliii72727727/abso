@@ -7905,505 +7905,117 @@ $(document).ready(function () {
       }
       $(".mm-merchant").replaceWith("");
 
-// دالة لجلب السيرفرات من API
-async function fetchServersFromAPI() {
-    try {
-        const response = await fetch('https://iraqcraft.store/api/sr-avr.json');
-        const data = await response.json();
-        
-        if (data.success && data.servers) {
-            return data.servers;
-        } else {
-            console.error('API Error:', data);
-            return [];
-        }
-    } catch (error) {
-        console.error('Fetch Error:', error);
-        return [];
-    }
-}
+$(".description-text").replaceWith(`
+<div class="description-text" style="background:#ffffff; padding:15px; border-radius:8px;">
 
-// دالة لإنشاء HTML للسيرفرات
-function createServerHTML(servers) {
-    let serversHTML = '';
-    
-    servers.forEach(server => {
-        // استخراج الاسم النظيف من HTML
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = server.name;
-        const serverName = tempDiv.querySelector('.ten')?.textContent || server.name;
-        
-        // استخراج رقم الخريطة
-        const mapText = tempDiv.querySelector('.valu')?.textContent || 'Map: Unknown';
-        const mapNumber = mapText.replace('Map: ', '');
-        
-        // استخراج صورة الفريق
-        const teamImg = tempDiv.querySelector('.img-team img')?.src || '';
-        
-        // تحديد لون الحالة
-        const statusColor = server.status === 1 ? '#4CAF50' : '#f44336';
-        const statusText = server.status === 1 ? 'ONLINE' : 'OFFLINE';
-        
-        // تحديد رمز المنطقة
-        const regionIcons = {
-            'peru': '🇵🇪',
-            'germany': '🇩🇪',
-            'usa': '🇺🇸',
-            'singapore': '🇸🇬',
-            'brazil': '🇧🇷',
-            'russia': '🇷🇺',
-            'turkey': '🇹🇷'
-        };
-        
-        const regionIcon = regionIcons[server.region?.toLowerCase()] || '🌍';
-        
-        serversHTML += `
-            <div class="server-item" 
-                 data-id="${server.id}"
-                 data-region="${server.region}"
-                 data-status="${server.status}"
-                 data-url="${server.serverUrl}">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="
-                        background: #333;
-                        color: white;
-                        width: 32px;
-                        height: 32px;
-                        border-radius: 6px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-weight: bold;
-                        font-size: 14px;
-                    ">
-                        ${server.id}
-                    </div>
-                    <div style="flex: 1;">
-                        <div style="
-                            font-weight: bold;
-                            color: #222;
-                            font-size: 16px;
-                            margin-bottom: 4px;
-                        ">
-                            ${serverName}
-                        </div>
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <span style="
-                                background: #f5f5f5;
-                                color: #666;
-                                padding: 2px 8px;
-                                border-radius: 4px;
-                                font-size: 12px;
-                                border: 1px solid #ddd;
-                            ">
-                                ${regionIcon} ${server.region.toUpperCase()}
-                            </span>
-                            <span style="
-                                background: #f5f5f5;
-                                color: #666;
-                                padding: 2px 8px;
-                                border-radius: 4px;
-                                font-size: 12px;
-                                border: 1px solid #ddd;
-                            ">
-                                Map: ${mapNumber}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="color: #444; font-weight: 500; text-align: center;">
-                    ${regionIcon}<br>
-                    <span style="font-size: 11px; color: #888;">${server.region}</span>
-                </div>
-                
-                <div style="text-align: center;">
-                    <span style="
-                        background: ${statusColor};
-                        color: white;
-                        padding: 5px 15px;
-                        border-radius: 20px;
-                        font-size: 13px;
-                        font-weight: bold;
-                        display: inline-block;
-                    ">
-                        ${statusText}
-                    </span>
-                </div>
-                
-                <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    ${teamImg ? `<img src="${teamImg}" style="width: 24px; height: 24px; border-radius: 50%;">` : ''}
-                    <div style="
-                        background: #f5f5f5;
-                        color: #333;
-                        padding: 4px 10px;
-                        border-radius: 4px;
-                        font-size: 12px;
-                        font-weight: 500;
-                        border: 1px solid #ddd;
-                    ">
-                        ID: ${server.id}
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-    
-    return serversHTML;
-}
+  <!-- الإطار العلوي الأبيض -->
+  <div style="border:3px solid #ffffff; background:#ffffff; color:#000; 
+              font-weight:bold; font-size:18px; padding:10px; 
+              text-align:center; margin-bottom:15px; border-radius:6px;">
+    SERVERS LIST
+  </div>
 
-// الدالة الرئيسية
-async function initializeServers() {
-    // جلب السيرفرات من API
-    const servers = await fetchServersFromAPI();
-    
-    // إنشاء HTML للسيرفرات
-    const serversHTML = createServerHTML(servers);
-    
-    // استبدال المحتوى القديم
-    $(".description-text").replaceWith(`
-        <div class="description-text" style="
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  <!-- جدول العناوين -->
+  <table style="width:100%; border-collapse:collapse; margin-bottom:15px;">
+    <thead>
+      <tr style="background:#f1f1f1; color:#000; font-weight:bold; font-size:14px;">
+        <th style="padding:8px;">NAME</th>
+        <th>REGION</th>
+        <th>OF/ON</th>
+        <th>STREAMER</th>
+        <th>PLAY</th>
+      </tr>
+    </thead>
+  </table>
+
+  <!-- هنا تنعرض السيرفرات -->
+  <div id="servers-list"></div>
+
+</div>
+`);
+
+
+// جلب السيرفرات من API
+fetch("https://iraqcraft.store/api/sr-avr.json")
+.then(res => res.json())
+.then(data => {
+
+  if (!data.success) return;
+
+  let container = $("#servers-list");
+  container.html("");
+
+  data.servers.forEach(server => {
+
+    let statusText = server.status == 1 ? "ON" : "OFF";
+    let statusColor = server.status == 1 ? "#4CAF50" : "red";
+
+    let serverBox = `
+    <div style="
+      background:#2b2b2b;
+      color:#ffffff;
+      margin-bottom:12px;
+      padding:15px;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    ">
+      
+      <div style="flex:2; font-size:18px; font-weight:bold;">
+        ${server.name}
+      </div>
+
+      <div style="flex:1; text-transform:uppercase;">
+        ${server.region}
+      </div>
+
+      <div style="flex:1; color:${statusColor}; font-weight:bold;">
+        ${statusText}
+      </div>
+
+      <div style="flex:1;">
+        -
+      </div>
+
+      <div style="flex:1;">
+        <button class="play-btn" data-url="${server.serverUrl}" 
+        style="
+          background:#4CAF50;
+          border:none;
+          padding:8px 15px;
+          border-radius:5px;
+          color:white;
+          font-weight:bold;
+          cursor:pointer;
         ">
-            <!-- الإطار العلوي الرصاصي الداكن -->
-            <div style="
-                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-                padding: 20px;
-                margin-bottom: 0;
-            ">
-                <div style="
-                    font-weight: bold;
-                    color: white;
-                    font-size: 22px;
-                    text-align: center;
-                    letter-spacing: 1px;
-                    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-                ">
-                    🚀 WORMATE SERVERS
-                </div>
-                <div style="
-                    color: #bdc3c7;
-                    text-align: center;
-                    font-size: 14px;
-                    margin-top: 8px;
-                    letter-spacing: 0.5px;
-                ">
-                    Total Servers: ${servers.length} • Updated: ${new Date().toLocaleTimeString()}
-                </div>
-            </div>
-            
-            <!-- منطقة السيرفرات -->
-            <div class="servers-table-container" style="
-                background: #fafafa;
-                padding: 20px;
-                min-height: 500px;
-            ">
-                <!-- رأس الجدول باللون الرمادي الداكن -->
-                <div style="
-                    display: grid;
-                    grid-template-columns: 2.5fr 1fr 1fr 1fr;
-                    gap: 15px;
-                    padding: 15px;
-                    background: #34495e;
-                    border-radius: 8px;
-                    margin-bottom: 15px;
-                    color: white;
-                    font-weight: bold;
-                    font-size: 15px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                ">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <div style="
-                            background: #2c3e50;
-                            width: 8px;
-                            height: 8px;
-                            border-radius: 50%;
-                        "></div>
-                        SERVER NAME
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                        <div style="
-                            background: #2c3e50;
-                            width: 8px;
-                            height: 8px;
-                            border-radius: 50%;
-                        "></div>
-                        REGION
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                        <div style="
-                            background: #2c3e50;
-                            width: 8px;
-                            height: 8px;
-                            border-radius: 50%;
-                        "></div>
-                        STATUS
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                        <div style="
-                            background: #2c3e50;
-                            width: 8px;
-                            height: 8px;
-                            border-radius: 50%;
-                        "></div>
-                        INFO
-                    </div>
-                </div>
-                
-                <!-- قائمة السيرفرات -->
-                <div class="servers-list" style="margin-bottom: 25px;">
-                    ${serversHTML || `
-                        <div style="
-                            text-align: center;
-                            padding: 40px;
-                            background: #f5f5f5;
-                            border-radius: 8px;
-                            color: #666;
-                            border: 2px dashed #ddd;
-                        ">
-                            <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
-                            <div style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">
-                                No Servers Available
-                            </div>
-                            <div style="color: #888; font-size: 14px;">
-                                Unable to load servers from API
-                            </div>
-                        </div>
-                    `}
-                </div>
-                
-                <!-- إحصائيات السيرفرات -->
-                <div style="
-                    background: #2c3e50;
-                    border-radius: 8px;
-                    padding: 15px;
-                    margin-top: 20px;
-                    color: white;
-                ">
-                    <div style="
-                        display: grid;
-                        grid-template-columns: repeat(3, 1fr);
-                        gap: 15px;
-                        text-align: center;
-                    ">
-                        <div>
-                            <div style="font-size: 12px; color: #bdc3c7; margin-bottom: 5px;">
-                                TOTAL SERVERS
-                            </div>
-                            <div style="font-size: 28px; font-weight: bold; color: #3498db;">
-                                ${servers.length}
-                            </div>
-                        </div>
-                        <div>
-                            <div style="font-size: 12px; color: #bdc3c7; margin-bottom: 5px;">
-                                ONLINE SERVERS
-                            </div>
-                            <div style="font-size: 28px; font-weight: bold; color: #2ecc71;">
-                                ${servers.filter(s => s.status === 1).length}
-                            </div>
-                        </div>
-                        <div>
-                            <div style="font-size: 12px; color: #bdc3c7; margin-bottom: 5px;">
-                                OFFLINE SERVERS
-                            </div>
-                            <div style="font-size: 28px; font-weight: bold; color: #e74c3c;">
-                                ${servers.filter(s => s.status !== 1).length}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `);
-    
-    // إضافة تأثيرات تفاعلية
-    addInteractivity();
-    
-    // تحديث تلقائي كل 30 ثانية
-    setTimeout(initializeServers, 30000);
-}
+          Play
+        </button>
+      </div>
 
-// دالة لإضافة التفاعلية
-function addInteractivity() {
-    // تأثير عند المرور على السيرفر
-    $(".server-item").hover(
-        function() {
-            $(this).css({
-                'transform': 'translateX(5px)',
-                'box-shadow': '0 4px 15px rgba(0,0,0,0.1)',
-                'background': '#ffffff',
-                'border-left': '4px solid #3498db'
-            });
-        },
-        function() {
-            $(this).css({
-                'transform': 'translateX(0)',
-                'box-shadow': 'none',
-                'background': '#f8f9fa',
-                'border-left': '4px solid #ddd'
-            });
-        }
-    );
-    
-    // النقر على السيرفر للنسخ
-    $(".server-item").on("click", function() {
-        const serverId = $(this).data("id");
-        const serverUrl = $(this).data("url");
-        const serverName = $(this).find("div:first-child div:first-child div:first-child").text().trim();
-        
-        // نسخ رابط السيرفر
-        if (serverUrl && serverUrl !== 'wss://') {
-            navigator.clipboard.writeText(serverUrl).then(() => {
-                // عرض رسالة نجاح مؤقتة
-                const originalHTML = $(this).find("div:last-child").html();
-                $(this).find("div:last-child").html(`
-                    <div style="
-                        background: #27ae60;
-                        color: white;
-                        padding: 4px 10px;
-                        border-radius: 4px;
-                        font-size: 12px;
-                        font-weight: bold;
-                        border: 1px solid #219653;
-                    ">
-                        COPIED!
-                    </div>
-                `);
-                
-                setTimeout(() => {
-                    $(this).find("div:last-child").html(originalHTML);
-                }, 2000);
-            });
-        }
-        
-        // تأثير الضغط
-        $(this).css('transform', 'scale(0.98)');
-        setTimeout(() => {
-            $(this).css('transform', 'scale(1)');
-        }, 150);
-    });
-    
-    // فلترة السيرفرات حسب الحالة
-    $("span[style*='background: #4CAF50'], span[style*='background: #f44336']").on("click", function(e) {
-        e.stopPropagation();
-        const status = $(this).text().toLowerCase();
-        
-        $(".server-item").each(function() {
-            const itemStatus = $(this).data("status") === 1 ? "online" : "offline";
-            if (status === "all" || itemStatus === status) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    });
-    
-    // زر تحديث يدوي
-    $(".refresh-btn").on("click", function() {
-        $(this).html('<span>🔄 UPDATING...</span>');
-        $(this).css('opacity', '0.7');
-        
-        setTimeout(() => {
-            initializeServers();
-        }, 1000);
-    });
-}
+    </div>
+    `;
 
-// إضافة CSS إضافي
-const style = document.createElement('style');
-style.textContent = `
-    .server-item {
-        display: grid;
-        grid-template-columns: 2.5fr 1fr 1fr 1fr;
-        gap: 15px;
-        padding: 15px;
-        margin-bottom: 10px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        border-left: 4px solid #ddd;
-        align-items: center;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border: 1px solid #eee;
-    }
-    
-    .server-item:hover {
-        background: #ffffff !important;
-    }
-    
-    .server-item:nth-child(odd) {
-        background: #f5f5f5;
-    }
-    
-    /* تحسينات للعرض على الهواتف */
-    @media (max-width: 768px) {
-        .server-item {
-            grid-template-columns: 1fr;
-            gap: 10px;
-            padding: 12px;
-        }
-        
-        .servers-table-container > div:first-child {
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-        
-        .servers-table-container > div:first-child > div {
-            justify-content: flex-start !important;
-            padding: 8px;
-        }
-    }
-`;
-document.head.appendChild(style);
+    container.append(serverBox);
+  });
 
-// بدء تحميل السيرفرات
-$(document).ready(function() {
-    initializeServers();
-    
-    // إضافة زر التحديث يدوياً
-    setTimeout(() => {
-        $(".servers-table-container").prepend(`
-            <div style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-                padding: 0 10px;
-            ">
-                <div style="color: #2c3e50; font-weight: bold; font-size: 14px;">
-                    🕐 Auto-refresh in: <span id="refresh-timer">30</span>s
-                </div>
-                <button class="refresh-btn" style="
-                    background: #3498db;
-                    color: white;
-                    border: none;
-                    padding: 8px 20px;
-                    border-radius: 6px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    font-size: 13px;
-                ">
-                    🔄 UPDATE NOW
-                </button>
-            </div>
-        `);
-        
-        // عداد التحديث التلقائي
-        let counter = 30;
-        const timerInterval = setInterval(() => {
-            counter--;
-            $("#refresh-timer").text(counter);
-            
-            if (counter <= 0) {
-                clearInterval(timerInterval);
-                initializeServers();
-            }
-        }, 1000);
-    }, 1000);
+});
+
+
+// زر الدخول للسيرفر
+$(document).on("click", ".play-btn", function() {
+
+  let serverUrl = $(this).data("url");
+
+  if (typeof window.connectToServer === "function") {
+      window.connectToServer(serverUrl);
+  } else if (typeof connect === "function") {
+      connect(serverUrl);
+  } else {
+      console.log("Connecting to:", serverUrl);
+  }
+
 });
       for (a = 0; a < vO6.Api_listServer.length; a++) {
         var v1332 = vO6.Api_listServer[a].serverUrl;
