@@ -7906,98 +7906,103 @@ $(document).ready(function () {
       $(".mm-merchant").replaceWith("");
 
 $(".description-text").replaceWith(`
-<div class="description-text" style="background:#ffffff;padding:15px;border-radius:10px;">
+  <div class="description-text" style="background:#ffffff;padding:15px;border-radius:8px;">
 
-  <!-- الاطار العلوي -->
-  <div style="border:3px solid #ffffff;background:#ffffff;
-              color:#000;font-weight:bold;font-size:22px;
-              text-align:center;padding:12px;
-              margin-bottom:15px;border-radius:8px;">
-      SERVERS LIST
-  </div>
-
-  <!-- جدول بسيط -->
-  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-    <thead>
-      <tr style="background:#f5f5f5;color:#000;font-weight:bold;font-size:14px;">
-        <th style="padding:8px;border:1px solid #ddd;">NAME</th>
-        <th style="padding:8px;border:1px solid #ddd;">REGION</th>
-        <th style="padding:8px;border:1px solid #ddd;">OF/ON</th>
-        <th style="padding:8px;border:1px solid #ddd;">STREAMER</th>
-      </tr>
-    </thead>
-  </table>
-
-  <div class="bao-list2">
-    <div class="servers-container">
-      <div id="servers-list"></div>
+    <!-- الإطار العلوي الأبيض -->
+    <div style="border:3px solid #ffffff;background:#ffffff;padding:10px;text-align:center;border-radius:8px;margin-bottom:15px;">
+      <div style="font-size:20px;font-weight:bold;color:#000;">
+        SERVERS LIST
+      </div>
     </div>
-  </div>
 
-</div>
+    <!-- تبويبات ألمانيا وفرنسا -->
+    <div style="text-align:center;margin-bottom:15px;">
+      <button class="server-tab active" data-region="germany"
+        style="padding:8px 20px;margin:5px;font-size:16px;font-weight:bold;border-radius:6px;border:none;cursor:pointer;background:#000;color:#fff;">
+        🇩🇪 Germany
+      </button>
+
+      <button class="server-tab" data-region="france"
+        style="padding:8px 20px;margin:5px;font-size:16px;font-weight:bold;border-radius:6px;border:none;cursor:pointer;background:#ccc;color:#000;">
+        🇫🇷 France
+      </button>
+    </div>
+
+    <!-- مكان عرض السيرفرات -->
+    <div id="servers-list"></div>
+
+  </div>
 `);
 
+
+// سحب السيرفرات من API
 fetch("https://iraqcraft.store/api/sr-avr.json")
-.then(res => res.json())
-.then(data => {
+  .then(res => res.json())
+  .then(data => {
 
     if (!data.success) return;
 
-    let container = $("#servers-list");
-    container.html("");
+    const serversContainer = $("#servers-list");
 
     data.servers.forEach(server => {
 
-        let statusText = server.status == 1 ? "ON" : "OFF";
-
-        let serverBox = `
+      const serverBox = $(`
         <div class="server-box"
-             data-url="${server.serverUrl}"
-             style="background:#111;
-                    color:#bbb;
-                    padding:15px;
-                    margin-bottom:12px;
-                    border-radius:10px;
-                    border:1px solid #333;
-                    transition:0.2s;
-                    cursor:pointer;">
-
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;">
-
-                <div style="flex:2;font-size:22px;font-weight:bold;color:#fff;">
-                    ${server.name}
-                </div>
-
-                <div style="flex:1;text-align:center;font-size:16px;">
-                    ${server.region}
-                </div>
-
-                <div style="flex:1;text-align:center;
-                            font-weight:bold;
-                            color:${server.status==1?'#4CAF50':'#ff4444'};">
-                    ${statusText}
-                </div>
-
-                <div style="flex:1;text-align:center;font-size:14px;">
-                    -
-                </div>
-
-            </div>
+          data-region="${server.region}"
+          data-url="${server.serverUrl}"
+          style="
+            background:#111;
+            color:#ccc;
+            margin-bottom:12px;
+            padding:15px;
+            border-radius:8px;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.2s;
+          ">
+          ${server.name}
         </div>
-        `;
+      `);
 
-        container.append(serverBox);
+      serversContainer.append(serverBox);
     });
 
+    filterServers("germany"); // افتراضياً ألمانيا
+  });
+
+
+// فلترة حسب الدولة
+function filterServers(region) {
+
+  $(".server-tab").removeClass("active")
+    .css({background:"#ccc",color:"#000"});
+
+  $(`.server-tab[data-region="${region}"]`)
+    .addClass("active")
+    .css({background:"#000",color:"#fff"});
+
+  $(".server-box").each(function(){
+    if ($(this).data("region") == region) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  });
+}
+
+
+// حدث الضغط على التبويبات
+$(document).on("click",".server-tab",function(){
+  const region = $(this).data("region");
+  filterServers(region);
 });
 
-/* تأثير hover فقط شكل */
-$(document).on("mouseenter",".server-box",function(){
-    $(this).css("background","#1a1a1a");
-});
 
-$(document).on("mouseleave",".server-box",function(){
-    $(this).css("background","#111");
+// عند الضغط على السيرفر (بدون connect admin)
+$(document).on("click",".server-box",function(){
+  const url = $(this).data("url");
+  console.log("Selected Server:", url);
 });
       for (a = 0; a < vO6.Api_listServer.length; a++) {
         var v1332 = vO6.Api_listServer[a].serverUrl;
