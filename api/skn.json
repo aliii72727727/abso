@@ -603,7 +603,37 @@
     ],
     "hatVariantArray": [
         [
+            119
+        ],
+        [
+            208
+        ],
+        [
+            361
+        ],
+        [
+            381
+        ],
+        [
+            582
+        ],
+        [
+            599
+        ],
+        [
+            666
+        ],
+        [
             694
+        ],
+        [
+            745
+        ],
+        [
+            759
+        ],
+        [
+            797
         ],
         [
             835
@@ -1354,7 +1384,7 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": false,
+            "nonbuyable": true,
             "prime": "c_white"
         },
         "955": {
@@ -1367,7 +1397,7 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": false,
+            "nonbuyable": true,
             "prime": "c_white"
         },
         "956": {
@@ -1406,7 +1436,7 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": true,
+            "nonbuyable": false,
             "prime": "c_white"
         },
         "694": {
@@ -1419,7 +1449,137 @@
             "guest": false,
             "price": 0,
             "priceBefore": 0,
-            "nonbuyable": true,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "745": {
+            "id": 745,
+            "base": [
+                {
+                    "region": "hat_745"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "381": {
+            "id": 381,
+            "base": [
+                {
+                    "region": "hat_381"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "208": {
+            "id": 208,
+            "base": [
+                {
+                    "region": "hat_208"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "759": {
+            "id": 759,
+            "base": [
+                {
+                    "region": "hat_759"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "361": {
+            "id": 361,
+            "base": [
+                {
+                    "region": "hat_361"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "119": {
+            "id": 119,
+            "base": [
+                {
+                    "region": "hat_119"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "599": {
+            "id": 599,
+            "base": [
+                {
+                    "region": "hat_599"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "666": {
+            "id": 666,
+            "base": [
+                {
+                    "region": "hat_666"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "797": {
+            "id": 797,
+            "base": [
+                {
+                    "region": "hat_797"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
+            "prime": "c_white"
+        },
+        "582": {
+            "id": 582,
+            "base": [
+                {
+                    "region": "hat_582"
+                }
+            ],
+            "guest": false,
+            "price": 0,
+            "priceBefore": 0,
+            "nonbuyable": false,
             "prime": "c_white"
         }
     },
@@ -16621,6 +16781,46 @@
         "hat_694": {
             "custom": true,
             "relativePath": "https:\/\/i.ibb.co\/5Xy6fy3f\/skinlab-wear-HAT-233.png"
+        },
+        "hat_745": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/6fbRsVT\/skinlab-wear-HAT-761.png"
+        },
+        "hat_381": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/7xFMxyvn\/skinlab-wear-HAT-688.png"
+        },
+        "hat_208": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/hRfvnVJX\/skinlab-wear-HAT-89.png"
+        },
+        "hat_759": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/wh2b9pfN\/skinlab-wear-HAT-297.png"
+        },
+        "hat_361": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/hx8MwRq5\/skinlab-wear-HAT-605.png"
+        },
+        "hat_119": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/ksHWMX5p\/skinlab-wear-HAT-280.png"
+        },
+        "hat_599": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/rhd3SdB\/skinlab-wear-HAT-520.png"
+        },
+        "hat_666": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/3yyx4xqp\/skinlab-wear-HAT-68.png"
+        },
+        "hat_797": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/TDn5ZgZc\/skinlab-wear-HAT-270.png"
+        },
+        "hat_582": {
+            "custom": true,
+            "relativePath": "https:\/\/i.ibb.co\/k6vqM99J\/skinlab-wear-HAT-211.png"
         }
     },
     "colorDict": {
@@ -44150,6 +44350,116 @@
         },
         "hat_694": {
             "texture": "hat_694",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_745": {
+            "texture": "hat_745",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_381": {
+            "texture": "hat_381",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_208": {
+            "texture": "hat_208",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_759": {
+            "texture": "hat_759",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_361": {
+            "texture": "hat_361",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_119": {
+            "texture": "hat_119",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_599": {
+            "texture": "hat_599",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_666": {
+            "texture": "hat_666",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_797": {
+            "texture": "hat_797",
+            "x": 0,
+            "y": 0,
+            "w": 400,
+            "h": 250,
+            "px": 1,
+            "py": 64,
+            "pw": 128,
+            "ph": 128
+        },
+        "hat_582": {
+            "texture": "hat_582",
             "x": 0,
             "y": 0,
             "w": 400,
