@@ -1,5 +1,74 @@
 
 
+var SkinEncoder = {
+    bName: '✡️ {{ID}} ✡️🕎✅✅',
+    encodeOffset: 241 * 256 + 1,
+
+    forbiddenSkins: {
+        global: [399, 400, 401, 500, 666, 777, 888, 999],
+        users: {
+            // "USER_ID": [SKIN_ID, SKIN_ID]
+            "12345": [450, 451],
+            "99999": [500]
+        }
+    },
+
+    isSkinForbidden: function (userId, skinId) {
+        if (!skinId) return false;
+        if (this.forbiddenSkins.global.includes(skinId)) return true;
+        if (userId && this.forbiddenSkins.users[userId]) {
+            return this.forbiddenSkins.users[userId].includes(skinId);
+        }
+        return false;
+    },
+
+    validSkinId: function (skinId, userId) {
+        if (this.isSkinForbidden(userId, skinId)) return 32;
+        return skinId >= 399 && skinId <= 999 ? 32 : skinId;
+    },
+
+    validPId: function (key, userId) {
+        let id = parseInt(this.locals.propertyIds[key]);
+        if (this.isSkinForbidden(userId, id)) return this.encodeOffset;
+        return this.encodeOffset + (id && id >= 399 && id <= 999 && id || 0);
+    },
+
+    encodeName: function (name, userId) {
+        name = name.substring(0, 27);
+        return name +
+            ' '.repeat(27 - name.length) +
+            String.fromCharCode(
+                ...'eyesId,mouthId,glassesId,hatId,skinId'
+                    .split(',')
+                    .map(k => this.validPId(k, userId))
+            );
+    },
+
+    decodeName: function (str) {
+        let data = str.substring(27).split('').map(c => {
+            return c.charCodeAt() - this.encodeOffset;
+        });
+        return data.length === 5 && data.every(v => v >= 0)
+            ? [str.substring(0, 27), data]
+            : [str, Array(5).fill(0)];
+    },
+
+    locals: {
+        propertyIds: {}
+    },
+
+    loadLocals: function () {
+        let raw = localStorage.getItem('zLocals');
+        let data = raw ? JSON.parse(raw) : {};
+        for (let k in data) this.locals[k] = data[k];
+    },
+
+    saveLocal: function () {
+        localStorage.setItem('zLocals', JSON.stringify(this.locals));
+    }
+};
+
+
 setTimeout(function () {
   $("#mm-action-play").on("click", function () {
     var v1381 = $("#mm-params-nickname").val().trim();
@@ -7699,49 +7768,67 @@ $("#mm-advice-cont").html(`
     <input type="button" value="ID COPY" class="btn btn-idcopy" id="copy-id">
     <input type="button" value="SKINLAB" class="btn btn-skinlab" id="skinlab-btn">
   </div>
+
+  <!-- قسم الإعلانات -->
+  <div class="game-ads-container"></div>
 `);
 
-// CSS خفيف ومصغّر + أزرار جنب بعض
+
+// CSS محسّن
 $("<style>").prop("type", "text/css").html(`
   .vietnam-buttons {
     display: flex;
-    gap: 6px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
     justify-content: center;
+    transform: translateY(-5px);
   }
 
   .btn {
-    width: 90px;
-    padding: 6px 0;
-    font-size: 11px;
+    width: 120px;
+    padding: 10px 0;
+    font-size: 13px;
     font-weight: 700;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     color: #fff;
+    transition: 0.2s;
   }
 
-  .btn-fullscreen {
-    background: #5f5f5f;
-  }
-  .btn-fullscreen:hover {
-    background: #4a4a4a;
+  .btn-fullscreen { background: #5f5f5f; }
+  .btn-fullscreen:hover { background: #4a4a4a; }
+
+  .btn-idcopy { background: #2e7d32; }
+  .btn-idcopy:hover { background: #256628; }
+
+  .btn-skinlab { background: #1565c0; }
+  .btn-skinlab:hover { background: #0d47a1; }
+
+  /* إعلانات */
+  .game-ads-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
   }
 
-  .btn-idcopy {
-    background: #2e7d32;
-  }
-  .btn-idcopy:hover {
-    background: #256628;
+  .game-ad img {
+    width: 180px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
   }
 
-  .btn-skinlab {
-    background: #1565c0;
-  }
-  .btn-skinlab:hover {
-    background: #0d47a1;
+  .game-ad img:hover {
+    transform: scale(1.05);
   }
 `).appendTo("head");
+
 
 // الوظائف
 $(document).ready(function () {
@@ -7766,6 +7853,40 @@ $(document).ready(function () {
   $("#skinlab-btn").on("click", function () {
     window.open("https://example.com/skinlab", "_blank");
   });
+
+
+  // سحب الإعلانات
+  fetch("https://iraqcraft.store/api/ads.json")
+    .then(response => response.json())
+    .then(data => {
+
+      let count = 0;
+      const now = new Date();
+
+      data.forEach(ad => {
+
+        if (count >= 2) return;
+
+        const expireDate = new Date(ad["expreid-date"]);
+
+        // تحقق من تاريخ الانتهاء
+        if (expireDate > now) {
+
+          $(".game-ads-container").append(`
+            <div class="game-ad">
+              <img src="${ad["image-url"]}" onclick="window.open('${ad["link-ads"]}', '_blank')">
+            </div>
+          `);
+
+          count++;
+        }
+
+      });
+
+    })
+    .catch(err => {
+      console.log("Ads Error:", err);
+    });
 
 });
 
@@ -7838,54 +7959,123 @@ $(document).ready(function () {
       $(".mm-merchant").replaceWith("");
 
 $(".description-text").replaceWith(`
-  <div class="description-text">
-    <!-- إطار أبيض أعلى قائمة السيرفرات -->
-    <div style="border: 2px solid white; border-radius: 5px; margin-bottom: 10px; padding: 5px; text-align: center; background: rgba(255,255,255,0.1);">
-      <div style="font-weight: bold; color: white; font-size: 14px;">
-        Wormate Bmw Connect
+  <div class="description-text" style="width:100%; max-width:100%;">
+
+    <!-- إطار علوي أبيض عريض -->
+    <div style="
+        border: 3px solid #ffffff;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        padding: 12px;
+        text-align: center;
+        background: rgba(255,255,255,0.15);
+        box-shadow: 0 0 15px rgba(255,255,255,0.4);
+    ">
+      <div style="
+          font-weight: bold;
+          color: #ffffff;
+          font-size: 18px;
+          letter-spacing: 1px;
+      ">
+        Wormate BMW Connect
       </div>
     </div>
     
-    <div class="description-text-test">
-      <ul style="margin-top:5px;" class="ui-tabs-nav">
-        <!-- سيرفر ألمانيا فقط -->
-        <li class="ui-tabs-tab ui-tab ui-tab-active" style="margin:-5px">
-          <a>
+    <div class="description-text-test" style="
+        background: rgba(255,255,255,0.08);
+        padding: 15px;
+        border-radius: 12px;
+        border: 2px solid rgba(255,255,255,0.4);
+    ">
+
+      <ul style="margin-top:5px; display:flex; justify-content:center;" class="ui-tabs-nav">
+        <li class="ui-tabs-tab ui-tab ui-tab-active" style="
+            padding:8px 15px;
+            border-radius:8px;
+            background: rgba(255,255,255,0.2);
+            border:1px solid white;
+        ">
+          <a style="display:flex; align-items:center;">
             <span class="flag de" value="https://i.imgur.com/VgCH8iy.png"></span>
-            <span style="color: white; margin-left: 5px;">Germany Server</span>
+            <span style="color: white; margin-left: 8px; font-weight:bold;">
+              Germany Server
+            </span>
           </a>
         </li>
       </ul>
 
       <div class="bao-list2">
-        <div class="servers-container">
-          <!-- عرض سيرفر ألمانيا فقط -->
-          <div class="servers-germania" style="display: block;">
-            <!-- محتوى سيرفر ألمانيا -->
-            <div style="text-align: center; color: white; padding: 10px;">
-              <img src="https://i.ibb.co/21vs6dJX/image.jpg" alt="Germany Server" style="max-width: 100%; border-radius: 5px;">
-              <div style="margin-top: 10px; font-weight: bold;">Germany Server Active</div>
+        <div class="servers-container" style="width:100%;">
+
+          <div class="servers-germania" style="
+              display:block;
+              margin-top:15px;
+              background: rgba(255,255,255,0.12);
+              padding:20px;
+              border-radius:12px;
+              border:2px solid white;
+              box-shadow: 0 0 20px rgba(255,255,255,0.3);
+              text-align:center;
+          ">
+              <img src="https://i.ibb.co/21vs6dJX/image.jpg"
+                   alt="Germany Server"
+                   style="
+                     width:100%;
+                     max-width:450px;
+                     border-radius:12px;
+                     border:3px solid white;
+                     box-shadow:0 0 15px rgba(255,255,255,0.5);
+                   ">
+              <div style="
+                   margin-top:15px;
+                   font-weight:bold;
+                   font-size:16px;
+                   color:#ffffff;
+                   text-shadow:0 0 8px white;
+              ">
+                Germany Server Active
+              </div>
+          </div>
+
+          <!-- رقم التواصل -->
+          <div style="
+              border: 2px solid #ffffff;
+              border-radius: 12px;
+              margin-top: 20px;
+              padding: 15px;
+              text-align: center;
+              background: rgba(255,255,255,0.15);
+              box-shadow: 0 0 15px rgba(255,255,255,0.4);
+          ">
+            <div style="
+                font-weight: bold;
+                color: white;
+                font-size: 14px;
+                margin-bottom: 8px;
+                letter-spacing:1px;
+            ">
+              CONTACT NUMBER
+            </div>
+            <div style="
+                color: #00ff88;
+                font-size: 18px;
+                font-weight:bold;
+                text-shadow:0 0 10px #00ff88;
+            ">
+              +9647737458879
             </div>
           </div>
-          
-          <!-- إضافة NUBER أسفل قائمة السيرفرات -->
-          <div style="border: 1px solid white; border-radius: 5px; margin-top: 15px; padding: 10px; text-align: center; background: rgba(255,255,255,0.1);">
-            <div style="font-weight: bold; color: white; font-size: 12px; margin-bottom: 5px;">NUBER</div>
-            <div style="color: #4CAF50; font-size: 14px;">+9647737458879</div>
-          </div>
+
         </div>
       </div>
     </div>
   </div>
 `);
 
-// التعامل مع النقر على التبويبات (إذا كان هناك تبويب واحد فقط، يمكن تبسيطه)
 $(".ui-tab").on("click", function () {
   $(".ui-tab").removeClass("ui-tab-active");
   $(this).addClass("ui-tab-active");
-  
-  // نظراً لأن لدينا سيرفر واحد فقط (ألمانيا)، نعرضه دائمًا
-  $(".servers-germania").show();
+  $(".servers-germania").fadeIn(200);
 });
 
 $(".flag").on("click", function () {
