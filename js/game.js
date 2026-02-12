@@ -1,8 +1,4 @@
 
-/* ================================
-   SKINS ADD SYSTEM (FROM STORE)
-   ================================ */
-
 (function () {
 
     const MAX_SKINS = 10;
