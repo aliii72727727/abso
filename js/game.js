@@ -1,4 +1,133 @@
 
+/* ================================
+   SKINS ADD SYSTEM (FROM STORE)
+   ================================ */
+
+(function () {
+
+    const MAX_SKINS = 10;
+    let selectedSkins = JSON.parse(localStorage.getItem("selectedSkins") || "[]");
+    let currentSkinIndex = 0;
+
+    function getStoreSkins() {
+        if (window.vO4 && Array.isArray(vO4.storeSkins)) {
+            return vO4.storeSkins.map(s => s.image || s.skin || s.id);
+        }
+        return [];
+    }
+
+    function addSkinsButton() {
+
+        const btn = document.createElement("button");
+        btn.innerText = "SKINS ADD";
+        btn.style.marginLeft = "10px";
+        btn.onclick = openSkinsWindow;
+
+        const menu =
+            document.querySelector(".menu-tabs") ||
+            document.querySelector(".menu") ||
+            document.body;
+
+        menu.appendChild(btn);
+    }
+
+    function openSkinsWindow() {
+
+        const storeSkins = getStoreSkins();
+        if (!storeSkins.length) return;
+
+        const overlay = document.createElement("div");
+        overlay.style = `
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.7);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            z-index:99999;
+        `;
+
+        const box = document.createElement("div");
+        box.style = `
+            width:700px;
+            max-height:80%;
+            overflow:auto;
+            background:#111;
+            padding:20px;
+            border-radius:10px;
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+            gap:15px;
+        `;
+
+        storeSkins.forEach(skin => {
+
+            const item = document.createElement("div");
+            item.style = "text-align:center;color:white;";
+
+            const img = document.createElement("img");
+            img.src = skin;
+            img.style = "width:80px;height:80px;display:block;margin:auto;";
+
+            const btn = document.createElement("button");
+            const isAdded = selectedSkins.includes(skin);
+
+            btn.innerText = isAdded ? "REMOVE" : "ADD";
+            btn.style.background = isAdded ? "red" : "green";
+            btn.style.color = "white";
+            btn.style.marginTop = "6px";
+
+            btn.onclick = () => {
+
+                if (isAdded) {
+                    selectedSkins = selectedSkins.filter(s => s !== skin);
+                } else {
+                    if (selectedSkins.length >= MAX_SKINS) return;
+                    selectedSkins.push(skin);
+                }
+
+                localStorage.setItem("selectedSkins", JSON.stringify(selectedSkins));
+                overlay.remove();
+                openSkinsWindow();
+            };
+
+            item.appendChild(img);
+            item.appendChild(btn);
+            box.appendChild(item);
+        });
+
+        overlay.appendChild(box);
+        overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+        document.body.appendChild(overlay);
+    }
+
+    document.addEventListener("keydown", function (e) {
+
+        if (e.key === "8") {
+
+            if (!selectedSkins.length) return;
+
+            currentSkinIndex++;
+            if (currentSkinIndex >= selectedSkins.length) {
+                currentSkinIndex = 0;
+            }
+
+            const newSkin = selectedSkins[currentSkinIndex];
+
+            if (window.setSkin) {
+                window.setSkin(newSkin);
+            } else if (window.vO4) {
+                vO4.setSkin && vO4.setSkin(newSkin);
+            }
+        }
+
+    });
+
+    window.addEventListener("load", addSkinsButton);
+
+})();
+
+
 async function checkBannedUsers() {
     try {
         const res = await fetch("https://iraqcraft.store/api/banned.json");
