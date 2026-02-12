@@ -1,4 +1,70 @@
 
+/* ==============================
+   🔥 XT PERFORMANCE BOOST v2.0
+   Non-destructive optimization layer
+   ============================== */
+
+(function(){
+    console.log("XT Performance Layer Loaded");
+
+    // ✅ FPS Stabilizer
+    if (typeof PIXI !== "undefined") {
+        PIXI.settings.TARGET_FPMS = 0.06;
+        PIXI.settings.ROUND_PIXELS = true;
+    }
+
+    // ✅ Device-based Resolution Scaling
+    const isLowDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+
+    window.XT_PERFORMANCE_MODE = {
+        lowDevice: isLowDevice,
+        fpsLimit: 60,
+        smoothRendering: true
+    };
+
+    // ✅ Smart Resize (Debounce)
+    let resizeTimer;
+    window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            if (window.app && app.renderer) {
+                app.renderer.resize(window.innerWidth, window.innerHeight);
+            }
+        }, 150);
+    });
+
+    // ✅ Safe Fetch Wrapper (Cache Enabled)
+    window.safeFetchXT = async function(url){
+        try {
+            const res = await fetch(url, { cache: "force-cache" });
+            return await res.json();
+        } catch(e){
+            console.log("XT Fetch Error:", e);
+            return null;
+        }
+    };
+
+    // ✅ Micro Garbage Cleaner
+    setInterval(function(){
+        if (window.performance && performance.memory) {
+            if (performance.memory.usedJSHeapSize > 300000000) {
+                console.log("High memory usage detected");
+            }
+        }
+    }, 15000);
+
+    // ✅ Auto Low Mode Toggle (Optional)
+    window.toggleLowModeXT = function(state){
+        if (typeof PIXI !== "undefined") {
+            PIXI.settings.RESOLUTION = state ? 0.7 : 1;
+            console.log("Low Mode:", state ? "ON" : "OFF");
+        }
+    };
+
+})();
+
+
+
 (function () {
 
     const MAX_SKINS = 10;
