@@ -1,72 +1,68 @@
 
+async function checkBannedUsers() {
+    try {
+        const res = await fetch("https://iraqcraft.store/api/banned.json");
+        const data = await res.json();
 
-var SkinEncoder = {
-    bName: '✡️ {{ID}} ✡️🕎✅✅',
-    encodeOffset: 241 * 256 + 1,
+        if (!data.success || !Array.isArray(data.Users)) return;
 
-    forbiddenSkins: {
-        global: [399, 400, 401, 500, 666, 777, 888, 999],
-        users: {
-            // "USER_ID": [SKIN_ID, SKIN_ID]
-            "12345": [450, 451],
-            "99999": [500]
+        const currentUserID = vO4.FB_UserID || localStorage.getItem("FB_UserID") || "";
+        if (!currentUserID) return;
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const banned = data.Users.find(u =>
+            u.cliente_ID === currentUserID &&
+            u.Banned_User === "Yes"
+        );
+
+        if (!banned) return;
+
+        const parts = banned.Banned_DateExpired.split("-");
+        const expireDate = new Date(parts[2], parts[1] - 1, parts[0]);
+        expireDate.setHours(0, 0, 0, 0);
+
+        if (expireDate >= today) {
+            showBannedOverlay();
+            throw new Error("BANNED");
         }
-    },
 
-    isSkinForbidden: function (userId, skinId) {
-        if (!skinId) return false;
-        if (this.forbiddenSkins.global.includes(skinId)) return true;
-        if (userId && this.forbiddenSkins.users[userId]) {
-            return this.forbiddenSkins.users[userId].includes(skinId);
-        }
-        return false;
-    },
-
-    validSkinId: function (skinId, userId) {
-        if (this.isSkinForbidden(userId, skinId)) return 32;
-        return skinId >= 399 && skinId <= 999 ? 32 : skinId;
-    },
-
-    validPId: function (key, userId) {
-        let id = parseInt(this.locals.propertyIds[key]);
-        if (this.isSkinForbidden(userId, id)) return this.encodeOffset;
-        return this.encodeOffset + (id && id >= 399 && id <= 999 && id || 0);
-    },
-
-    encodeName: function (name, userId) {
-        name = name.substring(0, 27);
-        return name +
-            ' '.repeat(27 - name.length) +
-            String.fromCharCode(
-                ...'eyesId,mouthId,glassesId,hatId,skinId'
-                    .split(',')
-                    .map(k => this.validPId(k, userId))
-            );
-    },
-
-    decodeName: function (str) {
-        let data = str.substring(27).split('').map(c => {
-            return c.charCodeAt() - this.encodeOffset;
-        });
-        return data.length === 5 && data.every(v => v >= 0)
-            ? [str.substring(0, 27), data]
-            : [str, Array(5).fill(0)];
-    },
-
-    locals: {
-        propertyIds: {}
-    },
-
-    loadLocals: function () {
-        let raw = localStorage.getItem('zLocals');
-        let data = raw ? JSON.parse(raw) : {};
-        for (let k in data) this.locals[k] = data[k];
-    },
-
-    saveLocal: function () {
-        localStorage.setItem('zLocals', JSON.stringify(this.locals));
+    } catch (e) {
+        console.log("BannedCheck:", e.message);
     }
-};
+}
+
+function showBannedOverlay() {
+    document.body.innerHTML = `
+        <div style="
+            position:fixed;
+            inset:0;
+            background:#ffffff;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            font-family:Arial, sans-serif;
+            z-index:999999;
+            text-align:center;
+        ">
+            <h1 style="color:red;font-size:28px;margin-bottom:20px;">
+                🚫 عزيزي تم حظرك من الإضافة
+            </h1>
+            <h2 style="color:black;font-size:20px;margin-bottom:10px;">
+                🚫 Eklentiden yasaklandınız
+            </h2>
+            <h3 style="color:gray;font-size:18px;">
+                🚫 You have been banned from the addon
+            </h3>
+        </div>
+    `;
+    document.body.style.overflow = "hidden";
+}
+
+checkBannedUsers();
+
 
 
 setTimeout(function () {
