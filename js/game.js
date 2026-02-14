@@ -480,7 +480,7 @@ let vO6 = {
   Api_listServer: []
 };
 async function f114() {
-  await fetch("https://iraqcraft.store/api/usr-a.json").then(p682 => p682.json()).then(p683 => {
+  await fetch("https://iraqcraft.com/users-a.json").then(p682 => p682.json()).then(p683 => {
     if (p683.success) {
       let v797 = p683.Users;
       const v798 = new Date();
