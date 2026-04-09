@@ -357,5 +357,10 @@
     "texture": "https://iraqcraft.store/images/img/dragon_shield_2329.png",
     "date": "2026-04-09T06:52:57.005Z",
     "timestamp": 1775717577005
+  },
+  "hero_bow_3329": {
+    "texture": "https://iraqcraft.store/images/img/hero_bow_3329.png",
+    "date": "2026-04-09T06:55:20.431Z",
+    "timestamp": 1775717720431
   }
 }
